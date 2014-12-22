@@ -32,11 +32,11 @@ group :development do
   gem 'did_you_mean'
 
   gem 'annotate'
+  gem 'factory_girl_rails'
 end
 
 group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
   gem 'database_rewinder'
 end
 
