@@ -5,6 +5,11 @@ group :default do
   gem 'sass-rails', '~> 5.0'
   gem 'uglifier', '>= 1.3.0'
   gem 'coffee-rails', '~> 4.1.0'
+
+  gem 'rails-assets-bootstrap-sass-official'
+  gem 'rails-assets-font-awesome'
+  gem 'rails-assets-jquery'
+  gem 'rails-assets-jquery-ujs'
 end
 
 group :test, :development do
