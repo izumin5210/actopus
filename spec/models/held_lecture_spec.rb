@@ -22,8 +22,8 @@ RSpec.describe HeldLecture, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:wday) }
-    it { is_expected.to validate_presence_of(:lecture) }
-    it { is_expected.to validate_presence_of(:period) }
+    it { is_expected.to validate_presence_of(:lecture_id) }
+    it { is_expected.to validate_presence_of(:period_id) }
   end
 
   describe 'associations' do

@@ -17,7 +17,7 @@ RSpec.describe Lecturer, type: :model do
 
   describe 'validates' do
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_presence_of(:department) }
+    it { is_expected.to validate_presence_of(:department_id) }
   end
 
   describe 'associations' do

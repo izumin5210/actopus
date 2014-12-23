@@ -25,6 +25,6 @@ class Lecture < ActiveRecord::Base
 
   validates :name, presence: true
   validates :grade, presence: true
-  validates :department, presence: true
-  validates :term, presence: true
+  validates :department_id, presence: true
+  validates :term_id, presence: true
 end

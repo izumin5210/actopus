@@ -18,7 +18,7 @@ class HeldLecture < ActiveRecord::Base
   belongs_to :lecture
   belongs_to :period
 
-  validates :lecture, presence: true
-  validates :period, presence: true
+  validates :lecture_id, presence: true
+  validates :period_id, presence: true
   validates :wday, presence: true
 end
