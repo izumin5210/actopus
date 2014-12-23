@@ -16,8 +16,7 @@
 
 FactoryGirl.define do
   factory :department do
-    name "MyString"
-abbreviation_name "MyString"
+    name '電気情報工学科'
+    abbreviation_name 'E'
   end
-
 end

@@ -16,6 +16,19 @@
 
 require 'rails_helper'
 
-RSpec.describe Department, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Department, type: :model do
+  let(:department) { FactoryGirl.create(:department) }
+  subject { department }
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name) }
+    it { is_expected.to validate_presence_of(:abbreviation_name) }
+    it { is_expected.to validate_uniqueness_of(:abbreviation_name) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:lectures) }
+    it { is_expected.to have_many(:lecturers) }
+  end
 end
