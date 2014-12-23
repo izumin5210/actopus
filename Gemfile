@@ -7,6 +7,8 @@ group :default do
   gem 'uglifier', '>= 1.3.0'
   gem 'coffee-rails', '~> 4.1.0'
 
+  gem 'devise'
+
   gem 'rails-assets-bootstrap-sass-official'
   gem 'rails-assets-font-awesome'
   gem 'rails-assets-jquery'
