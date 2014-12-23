@@ -17,6 +17,6 @@ class TeachingLecture < ActiveRecord::Base
   belongs_to :lecture
   belongs_to :lecturer
 
-  validates :lecture, presence: true, uniquenss: { scope: [:lecturer_id] }
-  validates :lecturer, presence: true
+  validates :lecture_id, presence: true, uniqueness: { scope: [:lecturer_id] }
+  validates :lecturer_id, presence: true
 end

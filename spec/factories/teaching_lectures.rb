@@ -15,8 +15,7 @@
 
 FactoryGirl.define do
   factory :teaching_lecture do
-    lecture_id 1
-lecturer_id 1
+    lecture
+    lecturer { create(:lecturer, department: lecture.department) }
   end
-
 end
