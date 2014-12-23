@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223041032) do
+ActiveRecord::Schema.define(version: 20141223055042) do
 
   create_table "staffs", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -61,5 +61,17 @@ ActiveRecord::Schema.define(version: 20141223041032) do
 
   add_index "periods", ["begin_at", "end_at"], name: "index_periods_on_begin_at_and_end_at", unique: true
   add_index "periods", ["name"], name: "index_periods_on_name", unique: true
+
+  create_table "terms", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.string   "xml_filename", null: false
+    t.date     "begin_at",     null: false
+    t.date     "end_at",       null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "terms", ["begin_at", "end_at"], name: "index_terms_on_begin_at_and_end_at", unique: true
+  add_index "terms", ["xml_filename"], name: "index_terms_on_xml_filename", unique: true
 
 end
