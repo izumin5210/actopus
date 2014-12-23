@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 group :default do
   gem 'rails', '4.2.0'
