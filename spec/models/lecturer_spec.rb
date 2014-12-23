@@ -12,7 +12,7 @@
 require 'rails_helper'
 
 RSpec.describe Lecturer, type: :model do
-  let(:lecturer) { FactoryGirl.create(:lecturer) }
+  let(:lecturer) { create(:lecturer) }
   subject { lecturer }
 
   describe 'validates' do

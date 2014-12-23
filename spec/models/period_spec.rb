@@ -18,7 +18,7 @@
 require 'rails_helper'
 
 RSpec.describe Period, type: :model do
-  let(:period) { FactoryGirl.create(:period) }
+  let(:period) { create(:period) }
   subject { period }
 
   describe 'validates' do

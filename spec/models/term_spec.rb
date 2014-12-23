@@ -19,7 +19,7 @@
 require 'rails_helper'
 
 RSpec.describe Term, type: :model do
-  let(:term) { FactoryGirl.create(:term) }
+  let(:term) { create(:term) }
   subject { term }
 
   describe 'validates' do

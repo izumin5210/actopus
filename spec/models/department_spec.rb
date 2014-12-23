@@ -17,7 +17,7 @@
 require 'rails_helper'
 
 RSpec.describe Department, type: :model do
-  let(:department) { FactoryGirl.create(:department) }
+  let(:department) { create(:department) }
   subject { department }
 
   describe 'validations' do
