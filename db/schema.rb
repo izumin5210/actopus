@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20141223040510) do
   add_index "staffs", ["email"], name: "index_staffs_on_email", unique: true
   add_index "staffs", ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
 
+  create_table "courses", force: :cascade do |t|
+    t.string   "name",              null: false
+    t.string   "abbreviation_name", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "courses", ["abbreviation_name"], name: "index_courses_on_abbreviation_name", unique: true
+  add_index "courses", ["name"], name: "index_courses_on_name", unique: true
+
   create_table "departments", force: :cascade do |t|
     t.string   "name",              null: false
     t.string   "abbreviation_name", null: false
