@@ -18,6 +18,9 @@ class Lecture < ActiveRecord::Base
   belongs_to :course
   belongs_to :term
 
+  has_many :teaching_lecturers, class_name: TeachingLecture.name
+  has_many :lecturers, through: :teaching_lecturers
+
   validates :name, presence: true
   validates :grade, presence: true
   validates :department, presence: true

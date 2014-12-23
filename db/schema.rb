@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223062509) do
+ActiveRecord::Schema.define(version: 20141223063307) do
 
   create_table "staffs", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(version: 20141223062509) do
 
   add_index "periods", ["begin_at", "end_at"], name: "index_periods_on_begin_at_and_end_at", unique: true
   add_index "periods", ["name"], name: "index_periods_on_name", unique: true
+
+  create_table "teaching_lectures", force: :cascade do |t|
+    t.integer  "lecture_id",  null: false
+    t.integer  "lecturer_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "teaching_lectures", ["lecture_id", "lecturer_id"], name: "index_teaching_lectures_on_lecture_id_and_lecturer_id", unique: true
 
   create_table "terms", force: :cascade do |t|
     t.string   "name",         null: false
