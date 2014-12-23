@@ -15,12 +15,26 @@
 
 FactoryGirl.define do
   factory :lecture do
-    name "MyString"
-grade 1
-overseas_student false
-department_id 1
-course_id 1
-term_id 1
-  end
+    name 'プログラミングI'
+    grade 1
+    overseas_student false
+    department
+    term
 
+    trait :with_course do
+      course
+    end
+
+    trait :with_lecturers do
+      after(:create) do |lecture, _evaluator|
+        create(:lecturer, lectures: [lecture], department: lecture.department)
+      end
+    end
+
+    trait :with_periods do
+      after(:create) do |lecture, _evaluator|
+        create(:period, lectures: [lecture])
+      end
+    end
+  end
 end

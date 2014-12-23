@@ -15,6 +15,27 @@
 
 require 'rails_helper'
 
-RSpec.describe Lecture, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Lecture, type: :model do
+  let(:lecture) { FactoryGirl.create(:lecture) }
+  subject { lecture }
+
+  describe 'validates' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:grade) }
+    it { is_expected.to validate_presence_of(:department) }
+    it { is_expected.to validate_presence_of(:term) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:department) }
+    it { is_expected.to belong_to(:course) }
+    it { is_expected.to belong_to(:term) }
+    it do
+      is_expected.to have_many(:teaching_lecturers)
+        .class_name('TeachingLecture').with_foreign_key(:lecture_id)
+    end
+    it { is_expected.to have_many(:lecturers).through(:teaching_lecturers) }
+    it { is_expected.to have_many(:held_lectures) }
+    it { is_expected.to have_many(:periods).through(:held_lectures) }
+  end
 end
