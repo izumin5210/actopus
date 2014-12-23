@@ -18,10 +18,9 @@
 
 FactoryGirl.define do
   factory :term do
-    name "MyString"
-xml_filename "MyString"
-begin_at "2014-12-23"
-end_at "2014-12-23"
+    name '後期'
+    xml_filename 'timetable201410.xml'
+    begin_at { Date.parse('2014-10-1') }
+    end_at { Date.parse('2015-2-28') }
   end
-
 end
