@@ -15,6 +15,8 @@
 #
 
 class Department < ActiveRecord::Base
+  has_many :lecturers
+
   validates :name, presence: true, uniqueness: true
   validates :abbreviation_name, presence: true, uniqueness: true
 end
