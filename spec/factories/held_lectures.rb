@@ -16,9 +16,8 @@
 
 FactoryGirl.define do
   factory :held_lecture do
-    lecture_id 1
-period_id 1
-wday 1
+    wday 1
+    lecture
+    period
   end
-
 end
