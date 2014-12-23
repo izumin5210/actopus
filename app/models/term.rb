@@ -17,6 +17,8 @@
 #
 
 class Term < ActiveRecord::Base
+  has_many :lectures
+
   validates :name, presence: true
   validates :xml_filename, presence: true
   validates :begin_at, presence: true
