@@ -17,7 +17,7 @@
 
 class Period < ActiveRecord::Base
   has_many :held_lectures
-  has_many :lectures
+  has_many :lectures, through: :held_lectures
 
   validates :name, presence: true, uniqueness: true
   validates :begin_at, presence: true, uniqueness: { scope: [:end_at] }

@@ -18,5 +18,19 @@
 require 'rails_helper'
 
 RSpec.describe Period, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:period) { FactoryGirl.create(:period) }
+  subject { period }
+
+  describe 'validates' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name) }
+    it { is_expected.to validate_presence_of(:begin_at) }
+    it { is_expected.to validate_presence_of(:end_at) }
+    it { is_expected.to validate_uniqueness_of(:begin_at).scoped_to(:end_at) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:held_lectures) }
+    it { is_expected.to have_many(:lectures).through(:held_lectures) }
+  end
 end

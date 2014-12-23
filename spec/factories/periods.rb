@@ -17,9 +17,8 @@
 
 FactoryGirl.define do
   factory :period do
-    name "MyString"
-begin_at "2014-12-23 13:10:32"
-end_at "2014-12-23 13:10:32"
+    name '1'
+    begin_at '09:00:00+09:00'
+    end_at '10:30:00+09:00'
   end
-
 end
