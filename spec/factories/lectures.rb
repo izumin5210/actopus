@@ -33,7 +33,7 @@ FactoryGirl.define do
 
     trait :with_periods do
       after(:create) do |lecture, _evaluator|
-        create(:period, lectures: [lecture])
+        lecture.held_lectures.create(wday: 1, period: create(:period))
       end
     end
   end
