@@ -18,6 +18,7 @@ end
 group :test, :development do
   gem 'sqlite3'
   gem 'byebug'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -40,12 +41,12 @@ group :development do
   gem 'did_you_mean'
 
   gem 'annotate'
-  gem 'factory_girl_rails'
 end
 
 group :test do
   gem 'rspec-rails'
   gem 'database_rewinder'
+  gem 'shoulda-matchers', require: false
 end
 
 group :doc do
