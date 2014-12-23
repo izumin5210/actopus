@@ -11,8 +11,7 @@
 
 FactoryGirl.define do
   factory :lecturer do
-    name "MyString"
-department_id 1
+    name '新井イスマイル'
+    department
   end
-
 end

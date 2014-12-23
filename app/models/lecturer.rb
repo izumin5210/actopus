@@ -16,4 +16,5 @@ class Lecturer < ActiveRecord::Base
   has_many :lectures, through: :teaching_lectures
 
   validates :name, presence: true
+  validates :department, presence: true
 end
