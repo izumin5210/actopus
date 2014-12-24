@@ -1,0 +1,12 @@
+.header-actopus {
+  color: #FFFFFF;
+  background-color: $brand-primary;
+  height: $height-header;
+  margin-bottom: 40px;
+  h1 {
+    font-size: $font-size-large * 3;
+    margin-top: 0;
+    margin-left: 20px;
+    line-height: $height-header;
+  }
+}
