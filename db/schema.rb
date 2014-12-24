@@ -11,25 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223064227) do
-
-  create_table "staffs", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "staffs", ["email"], name: "index_staffs_on_email", unique: true
-  add_index "staffs", ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
+ActiveRecord::Schema.define(version: 20141224094915) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -63,7 +45,7 @@ ActiveRecord::Schema.define(version: 20141223064227) do
 
   create_table "lecturers", force: :cascade do |t|
     t.string   "name",          null: false
-    t.integer  "department_id", null: false
+    t.integer  "department_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -89,6 +71,24 @@ ActiveRecord::Schema.define(version: 20141223064227) do
 
   add_index "periods", ["begin_at", "end_at"], name: "index_periods_on_begin_at_and_end_at", unique: true
   add_index "periods", ["name"], name: "index_periods_on_name", unique: true
+
+  create_table "staffs", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "staffs", ["email"], name: "index_staffs_on_email", unique: true
+  add_index "staffs", ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
 
   create_table "teaching_lectures", force: :cascade do |t|
     t.integer  "lecture_id",  null: false

@@ -108,3 +108,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

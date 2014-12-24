@@ -4,7 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  name          :string           not null
-#  department_id :integer          not null
+#  department_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
@@ -17,10 +17,11 @@ RSpec.describe Lecturer, type: :model do
 
   describe 'validates' do
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_presence_of(:department_id) }
   end
 
   describe 'associations' do
     it { is_expected.to belong_to(:department) }
+    it { is_expected.to have_many(:teaching_lectures) }
+    it { is_expected.to have_many(:lectures).through(:teaching_lectures) }
   end
 end

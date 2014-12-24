@@ -4,7 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  name          :string           not null
-#  department_id :integer          not null
+#  department_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
@@ -16,5 +16,4 @@ class Lecturer < ActiveRecord::Base
   has_many :lectures, through: :teaching_lectures
 
   validates :name, presence: true
-  validates :department_id, presence: true
 end
