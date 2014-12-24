@@ -20,5 +20,13 @@ FactoryGirl.define do
     name '1'
     begin_at '09:00:00+09:00'
     end_at '10:30:00+09:00'
+
+    Settings.period.each do |period_params|
+      trait :"#{period_params.name.downcase}" do
+        name period_params.name
+        begin_at period_params.begin_at
+        end_at period_params.end_at
+      end
+    end
   end
 end
