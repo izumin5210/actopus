@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :staffs do
+    get 'lecturers/index'
+  end
+
   devise_for :staffs
 
   namespace :staffs do
