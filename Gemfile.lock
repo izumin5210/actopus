@@ -203,6 +203,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.4.4)
+    shoulda-matchers (2.7.0)
+      activesupport (>= 3.0.0)
     slop (3.6.0)
     spring (1.2.0)
     spring-commands-rspec (1.0.4)
@@ -264,6 +266,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-matchers
   spring
   spring-commands-rspec
   sqlite3
