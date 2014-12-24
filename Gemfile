@@ -9,6 +9,8 @@ group :default do
 
   gem 'devise'
 
+  gem 'font-awesome-helper'
+
   gem 'rails-assets-bootstrap-sass-official'
   gem 'rails-assets-font-awesome'
   gem 'rails-assets-jquery'

@@ -89,6 +89,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    font-awesome-helper (0.0.3)
+      rails (~> 4.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -249,6 +251,7 @@ DEPENDENCIES
   devise
   did_you_mean
   factory_girl_rails
+  font-awesome-helper
   pry-byebug
   pry-doc
   pry-rails
