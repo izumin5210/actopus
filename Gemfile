@@ -8,6 +8,7 @@ group :default do
   gem 'coffee-rails', '~> 4.1.0'
 
   gem 'devise'
+  gem 'rails_config'
 
   gem 'font-awesome-helper'
 
