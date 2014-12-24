@@ -1,0 +1,11 @@
+department:
+  - name: 機械工学科
+    abbreviation_name: M
+  - name: 電気情報工学科
+    abbreviation_name: E
+  - name: 都市システム工学科
+    abbreviation_name: C
+  - name: 建築学科
+    abbreviation_name: A
+  - name: 専攻科
+    abbreviation_name: Adv
