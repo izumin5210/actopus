@@ -60,6 +60,9 @@ group :development do
 
   gem 'annotate'
   gem 'letter_opener_web'
+
+  gem 'prmd'
+  gem 'jdoc'
 end
 
 group :test do
