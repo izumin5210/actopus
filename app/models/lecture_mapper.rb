@@ -5,10 +5,9 @@ class LectureMapper
   element 'Grade', as: :grade, class: Integer
   element 'Department', as: :department
   element 'Course', as: :course
-  elements 'Lecturer', as: :lecturers
   element 'Wday', as: :wday, class: Integer
-  element 'StartTime', as: :begin_at
-  element 'EndTime', as: :end_at
+  elements 'Period', as: :periods, class: PeriodMapper
+  elements 'Lecturer', as: :lecturers
 
   def self.parse(xml)
     doc = Nokogiri::XML(xml.gsub(/[\t\n\r]/, ''))
