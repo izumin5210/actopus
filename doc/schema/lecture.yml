@@ -1,0 +1,53 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Lecture
+definitions:
+  id:
+    description: unique identifier of lecture
+    example: 1
+    type:
+    - string
+  identity:
+    "$ref": "/schemata/lecture#/definitions/id"
+  name:
+    description: name of the lecture
+    example: プログラミング I
+    type:
+    - string
+  grade:
+    description: grade of students taking the lecture
+    example: 1
+    type:
+    - integer
+  overseas_student:
+    description: true if the lecture is held for overseas students
+    example: false
+    default: false
+    type:
+    - boolean
+properties:
+  id:
+    "$ref": "/schemata/lecture#/definitions/id"
+  name:
+    "$ref": "/schemata/lecture#/definitions/name"
+  grade:
+    "$ref": "/schemata/lecture#/definitions/grade"
+  department:
+    "$ref": "/schemata/department"
+  course:
+    "$ref": "/schemata/course"
+  overseas_student:
+    "$ref": "/schemata/lecture#/definitions/overseas_student"
+  periods:
+    type: array
+    items:
+      "$ref": "/schemata/period"
+  term:
+    "$ref": "/schemata/term"
+  lecturers:
+    type: array
+    items:
+      "$ref": "/schemata/lecturer"
+type:
+- object
+id: schemata/lecture
