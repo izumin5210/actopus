@@ -10,6 +10,9 @@ group :default do
   gem 'devise'
   gem 'rails_config'
 
+  gem 'nokogiri'
+  gem 'sax-machine'
+
   gem 'font-awesome-helper'
 
   gem 'rails-assets-bootstrap-sass-official'
