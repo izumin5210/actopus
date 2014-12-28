@@ -1,0 +1,38 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Period
+definitions:
+  id:
+    description: unique identifier of the period
+    example: 1
+    type:
+    - integer
+  identity:
+    "$ref": "/schemata/period#/definitions/id"
+  name:
+    description: name of the period
+    example: '1'
+    type:
+    - string
+  begin_at:
+    description: time when the period begin
+    example: '09:00:00+09:00'
+    type:
+    - string
+  end_at:
+    description: time when the period end
+    example: '10:30:00+09:00'
+    type:
+    - string
+properties:
+  id:
+    "$ref": "/schemata/period#/definitions/id"
+  name:
+    "$ref": "/schemata/period#/definitions/name"
+  start_time:
+    "$ref": "/schemata/period#/definitions/begin_at"
+  end_time:
+    "$ref": "/schemata/period#/definitions/end_at"
+type:
+- object
+id: schemata/period
