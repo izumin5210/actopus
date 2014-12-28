@@ -22,4 +22,15 @@ class Period < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :begin_at, presence: true, uniqueness: { scope: [:end_at] }
   validates :end_at, presence: true
+
+  # TODO: 3つ以上のコマにまたがる場合の対応
+  def self.find_by_time(begin_at, end_at)
+    periods = []
+    periods << Period.find_by(begin_at: begin_at, end_at: end_at)
+    unless periods.compact!.nil?
+      periods << Period.where(begin_at: begin_at).order(end_at: :asc).last
+      periods << Period.where(end_at: end_at).order(begin_at: :asc).first
+    end
+    periods
+  end
 end
