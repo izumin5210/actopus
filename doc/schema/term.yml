@@ -1,0 +1,38 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Term
+definitions:
+  id:
+    description: unique identifier of term
+    example: 1
+    type:
+    - integer
+  identity:
+    "$ref": "/schemata/term#/definitions/id"
+  name:
+    description: name of the term
+    example: 前期
+    type:
+    - string
+  begin_at:
+    description: date when the term begin
+    example: '2014-10-01'
+    type:
+    - string
+  end_at:
+    description: date when the term end
+    example: '2015-03-31'
+    type:
+    - string
+properties:
+  id:
+    "$ref": "/schemata/term#/definitions/id"
+  name:
+    "$ref": "/schemata/term#/definitions/name"
+  begin_at:
+    "$ref": "/schemata/term#/definitions/begin_at"
+  end_at:
+    "$ref": "/schemata/term#/definitions/end_at"
+type:
+- object
+id: schemata/term
