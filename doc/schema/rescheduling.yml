@@ -1,0 +1,64 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Rescheduling
+definitions:
+  id:
+    description: unique identifier of the resheduling
+    example: 1
+    type:
+    - integer
+  identity:
+    "$ref": "/schemata/resheduling#/definitions/id"
+  category:
+    description: variations of reshedulings(change, cancel, extra)
+    example: change
+    type:
+    - string
+  begin_at_before_rescheduling:
+    description: start time of the lecture before resheduled
+    example: '2014-12-01T09:00:00+09:00'
+    format: date-time
+    type:
+    - string
+  end_at_before_rescheduling:
+    description: end time of the lecture before resheduled
+    example: '2014-12-01T10:30:00+09:00'
+    format: date-time
+    type:
+    - string
+  begin_at_after_rescheduling:
+    description: start time of the lecture after resheduled
+    example: '2014-12-04T14:40:00+09:00'
+    format: date-time
+    type:
+    - string
+  end_at_after_rescheduling:
+    description: end time of the lecture after resheduled
+    example: '2014-12-04T16:10:00+09:00'
+    format: date-time
+    type:
+    - string
+links:
+- description: List existing reshedulings.
+  href: "/reshedulings"
+  method: GET
+  rel: instances
+  title: List
+properties:
+  id:
+    "$ref": "/schemata/resheduling#/definitions/id"
+  category:
+    "$ref": "/schemata/resheduling#/definitions/category"
+  lecture:
+    "$ref": "/schemata/lecture"
+  start_time_before_rescheduling:
+    "$ref": "/schemata/resheduling#/definitions/begin_at_before_rescheduling"
+  end_time_before_rescheduling:
+    "$ref": "/schemata/resheduling#/definitions/end_at_before_rescheduling"
+  start_time_after_rescheduling:
+    "$ref": "/schemata/resheduling#/definitions/begin_at_after_rescheduling"
+  end_time_after_rescheduling:
+    "$ref": "/schemata/resheduling#/definitions/end_at_after_rescheduling"
+type:
+- object
+id: schemata/resheduling
