@@ -33,27 +33,4 @@ RSpec.describe Period, type: :model do
     it { is_expected.to have_many(:held_lectures) }
     it { is_expected.to have_many(:lectures).through(:held_lectures) }
   end
-
-  describe '.find_by_time' do
-    before { load Rails.root.join('db/seeds/period.rb') }
-    subject { Period.find_by_time(begin_at, end_at) }
-
-    context 'with begin_at 09:00:00+09:00 and end_at 10:30:00+09:00' do
-      let(:begin_at) { '09:00:00+09:00' }
-      let(:end_at) { '10:30:00+09:00' }
-      it { is_expected.to match_array Period.where(name: '1').to_a }
-    end
-
-    context 'with begin_at 10:40:00+09:00 and end_at 11:25:00+09:00' do
-      let(:begin_at) { '10:40:00+09:00' }
-      let(:end_at) { '11:25:00+09:00' }
-      it { is_expected.to match_array Period.where(name: '2F').to_a }
-    end
-
-    context 'with begin_at 09:00:00+09:00 and end_at 12:10:00+09:00' do
-      let(:begin_at) { '09:00:00+09:00' }
-      let(:end_at) { '12:10:00+09:00' }
-      it { is_expected.to match_array Period.where(name: %w(1 2)).to_a }
-    end
-  end
 end
