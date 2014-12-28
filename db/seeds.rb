@@ -16,6 +16,7 @@ puts 'Create term...'
 FactoryGirl.create(:term)
 
 %w(department course period).each do |seed|
+  puts "Create #{seed.pluralize}..."
   Rake::Task["db:seed:#{seed}"].invoke
 end
 
