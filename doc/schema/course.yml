@@ -1,0 +1,24 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Course
+definitions:
+  id:
+    description: unique identifier of the course
+    example: 1
+    type:
+    - integer
+  identity:
+    "$ref": "/schemata/course#/definitions/id"
+  name:
+    description: name of the course
+    example: 情報工学コース
+    type:
+    - string
+properties:
+  id:
+    "$ref": "/schemata/course#/definitions/id"
+  name:
+    "$ref": "/schemata/course#/definitions/name"
+type:
+- object
+id: schemata/course
