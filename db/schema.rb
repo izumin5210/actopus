@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141224094915) do
+ActiveRecord::Schema.define(version: 20141229025113) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -63,14 +63,16 @@ ActiveRecord::Schema.define(version: 20141224094915) do
 
   create_table "periods", force: :cascade do |t|
     t.string   "name",       null: false
-    t.string   "begin_at",   null: false
-    t.string   "end_at",     null: false
+    t.string   "start_time", null: false
+    t.string   "end_time",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "periods", ["begin_at", "end_at"], name: "index_periods_on_begin_at_and_end_at", unique: true
+  add_index "periods", ["end_time"], name: "index_periods_on_end_time"
   add_index "periods", ["name"], name: "index_periods_on_name", unique: true
+  add_index "periods", ["start_time", "end_time"], name: "index_periods_on_start_time_and_end_time", unique: true
+  add_index "periods", ["start_time"], name: "index_periods_on_start_time"
 
   create_table "staffs", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -102,13 +104,15 @@ ActiveRecord::Schema.define(version: 20141224094915) do
   create_table "terms", force: :cascade do |t|
     t.string   "name",         null: false
     t.string   "xml_filename", null: false
-    t.date     "begin_at",     null: false
-    t.date     "end_at",       null: false
+    t.date     "start_on",     null: false
+    t.date     "end_on",       null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "terms", ["begin_at", "end_at"], name: "index_terms_on_begin_at_and_end_at", unique: true
+  add_index "terms", ["end_on"], name: "index_terms_on_end_on"
+  add_index "terms", ["start_on", "end_on"], name: "index_terms_on_start_on_and_end_on", unique: true
+  add_index "terms", ["start_on"], name: "index_terms_on_start_on"
   add_index "terms", ["xml_filename"], name: "index_terms_on_xml_filename", unique: true
 
 end

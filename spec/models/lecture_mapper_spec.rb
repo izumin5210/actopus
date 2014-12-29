@@ -14,8 +14,8 @@ describe LectureMapper do
       it { expect(mapper.grade).to eq 1 }
       it { expect(mapper.department).to eq '電気情報工学科' }
       it { expect(mapper.lecturers).to match_array('新井 イスマイル') }
-      it { expect(period.begin_at).to eq Hour.new('09:00:00+09:00') }
-      it { expect(period.end_at).to eq Hour.new('10:30:00+09:00') }
+      it { expect(period.start_time).to eq Hour.new('09:00:00+09:00') }
+      it { expect(period.end_time).to eq Hour.new('10:30:00+09:00') }
     end
 
     context 'with course' do
@@ -31,17 +31,17 @@ describe LectureMapper do
     context 'with 2 periods' do
       let(:lectures_xml) do
         period_params = [
-          { begin_at: '09:00:00+09:00', end_at: '10:30:00+09:00' },
-          { begin_at: '10:40:00+09:00', end_at: '12:10:00+09:00' }
+          { start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
+          { start_time: '10:40:00+09:00', end_time: '12:10:00+09:00' }
         ]
         [lecture_xml(periods: period_params)]
       end
       let(:periods) { mapper.periods }
       it { expect(periods.size).to eq 2 }
-      it { expect(periods[0].begin_at).to eq Hour.new('09:00:00+09:00') }
-      it { expect(periods[0].end_at).to eq Hour.new('10:30:00+09:00') }
-      it { expect(periods[1].begin_at).to eq Hour.new('10:40:00+09:00') }
-      it { expect(periods[1].end_at).to eq Hour.new('12:10:00+09:00') }
+      it { expect(periods[0].start_time).to eq Hour.new('09:00:00+09:00') }
+      it { expect(periods[0].end_time).to eq Hour.new('10:30:00+09:00') }
+      it { expect(periods[1].start_time).to eq Hour.new('10:40:00+09:00') }
+      it { expect(periods[1].end_time).to eq Hour.new('12:10:00+09:00') }
     end
   end
 end

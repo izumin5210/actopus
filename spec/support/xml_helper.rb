@@ -20,7 +20,7 @@ module XMLHelper
     name: 'プログラミング I', grade: 1,
     department: '電気情報工学科', course: nil,
     lecturers: ['新井 イスマイル'], wday: 1,
-    periods: [{ begin_at: '09:00:00+09:00', end_at: '10:30:00+09:00' }])
+    periods: [{ start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' }])
     <<-EOS
 <Lecture>
   <Name>#{name}</Name>
@@ -40,11 +40,11 @@ module XMLHelper
 
   private
 
-  def period_xml(begin_at: '09:00:00+09:00', end_at: '10:30:00+09:00')
+  def period_xml(start_time: '09:00:00+09:00', end_time: '10:30:00+09:00')
     <<-EOS
     <Period>
-      <StartTime>#{begin_at}</StartTime>
-      <EndTime>#{end_at}</EndTime>
+      <StartTime>#{start_time}</StartTime>
+      <EndTime>#{end_time}</EndTime>
     </Period>
     EOS
   end
