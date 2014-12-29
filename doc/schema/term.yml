@@ -14,12 +14,12 @@ definitions:
     example: 前期
     type:
     - string
-  begin_at:
-    description: date when the term begin
+  start_on:
+    description: date when the term start
     example: '2014-10-01'
     type:
     - string
-  end_at:
+  end_on:
     description: date when the term end
     example: '2015-03-31'
     type:
@@ -29,10 +29,10 @@ properties:
     "$ref": "/schemata/term#/definitions/id"
   name:
     "$ref": "/schemata/term#/definitions/name"
-  begin_at:
-    "$ref": "/schemata/term#/definitions/begin_at"
-  end_at:
-    "$ref": "/schemata/term#/definitions/end_at"
+  start_on:
+    "$ref": "/schemata/term#/definitions/start_on"
+  end_on:
+    "$ref": "/schemata/term#/definitions/end_on"
 type:
 - object
 id: schemata/term

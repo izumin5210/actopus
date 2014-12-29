@@ -14,12 +14,12 @@ definitions:
     example: '1'
     type:
     - string
-  begin_at:
-    description: time when the period begin
+  start_time:
+    description: time when the period start
     example: '09:00:00+09:00'
     type:
     - string
-  end_at:
+  end_time:
     description: time when the period end
     example: '10:30:00+09:00'
     type:
@@ -30,9 +30,9 @@ properties:
   name:
     "$ref": "/schemata/period#/definitions/name"
   start_time:
-    "$ref": "/schemata/period#/definitions/begin_at"
+    "$ref": "/schemata/period#/definitions/start_time"
   end_time:
-    "$ref": "/schemata/period#/definitions/end_at"
+    "$ref": "/schemata/period#/definitions/end_time"
 type:
 - object
 id: schemata/period
