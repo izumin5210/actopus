@@ -60,7 +60,7 @@ ANCT reschedulings API
  * true if the lecture is held for overseas students
  * Example: `false`
  * Type: boolean
-* periods
+* times
  * Type: array
 * term
  * Type: object
@@ -93,7 +93,7 @@ ANCT reschedulings API
  * Example: `"1"`
  * Type: string
 * start_time
- * time when the period begin
+ * time when the period start
  * Example: `"09:00:00+09:00"`
  * Type: string
 * end_time
@@ -115,26 +115,10 @@ ANCT reschedulings API
  * Type: string
 * lecture
  * Type: object
-* start_time_before_rescheduling
- * start time of the lecture before resheduled
- * Example: `"2014-12-01T09:00:00+09:00"`
- * Type: string
- * Format: date-time
-* end_time_before_rescheduling
- * end time of the lecture before resheduled
- * Example: `"2014-12-01T10:30:00+09:00"`
- * Type: string
- * Format: date-time
-* start_time_after_rescheduling
- * start time of the lecture after resheduled
- * Example: `"2014-12-04T14:40:00+09:00"`
- * Type: string
- * Format: date-time
-* end_time_after_rescheduling
- * end time of the lecture after resheduled
- * Example: `"2014-12-04T16:10:00+09:00"`
- * Type: string
- * Format: date-time
+* before
+ * Type: object
+* after
+ * Type: object
 
 ### GET /reshedulings
 List existing reshedulings.
@@ -164,7 +148,7 @@ Content-Type: application/json
         "name": "情報工学コース"
       },
       "overseas_student": false,
-      "periods": [
+      "times": [
         {
           "id": 1,
           "name": "1",
@@ -175,8 +159,8 @@ Content-Type: application/json
       "term": {
         "id": 1,
         "name": "前期",
-        "begin_at": "2014-10-01",
-        "end_at": "2015-03-31"
+        "start_on": "2014-10-01",
+        "end_on": "2015-03-31"
       },
       "lecturers": [
         {
@@ -185,10 +169,14 @@ Content-Type: application/json
         }
       ]
     },
-    "start_time_before_rescheduling": "2014-12-01T09:00:00+09:00",
-    "end_time_before_rescheduling": "2014-12-01T10:30:00+09:00",
-    "start_time_after_rescheduling": "2014-12-04T14:40:00+09:00",
-    "end_time_after_rescheduling": "2014-12-04T16:10:00+09:00"
+    "before": {
+      "start_time": "2014-12-01T09:00:00+09:00",
+      "end_time": "2014-12-01T10:30:00+09:00"
+    },
+    "after": {
+      "start_time": "2014-12-04T14:40:00+09:00",
+      "end_time": "2014-12-04T16:10:00+09:00"
+    }
   }
 ]
 ```
@@ -205,11 +193,11 @@ Content-Type: application/json
  * name of the term
  * Example: `"前期"`
  * Type: string
-* begin_at
- * date when the term begin
+* start_on
+ * date when the term start
  * Example: `"2014-10-01"`
  * Type: string
-* end_at
+* end_on
  * date when the term end
  * Example: `"2015-03-31"`
  * Type: string

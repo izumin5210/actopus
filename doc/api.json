@@ -125,7 +125,7 @@
         "overseas_student": {
           "$ref": "#/definitions/lecture/definitions/overseas_student"
         },
-        "periods": {
+        "times": {
           "type": [
             "array"
           ],
@@ -204,14 +204,14 @@
             "string"
           ]
         },
-        "begin_at": {
-          "description": "time when the period begin",
+        "start_time": {
+          "description": "time when the period start",
           "example": "09:00:00+09:00",
           "type": [
             "string"
           ]
         },
-        "end_at": {
+        "end_time": {
           "description": "time when the period end",
           "example": "10:30:00+09:00",
           "type": [
@@ -227,10 +227,10 @@
           "$ref": "#/definitions/period/definitions/name"
         },
         "start_time": {
-          "$ref": "#/definitions/period/definitions/begin_at"
+          "$ref": "#/definitions/period/definitions/start_time"
         },
         "end_time": {
-          "$ref": "#/definitions/period/definitions/end_at"
+          "$ref": "#/definitions/period/definitions/end_time"
         }
       },
       "type": [
@@ -258,7 +258,7 @@
             "string"
           ]
         },
-        "begin_at_before_rescheduling": {
+        "begin_at_before": {
           "description": "start time of the lecture before resheduled",
           "example": "2014-12-01T09:00:00+09:00",
           "format": "date-time",
@@ -266,7 +266,7 @@
             "string"
           ]
         },
-        "end_at_before_rescheduling": {
+        "end_at_before": {
           "description": "end time of the lecture before resheduled",
           "example": "2014-12-01T10:30:00+09:00",
           "format": "date-time",
@@ -274,7 +274,7 @@
             "string"
           ]
         },
-        "begin_at_after_rescheduling": {
+        "begin_at_after": {
           "description": "start time of the lecture after resheduled",
           "example": "2014-12-04T14:40:00+09:00",
           "format": "date-time",
@@ -282,7 +282,7 @@
             "string"
           ]
         },
-        "end_at_after_rescheduling": {
+        "end_at_after": {
           "description": "end time of the lecture after resheduled",
           "example": "2014-12-04T16:10:00+09:00",
           "format": "date-time",
@@ -310,17 +310,31 @@
         "lecture": {
           "$ref": "#/definitions/lecture"
         },
-        "start_time_before_rescheduling": {
-          "$ref": "#/definitions/resheduling/definitions/begin_at_before_rescheduling"
+        "before": {
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "start_time": {
+              "$ref": "#/definitions/resheduling/definitions/begin_at_before"
+            },
+            "end_time": {
+              "$ref": "#/definitions/resheduling/definitions/end_at_before"
+            }
+          }
         },
-        "end_time_before_rescheduling": {
-          "$ref": "#/definitions/resheduling/definitions/end_at_before_rescheduling"
-        },
-        "start_time_after_rescheduling": {
-          "$ref": "#/definitions/resheduling/definitions/begin_at_after_rescheduling"
-        },
-        "end_time_after_rescheduling": {
-          "$ref": "#/definitions/resheduling/definitions/end_at_after_rescheduling"
+        "after": {
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "start_time": {
+              "$ref": "#/definitions/resheduling/definitions/begin_at_after"
+            },
+            "end_time": {
+              "$ref": "#/definitions/resheduling/definitions/end_at_after"
+            }
+          }
         }
       },
       "type": [
@@ -348,14 +362,14 @@
             "string"
           ]
         },
-        "begin_at": {
-          "description": "date when the term begin",
+        "start_on": {
+          "description": "date when the term start",
           "example": "2014-10-01",
           "type": [
             "string"
           ]
         },
-        "end_at": {
+        "end_on": {
           "description": "date when the term end",
           "example": "2015-03-31",
           "type": [
@@ -370,11 +384,11 @@
         "name": {
           "$ref": "#/definitions/term/definitions/name"
         },
-        "begin_at": {
-          "$ref": "#/definitions/term/definitions/begin_at"
+        "start_on": {
+          "$ref": "#/definitions/term/definitions/start_on"
         },
-        "end_at": {
-          "$ref": "#/definitions/term/definitions/end_at"
+        "end_on": {
+          "$ref": "#/definitions/term/definitions/end_on"
         }
       },
       "type": [

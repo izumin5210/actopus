@@ -38,7 +38,7 @@ properties:
     "$ref": "/schemata/course"
   overseas_student:
     "$ref": "/schemata/lecture#/definitions/overseas_student"
-  periods:
+  times:
     type: array
     items:
       "$ref": "/schemata/period"
