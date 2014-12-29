@@ -11,8 +11,26 @@ class LectureMapper
 
   def self.parse(xml)
     doc = Nokogiri::XML(xml.gsub(/[\t\n\r]/, ''))
-    doc.xpath('//xmlns:Lecture').map do |lecture|
-      super(lecture.to_s)
-    end
+    doc.xpath('//xmlns:Lecture').map { |lecture_xml| super(lecture_xml.to_s) }
+  end
+
+  def to_record
+    Lecture.new(name: @name, grade: @grade)
+  end
+
+  def department_params
+    { name: @department }
+  end
+
+  def course_params
+    { name: @course }
+  end
+
+  def lecturer_params
+    @lecturers.map { |name| { name: name } }
+  end
+
+  def period_params
+    @periods.map(&:to_h)
   end
 end
