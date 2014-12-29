@@ -53,6 +53,7 @@ group :test do
   gem 'rspec-rails'
   gem 'database_rewinder'
   gem 'shoulda-matchers', require: false
+  gem 'rspec-validator_spec_helper'
 end
 
 group :doc do

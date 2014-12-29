@@ -51,6 +51,7 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include XMLHelper
+  config.include RSpec::ValidatorSpecHelper, type: :validator
 
   config.before :suite do
     DatabaseRewinder.clean_all
