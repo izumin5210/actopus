@@ -11,11 +11,13 @@ class TimetableForm
   end
 
   def save
-    Term.transaction do
+    ActiveRecord::Base.transaction do
       @term = Term.create!(name: @name, start_on: @start_on, end_on: @end_on,
           xml_filename: @timetable_xml.original_filename)
       lecture_transaction
     end
+  rescue ActiveRecord::RecordInvalid
+    nil
   end
 
   private
@@ -24,13 +26,14 @@ class TimetableForm
     # TODO: 発行されるクエリ数が多すぎるのでバルクインサート等の対策を検討
     departments, courses = Department.all, Course.all
     periods, lecturers = Period.all, Lecturer.all
-    Lecture.transaction do
-      LectureMapper.parse(@timetable_xml.tempfile.read).each do |mapper|
-        lecture = create_lecture(mapper, departments, courses)
-        map_periods_onto_lecture(mapper, lecture, periods)
-        map_lecturers_onto_lecture(mapper, lecture, lecturers)
-      end
+    count = { lecture: 0, lecturer: 0 }
+    LectureMapper.parse(@timetable_xml.tempfile.read).each do |mapper|
+      lecture = create_lecture(mapper, departments, courses)
+      map_periods_onto_lecture(mapper, lecture, periods)
+      count[:lecturer] += map_lecturers_onto_lecture(mapper, lecture, lecturers)
+      count[:lecture] += 1
     end
+    count
   end
 
   def create_lecture(mapper, departments, courses)
@@ -52,13 +55,15 @@ class TimetableForm
   end
 
   def map_lecturers_onto_lecture(mapper, lecture, lecturers)
-    mapper.lecturer_params.each do |params|
+    mapper.lecturer_params.inject(0) do |count, params|
       lecturer = lecturers.find { |l| l.name == params[:name] }
       if lecturer.blank?
         lecturer = Lecturer.create!(name: params[:name])
         lecturers << lecturer
+        count += 1
       end
       lecture.lecturers << lecturer
+      count
     end
   end
 end
