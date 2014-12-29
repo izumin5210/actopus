@@ -1,10 +1,22 @@
 <h1>Staffs::Timetables#new</h1>
 <p>Find me in app/views/staffs/timetables/new.html.erb</p>
 
-<%= form_tag staffs_timetables_path, method: :post, multipart: true, class: 'form-inline' do %>
+<%= form_for @form, url: staffs_timetables_path, method: :post, multipart: true do |f| %>
   <div class="form-group">
-    <%= label_tag :timetable_xml, 'XML file', class: 'sr-only' %>
-    <%= file_field_tag :timetable_xml, accept: 'application/xml,application/rdf+xml' %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_on %>
+    <%= f.date_field :start_on, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_on %>
+    <%= f.date_field :end_on, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :timetable_xml %>
+    <%= f.file_field :timetable_xml, accept: 'application/xml,application/rdf+xml', required: true %>
   </div>
   <%= button_tag fa_icon('upload') { |i| "#{i} upload" }, class: 'btn btn-default' %>
 <% end %>

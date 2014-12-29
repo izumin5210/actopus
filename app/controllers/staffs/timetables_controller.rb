@@ -1,5 +1,6 @@
 class Staffs::TimetablesController < Staffs::BaseController
   def new
+    @form = TimetableForm.new
   end
 
   def create
