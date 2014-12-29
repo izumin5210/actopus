@@ -1,7 +1,7 @@
 class TimetableForm
   include ActiveModel::Model
 
-  attr_reader :term
+  attr_reader :term, :count
   attr_accessor :name, :start_on, :end_on, :timetable_xml
 
   def initialize(attrs = {})
@@ -14,10 +14,11 @@ class TimetableForm
     ActiveRecord::Base.transaction do
       @term = Term.create!(name: @name, start_on: @start_on, end_on: @end_on,
           xml_filename: @timetable_xml.original_filename)
-      lecture_transaction
+      @count = lecture_transaction
     end
+    true
   rescue ActiveRecord::RecordInvalid
-    nil
+    false
   end
 
   private
