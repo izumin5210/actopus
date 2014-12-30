@@ -18,7 +18,7 @@
 require 'rails_helper'
 
 RSpec.describe WdayPeriod, type: :model do
-  let(:wday_period) { create(:wday_period) }
+  let(:wday_period) { build(:wday_period) }
   subject { wday_period }
 
   describe 'validates' do
@@ -31,5 +31,7 @@ RSpec.describe WdayPeriod, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:period) }
+    it { is_expected.to have_many(:schedulings) }
+    it { is_expected.to have_many(:lectures).through(:schedulings) }
   end
 end

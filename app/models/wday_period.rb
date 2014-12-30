@@ -17,6 +17,8 @@
 
 class WdayPeriod < ActiveRecord::Base
   belongs_to :period
+  has_many :schedulings
+  has_many :lectures, through: :schedulings
 
   validates :period_id, presence: true, uniqueness: { scope: [:wday] }
   validates :wday, presence: true

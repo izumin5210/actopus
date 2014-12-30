@@ -17,8 +17,7 @@
 
 FactoryGirl.define do
   factory :wday_period do
-    period_id 1
-wday 1
+    period
+    wday 1
   end
-
 end
