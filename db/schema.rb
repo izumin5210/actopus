@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230070458) do
+ActiveRecord::Schema.define(version: 20141230072041) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -114,5 +114,16 @@ ActiveRecord::Schema.define(version: 20141230070458) do
   add_index "terms", ["start_on", "end_on"], name: "index_terms_on_start_on_and_end_on", unique: true
   add_index "terms", ["start_on"], name: "index_terms_on_start_on"
   add_index "terms", ["xml_filename"], name: "index_terms_on_xml_filename", unique: true
+
+  create_table "wday_periods", force: :cascade do |t|
+    t.integer  "period_id",  null: false
+    t.integer  "wday",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "wday_periods", ["period_id", "wday"], name: "index_wday_periods_on_period_id_and_wday", unique: true
+  add_index "wday_periods", ["period_id"], name: "index_wday_periods_on_period_id"
+  add_index "wday_periods", ["wday"], name: "index_wday_periods_on_wday"
 
 end

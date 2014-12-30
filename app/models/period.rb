@@ -20,6 +20,7 @@
 class Period < ActiveRecord::Base
   has_many :held_lectures
   has_many :lectures, through: :held_lectures
+  has_many :wday_periods
 
   validates :name, presence: true, uniqueness: true
   validates :start_time, presence: true, uniqueness: { scope: [:end_time] }
