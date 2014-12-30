@@ -6,7 +6,7 @@ class LectureMapper
   element 'Department', as: :department
   element 'Course', as: :course
   element 'Wday', as: :wday, class: Integer
-  elements 'Period', as: :periods, class: PeriodMapper
+  elements 'Time', as: :periods, class: PeriodMapper
   elements 'Lecturer', as: :lecturers
 
   def self.parse(xml)

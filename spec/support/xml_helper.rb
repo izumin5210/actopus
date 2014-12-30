@@ -28,9 +28,9 @@ module XMLHelper
   <Department>#{department}</Department>
   #{"<Course>#{course}</Course>" unless course.nil?}
   <Wday>#{wday}</Wday>
-  <Periods>
+  <Times>
     #{periods.map { |p| period_xml(p) }.join("\n")}
-  </Periods>
+  </Times>
   <Lectures>
     #{lecturers.map { |l| "<Lecturer>#{l}</Lecturer>" }.join("\n")}
   </Lectures>
@@ -42,10 +42,10 @@ module XMLHelper
 
   def period_xml(start_time: '09:00:00+09:00', end_time: '10:30:00+09:00')
     <<-EOS
-    <Period>
+    <Time>
       <StartTime>#{start_time}</StartTime>
       <EndTime>#{end_time}</EndTime>
-    </Period>
+    </Time>
     EOS
   end
 end
