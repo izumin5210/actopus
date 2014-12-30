@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: held_lectures
+# Table name: schedulings
 #
 #  id         :integer          not null, primary key
 #  lecture_id :integer          not null
@@ -11,10 +11,10 @@
 #
 # Indexes
 #
-#  index_held_lectures_on_lecture_id_and_period_id_and_wday  (lecture_id,period_id,wday) UNIQUE
+#  index_schedulings_on_lecture_id_and_period_id_and_wday  (lecture_id,period_id,wday) UNIQUE
 #
 
-class HeldLecture < ActiveRecord::Base
+class Scheduling < ActiveRecord::Base
   belongs_to :lecture
   belongs_to :period
 

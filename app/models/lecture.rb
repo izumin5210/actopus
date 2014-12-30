@@ -20,8 +20,8 @@ class Lecture < ActiveRecord::Base
 
   has_many :lecturings
   has_many :lecturers, through: :lecturings
-  has_many :held_lectures
-  has_many :periods, through: :held_lectures
+  has_many :schedulings
+  has_many :periods, through: :schedulings
 
   validates :name, presence: true
   validates :grade, presence: true

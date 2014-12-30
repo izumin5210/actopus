@@ -32,7 +32,7 @@ RSpec.describe Lecture, type: :model do
     it { is_expected.to belong_to(:term) }
     it { is_expected.to have_many(:lecturings) }
     it { is_expected.to have_many(:lecturers).through(:lecturings) }
-    it { is_expected.to have_many(:held_lectures) }
-    it { is_expected.to have_many(:periods).through(:held_lectures) }
+    it { is_expected.to have_many(:schedulings) }
+    it { is_expected.to have_many(:periods).through(:schedulings) }
   end
 end

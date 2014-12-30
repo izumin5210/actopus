@@ -35,7 +35,7 @@ RSpec.describe Period, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:wday_periods) }
-    it { is_expected.to have_many(:held_lectures) }
-    it { is_expected.to have_many(:lectures).through(:held_lectures) }
+    it { is_expected.to have_many(:schedulings) }
+    it { is_expected.to have_many(:lectures).through(:schedulings) }
   end
 end
