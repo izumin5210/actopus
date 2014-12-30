@@ -22,4 +22,12 @@ class WdayPeriod < ActiveRecord::Base
 
   validates :period_id, presence: true, uniqueness: { scope: [:wday] }
   validates :wday, presence: true
+
+  delegate :start_time, :end_time, to: :period
+
+  def is?(params)
+    (params[:wday] == wday) &&
+      (params[:start_time] == start_time) &&
+      (params[:end_time] == end_time)
+  end
 end
