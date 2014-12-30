@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
   devise_for :staffs
-  
+
   namespace :staffs do
     get 'home' => 'home#home'
+
+    resources :timetables, only: %i(new create)
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

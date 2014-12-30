@@ -5,14 +5,16 @@
 #  id           :integer          not null, primary key
 #  name         :string           not null
 #  xml_filename :string           not null
-#  begin_at     :date             not null
-#  end_at       :date             not null
+#  start_on     :date             not null
+#  end_on       :date             not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
 # Indexes
 #
-#  index_terms_on_begin_at_and_end_at  (begin_at,end_at) UNIQUE
+#  index_terms_on_end_on               (end_on)
+#  index_terms_on_start_on             (start_on)
+#  index_terms_on_start_on_and_end_on  (start_on,end_on) UNIQUE
 #  index_terms_on_xml_filename         (xml_filename) UNIQUE
 #
 
@@ -25,8 +27,8 @@ RSpec.describe Term, type: :model do
   describe 'validates' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:xml_filename) }
-    it { is_expected.to validate_presence_of(:begin_at) }
-    it { is_expected.to validate_presence_of(:end_at) }
+    it { is_expected.to validate_presence_of(:start_on) }
+    it { is_expected.to validate_presence_of(:end_on) }
   end
 
   describe 'associations' do

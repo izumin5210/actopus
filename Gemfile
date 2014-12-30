@@ -10,6 +10,9 @@ group :default do
   gem 'devise'
   gem 'rails_config'
 
+  gem 'nokogiri'
+  gem 'sax-machine'
+
   gem 'font-awesome-helper'
 
   gem 'rails-assets-bootstrap-sass-official'
@@ -50,6 +53,7 @@ group :test do
   gem 'rspec-rails'
   gem 'database_rewinder'
   gem 'shoulda-matchers', require: false
+  gem 'rspec-validator_spec_helper'
 end
 
 group :doc do

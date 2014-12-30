@@ -195,6 +195,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
+    rspec-validator_spec_helper (0.0.1)
     ruby-progressbar (1.7.1)
     sass (3.4.9)
     sass-rails (5.0.0)
@@ -203,6 +204,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    sax-machine (1.2.0)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -256,6 +258,7 @@ DEPENDENCIES
   did_you_mean
   factory_girl_rails
   font-awesome-helper
+  nokogiri
   pry-byebug
   pry-doc
   pry-rails
@@ -270,7 +273,9 @@ DEPENDENCIES
   rails_best_practices
   rails_config
   rspec-rails
+  rspec-validator_spec_helper
   sass-rails (~> 5.0)
+  sax-machine
   sdoc (~> 0.4.0)
   shoulda-matchers
   spring
