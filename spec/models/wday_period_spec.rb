@@ -19,6 +19,9 @@ require 'rails_helper'
 
 RSpec.describe WdayPeriod, type: :model do
   let(:wday_period) { build(:wday_period) }
+  let(:start_time) { '09:00:00+09:00' }
+  let(:end_time) { '10:30:00+09:00' }
+  let(:wday) { 1 }
   subject { wday_period }
 
   describe 'validates' do
@@ -33,5 +36,34 @@ RSpec.describe WdayPeriod, type: :model do
     it { is_expected.to belong_to(:period) }
     it { is_expected.to have_many(:schedulings) }
     it { is_expected.to have_many(:lectures).through(:schedulings) }
+  end
+
+  describe '#start_time' do
+    it { expect(subject.start_time).to eq '09:00:00+09:00' }
+  end
+
+  describe '#end_time' do
+    it { expect(subject.end_time).to eq '10:30:00+09:00' }
+  end
+
+  describe '#is?' do
+    let(:params) { { start_time: start_time, end_time: end_time, wday: wday } }
+    subject { wday_period.is?(params) }
+    it { is_expected.to eq true }
+
+    context 'when start_time is different' do
+      let(:start_time) { '10:00:00+09:00' }
+      it { is_expected.to eq false }
+    end
+
+    context 'when end_time is different' do
+      let(:end_time) { '10:00:00+09:00' }
+      it { is_expected.to eq false }
+    end
+
+    context 'when wday is different' do
+      let(:wday) { 2 }
+      it { is_expected.to eq false }
+    end
   end
 end

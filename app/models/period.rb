@@ -23,4 +23,8 @@ class Period < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :start_time, presence: true, uniqueness: { scope: [:end_time] }
   validates :end_time, presence: true
+
+  def is?(params)
+    (params[:start_time] == start_time) && (params[:end_time] == end_time)
+  end
 end

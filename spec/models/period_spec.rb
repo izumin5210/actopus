@@ -36,4 +36,22 @@ RSpec.describe Period, type: :model do
   describe 'associations' do
     it { is_expected.to have_many(:wday_periods) }
   end
+
+  describe '#is?' do
+    let(:params) { { start_time: start_time, end_time: end_time } }
+    let(:start_time) { '09:00:00+09:00' }
+    let(:end_time) { '10:30:00+09:00' }
+    subject { period.is?(params) }
+    it { is_expected.to eq true }
+
+    context 'when start_time is different' do
+      let(:start_time) { '10:00:00+09:00' }
+      it { is_expected.to eq false }
+    end
+
+    context 'when end_time is different' do
+      let(:end_time) { '10:00:00+09:00' }
+      it { is_expected.to eq false }
+    end
+  end
 end
