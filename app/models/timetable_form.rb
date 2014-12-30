@@ -23,7 +23,8 @@ class TimetableForm
       @count = lecture_transaction
     end
     true
-  rescue ActiveRecord::RecordInvalid
+  rescue
+    errors.add(:base, 'XMLファイルが不正なフォーマットです')
     false
   end
 

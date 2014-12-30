@@ -1,6 +1,16 @@
 <h1>Staffs::Timetables#new</h1>
 <p>Find me in app/views/staffs/timetables/new.html.erb</p>
 
+<% if @form.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @form.errors.full_messages.each do |msg| %>
+        <%= content_tag :li, msg %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @form, url: staffs_timetables_path, method: :post, multipart: true do |f| %>
   <div class="form-group">
     <%= f.label :name %>
