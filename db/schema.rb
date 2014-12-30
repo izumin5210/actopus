@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141229025113) do
+ActiveRecord::Schema.define(version: 20141230070458) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 20141229025113) do
     t.datetime "updated_at",                       null: false
   end
 
+  create_table "lecturings", force: :cascade do |t|
+    t.integer  "lecture_id",  null: false
+    t.integer  "lecturer_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "lecturings", ["lecture_id", "lecturer_id"], name: "index_lecturings_on_lecture_id_and_lecturer_id", unique: true
+
   create_table "periods", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "start_time", null: false
@@ -91,15 +100,6 @@ ActiveRecord::Schema.define(version: 20141229025113) do
 
   add_index "staffs", ["email"], name: "index_staffs_on_email", unique: true
   add_index "staffs", ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
-
-  create_table "teaching_lectures", force: :cascade do |t|
-    t.integer  "lecture_id",  null: false
-    t.integer  "lecturer_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "teaching_lectures", ["lecture_id", "lecturer_id"], name: "index_teaching_lectures_on_lecture_id_and_lecturer_id", unique: true
 
   create_table "terms", force: :cascade do |t|
     t.string   "name",         null: false

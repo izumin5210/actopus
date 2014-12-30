@@ -21,7 +21,7 @@ RSpec.describe Lecturer, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:department) }
-    it { is_expected.to have_many(:teaching_lectures) }
-    it { is_expected.to have_many(:lectures).through(:teaching_lectures) }
+    it { is_expected.to have_many(:lecturings) }
+    it { is_expected.to have_many(:lectures).through(:lecturings) }
   end
 end

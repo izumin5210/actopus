@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: teaching_lectures
+# Table name: lecturings
 #
 #  id          :integer          not null, primary key
 #  lecture_id  :integer          not null
@@ -10,14 +10,14 @@
 #
 # Indexes
 #
-#  index_teaching_lectures_on_lecture_id_and_lecturer_id  (lecture_id,lecturer_id) UNIQUE
+#  index_lecturings_on_lecture_id_and_lecturer_id  (lecture_id,lecturer_id) UNIQUE
 #
 
 require 'rails_helper'
 
-RSpec.describe TeachingLecture, type: :model do
-  let(:teaching_lecture) { create(:teaching_lecture) }
-  subject { teaching_lecture }
+RSpec.describe Lecturing, type: :model do
+  let(:lecturing) { create(:lecturing) }
+  subject { lecturing }
 
   describe 'validates' do
     it { is_expected.to validate_presence_of(:lecture_id) }
