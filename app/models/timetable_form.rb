@@ -4,6 +4,12 @@ class TimetableForm
   attr_reader :term, :count
   attr_accessor :name, :start_on, :end_on, :timetable_xml
 
+  validates :name, presence: true
+  validates :start_on, presence: true
+  validates :end_on, presence: true
+  validates :timetable_xml, presence: true
+  validates_with StartAndEndDateValidator
+
   def initialize(attrs = {})
     attrs.each do |attr, value|
       public_send("#{attr}=", value) if respond_to?("#{attr}=")

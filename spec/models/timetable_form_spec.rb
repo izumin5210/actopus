@@ -14,28 +14,38 @@ describe TimetableForm do
     end
   end
 
+  let(:lecture_xmls) do
+    [
+      lecture_xml,
+      lecture_xml(
+        name: '機械工学実習 II', grade: 2, department: '機械工学科', wday: 2,
+        lecturers: ['加藤 隆弘', '関森 大介', '岩野 優樹', '大森 茂俊'],
+        periods: [
+          { start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
+          { start_time: '10:40:00+09:00', end_time: '12:10:00+09:00' }
+        ]
+      )
+    ]
+  end
+
   before do
     %w(department course period).each do |seed|
       load Rails.root.join("db/seeds/#{seed}.rb")
     end
   end
 
+  subject { timetable_form }
+
+  describe 'validates' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:start_on) }
+    it { is_expected.to validate_presence_of(:end_on) }
+    it { is_expected.to validate_presence_of(:timetable_xml) }
+  end
+
   describe '#save' do
     subject { timetable_form.save }
     context 'with valid xml' do
-      let(:lecture_xmls) do
-        [
-          lecture_xml,
-          lecture_xml(
-            name: '機械工学実習 II', grade: 2, department: '機械工学科', wday: 2,
-            lecturers: ['加藤 隆弘', '関森 大介', '岩野 優樹', '大森 茂俊'],
-            periods: [
-              { start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
-              { start_time: '10:40:00+09:00', end_time: '12:10:00+09:00' }
-            ]
-          )
-        ]
-      end
       it { is_expected.to be true }
       it { expect { subject }.to change(Term, :count).by(1) }
       it { expect { subject }.to change(Lecture, :count).by(2) }
