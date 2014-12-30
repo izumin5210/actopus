@@ -56,3 +56,9 @@ period:
   - name: 3S
     start_time: '13:45:00+09:00'
     end_time: '14:30:00+09:00'
+  - name: 4F
+    start_time: '14:40:00+09:00'
+    end_time: '15:25:00+09:00'
+  - name: 4S
+    start_time: '15:25:00+09:00'
+    end_time: '16:10:00+09:00'
