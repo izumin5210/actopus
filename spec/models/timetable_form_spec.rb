@@ -50,15 +50,17 @@ describe TimetableForm do
       it { expect { subject }.to change(Term, :count).by(1) }
       it { expect { subject }.to change(Lecture, :count).by(2) }
       it { expect { subject }.to change(Lecturer, :count).by(5) }
+      it { expect { subject }.to change(WdayPeriod, :count).by(3) }
+      it { expect(timetable_form.tap(&:save).term.lectures.size).to eq 2 }
       it do
         department = Department.find_by(name: '電気情報工学科')
         expect { subject }.to change(department.lectures, :count).by(1)
       end
       it do
-        period = Period.find_by(start_time: '09:00:00+09:00', end_time: '10:30:00+09:00')
-        expect { subject }.to change(period.lectures, :count).by(2)
+        subject
+        lecture = Lecture.find_by(name: '機械工学実習 II')
+        expect(lecture.wday_periods.size).to eq 2
       end
-      it { expect(timetable_form.tap(&:save).term.lectures.size).to eq 2 }
       it do
         expect(timetable_form.tap(&:save).count).to match(lecture: 2, lecturer: 5)
       end
@@ -82,6 +84,7 @@ describe TimetableForm do
       it { expect { subject }.to_not change(Term, :count) }
       it { expect { subject }.to_not change(Lecture, :count) }
       it { expect { subject }.to_not change(Lecturer, :count) }
+      it { expect { subject }.to_not change(WdayPeriod, :count) }
     end
   end
 end

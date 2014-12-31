@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: teaching_lectures
+# Table name: lecturings
 #
 #  id          :integer          not null, primary key
 #  lecture_id  :integer          not null
@@ -10,11 +10,11 @@
 #
 # Indexes
 #
-#  index_teaching_lectures_on_lecture_id_and_lecturer_id  (lecture_id,lecturer_id) UNIQUE
+#  index_lecturings_on_lecture_id_and_lecturer_id  (lecture_id,lecturer_id) UNIQUE
 #
 
 FactoryGirl.define do
-  factory :teaching_lecture do
+  factory :lecturing do
     lecture
     lecturer { create(:lecturer, department: lecture.department) }
   end

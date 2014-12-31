@@ -18,10 +18,13 @@
 #
 
 class Period < ActiveRecord::Base
-  has_many :held_lectures
-  has_many :lectures, through: :held_lectures
+  has_many :wday_periods
 
   validates :name, presence: true, uniqueness: true
   validates :start_time, presence: true, uniqueness: { scope: [:end_time] }
   validates :end_time, presence: true
+
+  def is?(params)
+    (params[:start_time] == start_time) && (params[:end_time] == end_time)
+  end
 end

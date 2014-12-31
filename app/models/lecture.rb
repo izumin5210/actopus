@@ -18,11 +18,10 @@ class Lecture < ActiveRecord::Base
   belongs_to :course
   belongs_to :term
 
-  has_many :teaching_lecturers,
-    class_name: TeachingLecture.name, foreign_key: :lecture_id
-  has_many :lecturers, through: :teaching_lecturers
-  has_many :held_lectures
-  has_many :periods, through: :held_lectures
+  has_many :lecturings
+  has_many :lecturers, through: :lecturings
+  has_many :schedulings
+  has_many :wday_periods, through: :schedulings
 
   validates :name, presence: true
   validates :grade, presence: true

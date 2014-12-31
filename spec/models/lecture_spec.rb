@@ -30,12 +30,9 @@ RSpec.describe Lecture, type: :model do
     it { is_expected.to belong_to(:department) }
     it { is_expected.to belong_to(:course) }
     it { is_expected.to belong_to(:term) }
-    it do
-      is_expected.to have_many(:teaching_lecturers)
-        .class_name('TeachingLecture').with_foreign_key(:lecture_id)
-    end
-    it { is_expected.to have_many(:lecturers).through(:teaching_lecturers) }
-    it { is_expected.to have_many(:held_lectures) }
-    it { is_expected.to have_many(:periods).through(:held_lectures) }
+    it { is_expected.to have_many(:lecturings) }
+    it { is_expected.to have_many(:lecturers).through(:lecturings) }
+    it { is_expected.to have_many(:schedulings) }
+    it { is_expected.to have_many(:wday_periods).through(:schedulings) }
   end
 end

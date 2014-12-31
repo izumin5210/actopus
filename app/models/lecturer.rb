@@ -12,8 +12,8 @@
 class Lecturer < ActiveRecord::Base
   belongs_to :department
 
-  has_many :teaching_lectures
-  has_many :lectures, through: :teaching_lectures
+  has_many :lecturings
+  has_many :lectures, through: :lecturings
 
   validates :name, presence: true
 end

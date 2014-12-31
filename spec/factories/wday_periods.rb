@@ -1,9 +1,8 @@
 # == Schema Information
 #
-# Table name: held_lectures
+# Table name: wday_periods
 #
 #  id         :integer          not null, primary key
-#  lecture_id :integer          not null
 #  period_id  :integer          not null
 #  wday       :integer          not null
 #  created_at :datetime         not null
@@ -11,13 +10,14 @@
 #
 # Indexes
 #
-#  index_held_lectures_on_lecture_id_and_period_id_and_wday  (lecture_id,period_id,wday) UNIQUE
+#  index_wday_periods_on_period_id           (period_id)
+#  index_wday_periods_on_period_id_and_wday  (period_id,wday) UNIQUE
+#  index_wday_periods_on_wday                (wday)
 #
 
 FactoryGirl.define do
-  factory :held_lecture do
-    wday 1
-    lecture
+  factory :wday_period do
     period
+    wday 1
   end
 end
