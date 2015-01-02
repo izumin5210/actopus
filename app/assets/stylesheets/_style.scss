@@ -28,15 +28,15 @@
   margin-bottom: 20px;
 }
 
-.table-lecturers {
-  .lecturers-department {
+.table-lecturer {
+  .lecturer-department {
     font-size: $font-size-large;
     border-top: none;
     &:first-letter {
       color: $brand-primary;
     }
   }
-  .lecturers-name {
+  .lecturer-name {
     vertical-align: middle;
     font-size: $font-size-large;
   }

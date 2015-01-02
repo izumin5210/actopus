@@ -1,22 +1,23 @@
-<h2 class="heading"><%= fa_icon('list fw')  %> 教員データ</h2>
+<h2 class="heading"><%= fa_icon('list fw') %> 教員データ</h2>
 
 <div class="content">
-    <table class="table table-lecturers">
+    <table class="table table-lecturer">
       <tbody>
         <% @lecturers.group_by(&:department).each do |department, lecturers| %>
           <tr>
-            <th class="lecturers-department">
-              <% if department %>
-                <%= p "#{department.abbreviation_name} #{department.name}" %>
+            <th class="lecturer-department">
+              <% if department.present? %>
+                <%= department.abbreviation_name %>
+                <%= department.name %>
               <% else %>
-                <%= p 'Unknown' %>
+                <%= 'Unknown' %>
               <% end %>
             </th>
           </tr>
           <% lecturers.each do |lecturer| %>
           <tr>
-            <td class="lecturers-name">
-              <%= p "#{lecturer.name}" %>
+            <td class="lecturer-name">
+              <%= lecturer.name %>
             </td>
             <td>
               <div class="dropdown">
@@ -24,6 +25,9 @@
                   学科 
                   <span class="caret"></span>
                 </button>
+
+                <!# TODO: 所属学科の変更機能を実装%>
+
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">G</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">M</a></li>
