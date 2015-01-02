@@ -2,6 +2,8 @@ $brand-primary: lighten(#A14C4C, 10%) !default;
 
 $list-group-border: #A14C4C !default;
 $list-group-hover-bg: lighten($brand-primary, 30%) !default;
-$list-group-link-color: #666;
+$list-group-link-color: #666 !default;
 
 $height-header: 120px;
+
+$table-cell-padding: 10px !default;

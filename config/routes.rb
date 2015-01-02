@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   namespace :staffs do
     get 'home' => 'home#home'
-
     resources :timetables, only: %i(new create)
+    resources :lecturers, only: %i(index)
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
