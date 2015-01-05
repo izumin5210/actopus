@@ -22,6 +22,7 @@ class Lecture < ActiveRecord::Base
   has_many :lecturers, through: :lecturings
   has_many :schedulings
   has_many :wday_periods, through: :schedulings
+  has_many :reschedulings
 
   validates :name, presence: true
   validates :grade, presence: true
