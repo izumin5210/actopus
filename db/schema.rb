@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104235137) do
+ActiveRecord::Schema.define(version: 20150105042657) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -119,15 +119,15 @@ ActiveRecord::Schema.define(version: 20150104235137) do
   create_table "terms", force: :cascade do |t|
     t.string   "name",         null: false
     t.string   "xml_filename", null: false
-    t.date     "start_on",     null: false
-    t.date     "end_on",       null: false
+    t.date     "started_on",   null: false
+    t.date     "ended_on",     null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "terms", ["end_on"], name: "index_terms_on_end_on"
-  add_index "terms", ["start_on", "end_on"], name: "index_terms_on_start_on_and_end_on", unique: true
-  add_index "terms", ["start_on"], name: "index_terms_on_start_on"
+  add_index "terms", ["ended_on"], name: "index_terms_on_ended_on"
+  add_index "terms", ["started_on", "ended_on"], name: "index_terms_on_started_on_and_ended_on", unique: true
+  add_index "terms", ["started_on"], name: "index_terms_on_started_on"
   add_index "terms", ["xml_filename"], name: "index_terms_on_xml_filename", unique: true
 
   create_table "wday_periods", force: :cascade do |t|
