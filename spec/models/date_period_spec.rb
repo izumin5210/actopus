@@ -17,7 +17,7 @@ RSpec.describe DatePeriod, :type => :model do
 
   describe 'validates' do
     it { is_expected.to validate_presence_of(:period_id) }
-    it { is_expected.to validate_presence_of(:date_on) }
+    it { is_expected.to validate_presence_of(:taken_on) }
   end
 
   describe 'associations' do

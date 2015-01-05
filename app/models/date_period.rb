@@ -17,5 +17,5 @@ class DatePeriod < ActiveRecord::Base
     class_name: 'Rescheduling', foreign_key: :after_date_period_id
 
   validates :period_id, presence: true
-  validates :date_on, presence: true
+  validates :taken_on, presence: true
 end
