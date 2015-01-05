@@ -14,19 +14,27 @@
   </header>
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="list-group">
-          <%= staff_menu_item 'exchange', '時間割を変更する', '#' %>
-          <%= staff_menu_item 'search', '時間割を見る', staffs_timetables_path %>
-          <%= staff_menu_item 'th-list', '教員データを管理する', '#' %>
-          <%= staff_menu_item 'rotate-left', '時間割データを読み込む', new_staffs_timetable_path %>
+      <% if staff_signed_in? %>
+        <div class="col-md-3">
+          <div class="list-group">
+            <%= staff_menu_item 'exchange', '時間割を変更する', '#' %>
+            <%= staff_menu_item 'search', '時間割を見る', '#' %>
+            <%= staff_menu_item 'th-list', '教員データを管理する', '#' %>
+            <%= staff_menu_item 'rotate-left', '時間割データを読み込む', new_staffs_timetable_path %>
+          </div>
         </div>
-      </div>
-      <div class="col-md-9">
-        <%= render 'shared/messages' %>
-        <%= yield %>
+        <div class="col-md-9">
+          <%= render 'shared/messages' %>
+          <%= yield %>
+        </div>
+      <% else %>
+        <div class="col-md-offset-4 col-md-4">
+          <%= render 'shared/messages' %>
+          <%= yield %>
+        </div>
+      <% end %>
       </div>
     </div>
-  </div>
+
 </body>
 </html>
