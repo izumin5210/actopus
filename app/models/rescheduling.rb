@@ -13,8 +13,8 @@
 
 class Rescheduling < ActiveRecord::Base
   belongs_to :lecture
-
-  has_many :date_periods
+  belongs_to :before_date_period, class_name: 'DatePeriod'
+  belongs_to :after_date_period, class_name: 'DatePeriod'
 
   validates :lecture_id, presence: true
   validates :before_date_period_id, presence: true
