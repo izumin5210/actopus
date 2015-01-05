@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  period_id  :integer
-#  date_on    :date
+#  taken_on   :date
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

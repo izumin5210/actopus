@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105042657) do
+ActiveRecord::Schema.define(version: 20150105045927) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150105042657) do
 
   create_table "date_periods", force: :cascade do |t|
     t.integer  "period_id"
-    t.date     "date_on"
+    t.date     "taken_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
