@@ -25,7 +25,33 @@ class Period < ActiveRecord::Base
   validates :start_time, presence: true, uniqueness: { scope: [:end_time] }
   validates :end_time, presence: true
 
+  include Comparable
+
   def is?(params)
     (params[:start_time] == start_time) && (params[:end_time] == end_time)
+  end
+
+  def start_time_to_f
+    time_to_f(start_time)
+  end
+
+  def end_time_to_f
+    time_to_f(end_time)
+  end
+
+  def length
+    Time.parse(end_time) - Time.parse(start_time)
+  end
+
+  def <=>(other)
+    result = Time.parse(start_time) <=> Time.parse(other.start_time)
+    result == 0 ? Time.parse(end_time) <=> Time.parse(other.end_time) : result
+  end
+
+  private
+
+  def time_to_f(time_str)
+    time = Time.parse(time_str)
+    time - time.beginning_of_day
   end
 end
