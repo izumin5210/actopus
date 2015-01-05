@@ -12,5 +12,23 @@
 require 'rails_helper'
 
 RSpec.describe DatePeriod, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:date_period) { build(:date_period) }
+  subject { date_period }
+
+  describe 'validates' do
+    it { is_expected.to validate_presence_of(:period_id) }
+    it { is_expected.to validate_presence_of(:date_on) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:period) }
+    it do
+      is_expected.to have_many(:before_reschedulings)
+        .class_name('Rescheduling').with_foreign_key(:before_date_period_id)
+    end
+    it do
+      is_expected.to have_many(:after_reschedulings)
+        .class_name('Rescheduling').with_foreign_key(:after_date_period_id)
+    end
+  end
 end
