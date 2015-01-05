@@ -4,7 +4,7 @@ describe TimetableForm do
   let(:timetable_form) do
     TimetableForm.new(
       name: '後期', timetable_xml: xml,
-      start_on: Date.new(2014, 10, 1), end_on: Date.new(2015, 2, 28))
+      started_on: Date.new(2014, 10, 1), ended_on: Date.new(2015, 2, 28))
   end
 
   let(:xml) do
@@ -38,8 +38,8 @@ describe TimetableForm do
 
   describe 'validates' do
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_presence_of(:start_on) }
-    it { is_expected.to validate_presence_of(:end_on) }
+    it { is_expected.to validate_presence_of(:started_on) }
+    it { is_expected.to validate_presence_of(:ended_on) }
     it { is_expected.to validate_presence_of(:timetable_xml) }
   end
 

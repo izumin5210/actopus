@@ -18,6 +18,7 @@
 #
 
 class Period < ActiveRecord::Base
+  has_many :date_periods
   has_many :wday_periods
 
   validates :name, presence: true, uniqueness: true

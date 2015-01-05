@@ -18,6 +18,6 @@ class Staffs::TimetablesController < Staffs::BaseController
 
   def timetable_params
     params.require(:timetable_form)
-      .permit(:name, :start_on, :end_on, :timetable_xml)
+      .permit(:name, :started_on, :ended_on, :timetable_xml)
   end
 end

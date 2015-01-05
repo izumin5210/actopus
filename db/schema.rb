@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230074229) do
+ActiveRecord::Schema.define(version: 20150105045927) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20141230074229) do
 
   add_index "courses", ["abbreviation_name"], name: "index_courses_on_abbreviation_name", unique: true
   add_index "courses", ["name"], name: "index_courses_on_name", unique: true
+
+  create_table "date_periods", force: :cascade do |t|
+    t.integer  "period_id"
+    t.date     "taken_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "departments", force: :cascade do |t|
     t.string   "name",              null: false
@@ -73,6 +80,15 @@ ActiveRecord::Schema.define(version: 20141230074229) do
   add_index "periods", ["start_time", "end_time"], name: "index_periods_on_start_time_and_end_time", unique: true
   add_index "periods", ["start_time"], name: "index_periods_on_start_time"
 
+  create_table "reschedulings", force: :cascade do |t|
+    t.integer  "lecture_id"
+    t.integer  "before_date_period_id"
+    t.integer  "after_date_period_id"
+    t.string   "category"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "schedulings", force: :cascade do |t|
     t.integer  "lecture_id",     null: false
     t.datetime "created_at",     null: false
@@ -103,15 +119,15 @@ ActiveRecord::Schema.define(version: 20141230074229) do
   create_table "terms", force: :cascade do |t|
     t.string   "name",         null: false
     t.string   "xml_filename", null: false
-    t.date     "start_on",     null: false
-    t.date     "end_on",       null: false
+    t.date     "started_on",   null: false
+    t.date     "ended_on",     null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "terms", ["end_on"], name: "index_terms_on_end_on"
-  add_index "terms", ["start_on", "end_on"], name: "index_terms_on_start_on_and_end_on", unique: true
-  add_index "terms", ["start_on"], name: "index_terms_on_start_on"
+  add_index "terms", ["ended_on"], name: "index_terms_on_ended_on"
+  add_index "terms", ["started_on", "ended_on"], name: "index_terms_on_started_on_and_ended_on", unique: true
+  add_index "terms", ["started_on"], name: "index_terms_on_started_on"
   add_index "terms", ["xml_filename"], name: "index_terms_on_xml_filename", unique: true
 
   create_table "wday_periods", force: :cascade do |t|
