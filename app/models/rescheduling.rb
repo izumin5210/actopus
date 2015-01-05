@@ -13,4 +13,6 @@
 
 class Rescheduling < ActiveRecord::Base
   belongs_to :lecture
+
+  has_many :date_periods
 end
