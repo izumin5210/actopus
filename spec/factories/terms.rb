@@ -22,7 +22,7 @@ FactoryGirl.define do
   factory :term do
     name '後期'
     xml_filename 'timetable201410.xml'
-    start_on { Date.parse('2014-10-1') }
-    end_on { Date.parse('2015-2-28') }
+    started_on { Date.parse('2014-10-1') }
+    ended_on { Date.parse('2015-2-28') }
   end
 end

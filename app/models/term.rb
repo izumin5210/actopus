@@ -23,7 +23,7 @@ class Term < ActiveRecord::Base
 
   validates :name, presence: true
   validates :xml_filename, presence: true
-  validates :start_on, presence: true
-  validates :end_on, presence: true
+  validates :started_on, presence: true
+  validates :ended_on, presence: true
   validates_with StartAndEndDateValidator
 end

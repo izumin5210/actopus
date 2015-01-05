@@ -2,11 +2,11 @@ class TimetableForm
   include ActiveModel::Model
 
   attr_reader :term, :count
-  attr_accessor :name, :start_on, :end_on, :timetable_xml
+  attr_accessor :name, :started_on, :ended_on, :timetable_xml
 
   validates :name, presence: true
-  validates :start_on, presence: true
-  validates :end_on, presence: true
+  validates :started_on, presence: true
+  validates :ended_on, presence: true
   validates :timetable_xml, presence: true
   validates_with StartAndEndDateValidator
 
@@ -18,7 +18,7 @@ class TimetableForm
 
   def save
     ActiveRecord::Base.transaction do
-      @term = Term.create!(name: @name, start_on: @start_on, end_on: @end_on,
+      @term = Term.create!(name: @name, started_on: @started_on, ended_on: @ended_on,
           xml_filename: @timetable_xml.original_filename)
       @count = lecture_transaction
     end

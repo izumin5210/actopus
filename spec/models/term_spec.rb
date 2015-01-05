@@ -27,8 +27,8 @@ RSpec.describe Term, type: :model do
   describe 'validates' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:xml_filename) }
-    it { is_expected.to validate_presence_of(:start_on) }
-    it { is_expected.to validate_presence_of(:end_on) }
+    it { is_expected.to validate_presence_of(:started_on) }
+    it { is_expected.to validate_presence_of(:ended_on) }
   end
 
   describe 'associations' do
