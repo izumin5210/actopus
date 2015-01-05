@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :staffs
+  devise_for :staffs, only: [:sessions], controllers: {
+      sessions: 'staffs/sessions'
+    }
 
   namespace :staffs do
     get 'home' => 'home#home'
