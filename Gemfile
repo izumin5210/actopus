@@ -14,6 +14,7 @@ group :default do
   gem 'sax-machine'
 
   gem 'font-awesome-helper'
+  gem 'active_decorator'
 
   gem 'rails-assets-bootstrap-sass-official'
   gem 'rails-assets-font-awesome'
