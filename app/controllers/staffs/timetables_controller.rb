@@ -1,4 +1,12 @@
 class Staffs::TimetablesController < Staffs::BaseController
+  def index
+    lectures = Lecture.includes(:department, :course, wday_periods: :period).where(grade: 1)
+    grouped_lectures = lectures.group_by do |l|
+        "#{l.grade}#{l.department.abbreviation_name}#{l.course.try(:abbreviation_name)}"
+      end
+    @timelines = LectureTimeline.parse(grouped_lectures)
+  end
+
   def new
     @form = TimetableForm.new
   end
