@@ -230,6 +230,13 @@
           "type": [
             "string"
           ]
+        },
+        "wday": {
+          "description": "wday when the period taken",
+          "example": 1,
+          "type": [
+            "integer"
+          ]
         }
       },
       "properties": {
@@ -241,6 +248,9 @@
         },
         "end_time": {
           "$ref": "#/definitions/period/definitions/end_time"
+        },
+        "wday": {
+          "$ref": "#/definitions/period/definitions/wday"
         }
       },
       "type": [

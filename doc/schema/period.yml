@@ -24,6 +24,11 @@ definitions:
     example: '10:30:00+09:00'
     type:
     - string
+  wday:
+    description: wday when the period taken
+    example: 1
+    type:
+    - integer
 properties:
   name:
     "$ref": "/schemata/period#/definitions/name"
@@ -31,6 +36,8 @@ properties:
     "$ref": "/schemata/period#/definitions/start_time"
   end_time:
     "$ref": "/schemata/period#/definitions/end_time"
+  wday:
+    "$ref": "/schemata/period#/definitions/wday"
 type:
 - object
 id: schemata/period

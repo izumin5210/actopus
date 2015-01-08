@@ -93,7 +93,8 @@ Content-Type: application/json
     {
       "name": "1",
       "start_time": "09:00:00+09:00",
-      "end_time": "10:30:00+09:00"
+      "end_time": "10:30:00+09:00",
+      "wday": 1
     }
   ],
   "lecturers": [
@@ -125,7 +126,8 @@ Content-Type: application/json
       {
         "name": "1",
         "start_time": "09:00:00+09:00",
-        "end_time": "10:30:00+09:00"
+        "end_time": "10:30:00+09:00",
+        "wday": 1
       }
     ],
     "lecturers": [
@@ -164,6 +166,10 @@ Content-Type: application/json
  * time when the period end
  * Example: `"10:30:00+09:00"`
  * Type: string
+* wday
+ * wday when the period taken
+ * Example: `1`
+ * Type: integer
 
 ## Rescheduling
 
@@ -210,7 +216,8 @@ Content-Type: application/json
         {
           "name": "1",
           "start_time": "09:00:00+09:00",
-          "end_time": "10:30:00+09:00"
+          "end_time": "10:30:00+09:00",
+          "wday": 1
         }
       ],
       "lecturers": [
