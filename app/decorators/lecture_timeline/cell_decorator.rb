@@ -1,7 +1,7 @@
 # coding: utf-8
 module LectureTimeline::CellDecorator
-  BEGINNING_OF_DAY = '08:30:00+09:00'
-  END_OF_DAY = '18:30:00+09:00'
+  BEGINNING_OF_DAY = Settings.timetable.beginning_of_day
+  END_OF_DAY = Settings.timetable.end_of_day
 
   def top
     1 / lectures.size.to_f * 100
