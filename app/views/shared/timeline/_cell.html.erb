@@ -1,0 +1,5 @@
+<% cell.lectures.each.with_index do |lecture, i| %>
+  <li class="item" style="left: <%= cell.left %>%; top: <%= cell.top * i %>%; width: <%= cell.width %>%; height: <%= cell.height %>%;">
+    <span class="lecture-name"><%= lecture.name %></span>
+  </li>
+<% end %>

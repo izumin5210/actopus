@@ -54,4 +54,41 @@ RSpec.describe Period, type: :model do
       it { is_expected.to eq false }
     end
   end
+
+  describe '#length' do
+    let(:start_time) { '09:00:00+09:00' }
+    let(:end_time) { '10:30:00+09:00' }
+    let(:params) { { start_time: start_time, end_time: end_time } }
+    subject { Period.new(params).length }
+    it { is_expected.to eq 5400.0 }
+  end
+
+  describe '#<=>' do
+    let(:start_time) { '09:00:00+09:00' }
+    let(:end_time) { '10:30:00+09:00' }
+    let(:params) { { start_time: start_time, end_time: end_time } }
+    let(:other_start_time) { '09:00:00+09:00' }
+    let(:other_end_time) { '10:30:00+09:00' }
+    let(:other_params) { { start_time: other_start_time, end_time: other_end_time } }
+    subject { Period.new(params) <=> Period.new(other_params) }
+    context 'with the same start_time and end_time' do
+      it { is_expected.to eq 0 }
+    end
+    context 'with the same start_time and earlier end_time' do
+      let(:other_end_time) { '10:00:00+09:00' }
+      it { is_expected.to eq 1 }
+    end
+    context 'with the same start_time and later end_time' do
+      let(:other_end_time) { '10:40:00+09:00' }
+      it { is_expected.to eq -1 }
+    end
+    context 'with earlier start_time' do
+      let(:other_start_time) { '08:40:00+09:00' }
+      it { is_expected.to eq 1 }
+    end
+    context 'with later start_time' do
+      let(:other_start_time) { '09:40:00+09:00' }
+      it { is_expected.to eq -1 }
+    end
+  end
 end

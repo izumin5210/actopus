@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   namespace :staffs do
     get 'home' => 'home#home'
-    resources :timetables, only: %i(new create)
+
+    resources :timetables, only: %i(index new create)
     resources :lecturers, only: %i(index)
   end
 

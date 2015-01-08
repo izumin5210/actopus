@@ -1,0 +1,33 @@
+.list-timetable {
+  @extend .dl-horizontal;
+  $timetable-wday-offset: 60px;
+  $timetable-cell-height: 60px;
+  dt {
+    width: $timetable-wday-offset - 16px;
+    height: $timetable-cell-height;
+    line-height: $timetable-cell-height;
+  }
+  dd { margin-left: $timetable-wday-offset; }
+  .lecture-timeline {
+    font-size: $font-size-small;
+    position: relative;
+    width: 100%;
+    height: $timetable-cell-height;
+  }
+  .item {
+    @extend .list-unstyled;
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 4px;
+    border: 1px solid $list-border-fg;
+    border-radius: 4px;
+    &:hover { background-color: $list-bg-hover; }
+    .lecture-name {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}
