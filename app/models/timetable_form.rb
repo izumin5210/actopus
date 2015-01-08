@@ -32,11 +32,11 @@ class TimetableForm
 
   def lecture_transaction
     # TODO: 発行されるクエリ数が多すぎるのでバルクインサート等の対策を検討
-    departments, courses, periods = Department.all, Course.all, Period.all
+    klasses, periods = Klass.all, Period.all
     lecturers, wday_periods = [], []
     count = { lecture: 0, lecturer: 0 }
     LectureMapper.parse(@timetable_xml.tempfile.read).each do |mapper|
-      lecture = create_lecture(mapper, departments, courses)
+      lecture = create_lecture(mapper, klasses)
       map_periods_onto_lecture(mapper, lecture, periods, wday_periods)
       count[:lecturer] += map_lecturers_onto_lecture(mapper, lecture, lecturers)
       count[:lecture] += 1
@@ -44,10 +44,13 @@ class TimetableForm
     count
   end
 
-  def create_lecture(mapper, departments, courses)
+  def create_lecture(mapper, klasses)
     mapper.to_record.tap do |lecture|
-      lecture.department = departments.find { |d| d.name == mapper.department }
-      lecture.course = courses.find { |d| d.name == mapper.course }
+      lecture.klass = klasses.find do |k|
+          (k.grade == mapper.grade) &&
+            (k.department.name == mapper.department) &&
+            (mapper.course.blank? || k.course.try(:name) == mapper.course)
+        end
       lecture.term = @term
       lecture.save!
     end

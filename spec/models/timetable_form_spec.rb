@@ -14,23 +14,21 @@ describe TimetableForm do
     end
   end
 
-  let(:lecture_xmls) do
-    [
-      lecture_xml,
-      lecture_xml(
-        name: '機械工学実習 II', grade: 2, department: '機械工学科', wday: 2,
-        lecturers: ['加藤 隆弘', '関森 大介', '岩野 優樹', '大森 茂俊'],
-        periods: [
-          { start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
-          { start_time: '10:40:00+09:00', end_time: '12:10:00+09:00' }
-        ]
-      )
-    ]
-  end
+  let(:klasses) { create_list(:klass, 2, :with_department) }
+  let(:periods) { create_list(:period, 3) }
+  let(:lecture_names) { (1..2).map { attributes_for(:lecture)[:name] } }
+  let(:lecturer_names) { (1..4).map { attributes_for(:lecturer)[:name] } }
 
-  before do
-    %w(department course period).each do |seed|
-      load Rails.root.join("db/seeds/#{seed}.rb")
+  let(:lecture_xmls) do
+    klasses.map.with_index do |klass, i|
+      lecture_xml(
+        name: lecture_names[i], grade: klass.grade,
+        department: klass.department.name, wday: i,
+        lecturers: lecturer_names[i * 2, 2],
+        periods: periods[i, 2].map do |p|
+            { start_time: p.start_time, end_time: p.end_time }
+          end
+      )
     end
   end
 
@@ -49,37 +47,22 @@ describe TimetableForm do
       it { is_expected.to be true }
       it { expect { subject }.to change(Term, :count).by(1) }
       it { expect { subject }.to change(Lecture, :count).by(2) }
-      it { expect { subject }.to change(Lecturer, :count).by(5) }
-      it { expect { subject }.to change(WdayPeriod, :count).by(3) }
+      it { expect { subject }.to change(Lecturer, :count).by(4) }
+      it { expect { subject }.to change(WdayPeriod, :count).by(4) }
       it { expect(timetable_form.tap(&:save).term.lectures.size).to eq 2 }
-      it do
-        department = Department.find_by(name: '電気情報工学科')
-        expect { subject }.to change(department.lectures, :count).by(1)
-      end
+      it { expect { subject }.to change(klasses[0].lectures, :count).by(1) }
       it do
         subject
-        lecture = Lecture.find_by(name: '機械工学実習 II')
+        lecture = Lecture.find_by(name: lecture_names[0])
         expect(lecture.wday_periods.size).to eq 2
       end
       it do
-        expect(timetable_form.tap(&:save).count).to match(lecture: 2, lecturer: 5)
+        expect(timetable_form.tap(&:save).count).to match(lecture: 2, lecturer: 4)
       end
     end
 
     context 'with invalid xml' do
-      let(:lecture_xmls) do
-        [
-          lecture_xml,
-          lecture_xml(
-            name: '機械工学実習 II', grade: nil, department: '機械工学科', wday: 2,
-            lecturers: ['加藤 隆弘', '関森 大介', '岩野 優樹', '大森 茂俊'],
-            periods: [
-              { start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
-              { start_time: '10:40:00+09:00', end_time: '12:10:00+09:00' }
-            ]
-          )
-        ]
-      end
+      let(:lecture_xmls) { [lecture_xml(grade: nil)] }
       it { is_expected.to be false }
       it { expect { subject }.to_not change(Term, :count) }
       it { expect { subject }.to_not change(Lecture, :count) }

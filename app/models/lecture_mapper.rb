@@ -15,7 +15,7 @@ class LectureMapper
   end
 
   def to_record
-    Lecture.new(name: @name, grade: @grade)
+    Lecture.new(name: @name)
   end
 
   def department_params
