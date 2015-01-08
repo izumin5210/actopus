@@ -7,12 +7,13 @@
 #  department_id :integer          not null
 #  course_id     :integer
 #  grade         :integer          not null
-#  category      :string           not null
+#  category      :integer          default("0"), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
 # Indexes
 #
+#  index_klasses_on_category                               (category)
 #  index_klasses_on_course_id                              (course_id)
 #  index_klasses_on_department_id                          (department_id)
 #  index_klasses_on_department_id_and_course_id_and_grade  (department_id,course_id,grade) UNIQUE
@@ -31,4 +32,6 @@ class Klass < ActiveRecord::Base
   validates :grade,
     presence: true, uniqueness: { scope: [:department_id, :course_id] }
   validates :category, presence: true
+
+  enum category: Settings.klass.category
 end

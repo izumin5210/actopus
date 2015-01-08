@@ -2,6 +2,11 @@ timetable:
   beginning_of_day: '09:00:00+09:00'
   end_of_day: '18:20:00+09:00'
 
+klass:
+  category:
+    undergraduate: 0
+    advanced: 10
+
 department:
   - name: 一般科目
     abbreviation_name: G
