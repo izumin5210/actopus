@@ -15,6 +15,7 @@
 #
 
 class Department < ActiveRecord::Base
+  has_many :klasses
   has_many :lectures
   has_many :lecturers
 

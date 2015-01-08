@@ -21,6 +21,8 @@
 #
 
 class Klass < ActiveRecord::Base
+  belongs_to :department
+
   validates :name, presence: true, uniqueness: true
   validates :department_id, presence: true
   validates :grade,

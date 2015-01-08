@@ -17,18 +17,19 @@
 require 'rails_helper'
 
 RSpec.describe Department, type: :model do
-  let(:department) { create(:department) }
+  let(:department) { build(:department) }
   subject { department }
+
+  describe 'associations' do
+    it { is_expected.to have_many(:klasses) }
+    it { is_expected.to have_many(:lectures) }
+    it { is_expected.to have_many(:lecturers) }
+  end
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name) }
     it { is_expected.to validate_presence_of(:abbreviation_name) }
     it { is_expected.to validate_uniqueness_of(:abbreviation_name) }
-  end
-
-  describe 'associations' do
-    it { is_expected.to have_many(:lectures) }
-    it { is_expected.to have_many(:lecturers) }
   end
 end
