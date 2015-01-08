@@ -52,21 +52,9 @@ properties:
   lecture:
     "$ref": "/schemata/lecture"
   before:
-    type:
-    - object
-    properties:
-      start_time:
-        "$ref": "/schemata/resheduling#/definitions/begin_at_before"
-      end_time:
-        "$ref": "/schemata/resheduling#/definitions/end_at_before"
+    "$ref": "/schemata/date_period"
   after:
-    type:
-    - object
-    properties:
-      start_time:
-        "$ref": "/schemata/resheduling#/definitions/begin_at_after"
-      end_time:
-        "$ref": "/schemata/resheduling#/definitions/end_at_after"
+    "$ref": "/schemata/date_period"
 type:
 - object
 id: schemata/resheduling

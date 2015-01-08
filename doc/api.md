@@ -2,6 +2,7 @@
 ANCT reschedulings API
 
 * [Course](#course)
+* [DatePeriod](#dateperiod)
 * [Department](#department)
 * [Lecture](#lecture)
  * [GET /lectures/:id](#get-lecturesid)
@@ -23,6 +24,23 @@ ANCT reschedulings API
 * name
  * name of the course
  * Example: `"情報工学コース"`
+ * Type: string
+
+## DatePeriod
+
+
+### Properties
+* start_time
+ * time when the period start
+ * Example: `"09:00:00+09:00"`
+ * Type: string
+* end_time
+ * time when the period end
+ * Example: `"10:30:00+09:00"`
+ * Type: string
+* taken_on
+ * date when the period taken
+ * Example: `"2014-12-10"`
  * Type: string
 
 ## Department
@@ -225,12 +243,14 @@ Content-Type: application/json
       ]
     },
     "before": {
-      "start_time": "2014-12-01T09:00:00+09:00",
-      "end_time": "2014-12-01T10:30:00+09:00"
+      "start_time": "09:00:00+09:00",
+      "end_time": "10:30:00+09:00",
+      "taken_on": "2014-12-10"
     },
     "after": {
-      "start_time": "2014-12-04T14:40:00+09:00",
-      "end_time": "2014-12-04T16:10:00+09:00"
+      "start_time": "09:00:00+09:00",
+      "end_time": "10:30:00+09:00",
+      "taken_on": "2014-12-10"
     }
   }
 ]

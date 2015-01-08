@@ -35,6 +35,43 @@
         "object"
       ]
     },
+    "date_period": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "DatePeriod",
+      "definitions": {
+        "id": {
+          "description": "unique identifier of date_period",
+          "example": 1,
+          "type": [
+            "integer"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/date_period/definitions/id"
+        },
+        "taken_on": {
+          "description": "date when the period taken",
+          "example": "2014-12-10",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "properties": {
+        "start_time": {
+          "$ref": "#/definitions/period/definitions/start_time"
+        },
+        "end_time": {
+          "$ref": "#/definitions/period/definitions/end_time"
+        },
+        "taken_on": {
+          "$ref": "#/definitions/date_period/definitions/taken_on"
+        }
+      },
+      "type": [
+        "object"
+      ]
+    },
     "department": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Department",
@@ -331,30 +368,10 @@
           "$ref": "#/definitions/lecture"
         },
         "before": {
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "start_time": {
-              "$ref": "#/definitions/resheduling/definitions/begin_at_before"
-            },
-            "end_time": {
-              "$ref": "#/definitions/resheduling/definitions/end_at_before"
-            }
-          }
+          "$ref": "#/definitions/date_period"
         },
         "after": {
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "start_time": {
-              "$ref": "#/definitions/resheduling/definitions/begin_at_after"
-            },
-            "end_time": {
-              "$ref": "#/definitions/resheduling/definitions/end_at_after"
-            }
-          }
+          "$ref": "#/definitions/date_period"
         }
       },
       "type": [
@@ -419,6 +436,9 @@
   "properties": {
     "course": {
       "$ref": "#/definitions/course"
+    },
+    "date_period": {
+      "$ref": "#/definitions/date_period"
     },
     "department": {
       "$ref": "#/definitions/department"
