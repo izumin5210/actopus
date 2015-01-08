@@ -1,16 +1,3 @@
 <ul class="lecture-timeline">
-  <% beginning_of_day = Time.parse('08:50:00+09:00') - Time.now.beginning_of_day %>
-  <% end_of_day = Time.parse('18:20:00+09:00') - Time.now.beginning_of_day %>
-  <% day = end_of_day - beginning_of_day %>
-  <% row.each do |cell| %>
-    <% left = (cell.period.start_time_to_f - beginning_of_day) / day * 100 %>
-    <% width = cell.period.length / day * 100 %>
-    <% cell.lectures.each.with_index do |lecture, i| %>
-      <% top = i / cell.lectures.size.to_f * 100 %>
-      <% height = 1 / cell.lectures.size.to_f * 100 %>
-      <li class="item" style="left: <%= left %>%; top: <%= top %>%; width: <%= width %>%; height: <%= height %>%;">
-        <span class="lecture-name"><%= lecture.name %></span>
-      </li>
-    <% end %>
-  <% end %>
+  <%= render partial: 'shared/timeline/cell', collection: row.cells, as: :cell %>
 </ul>
