@@ -16,8 +16,8 @@
 
 FactoryGirl.define do
   factory :department do
-    name '電気情報工学科'
-    abbreviation_name 'E'
+    sequence(:name) { |n| "Department#{n}" }
+    sequence(:abbreviation_name, 'A')
 
     Settings.department.each do |dept_params|
       trait :"#{dept_params.abbreviation_name.downcase}" do

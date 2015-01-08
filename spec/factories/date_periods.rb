@@ -11,8 +11,7 @@
 
 FactoryGirl.define do
   factory :date_period do
-    period_id 1
-taken_on "2015-01-05"
+    sequence(:taken_on) { |n| Date.today + n }
+    period
   end
-
 end

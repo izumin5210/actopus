@@ -22,11 +22,16 @@
 
 FactoryGirl.define do
   factory :klass do
-    name "MyString"
-department_id 1
-course_id 1
-grade 1
-category "MyString"
-  end
+    sequence(:name, 'A') { |n| "#{grade}#{n}" }
+    sequence(:grade) { |n| (n % 5) + 1 }
+    category 'Undergraduate'
 
+    trait :with_department do
+      department
+    end
+
+    trait :with_course do
+      course
+    end
+  end
 end

@@ -19,16 +19,12 @@
 
 FactoryGirl.define do
   factory :period do
-    name '1'
-    start_time '09:00:00+09:00'
-    end_time '10:30:00+09:00'
-
-    Settings.period.each do |period_params|
-      trait :"#{period_params.name.downcase}" do
-        name period_params.name
-        start_time period_params.start_time
-        end_time period_params.end_time
-      end
+    sequence(:name)
+    sequence(:start_time) do |n|
+      (Time.parse('09:00:00+09:00') + (15 * n).minutes).strftime('%H:%M:%S%:z')
+    end
+    sequence(:end_time) do |n|
+      (Time.parse('10:30:00+09:00') + (15 * n).minutes).strftime('%H:%M:%S%:z')
     end
   end
 end

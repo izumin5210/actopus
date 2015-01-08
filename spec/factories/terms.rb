@@ -20,9 +20,11 @@
 
 FactoryGirl.define do
   factory :term do
-    name '後期'
-    xml_filename 'timetable201410.xml'
-    started_on { Date.parse('2014-10-1') }
-    ended_on { Date.parse('2015-2-28') }
+    sequence(:name) { |n| "#{n}期" }
+    sequence(:xml_filename) do |n|
+      "timetable#{(Date.today + n).strftime('%Y%m')}.xml"
+    end
+    sequence(:started_on) { |n| Date.parse('2014-10-1') + n.month }
+    sequence(:ended_on) { |n| Date.parse('2015-2-28') + n.month }
   end
 end

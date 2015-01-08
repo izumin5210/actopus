@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :lecturer do
-    name '新井イスマイル'
+    sequence(:name) { |n| "Lecturer #{n}" }
 
     trait :with_department do
       department

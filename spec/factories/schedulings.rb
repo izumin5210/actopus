@@ -15,7 +15,7 @@
 
 FactoryGirl.define do
   factory :scheduling do
-    lecture
+    lecture { create(:lecture, :with_klass, :with_term) }
     wday_period
   end
 end

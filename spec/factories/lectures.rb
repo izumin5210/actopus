@@ -18,20 +18,23 @@
 
 FactoryGirl.define do
   factory :lecture do
-    name 'プログラミングI'
+    sequence(:name, 'A') { |n| "Lecture #{n}" }
     overseas_student false
-    term
+
+    trait :with_klass do
+      klass { create(:klass, :with_department) }
+    end
+
+    trait :with_term do
+      term
+    end
 
     trait :with_lecturers do
-      after(:create) do |lecture, _evaluator|
-        create(:lecturer, lectures: [lecture], department: lecture.department)
-      end
+      lecturer
     end
 
     trait :with_periods do
-      after(:create) do |lecture, _evaluator|
-        lecture.wday_periods.create(wday: 1, period: create(:period))
-      end
+      wday_periods
     end
   end
 end
