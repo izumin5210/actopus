@@ -22,6 +22,19 @@
 
 require 'rails_helper'
 
-RSpec.describe Klass, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Klass, type: :model do
+  let(:klass) { build(:klass) }
+  subject { klass }
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name) }
+    it { is_expected.to validate_presence_of(:department_id) }
+    it { is_expected.to validate_presence_of(:grade) }
+    it { is_expected.to validate_presence_of(:category) }
+    it do
+      is_expected.to validate_uniqueness_of(:grade)
+        .scoped_to(:department_id, :course_id)
+    end
+  end
 end

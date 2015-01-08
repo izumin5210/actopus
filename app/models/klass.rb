@@ -21,4 +21,9 @@
 #
 
 class Klass < ActiveRecord::Base
+  validates :name, presence: true, uniqueness: true
+  validates :department_id, presence: true
+  validates :grade,
+    presence: true, uniqueness: { scope: [:department_id, :course_id] }
+  validates :category, presence: true
 end
