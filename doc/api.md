@@ -153,10 +153,7 @@ Content-Type: application/json
         }
       ],
       "lecturers": [
-        {
-          "id": 1,
-          "name": "新井 イスマイル"
-        }
+        "新井 イスマイル"
       ]
     },
     "before": {

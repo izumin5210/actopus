@@ -138,7 +138,7 @@
             "array"
           ],
           "items": {
-            "$ref": "#/definitions/lecturer"
+            "$ref": "#/definitions/lecturer/definitions/name"
           }
         }
       },
