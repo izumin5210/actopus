@@ -362,14 +362,14 @@
             "string"
           ]
         },
-        "start_on": {
+        "started_on": {
           "description": "date when the term start",
           "example": "2014-10-01",
           "type": [
             "string"
           ]
         },
-        "end_on": {
+        "ended_on": {
           "description": "date when the term end",
           "example": "2015-03-31",
           "type": [
@@ -384,11 +384,11 @@
         "name": {
           "$ref": "#/definitions/term/definitions/name"
         },
-        "start_on": {
-          "$ref": "#/definitions/term/definitions/start_on"
+        "started_on": {
+          "$ref": "#/definitions/term/definitions/started_on"
         },
-        "end_on": {
-          "$ref": "#/definitions/term/definitions/end_on"
+        "ended_on": {
+          "$ref": "#/definitions/term/definitions/ended_on"
         }
       },
       "type": [

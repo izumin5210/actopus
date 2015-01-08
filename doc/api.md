@@ -159,8 +159,8 @@ Content-Type: application/json
       "term": {
         "id": 1,
         "name": "前期",
-        "start_on": "2014-10-01",
-        "end_on": "2015-03-31"
+        "started_on": "2014-10-01",
+        "ended_on": "2015-03-31"
       },
       "lecturers": [
         {
@@ -193,11 +193,11 @@ Content-Type: application/json
  * name of the term
  * Example: `"前期"`
  * Type: string
-* start_on
+* started_on
  * date when the term start
  * Example: `"2014-10-01"`
  * Type: string
-* end_on
+* ended_on
  * date when the term end
  * Example: `"2015-03-31"`
  * Type: string
