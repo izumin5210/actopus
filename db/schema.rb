@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105045927) do
+ActiveRecord::Schema.define(version: 20150108150626) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -39,6 +39,22 @@ ActiveRecord::Schema.define(version: 20150105045927) do
 
   add_index "departments", ["abbreviation_name"], name: "index_departments_on_abbreviation_name", unique: true
   add_index "departments", ["name"], name: "index_departments_on_name", unique: true
+
+  create_table "klasses", force: :cascade do |t|
+    t.string   "name",          null: false
+    t.integer  "department_id", null: false
+    t.integer  "course_id"
+    t.integer  "grade",         null: false
+    t.string   "category",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "klasses", ["course_id"], name: "index_klasses_on_course_id"
+  add_index "klasses", ["department_id", "course_id", "grade"], name: "index_klasses_on_department_id_and_course_id_and_grade", unique: true
+  add_index "klasses", ["department_id"], name: "index_klasses_on_department_id"
+  add_index "klasses", ["grade"], name: "index_klasses_on_grade"
+  add_index "klasses", ["name"], name: "index_klasses_on_name", unique: true
 
   create_table "lecturers", force: :cascade do |t|
     t.string   "name",          null: false
