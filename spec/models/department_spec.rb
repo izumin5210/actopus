@@ -22,7 +22,6 @@ RSpec.describe Department, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:klasses) }
-    it { is_expected.to have_many(:lectures) }
     it { is_expected.to have_many(:lecturers) }
   end
 

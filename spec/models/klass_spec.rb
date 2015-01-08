@@ -23,7 +23,7 @@
 require 'rails_helper'
 
 RSpec.describe Klass, type: :model do
-  let(:klass) { build(:klass) }
+  let(:klass) { Klass.new }
   subject { klass }
 
   describe 'associations' do
@@ -34,13 +34,16 @@ RSpec.describe Klass, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_uniqueness_of(:name) }
     it { is_expected.to validate_presence_of(:department_id) }
     it { is_expected.to validate_presence_of(:grade) }
     it { is_expected.to validate_presence_of(:category) }
-    it do
-      is_expected.to validate_uniqueness_of(:grade)
-        .scoped_to(:department_id, :course_id)
+    describe 'uniqueness' do
+      let(:klass) { create(:klass, :with_department) }
+      it { is_expected.to validate_uniqueness_of(:name) }
+      it do
+        is_expected.to validate_uniqueness_of(:grade)
+          .scoped_to(:department_id, :course_id)
+      end
     end
   end
 end

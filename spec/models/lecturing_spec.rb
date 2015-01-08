@@ -16,19 +16,23 @@
 require 'rails_helper'
 
 RSpec.describe Lecturing, type: :model do
-  let(:lecturing) { create(:lecturing) }
+  let(:lecturing) { Lecturing.new }
   subject { lecturing }
-
-  describe 'validates' do
-    it { is_expected.to validate_presence_of(:lecture_id) }
-    it { is_expected.to validate_presence_of(:lecturer_id) }
-    it do
-      is_expected.to validate_uniqueness_of(:lecture_id).scoped_to(:lecturer_id)
-    end
-  end
 
   describe 'associations' do
     it { is_expected.to belong_to(:lecture) }
     it { is_expected.to belong_to(:lecturer) }
+  end
+
+  describe 'validates' do
+    it { is_expected.to validate_presence_of(:lecture_id) }
+    it { is_expected.to validate_presence_of(:lecturer_id) }
+    describe 'uniqueness' do
+      let(:lecturing) { create(:lecturing) }
+      it do
+        is_expected.to validate_uniqueness_of(:lecture_id)
+          .scoped_to(:lecturer_id)
+      end
+    end
   end
 end

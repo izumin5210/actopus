@@ -22,7 +22,6 @@ RSpec.describe Course, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:klasses) }
-    it { is_expected.to have_many(:lectures) }
   end
 
   describe 'validations' do
