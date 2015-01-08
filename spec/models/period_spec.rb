@@ -20,7 +20,9 @@
 require 'rails_helper'
 
 RSpec.describe Period, type: :model do
-  let(:period) { create(:period) }
+  let(:period) { build(:period, start_time: start_time, end_time: end_time) }
+  let(:start_time) { '09:00:00+09:00' }
+  let(:end_time) { '10:30:00+09:00' }
   subject { period }
 
   describe 'validates' do
@@ -38,34 +40,29 @@ RSpec.describe Period, type: :model do
   end
 
   describe '#is?' do
-    let(:params) { { start_time: start_time, end_time: end_time } }
-    let(:start_time) { '09:00:00+09:00' }
-    let(:end_time) { '10:30:00+09:00' }
+    let(:params) { { start_time: other_start_time, end_time: other_end_time } }
+    let(:other_start_time) { start_time }
+    let(:other_end_time) { end_time }
     subject { period.is?(params) }
     it { is_expected.to eq true }
 
     context 'when start_time is different' do
-      let(:start_time) { '10:00:00+09:00' }
+      let(:other_start_time) { '' }
       it { is_expected.to eq false }
     end
 
     context 'when end_time is different' do
-      let(:end_time) { '10:00:00+09:00' }
+      let(:other_end_time) { '' }
       it { is_expected.to eq false }
     end
   end
 
   describe '#length' do
-    let(:start_time) { '09:00:00+09:00' }
-    let(:end_time) { '10:30:00+09:00' }
-    let(:params) { { start_time: start_time, end_time: end_time } }
-    subject { Period.new(params).length }
+    subject { period.length }
     it { is_expected.to eq 5400.0 }
   end
 
   describe '#<=>' do
-    let(:start_time) { '09:00:00+09:00' }
-    let(:end_time) { '10:30:00+09:00' }
     let(:params) { { start_time: start_time, end_time: end_time } }
     let(:other_start_time) { '09:00:00+09:00' }
     let(:other_end_time) { '10:30:00+09:00' }

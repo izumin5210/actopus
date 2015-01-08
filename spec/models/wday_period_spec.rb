@@ -18,7 +18,8 @@
 require 'rails_helper'
 
 RSpec.describe WdayPeriod, type: :model do
-  let(:wday_period) { build(:wday_period) }
+  let(:period) { create(:period, start_time: start_time, end_time: end_time) }
+  let(:wday_period) { create(:wday_period, period: period, wday: wday) }
   let(:start_time) { '09:00:00+09:00' }
   let(:end_time) { '10:30:00+09:00' }
   let(:wday) { 1 }
@@ -39,30 +40,36 @@ RSpec.describe WdayPeriod, type: :model do
   end
 
   describe '#start_time' do
-    it { expect(subject.start_time).to eq '09:00:00+09:00' }
+    it { expect(subject.start_time).to eq start_time }
   end
 
   describe '#end_time' do
-    it { expect(subject.end_time).to eq '10:30:00+09:00' }
+    it { expect(subject.end_time).to eq end_time }
   end
 
   describe '#is?' do
-    let(:params) { { start_time: start_time, end_time: end_time, wday: wday } }
+    let(:params) do
+      { start_time: other_start_time,
+        end_time: other_end_time, wday: other_wday }
+    end
+    let(:other_start_time) { start_time }
+    let(:other_end_time) { end_time }
+    let(:other_wday) { wday }
     subject { wday_period.is?(params) }
     it { is_expected.to eq true }
 
     context 'when start_time is different' do
-      let(:start_time) { '10:00:00+09:00' }
+      let(:other_start_time) { '' }
       it { is_expected.to eq false }
     end
 
     context 'when end_time is different' do
-      let(:end_time) { '10:00:00+09:00' }
+      let(:other_end_time) { '' }
       it { is_expected.to eq false }
     end
 
     context 'when wday is different' do
-      let(:wday) { 2 }
+      let(:other_wday) { 12 }
       it { is_expected.to eq false }
     end
   end
