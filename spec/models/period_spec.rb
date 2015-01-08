@@ -55,18 +55,6 @@ RSpec.describe Period, type: :model do
     end
   end
 
-  describe '#start_time_to_f' do
-    let(:start_time) { '09:00:00+09:00' }
-    subject { Period.new(start_time: start_time).start_time_to_f }
-    it { is_expected.to eq 32400.0 }
-  end
-
-  describe '#end_time_to_f' do
-    let(:end_time) { '10:30:00+09:00' }
-    subject { Period.new(end_time: end_time).end_time_to_f }
-    it { is_expected.to eq 37800.0 }
-  end
-
   describe '#length' do
     let(:start_time) { '09:00:00+09:00' }
     let(:end_time) { '10:30:00+09:00' }
