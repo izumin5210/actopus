@@ -33,9 +33,9 @@ properties:
   grade:
     "$ref": "/schemata/lecture#/definitions/grade"
   department:
-    "$ref": "/schemata/department"
+    "$ref": "/schemata/department#/definitions/name"
   course:
-    "$ref": "/schemata/course"
+    "$ref": "/schemata/course#/definitions/name"
   overseas_student:
     "$ref": "/schemata/lecture#/definitions/overseas_student"
   times:

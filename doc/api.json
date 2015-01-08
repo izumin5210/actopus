@@ -117,10 +117,10 @@
           "$ref": "#/definitions/lecture/definitions/grade"
         },
         "department": {
-          "$ref": "#/definitions/department"
+          "$ref": "#/definitions/department/definitions/name"
         },
         "course": {
-          "$ref": "#/definitions/course"
+          "$ref": "#/definitions/course/definitions/name"
         },
         "overseas_student": {
           "$ref": "#/definitions/lecture/definitions/overseas_student"

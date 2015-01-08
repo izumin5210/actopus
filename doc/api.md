@@ -53,9 +53,13 @@ ANCT reschedulings API
  * Example: `1`
  * Type: integer
 * department
- * Type: object
+ * name of the department
+ * Example: `"電気情報工学科"`
+ * Type: string
 * course
- * Type: object
+ * name of the course
+ * Example: `"情報工学コース"`
+ * Type: string
 * overseas_student
  * true if the lecture is held for overseas students
  * Example: `false`
@@ -139,14 +143,8 @@ Content-Type: application/json
       "id": 1,
       "name": "プログラミング I",
       "grade": 1,
-      "department": {
-        "id": 1,
-        "name": "電気情報工学科"
-      },
-      "course": {
-        "id": 1,
-        "name": "情報工学コース"
-      },
+      "department": "電気情報工学科",
+      "course": "情報工学コース",
       "overseas_student": false,
       "times": [
         {
