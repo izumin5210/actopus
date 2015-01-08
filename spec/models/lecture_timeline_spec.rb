@@ -1,28 +1,13 @@
 require 'rails_helper'
 
 describe LectureTimeline do
-  let(:periods) do
-    [
-      create(:period,
-        name: '1', start_time: '09:00:00+09:00', end_time: '10:30:00+09:00'),
-      create(:period,
-        name: '2', start_time: '10:40:00+09:00', end_time: '12:10:00+09:00')
-    ]
-  end
   let(:wday_periods) do
-    periods.map { |period|
-      (1..2).map { |wday| period.wday_periods.create(wday: wday) }
-    }.flatten
+    [1, 2].map { |wday| create_list(:wday_period, 2, wday: wday) }.flatten
   end
-  let(:departments) { [create(:department, :e), create(:department, :m)] }
   let(:term) { create(:term) }
   let(:lectures) do
-    wday_periods.map.with_index do |wday_period, i|
-      lecture = create(:lecture,
-                       name: "Lecture #{i}",
-                       department: departments[0],
-                       term: term
-                      )
+    wday_periods.map do |wday_period|
+      lecture = create(:lecture, :with_klass, term: term)
       lecture.tap { |l| wday_period.lectures << l }
     end
   end
@@ -76,13 +61,11 @@ describe LectureTimeline do
 
   describe '.parse' do
     let(:grouped_lectures) do
-      Hash[departments.map { |d|
-        [d, [build(:lecture, department: d, term: term)]]
-      }]
+      Hash[[1, 2].map { |i| [i, [build(:lecture, :with_klass, term: term)]] }]
     end
 
     subject { LectureTimeline.parse(grouped_lectures) }
     it { expect(subject.size).to eq 2 }
-    it { expect(subject.keys).to match_array(departments) }
+    it { expect(subject.keys).to match_array([1, 2]) }
   end
 end
