@@ -11,9 +11,15 @@
 #  term_id          :integer          not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  klass_id         :integer
+#
+# Indexes
+#
+#  index_lectures_on_klass_id  (klass_id)
 #
 
 class Lecture < ActiveRecord::Base
+  belongs_to :klass
   belongs_to :department
   belongs_to :course
   belongs_to :term

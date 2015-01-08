@@ -24,6 +24,8 @@ class Klass < ActiveRecord::Base
   belongs_to :department
   belongs_to :course
 
+  has_many :lectures
+
   validates :name, presence: true, uniqueness: true
   validates :department_id, presence: true
   validates :grade,

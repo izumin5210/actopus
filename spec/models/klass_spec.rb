@@ -29,6 +29,7 @@ RSpec.describe Klass, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:department) }
     it { is_expected.to belong_to(:course) }
+    it { is_expected.to have_many(:lectures) }
   end
 
   describe 'validations' do
