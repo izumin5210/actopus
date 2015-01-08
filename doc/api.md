@@ -91,7 +91,6 @@ Content-Type: application/json
   "overseas_student": false,
   "times": [
     {
-      "id": 1,
       "name": "1",
       "start_time": "09:00:00+09:00",
       "end_time": "10:30:00+09:00"
@@ -124,7 +123,6 @@ Content-Type: application/json
     "overseas_student": false,
     "times": [
       {
-        "id": 1,
         "name": "1",
         "start_time": "09:00:00+09:00",
         "end_time": "10:30:00+09:00"
@@ -154,10 +152,6 @@ Content-Type: application/json
 
 
 ### Properties
-* id
- * unique identifier of the period
- * Example: `1`
- * Type: integer
 * name
  * name of the period
  * Example: `"1"`
@@ -214,7 +208,6 @@ Content-Type: application/json
       "overseas_student": false,
       "times": [
         {
-          "id": 1,
           "name": "1",
           "start_time": "09:00:00+09:00",
           "end_time": "10:30:00+09:00"

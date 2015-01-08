@@ -233,9 +233,6 @@
         }
       },
       "properties": {
-        "id": {
-          "$ref": "#/definitions/period/definitions/id"
-        },
         "name": {
           "$ref": "#/definitions/period/definitions/name"
         },
