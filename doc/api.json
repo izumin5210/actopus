@@ -106,6 +106,22 @@
           ]
         }
       },
+      "links": [
+        {
+          "description": "Info for existing lectures.",
+          "href": "/lectures/{(%2Fdefinitions%2Flecture%2Fdefinitions%2Fid)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "List existing lectures.",
+          "href": "/lectures",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        }
+      ],
       "properties": {
         "id": {
           "$ref": "#/definitions/lecture/definitions/id"

@@ -4,6 +4,8 @@ ANCT reschedulings API
 * [Course](#course)
 * [Department](#department)
 * [Lecture](#lecture)
+ * [GET /lectures/:id](#get-lecturesid)
+ * [GET /lectures](#get-lectures)
 * [Lecturer](#lecturer)
 * [Period](#period)
 * [Rescheduling](#rescheduling)
@@ -68,6 +70,72 @@ ANCT reschedulings API
  * Type: array
 * lecturers
  * Type: array
+
+### GET /lectures/:id
+Info for existing lectures.
+
+```
+GET /lectures/1 HTTP/1.1
+Host: api.akashi.ac.jp
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+{
+  "id": 1,
+  "name": "プログラミング I",
+  "grade": 1,
+  "department": "電気情報工学科",
+  "course": "情報工学コース",
+  "overseas_student": false,
+  "times": [
+    {
+      "id": 1,
+      "name": "1",
+      "start_time": "09:00:00+09:00",
+      "end_time": "10:30:00+09:00"
+    }
+  ],
+  "lecturers": [
+    "新井 イスマイル"
+  ]
+}
+```
+
+### GET /lectures
+List existing lectures.
+
+```
+GET /lectures HTTP/1.1
+Host: api.akashi.ac.jp
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+[
+  {
+    "id": 1,
+    "name": "プログラミング I",
+    "grade": 1,
+    "department": "電気情報工学科",
+    "course": "情報工学コース",
+    "overseas_student": false,
+    "times": [
+      {
+        "id": 1,
+        "name": "1",
+        "start_time": "09:00:00+09:00",
+        "end_time": "10:30:00+09:00"
+      }
+    ],
+    "lecturers": [
+      "新井 イスマイル"
+    ]
+  }
+]
+```
 
 ## Lecturer
 
