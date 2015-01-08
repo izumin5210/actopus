@@ -15,6 +15,7 @@
 #
 
 class Course < ActiveRecord::Base
+  has_many :klasses
   has_many :lectures
 
   validates :name, presence: true, uniqueness: true

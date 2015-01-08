@@ -22,6 +22,7 @@
 
 class Klass < ActiveRecord::Base
   belongs_to :department
+  belongs_to :course
 
   validates :name, presence: true, uniqueness: true
   validates :department_id, presence: true

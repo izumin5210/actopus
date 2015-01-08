@@ -17,17 +17,18 @@
 require 'rails_helper'
 
 RSpec.describe Course, type: :model do
-  let(:course) { create(:course) }
+  let(:course) { build(:course) }
   subject { course }
+
+  describe 'associations' do
+    it { is_expected.to have_many(:klasses) }
+    it { is_expected.to have_many(:lectures) }
+  end
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name) }
     it { is_expected.to validate_presence_of(:abbreviation_name) }
     it { is_expected.to validate_uniqueness_of(:abbreviation_name) }
-  end
-
-  describe 'associations' do
-    it { is_expected.to have_many(:lectures) }
   end
 end
