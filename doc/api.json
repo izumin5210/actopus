@@ -133,9 +133,6 @@
             "$ref": "#/definitions/period"
           }
         },
-        "term": {
-          "$ref": "#/definitions/term"
-        },
         "lecturers": {
           "type": [
             "array"

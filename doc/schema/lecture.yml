@@ -42,8 +42,6 @@ properties:
     type: array
     items:
       "$ref": "/schemata/period"
-  term:
-    "$ref": "/schemata/term"
   lecturers:
     type: array
     items:

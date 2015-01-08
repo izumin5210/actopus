@@ -66,8 +66,6 @@ ANCT reschedulings API
  * Type: boolean
 * times
  * Type: array
-* term
- * Type: object
 * lecturers
  * Type: array
 
@@ -154,12 +152,6 @@ Content-Type: application/json
           "end_time": "10:30:00+09:00"
         }
       ],
-      "term": {
-        "id": 1,
-        "name": "前期",
-        "started_on": "2014-10-01",
-        "ended_on": "2015-03-31"
-      },
       "lecturers": [
         {
           "id": 1,
