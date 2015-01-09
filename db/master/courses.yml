@@ -1,0 +1,11 @@
+master:
+  courses:
+  - name: 電気電子工学コース
+    abbreviation_name: D
+  - name: 情報工学コース
+    abbreviation_name: J
+  - name: 機械・電子システム工学専攻
+    abbreviation_name: ME
+  - name: 建築・都市システム工学専攻
+    abbreviation_name: AD
+

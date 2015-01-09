@@ -15,7 +15,7 @@
 #
 
 class Department < ActiveRecord::Base
-  has_many :lectures
+  has_many :klasses
   has_many :lecturers
 
   validates :name, presence: true, uniqueness: true

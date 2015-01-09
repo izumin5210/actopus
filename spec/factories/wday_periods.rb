@@ -17,7 +17,7 @@
 
 FactoryGirl.define do
   factory :wday_period do
+    sequence(:wday)
     period
-    wday 1
   end
 end

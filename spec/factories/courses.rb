@@ -16,14 +16,7 @@
 
 FactoryGirl.define do
   factory :course do
-    name '情報工学コース'
-    abbreviation_name 'J'
-
-    Settings.course.each do |course_params|
-      trait :"#{course_params.abbreviation_name.downcase}" do
-        name course_params.name
-        abbreviation_name course_params.abbreviation_name
-      end
-    end
+    sequence(:name) { |n| "Course#{n}" }
+    sequence(:abbreviation_name, 'A')
   end
 end

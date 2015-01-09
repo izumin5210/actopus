@@ -13,8 +13,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Rescheduling, :type => :model do
-  let(:rescheduling) { build(:rescheduling) }
+RSpec.describe Rescheduling, type: :model do
+  let(:rescheduling) { Rescheduling.new }
   subject { rescheduling }
 
   describe 'associations' do

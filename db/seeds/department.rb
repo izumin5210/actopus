@@ -1,5 +1,5 @@
 Department.transaction do
-  Settings.department.each do |dept_params|
+  Settings.master.departments.each do |dept_params|
     Department.find_or_create_by!(dept_params.to_h)
   end
 end

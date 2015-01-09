@@ -16,20 +16,23 @@
 require 'rails_helper'
 
 RSpec.describe Scheduling, type: :model do
-  let(:scheduling) { build(:scheduling) }
+  let(:scheduling) { Scheduling.new }
   subject { scheduling }
-
-  describe 'validations' do
-    it { is_expected.to validate_presence_of(:lecture_id) }
-    it { is_expected.to validate_presence_of(:wday_period_id) }
-    it do
-      is_expected.to(
-        validate_uniqueness_of(:lecture_id).scoped_to(:wday_period_id))
-    end
-  end
 
   describe 'associations' do
     it { is_expected.to belong_to(:lecture) }
     it { is_expected.to belong_to(:wday_period) }
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:lecture_id) }
+    it { is_expected.to validate_presence_of(:wday_period_id) }
+    describe 'uniqueness' do
+      let(:scheduling) { create(:scheduling) }
+      it do
+        is_expected.to(
+          validate_uniqueness_of(:lecture_id).scoped_to(:wday_period_id))
+      end
+    end
   end
 end

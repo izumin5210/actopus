@@ -4,37 +4,37 @@
 #
 #  id               :integer          not null, primary key
 #  name             :string           not null
-#  grade            :integer          not null
 #  overseas_student :boolean          default("f")
-#  department_id    :integer          not null
-#  course_id        :integer
 #  term_id          :integer          not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  klass_id         :integer
+#
+# Indexes
+#
+#  index_lectures_on_klass_id  (klass_id)
+#  index_lectures_on_term_id   (term_id)
 #
 
 FactoryGirl.define do
   factory :lecture do
-    name 'プログラミングI'
-    grade 1
+    sequence(:name, 'A') { |n| "Lecture #{n}" }
     overseas_student false
-    department
-    term
 
-    trait :with_course do
-      course
+    trait :with_klass do
+      klass { create(:klass, :with_department) }
+    end
+
+    trait :with_term do
+      term
     end
 
     trait :with_lecturers do
-      after(:create) do |lecture, _evaluator|
-        create(:lecturer, lectures: [lecture], department: lecture.department)
-      end
+      lecturer
     end
 
     trait :with_periods do
-      after(:create) do |lecture, _evaluator|
-        lecture.wday_periods.create(wday: 1, period: create(:period))
-      end
+      wday_periods
     end
   end
 end

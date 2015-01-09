@@ -1,0 +1,92 @@
+master:
+  klasses:
+  - name: 1M
+    grade: 1
+    department: M
+  - name: 1E
+    grade: 1
+    department: E
+  - name: 1C
+    grade: 1
+    department: C
+  - name: 1A
+    grade: 1
+    department: A
+  - name: 2M
+    grade: 2
+    department: M
+  - name: 2E
+    grade: 2
+    department: E
+  - name: 2C
+    grade: 2
+    department: C
+  - name: 2A
+    grade: 2
+    department: A
+  - name: 3M
+    grade: 3
+    department: M
+  - name: 3E
+    grade: 3
+    department: E
+  - name: 3C
+    grade: 3
+    department: C
+  - name: 3A
+    grade: 3
+    department: A
+  - name: 4M
+    grade: 4
+    department: M
+  - name: 4ED
+    grade: 4
+    department: E
+    course: D
+  - name: 4EJ
+    grade: 4
+    department: E
+    course: J
+  - name: 4C
+    grade: 4
+    department: C
+  - name: 4A
+    grade: 4
+    department: A
+  - name: 5M
+    grade: 5
+    department: M
+  - name: 5ED
+    grade: 5
+    department: E
+    course: D
+  - name: 5EJ
+    grade: 5
+    department: E
+    course: J
+  - name: 5C
+    grade: 5
+    department: C
+  - name: 5A
+    grade: 5
+    department: A
+  - name: 1ME
+    grade: 1
+    department: Adv
+    course: ME
+    category: advanced
+  - name: 1AC
+    grade: 1
+    department: Adv
+    course: AC
+    category: advanced
+  - name: 2ME
+    grade: 2
+    department: Adv
+    course: ME
+    category: advanced
+  - name: 2AC
+    grade: 2
+    department: Adv
+    course: AC
+    category: advanced

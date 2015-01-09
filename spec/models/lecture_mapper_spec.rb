@@ -47,10 +47,9 @@ describe LectureMapper do
   end
 
   describe '#to_record' do
-    let(:mapper_params) { { name: 'プログラミング I', grade: 1 } }
+    let(:mapper_params) { { name: 'プログラミング I' } }
     subject { mapper.to_record }
     it { expect(subject.name).to eq 'プログラミング I' }
-    it { expect(subject.grade).to eq 1 }
   end
 
   describe '#department_params' do
