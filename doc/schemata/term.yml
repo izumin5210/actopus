@@ -10,29 +10,20 @@ definitions:
   identity:
     "$ref": "/schemata/term#/definitions/id"
   name:
-    description: name of the term
+    description: a name of the term
     example: 前期
     type:
     - string
   started_on:
-    description: date when the term start
+    description: a date when the term start
     example: '2014-10-01'
     type:
     - string
   ended_on:
-    description: date when the term end
+    description: a date when the term end
     example: '2015-03-31'
     type:
     - string
-properties:
-  id:
-    "$ref": "/schemata/term#/definitions/id"
-  name:
-    "$ref": "/schemata/term#/definitions/name"
-  started_on:
-    "$ref": "/schemata/term#/definitions/started_on"
-  ended_on:
-    "$ref": "/schemata/term#/definitions/ended_on"
 type:
 - object
 id: schemata/term

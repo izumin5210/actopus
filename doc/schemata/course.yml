@@ -10,15 +10,15 @@ definitions:
   identity:
     "$ref": "/schemata/course#/definitions/id"
   name:
-    description: name of the course
+    description: a name of the course
     example: 情報工学コース
     type:
     - string
-properties:
-  id:
-    "$ref": "/schemata/course#/definitions/id"
   name:
-    "$ref": "/schemata/course#/definitions/name"
+    description: a abbreviation name of the course
+    example: J
+    type:
+    - string
 type:
 - object
 id: schemata/course

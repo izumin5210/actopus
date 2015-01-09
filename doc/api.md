@@ -17,14 +17,6 @@ ANCT reschedulings API
 
 
 ### Properties
-* id
- * unique identifier of the course
- * Example: `1`
- * Type: integer
-* name
- * name of the course
- * Example: `"情報工学コース"`
- * Type: string
 
 ## DatePeriod
 
@@ -47,14 +39,6 @@ ANCT reschedulings API
 
 
 ### Properties
-* id
- * unique identifier of the department
- * Example: `1`
- * Type: integer
-* name
- * name of the department
- * Example: `"電気情報工学科"`
- * Type: string
 
 ## Lecture
 
@@ -73,12 +57,12 @@ ANCT reschedulings API
  * Example: `1`
  * Type: integer
 * department
- * name of the department
+ * a name of the department
  * Example: `"電気情報工学科"`
  * Type: string
 * course
- * name of the course
- * Example: `"情報工学コース"`
+ * a abbreviation name of the course
+ * Example: `"J"`
  * Type: string
 * overseas_student
  * true if the lecture is held for overseas students
@@ -105,7 +89,7 @@ Content-Type: application/json
   "name": "プログラミング I",
   "grade": 1,
   "department": "電気情報工学科",
-  "course": "情報工学コース",
+  "course": "J",
   "overseas_student": false,
   "periods": [
     {
@@ -137,7 +121,7 @@ Content-Type: application/json
     "name": "プログラミング I",
     "grade": 1,
     "department": "電気情報工学科",
-    "course": "情報工学コース",
+    "course": "J",
     "overseas_student": false,
     "periods": [
       {
@@ -222,7 +206,7 @@ Content-Type: application/json
       "name": "プログラミング I",
       "grade": 1,
       "department": "電気情報工学科",
-      "course": "情報工学コース",
+      "course": "J",
       "overseas_student": false,
       "periods": [
         {
@@ -253,20 +237,4 @@ Content-Type: application/json
 
 
 ### Properties
-* id
- * unique identifier of term
- * Example: `1`
- * Type: integer
-* name
- * name of the term
- * Example: `"前期"`
- * Type: string
-* started_on
- * date when the term start
- * Example: `"2014-10-01"`
- * Type: string
-* ended_on
- * date when the term end
- * Example: `"2015-03-31"`
- * Type: string
 

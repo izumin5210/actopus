@@ -16,19 +16,11 @@
           "$ref": "#/definitions/course/definitions/id"
         },
         "name": {
-          "description": "name of the course",
-          "example": "情報工学コース",
+          "description": "a abbreviation name of the course",
+          "example": "J",
           "type": [
             "string"
           ]
-        }
-      },
-      "properties": {
-        "id": {
-          "$ref": "#/definitions/course/definitions/id"
-        },
-        "name": {
-          "$ref": "#/definitions/course/definitions/name"
         }
       },
       "type": [
@@ -87,19 +79,18 @@
           "$ref": "#/definitions/department/definitions/id"
         },
         "name": {
-          "description": "name of the department",
+          "description": "a name of the department",
           "example": "電気情報工学科",
           "type": [
             "string"
           ]
-        }
-      },
-      "properties": {
-        "id": {
-          "$ref": "#/definitions/department/definitions/id"
         },
-        "name": {
-          "$ref": "#/definitions/department/definitions/name"
+        "abbreviation_name": {
+          "description": "a abbreviation name of the department",
+          "example": "E",
+          "type": [
+            "string"
+          ]
         }
       },
       "type": [
@@ -390,39 +381,25 @@
           "$ref": "#/definitions/term/definitions/id"
         },
         "name": {
-          "description": "name of the term",
+          "description": "a name of the term",
           "example": "前期",
           "type": [
             "string"
           ]
         },
         "started_on": {
-          "description": "date when the term start",
+          "description": "a date when the term start",
           "example": "2014-10-01",
           "type": [
             "string"
           ]
         },
         "ended_on": {
-          "description": "date when the term end",
+          "description": "a date when the term end",
           "example": "2015-03-31",
           "type": [
             "string"
           ]
-        }
-      },
-      "properties": {
-        "id": {
-          "$ref": "#/definitions/term/definitions/id"
-        },
-        "name": {
-          "$ref": "#/definitions/term/definitions/name"
-        },
-        "started_on": {
-          "$ref": "#/definitions/term/definitions/started_on"
-        },
-        "ended_on": {
-          "$ref": "#/definitions/term/definitions/ended_on"
         }
       },
       "type": [
