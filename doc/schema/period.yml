@@ -30,8 +30,6 @@ definitions:
     type:
     - integer
 properties:
-  name:
-    "$ref": "/schemata/period#/definitions/name"
   start_time:
     "$ref": "/schemata/period#/definitions/start_time"
   end_time:

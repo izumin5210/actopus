@@ -84,7 +84,7 @@ ANCT reschedulings API
  * true if the lecture is held for overseas students
  * Example: `false`
  * Type: boolean
-* times
+* periods
  * Type: array
 * lecturers
  * Type: array
@@ -107,9 +107,8 @@ Content-Type: application/json
   "department": "電気情報工学科",
   "course": "情報工学コース",
   "overseas_student": false,
-  "times": [
+  "periods": [
     {
-      "name": "1",
       "start_time": "09:00:00+09:00",
       "end_time": "10:30:00+09:00",
       "wday": 1
@@ -140,9 +139,8 @@ Content-Type: application/json
     "department": "電気情報工学科",
     "course": "情報工学コース",
     "overseas_student": false,
-    "times": [
+    "periods": [
       {
-        "name": "1",
         "start_time": "09:00:00+09:00",
         "end_time": "10:30:00+09:00",
         "wday": 1
@@ -172,10 +170,6 @@ Content-Type: application/json
 
 
 ### Properties
-* name
- * name of the period
- * Example: `"1"`
- * Type: string
 * start_time
  * time when the period start
  * Example: `"09:00:00+09:00"`
@@ -230,9 +224,8 @@ Content-Type: application/json
       "department": "電気情報工学科",
       "course": "情報工学コース",
       "overseas_student": false,
-      "times": [
+      "periods": [
         {
-          "name": "1",
           "start_time": "09:00:00+09:00",
           "end_time": "10:30:00+09:00",
           "wday": 1

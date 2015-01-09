@@ -178,7 +178,7 @@
         "overseas_student": {
           "$ref": "#/definitions/lecture/definitions/overseas_student"
         },
-        "times": {
+        "periods": {
           "type": [
             "array"
           ],
@@ -277,9 +277,6 @@
         }
       },
       "properties": {
-        "name": {
-          "$ref": "#/definitions/period/definitions/name"
-        },
         "start_time": {
           "$ref": "#/definitions/period/definitions/start_time"
         },
