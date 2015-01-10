@@ -8,6 +8,8 @@ class Staffs::TimetablesController < Staffs::BaseController
   end
 
   def show
+    klass = Klass.find(params[:id])
+    @timeline = LectureTimeline.new(klass.lectures)
   end
 
   def create
