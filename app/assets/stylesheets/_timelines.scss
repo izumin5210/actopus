@@ -23,7 +23,7 @@
     height: 100%;
     padding: 4px;
     border: 1px solid $list-border-fg;
-    border-radius: 4px;
+    border-radius: $list-group-border-radius;
     &:hover { background-color: $list-bg-hover; }
     .lecture-name {
       display: table-cell;
