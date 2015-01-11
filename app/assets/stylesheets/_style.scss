@@ -107,3 +107,17 @@
     border-top-right-radius: 0;
   }
 }
+
+
+/* staff管理画面 */
+
+.btn-staff-new {
+  vertical-align: inherit;
+}
+
+.form-staff-new {
+  margin-bottom: 10px;
+  .input-group {
+    width: 50%;
+  }
+}

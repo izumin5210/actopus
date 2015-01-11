@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :staffs do
+  get 'staffs/index'
+  end
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
@@ -13,6 +17,7 @@ Rails.application.routes.draw do
 
     resources :timetables, only: %i(index new show create)
     resources :lecturers, only: %i(index)
+    resources :staffs, only: %i(index)
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

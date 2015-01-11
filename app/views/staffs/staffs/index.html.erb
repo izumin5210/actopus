@@ -1,0 +1,27 @@
+<h2 class="heading"><%= fa_icon('cogs fw') %> staffs管理画面</h2>
+
+<div class="content">
+
+  <table class="table">
+    <thead>
+      <div class="form-staff-new">
+        <div class="input-group">
+          <%= text_field_tag 'email', @staff, placeholder: "email", class: "form-control" %>
+          <span class="input-group-btn">
+            <%= button_tag fa_icon('envelope-o fw') { |i| "#{i} Create" }, class: "btn btn-primary btn-staff-new" %>
+          </span>
+        </div>
+      </div>
+    </thead>
+
+    <tbody>
+      <% @staffs.each do |staff| %>
+        <tr>
+          <td><%= staff.email %></td>
+          <td><%= pluralize(staff.sign_in_count, 'sign_in') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
