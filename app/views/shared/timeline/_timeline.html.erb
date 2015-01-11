@@ -1,3 +1,10 @@
-<ul class="lecture-timeline">
-  <%= render partial: 'shared/timeline/cell', collection: row.cells, as: :cell %>
-</ul>
+<dl class="list-timetable">
+  <% timeline.each do |wday, row| %>
+    <dt><%= t('date.abbr_day_names')[wday] %></dt>
+    <dd>
+      <ul class="lecture-timeline">
+        <%= render partial: 'shared/timeline/cell', collection: row.cells, as: :cell %>
+      </ul>
+    </dd>
+  <% end %>
+</dl>

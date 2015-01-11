@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     get 'home' => 'home#home'
 
     resources :timetables, only: %i(new show create)
-    resources :klasses, only: %(index), path: :classes
+    resources :klasses, only: %(index), path: :classes do
+      member do
+        get :timetable
+      end
+    end
     resources :lecturers, only: %i(index)
     resources :staffs, only: %i(index create)
   end
