@@ -1,5 +1,5 @@
 <% cell.lectures.each.with_index do |lecture, i| %>
-  <li class="item" style="left: <%= cell.left %>%; top: <%= cell.top * i %>%; width: <%= cell.width %>%; height: <%= cell.height %>%;">
-    <span class="lecture-name"><%= lecture.name %></span>
+  <li class="cell" style="<%= cell.styles(i) %>" data-toggle="popover" data-trigger="hover" data-html="true" title="<%= lecture.klass.name %>" data-content="<%= lecture.lecturers.map(&:name).join('<br>') %>">
+    <span class="cell-content"><%= lecture.name %></span>
   </li>
 <% end %>

@@ -14,7 +14,7 @@
     width: 100%;
     height: $timetable-cell-height;
   }
-  .item {
+  .cell {
     @extend .list-unstyled;
     display: table;
     position: absolute;
@@ -29,7 +29,7 @@
       background-color: $list-bg-hover;
       z-index: 100;
     }
-    .lecture-name {
+    .cell-content {
       display: table-cell;
       vertical-align: middle;
     }

@@ -3,6 +3,10 @@ module LectureTimeline::CellDecorator
   BEGINNING_OF_DAY = Settings.timetable.beginning_of_day
   END_OF_DAY = Settings.timetable.end_of_day
 
+  def styles(i)
+    "left:#{left}%;top:#{top * i}%;width:#{width}%;height:#{height}%;"
+  end
+
   def top
     1 / lectures.size.to_f * 100
   end
