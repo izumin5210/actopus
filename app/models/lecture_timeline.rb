@@ -15,7 +15,7 @@ class LectureTimeline
 
   def each(&block)
     if block_given?
-      @rows.each(&block)
+      @rows.sort.each(&block)
     else
       @rows.to_enum(:each)
     end

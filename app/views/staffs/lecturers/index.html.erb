@@ -37,6 +37,7 @@
                 </ul>
               </div>
             </td>
+            <td><%= link_to fa_icon('search fw') { |i| "#{i} 時間割を見る" }, timetable_staffs_lecturer_path(lecturer.id), class: "btn btn-primary" %></td>
             <td><%= staff_renew_btn '#' %></td>
             <td><%= staff_destroy_btn '#' %></td>
           </tr>

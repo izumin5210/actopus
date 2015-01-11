@@ -1,7 +1,7 @@
 .list-timetable {
   @extend .dl-horizontal;
   $timetable-wday-offset: 60px;
-  $timetable-cell-height: 60px;
+  $timetable-cell-height: 80px;
   dt {
     width: $timetable-wday-offset - 16px;
     height: $timetable-cell-height;
@@ -14,7 +14,7 @@
     width: 100%;
     height: $timetable-cell-height;
   }
-  .item {
+  .cell {
     @extend .list-unstyled;
     display: table;
     position: absolute;
@@ -24,8 +24,12 @@
     padding: 4px;
     border: 1px solid $list-border-fg;
     border-radius: $list-group-border-radius;
-    &:hover { background-color: $list-bg-hover; }
-    .lecture-name {
+    background-color: $body-bg;
+    &:hover {
+      background-color: $list-bg-hover;
+      z-index: 100;
+    }
+    .cell-content {
       display: table-cell;
       vertical-align: middle;
     }

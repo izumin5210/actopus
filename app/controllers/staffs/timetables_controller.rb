@@ -1,8 +1,4 @@
 class Staffs::TimetablesController < Staffs::BaseController
-  def index
-    @klasses = Klass.includes(:department).all
-  end
-
   def new
     @form = TimetableForm.new
   end

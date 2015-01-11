@@ -9,10 +9,15 @@ Rails.application.routes.draw do
     }
 
   namespace :staffs do
+    concern :timetable do
+      member { get :timetable }
+    end
+
     get 'home' => 'home#home'
 
-    resources :timetables, only: %i(index new show create)
-    resources :lecturers, only: %i(index)
+    resources :timetables, only: %i(new show create)
+    resources :klasses, only: %(index), path: :classes, concerns: :timetable
+    resources :lecturers, only: %i(index), concerns: :timetable
     resources :staffs, only: %i(index create)
   end
 
