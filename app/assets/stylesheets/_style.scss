@@ -108,3 +108,19 @@
     border-top-right-radius: 0;
   }
 }
+
+
+/* staffs */
+
+.form-staff-new {
+  margin-bottom: 10px;
+  .field-staff-new {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .btn-staff-new {
+    margin-left: -3px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
