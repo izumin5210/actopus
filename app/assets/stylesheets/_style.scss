@@ -41,3 +41,32 @@
     font-size: $font-size-large;
   }
 }
+
+.list-table {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  > li {
+    $list-table-height: 48px;
+    display: table-cell;
+    height: $list-table-height;
+    text-align: center;
+    border: 1px solid $list-border-fg;
+    border-left-style: none;
+    &:first-child {
+      border-left-style: solid;
+      @include border-left-radius($list-group-border-radius);
+    }
+    &:last-child {
+      @include border-right-radius($list-group-border-radius);
+    }
+    &:hover { background-color: $list-bg-hover; }
+    > a {
+      color: $list-link-fg;
+      display: block;
+      text-decoration: none;
+      height: 100%;
+      line-height: $list-table-height;
+    }
+  }
+}
