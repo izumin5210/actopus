@@ -6,7 +6,8 @@ class Staffs::KlassesController < Staffs::BaseController
   end
 
   def timetable
-    @timeline = LectureTimeline.new(@klass.lectures)
+    lectures = @klass.lectures.includes(:lecturers, wday_periods: [:period])
+    @timeline = LectureTimeline.new(lectures)
   end
 
   private
