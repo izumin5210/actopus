@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
 
-  devise_for :staffs
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
+  devise_for :staffs, only: [:sessions], controllers: {
+      sessions: 'staffs/sessions'
+    }
 
   namespace :staffs do
     get 'home' => 'home#home'
 
     resources :timetables, only: %i(index new show create)
     resources :lecturers, only: %i(index)
+    resources :staffs, only: %i(index create)
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

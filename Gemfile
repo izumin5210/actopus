@@ -48,6 +48,7 @@ group :development do
   gem 'did_you_mean'
 
   gem 'annotate'
+  gem 'letter_opener_web'
 end
 
 group :test do
