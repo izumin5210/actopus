@@ -1,7 +1,12 @@
 /* common layout */
 
-html, body {
-  height: 100%;
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 100px;
 }
 
 .header-actopus {
@@ -13,21 +18,6 @@ html, body {
     font-size: $font-size-large * 3;
     margin-top: 0;
     line-height: $height-header;
-  }
-}
-
-.content {
-  margin-bottom: 20px;
-}
-
-.wrapper {
-  width: 100%;
-  position: relative;
-  height:auto !important;
-  height: 100%;
-  min-height: 100%;
-  .container {
-    padding-bottom: $height-header;
   }
 }
 
@@ -49,6 +39,11 @@ footer{
     }
   }
 }
+
+.content {
+  margin-bottom: 20px;
+}
+
 
 
 /* lecturers */
@@ -127,14 +122,12 @@ footer{
   }
 
   input[type="email"] {
+    @include border-bottom-radius(0);
     margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
   }
   input[type="password"] {
+    @include border-top-radius(0);
     margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
   }
 }
 
@@ -144,12 +137,10 @@ footer{
 .form-staff-new {
   margin-bottom: 10px;
   .field-staff-new {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    @include border-right-radius(0);
   }
   .btn-staff-new {
+    @include border-left-radius(0);
     margin-left: -3px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
   }
 }
