@@ -1,10 +1,25 @@
 <dl class="list-timetable">
-  <% timeline.each do |wday, row| %>
-    <dt><%= t('date.abbr_day_names')[wday] %></dt>
+  <% @date_step.each do |date| %>
+    <% next unless @timeline.wdays.include? date.wday %>
+    <dt><%= "#{l date, format: :short} #{t('date.abbr_day_names')[date.wday]}" %></dt>
     <dd>
       <ul class="lecture-timeline">
-        <%= render partial: 'shared/timeline/cell', collection: row.cells, as: :cell %>
+        <%= render partial: 'shared/timeline/cell', collection: @timeline[date.wday].cells, as: :cell %>
       </ul>
     </dd>
   <% end %>
 </dl>
+
+<nav>
+  <ul class="pagination">
+    <% [-7, 0, 7].map { |d| @beginning_of_week + d }.each do |week| %>
+      <li class="<%= 'active' if @date_step.to_a.include?(week) %>">
+        <a href="?date=<%= week.strftime('%Y-%m-%d')%>">
+          <%= l week.beginning_of_week, format: :short %>
+          -
+          <%= l week.end_of_week, format: :short %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</nav>
