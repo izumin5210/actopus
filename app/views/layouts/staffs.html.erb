@@ -43,23 +43,7 @@
       </div>
     </div>
 
-    <footer>
-      <p class="github">
-        <%= link_to(fa_icon("github") { |i| "#{i} GitHub Project" }, "https://github.com/izumin5210/actopus") %> ･
-        <%= link_to 'Issues', "https://github.com/izumin5210/actopus/issues" %> ･
-        <%= link_to 'Contributors', "https://github.com/izumin5210/actopus/graphs/contributors" %>
-      </p>
-      <p class="license">
-        Code licensed under 
-        <%= link_to 'MIT License', "https://github.com/izumin5210/actopus/blob/master/LICENSE" %> ･ 
-        Documentation licensed under 
-        <%= link_to 'CC BY 3.0', "http://creativecommons.org/licenses/by/3.0/" %>
-      </p>
-      <p class="contributor">
-        actopus 1.0 ･ Created by 
-        <%= link_to 'Masayuki IZUMI', "https://github.com/izumin5210" %>,  
-        <%= link_to 'Sanae YAMASHITA', "https://github.com/yamasy1549" %>
-      </p>
-    </footer>
+    <%= render 'shared/footer' %>
+
   </body>
 </html>
