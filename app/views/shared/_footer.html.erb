@@ -1,12 +1,12 @@
 <footer>
   <p class="github">
-    <%= link_to(fa_icon("github") { |i| "#{i} GitHub Project" }, "https://github.com/izumin5210/actopus") %> ･
-    <%= link_to 'Issues', "https://github.com/izumin5210/actopus/issues" %> ･
-    <%= link_to 'Contributors', "https://github.com/izumin5210/actopus/graphs/contributors" %>
+    <%= link_to(fa_icon("github") { |i| "#{i} GitHub Project" }, Settings.github_repo) %> 
+    <%= link_to 'Issues', "#{Settings.github_repo}/issues" %>
+    <%= link_to 'Contributors', "#{Settings.github_repo}/graphs/contributors" %>
   </p>
   <p class="license">
     Code licensed under 
-    <%= link_to 'MIT License', "https://github.com/izumin5210/actopus/blob/master/LICENSE" %> ･ 
+    <%= link_to 'MIT License', "#{Settings.github_repo}/blob/master/LICENSE" %>
     Documentation licensed under 
     <%= link_to 'CC BY 3.0', "http://creativecommons.org/licenses/by/3.0/" %>
   </p>
