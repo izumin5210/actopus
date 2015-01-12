@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  margin-bottom: 100px;
+  margin-bottom: $height-footer;
 }
 
 .header-actopus {
@@ -24,10 +24,10 @@ body {
 footer{
   text-align: center;
   width: 100%;
-  height: 100px;
+  height: $height-footer;
   position:absolute;
   bottom:0;
-  color: rgba(256, 256, 256, .5);
+  color: $alpha-text;
   background-color: $brand-primary;
   padding: 10px;
   a {
@@ -35,7 +35,7 @@ footer{
     &:visited,
     &:hover,
     &:active {
-      color: rgba(256, 256, 256, .8);
+      color: $alpha-link;
     }
   }
 }
@@ -106,11 +106,9 @@ footer{
     margin-bottom: 10px;
   }
   .form-control {
+    @include box-sizing(border-box);
     position: relative;
     height: auto;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     padding: 10px;
     font-size: 16px;
     &:focus {
