@@ -1,48 +1,46 @@
 <h2 class="heading"><%= fa_icon('list fw') %> 教員データ</h2>
 
-<div class="content">
-    <table class="table table-lecturer">
-      <tbody>
-        <% @lecturers.group_by(&:department).each do |department, lecturers| %>
-          <tr>
-            <th class="lecturer-department">
-              <% if department.present? %>
-                <%= department.abbreviation_name %>
-                <%= department.name %>
-              <% else %>
-                <%= 'Unknown' %>
-              <% end %>
-            </th>
-          </tr>
-          <% lecturers.each do |lecturer| %>
-          <tr>
-            <td class="lecturer-name">
-              <%= lecturer.name %>
-            </td>
-            <td>
-              <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                  学科 
-                  <span class="caret"></span>
-                </button>
+<table class="table table-lecturer">
+  <tbody>
+    <% @lecturers.group_by(&:department).each do |department, lecturers| %>
+    <tr>
+      <th class="lecturer-department">
+      <% if department.present? %>
+        <%= department.abbreviation_name %>
+        <%= department.name %>
+      <% else %>
+        <%= 'Unknown' %>
+      <% end %>
+      </th>
+    </tr>
+    <% lecturers.each do |lecturer| %>
+    <tr>
+      <td class="lecturer-name">
+        <%= lecturer.name %>
+      </td>
+      <td>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+         学科 
+        <span class="caret"></span>
+        </button>
 
-                <!# TODO: 所属学科の変更機能を実装%>
+        <!# TODO: 所属学科の変更機能を実装%>
 
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">G</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">M</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">E</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">C</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A</a></li>
-                </ul>
-              </div>
-            </td>
-            <td><%= link_to fa_icon('search fw') { |i| "#{i} 時間割を見る" }, timetable_staffs_lecturer_path(lecturer.id), class: "btn btn-primary" %></td>
-            <td><%= staff_renew_btn '#' %></td>
-            <td><%= staff_destroy_btn '#' %></td>
-          </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-</div>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">G</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">M</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">E</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">C</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A</a></li>
+        </ul>
+      </div>
+    </td>
+      <td><%= link_to fa_icon('search fw') { |i| "#{i} 時間割を見る" }, timetable_staffs_lecturer_path(lecturer.id), class: "btn btn-primary" %></td>
+      <td><%= staff_renew_btn '#' %></td>
+      <td><%= staff_destroy_btn '#' %></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>

@@ -1,42 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>actopus</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <header>
-    <div class="header-actopus">
-      <div class="container">
-        <h1>actopus</h1>
-      </div>
-    </div>
-  </header>
-  <div class="container">
-    <div class="row">
-      <% if staff_signed_in? %>
-        <div class="col-md-3">
-          <div class="list-group">
-            <%= staff_menu_item 'exchange', '時間割を変更する', '#' %>
-            <%= staff_menu_item 'search', '時間割を見る', staffs_klasses_path %>
-            <%= staff_menu_item 'th-list', '教員データを管理する', staffs_lecturers_path %>
-            <%= staff_menu_item 'rotate-left', '時間割データを読み込む', new_staffs_timetable_path %>
-            <%= staff_menu_item 'users', 'スタッフを管理する', staffs_staffs_path %>
+  <head>
+    <title>actopus</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="header-actopus">
+          <div class="container">
+            <h1>actopus</h1>
           </div>
         </div>
-        <div class="col-md-9">
-          <%= render 'shared/messages' %>
-          <%= yield %>
+      </header>
+      <div class="container">
+        <div class="row">
+          <% if staff_signed_in? %>
+            <div class="col-md-3">
+              <div class="list-group">
+                <%= staff_menu_item 'exchange', '時間割を変更する', '#' %>
+                <%= staff_menu_item 'search', '時間割を見る', '#' %>
+                <%= staff_menu_item 'th-list', '教員データを管理する', '#' %>
+                <%= staff_menu_item 'rotate-left', '時間割データを読み込む', new_staffs_timetable_path %>
+                <%= staff_menu_item 'users', 'スタッフを管理する', staffs_staffs_path %>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <%= render 'shared/messages' %>
+              <div class="content">
+                <%= yield %>
+              </div>
+            </div>
+          <% else %>
+            <div class="col-md-offset-4 col-md-4">
+              <%= render 'shared/messages' %>
+              <div class="content">
+                <%= yield %>
+              </div>
+            </div>
+          <% end %>
         </div>
-      <% else %>
-        <div class="col-md-offset-4 col-md-4">
-          <%= render 'shared/messages' %>
-          <%= yield %>
-        </div>
-      <% end %>
+      </div>
+
+      <footer>
+        <p class="github">
+          <%= link_to(fa_icon("github") { |i| "#{i} GitHub Project" }, "https://github.com/izumin5210/actopus") %> ･
+          <%= link_to 'Issues', "https://github.com/izumin5210/actopus/issues" %> ･
+          <%= link_to 'Contributors', "https://github.com/izumin5210/actopus/graphs/contributors" %>
+        </p>
+        <p class="license">
+          Code licensed under 
+          <%= link_to 'MIT License', "https://github.com/izumin5210/actopus/blob/master/LICENSE" %> ･ 
+          Documentation licensed under 
+          <%= link_to 'CC BY 3.0', "http://creativecommons.org/licenses/by/3.0/" %>
+        </p>
+        <p class="contributor">
+          actopus 1.0 ･ Created by 
+          <%= link_to 'Masayuki IZUMI', "https://github.com/izumin5210" %>,  
+          <%= link_to 'Sanae YAMASHITA', "https://github.com/yamasy1549" %>
+        </p>
+      </footer>
     </div>
-  </div>
-</body>
+  </body>
 </html>
