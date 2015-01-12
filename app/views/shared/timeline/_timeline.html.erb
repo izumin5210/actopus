@@ -1,9 +1,10 @@
 <dl class="list-timetable">
-  <% timeline.each do |wday, row| %>
-    <dt><%= t('date.abbr_day_names')[wday] %></dt>
+  <% @date_step.each do |date| %>
+    <% next unless @timeline.wdays.include? date.wday %>
+    <dt><%= "#{l date, format: :short} #{t('date.abbr_day_names')[date.wday]}" %></dt>
     <dd>
       <ul class="lecture-timeline">
-        <%= render partial: 'shared/timeline/cell', collection: row.cells, as: :cell %>
+        <%= render partial: 'shared/timeline/cell', collection: @timeline[date.wday].cells, as: :cell %>
       </ul>
     </dd>
   <% end %>

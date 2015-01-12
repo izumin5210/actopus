@@ -30,6 +30,10 @@ class LectureTimeline
     @rows.keys.sort
   end
 
+  def [](wday)
+    @rows[wday]
+  end
+
   def self.parse(grouped_lectures)
     Hash[grouped_lectures.map { |k, l| [k, LectureTimeline.new(l)] }]
   end

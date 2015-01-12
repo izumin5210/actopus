@@ -1,6 +1,6 @@
 .list-timetable {
   @extend .dl-horizontal;
-  $timetable-wday-offset: 60px;
+  $timetable-wday-offset: 80px;
   $timetable-cell-height: 80px;
   dt {
     width: $timetable-wday-offset - 16px;

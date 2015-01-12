@@ -33,7 +33,7 @@ ja:
     formats:
       default: ! '%Y/%m/%d'
       long: ! '%Y年%m月%d日(%a)'
-      short: ! '%m/%d'
+      short: ! '%-m/%-d'
     month_names:
     -
     - 1月
