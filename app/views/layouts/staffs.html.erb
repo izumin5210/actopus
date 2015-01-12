@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>actopus</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <header>
-    <div class="header-actopus">
-      <h1>actopus</h1>
-    </div>
-  </header>
-  <div class="container">
-    <div class="row">
-      <% if staff_signed_in? %>
-        <div class="col-md-3">
-          <div class="list-group">
-            <%= staff_menu_item 'exchange', '時間割を変更する', '#' %>
-            <%= staff_menu_item 'search', '時間割を見る', staffs_klasses_path %>
-            <%= staff_menu_item 'th-list', '教員データを管理する', staffs_lecturers_path %>
-            <%= staff_menu_item 'rotate-left', '時間割データを読み込む', new_staffs_timetable_path %>
+  <head>
+    <title>actopus</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <div class="header-actopus">
+        <div class="container">
+          <h1>actopus</h1>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <% if staff_signed_in? %>
+          <div class="col-md-3">
+            <div class="list-group">
+              <%= staff_menu_item 'exchange', '時間割を変更する', '#' %>
+              <%= staff_menu_item 'search', '時間割を見る', '#' %>
+              <%= staff_menu_item 'th-list', '教員データを管理する', '#' %>
+              <%= staff_menu_item 'rotate-left', '時間割データを読み込む', new_staffs_timetable_path %>
+              <%= staff_menu_item 'users', 'スタッフを管理する', staffs_staffs_path %>
+            </div>
           </div>
-        </div>
-        <div class="col-md-9">
-          <%= render 'shared/messages' %>
-          <%= yield %>
-        </div>
-      <% else %>
-        <div class="col-md-offset-4 col-md-4">
-          <%= render 'shared/messages' %>
-          <%= yield %>
-        </div>
-      <% end %>
+          <div class="col-md-9">
+            <%= render 'shared/messages' %>
+            <div class="content">
+              <%= yield %>
+            </div>
+          </div>
+        <% else %>
+          <div class="col-md-offset-4 col-md-4">
+            <%= render 'shared/messages' %>
+            <div class="content">
+              <%= yield %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-</body>
+
+    <%= render 'shared/footer' %>
+
+  </body>
 </html>

@@ -1,5 +1,14 @@
 /* common layout */
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: $height-footer;
+}
+
 .header-actopus {
   color: #FFFFFF;
   background-color: $brand-primary;
@@ -8,8 +17,26 @@
   h1 {
     font-size: $font-size-large * 3;
     margin-top: 0;
-    margin-left: 20px;
     line-height: $height-header;
+  }
+}
+
+footer{
+  text-align: center;
+  width: 100%;
+  height: $height-footer;
+  position:absolute;
+  bottom:0;
+  color: $alpha-text;
+  background-color: $brand-primary;
+  padding: 10px;
+  a {
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      color: $alpha-link;
+    }
   }
 }
 
@@ -18,11 +45,8 @@
 }
 
 
-/* lecturers */
 
-.container {
-  margin-bottom: 20px;
-}
+/* lecturers */
 
 .heading {
   margin-bottom: 20px;
@@ -82,11 +106,9 @@
     margin-bottom: 10px;
   }
   .form-control {
+    @include box-sizing(border-box);
     position: relative;
     height: auto;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     padding: 10px;
     font-size: 16px;
     &:focus {
@@ -98,13 +120,25 @@
   }
 
   input[type="email"] {
+    @include border-bottom-radius(0);
     margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
   }
   input[type="password"] {
+    @include border-top-radius(0);
     margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  }
+}
+
+
+/* staffs */
+
+.form-staff-new {
+  margin-bottom: 10px;
+  .field-staff-new {
+    @include border-right-radius(0);
+  }
+  .btn-staff-new {
+    @include border-left-radius(0);
+    margin-left: -3px;
   }
 }

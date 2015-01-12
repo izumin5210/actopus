@@ -1,24 +1,23 @@
 <h2 class="heading"><%= fa_icon('cogs fw') %> staffs管理画面</h2>
 
-<div class="content">
-  <%= form_for [:staffs, @staff] do |f| %>
-    <div class="input-group">
-      <%= f.text_field :email, placeholder: "email", class: "form-control" %>
-      <span class="input-group-btn">
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_for [:staffs, @staff], html: { class: "form-inline form-staff-new" } do |f| %>
+        <div class="form-group">
+          <label class="sr-only" for="input-email">email</label>
+          <%= f.email_field :email, placeholder: "email", class: "form-control field-staff-new", id: "input-email" %>
+        </div>
         <%= button_tag fa_icon('envelope-o fw') { |i| "#{i} Create" }, class: "btn btn-primary btn-staff-new" %>
-      </span>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 
   <table class="table">
-    <tbody>
-      <% @staffs.each do |staff| %>
-        <tr>
-          <td><%= staff.email %></td>
-          <td><%= pluralize(staff.sign_in_count, 'sign_in') %></td>
-        </tr>
-      <% end %>
-    </tbody>
+    <% @staffs.each do |staff| %>
+      <tr>
+        <td><%= staff.email %></td>
+        <td><%= pluralize(staff.sign_in_count, 'sign_in') %></td>
+      </tr>
+    <% end %>
   </table>
 
-</div>
