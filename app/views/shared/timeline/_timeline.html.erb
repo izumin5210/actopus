@@ -9,3 +9,17 @@
     </dd>
   <% end %>
 </dl>
+
+<nav>
+  <ul class="pagination">
+    <% [-7, 0, 7].map { |d| @beginning_of_week + d }.each do |week| %>
+      <li class="<%= 'active' if @date_step.to_a.include?(week) %>">
+        <a href="?date=<%= week.strftime('%Y-%m-%d')%>">
+          <%= l week.beginning_of_week, format: :short %>
+          -
+          <%= l week.end_of_week, format: :short %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</nav>
