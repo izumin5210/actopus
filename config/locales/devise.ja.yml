@@ -46,6 +46,10 @@ ja:
       send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
       send_paranoid_instructions: 'アカウントが見つかった場合、アカウントの凍結解除方法を数分以内にメールでご連絡します。'
       unlocked: 'アカウントを凍結解除しました。'
+    invitations:
+      send_instructions: '%{email}に招待メールを送信しました。'
+      invitation_token_invalid: 'URLが間違っています。招待メールに記載されているURLにアクセスしてください。'
+      updated: 'パスワードの設定を完了し、ログインしました。'
   errors:
     messages:
       already_confirmed: 'は既に登録済みです。ログインしてください。'

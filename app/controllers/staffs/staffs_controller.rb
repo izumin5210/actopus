@@ -7,7 +7,7 @@ class Staffs::StaffsController < Staffs::BaseController
   def invite
     @staff = Staff.invite!(staff_params)
     if @staff.errors.empty?
-      redirect_to staffs_staffs_path, notice: '招待メールを送信しました'
+      redirect_to staffs_staffs_path, notice: I18n.t('devise.invitations.send_instructions')
     else
       render :index
     end
