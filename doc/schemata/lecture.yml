@@ -19,12 +19,12 @@ definitions:
     example: 1
     type:
     - integer
-  overseas_student:
-    description: true if the lecture is held for overseas students
-    example: false
-    default: false
+  special_target:
+    description: the target of the lecture(overseasStudent or female)
+    example: overseasStudent
+    default: null
     type:
-    - boolean
+    - string
 links:
 - description: Info for existing lectures.
   href: "/lectures/{(%23%2Fdefinitions%2Flecture%2Fdefinitions%2Fid)}"
@@ -47,8 +47,8 @@ properties:
     "$ref": "/schemata/department#/definitions/name"
   course:
     "$ref": "/schemata/course#/definitions/name"
-  overseas_student:
-    "$ref": "/schemata/lecture#/definitions/overseas_student"
+  special_target:
+    "$ref": "/schemata/lecture#/definitions/special_target"
   periods:
     type: array
     items:

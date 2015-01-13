@@ -64,10 +64,10 @@ ANCT reschedulings API
  * a abbreviation name of the course
  * Example: `"J"`
  * Type: string
-* overseas_student
- * true if the lecture is held for overseas students
- * Example: `false`
- * Type: boolean
+* special_target
+ * the target of the lecture(overseasStudent or female)
+ * Example: `"overseasStudent"`
+ * Type: string
 * periods
  * Type: array
 * lecturers
@@ -90,7 +90,7 @@ Content-Type: application/json
   "grade": 1,
   "department": "電気情報工学科",
   "course": "J",
-  "overseas_student": false,
+  "special_target": "overseasStudent",
   "periods": [
     {
       "start_time": "09:00:00+09:00",
@@ -122,7 +122,7 @@ Content-Type: application/json
     "grade": 1,
     "department": "電気情報工学科",
     "course": "J",
-    "overseas_student": false,
+    "special_target": "overseasStudent",
     "periods": [
       {
         "start_time": "09:00:00+09:00",
@@ -207,7 +207,7 @@ Content-Type: application/json
       "grade": 1,
       "department": "電気情報工学科",
       "course": "J",
-      "overseas_student": false,
+      "special_target": "overseasStudent",
       "periods": [
         {
           "start_time": "09:00:00+09:00",

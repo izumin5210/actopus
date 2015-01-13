@@ -125,12 +125,12 @@
             "integer"
           ]
         },
-        "overseas_student": {
-          "description": "true if the lecture is held for overseas students",
-          "example": false,
-          "default": false,
+        "special_target": {
+          "description": "the target of the lecture(overseasStudent or female)",
+          "example": "overseasStudent",
+          "default": null,
           "type": [
-            "boolean"
+            "string"
           ]
         }
       },
@@ -166,8 +166,8 @@
         "course": {
           "$ref": "#/definitions/course/definitions/name"
         },
-        "overseas_student": {
-          "$ref": "#/definitions/lecture/definitions/overseas_student"
+        "special_target": {
+          "$ref": "#/definitions/lecture/definitions/special_target"
         },
         "periods": {
           "type": [
