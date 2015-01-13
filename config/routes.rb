@@ -6,8 +6,11 @@ Rails.application.routes.draw do
 
   root 'staffs/home#home'
 
-  devise_for :staffs, only: [:sessions, :invitations], controllers: {
-      sessions: 'staffs/sessions'
+  devise_for :staffs,
+    only: [:sessions, :invitations],
+    controllers: {
+      sessions: 'staffs/sessions',
+      invitations: 'staffs/invitations'
     }
 
   namespace :staffs do
