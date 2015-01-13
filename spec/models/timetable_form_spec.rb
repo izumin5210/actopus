@@ -23,10 +23,10 @@ describe TimetableForm do
     klasses.map.with_index do |klass, i|
       lecture_xml(
         name: lecture_names[i], grade: klass.grade,
-        department: klass.department.name, wday: i,
+        department: klass.department.name,
         lecturers: lecturer_names[i * 2, 2],
         periods: periods[i, 2].map do |p|
-            { start_time: p.start_time, end_time: p.end_time }
+            { wday: i, start_time: p.start_time, end_time: p.end_time }
           end
       )
     end

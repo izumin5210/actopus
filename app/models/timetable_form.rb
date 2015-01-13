@@ -58,10 +58,10 @@ class TimetableForm
 
   def map_periods_onto_lecture(mapper, lecture, periods, wday_periods)
     mapper.period_params.each do |params|
-      period = periods.find { |p| p.is?(params) }
-      wday_period = wday_periods.find { |wp| wp.is?(params.merge(wday: mapper.wday)) }
+      wday_period = wday_periods.find { |wp| wp.is?(params) }
       if wday_period.blank?
-        wday_period = WdayPeriod.create(period: period, wday: mapper.wday)
+        period = periods.find { |p| p.is?(params) }
+        wday_period = WdayPeriod.create(period: period, wday: params[:wday])
         wday_periods << wday_period
       end
       lecture.schedulings.create!(wday_period: wday_period)
