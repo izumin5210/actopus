@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113052200) do
+ActiveRecord::Schema.define(version: 20150113070246) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -129,10 +129,6 @@ ActiveRecord::Schema.define(version: 20150113052200) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -142,7 +138,6 @@ ActiveRecord::Schema.define(version: 20150113052200) do
     t.string   "invited_by_type"
   end
 
-  add_index "staffs", ["confirmation_token"], name: "index_staffs_on_confirmation_token", unique: true
   add_index "staffs", ["email"], name: "index_staffs_on_email", unique: true
   add_index "staffs", ["invitation_token"], name: "index_staffs_on_invitation_token", unique: true
   add_index "staffs", ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true

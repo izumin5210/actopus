@@ -15,10 +15,6 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime
 #  updated_at             :datetime
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string
 #  invitation_token       :string
 #  invitation_created_at  :datetime
 #  invitation_sent_at     :datetime
@@ -29,7 +25,6 @@
 #
 # Indexes
 #
-#  index_staffs_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_staffs_on_email                 (email) UNIQUE
 #  index_staffs_on_invitation_token      (invitation_token) UNIQUE
 #  index_staffs_on_reset_password_token  (reset_password_token) UNIQUE
