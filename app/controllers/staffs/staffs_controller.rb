@@ -4,12 +4,17 @@ class Staffs::StaffsController < Staffs::BaseController
     @staff = Staff.new
   end
 
-  def create
-    # TODO: 仮登録の機能を実装
+  def invite
+    @staff = Staff.invite!(staff_params)
+    if @staff.errors.empty?
+      redirect_to staffs_staffs_path, notice: '招待メールを送信しました'
+    else
+      render :index
+    end
   end
 
   private
-  
+
     def staff_params
       params.require(:staff).permit(:email)
     end

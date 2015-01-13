@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  devise_for :staffs, only: [:sessions], controllers: {
+  root 'staffs/home#home'
+
+  devise_for :staffs, only: [:sessions, :invitations], controllers: {
       sessions: 'staffs/sessions'
     }
 
@@ -18,7 +20,9 @@ Rails.application.routes.draw do
     resources :timetables, only: %i(new show create)
     resources :klasses, only: %(index), path: :classes, concerns: :timetable
     resources :lecturers, only: %i(index), concerns: :timetable
-    resources :staffs, only: %i(index create)
+    resources :staffs, only: %i(index create) do
+      collection { post :invite }
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
