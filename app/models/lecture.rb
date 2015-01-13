@@ -30,4 +30,6 @@ class Lecture < ActiveRecord::Base
   validates :name, presence: true
   validates :klass_id, presence: true
   validates :term_id, presence: true
+
+  enum special_target: Settings.lecture.special_target
 end
