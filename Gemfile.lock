@@ -81,6 +81,9 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise_invitable (1.4.0)
+      actionmailer (>= 3.2.6, < 5)
+      devise (>= 3.2.0)
     did_you_mean (0.9.4)
       interception
     diff-lcs (1.2.5)
@@ -265,6 +268,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_rewinder
   devise
+  devise_invitable
   did_you_mean
   factory_girl_rails
   font-awesome-helper

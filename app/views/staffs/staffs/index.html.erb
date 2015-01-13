@@ -2,7 +2,16 @@
 
   <div class="row">
     <div class="col-md-6">
-      <%= form_for [:staffs, @staff], html: { class: "form-inline form-staff-new" } do |f| %>
+      <% if @staff.errors.present? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% @staff.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= form_for @staff, url: invite_staffs_staffs_path, html: { class: "form-inline form-staff-new" } do |f| %>
         <div class="form-group">
           <label class="sr-only" for="input-email">email</label>
           <%= f.email_field :email, placeholder: "email", class: "form-control field-staff-new", id: "input-email" %>

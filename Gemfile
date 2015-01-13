@@ -8,10 +8,11 @@ group :default do
   gem 'coffee-rails', '~> 4.1.0'
 
   gem 'devise'
-  gem 'rails_config'
+  gem 'devise_invitable'
 
   gem 'nokogiri'
   gem 'sax-machine'
+  gem 'rails_config'
 
   gem 'font-awesome-helper'
   gem 'active_decorator'
