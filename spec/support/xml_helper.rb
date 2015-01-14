@@ -17,35 +17,41 @@ module XMLHelper
   end
 
   def lecture_xml(
-    name: 'プログラミング I', grade: 1,
+    name: 'プログラミング I', grade: 1, special_target: nil,
     department: '電気情報工学科', course: nil,
-    lecturers: ['新井 イスマイル'], wday: 1,
-    periods: [{ start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' }])
+    code: '2014121002101231110200',
+    lecturers: ['新井 イスマイル'],
+    periods: [
+      { wday: 1, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' }
+    ])
     <<-EOS
 <Lecture>
   <Name>#{name}</Name>
   <Grade>#{grade}</Grade>
   <Department>#{department}</Department>
   #{"<Course>#{course}</Course>" unless course.nil?}
-  <Wday>#{wday}</Wday>
-  <Times>
+  #{"<SpecialTarget>#{special_target}</SpecialTarget>" unless special_target.nil?}
+  <Periods>
     #{periods.map { |p| period_xml(p) }.join("\n")}
-  </Times>
+  </Periods>
   <Lectures>
     #{lecturers.map { |l| "<Lecturer>#{l}</Lecturer>" }.join("\n")}
   </Lectures>
+  <Code>#{code}</Code>
 </Lecture>
     EOS
   end
 
   private
 
-  def period_xml(start_time: '09:00:00+09:00', end_time: '10:30:00+09:00')
+  def period_xml(
+    wday: 1, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00')
     <<-EOS
-    <Time>
+    <Period>
+      <Wday>#{wday}</Wday>
       <StartTime>#{start_time}</StartTime>
       <EndTime>#{end_time}</EndTime>
-    </Time>
+    </Period>
     EOS
   end
 end

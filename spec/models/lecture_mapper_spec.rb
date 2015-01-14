@@ -9,12 +9,15 @@ describe LectureMapper do
     let(:mappers) { LectureMapper.parse(xml) }
     let(:mapper) { mappers.first }
     context 'without course' do
-      let(:lectures_xml) { [lecture_xml] }
+      let(:lectures_xml) { [lecture_xml(special_target: 'Female')] }
       let(:period) { mapper.periods.first }
       it { expect(mapper.name).to eq 'プログラミング I' }
       it { expect(mapper.grade).to eq 1 }
+      it { expect(mapper.special_target).to eq 'female' }
       it { expect(mapper.department).to eq '電気情報工学科' }
       it { expect(mapper.lecturers).to match_array('新井 イスマイル') }
+      it { expect(mapper.code).to be_present }
+      it { expect(period.wday).to eq 1 }
       it { expect(period.start_time).to eq '09:00:00+09:00' }
       it { expect(period.end_time).to eq '10:30:00+09:00' }
     end
@@ -32,24 +35,33 @@ describe LectureMapper do
     context 'with 2 periods' do
       let(:lectures_xml) do
         period_params = [
-          { start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
-          { start_time: '10:40:00+09:00', end_time: '12:10:00+09:00' }
+          { wday: 1, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
+          { wday: 3, start_time: '10:40:00+09:00', end_time: '12:10:00+09:00' }
         ]
         [lecture_xml(periods: period_params)]
       end
       let(:periods) { mapper.periods }
       it { expect(periods.size).to eq 2 }
+      it { expect(periods[0].wday).to eq 1 }
       it { expect(periods[0].start_time).to eq '09:00:00+09:00' }
       it { expect(periods[0].end_time).to eq '10:30:00+09:00' }
+      it { expect(periods[1].wday).to eq 3 }
       it { expect(periods[1].start_time).to eq '10:40:00+09:00' }
       it { expect(periods[1].end_time).to eq '12:10:00+09:00' }
     end
   end
 
   describe '#to_record' do
-    let(:mapper_params) { { name: 'プログラミング I' } }
+    let(:mapper_params) do
+      { name: 'プログラミング I',
+        special_target: 'Female',
+        code: '2014121002101231110200'
+      }
+    end
     subject { mapper.to_record }
     it { expect(subject.name).to eq 'プログラミング I' }
+    it { expect(subject.special_target).to eq 'female' }
+    it { expect(subject.code).to eq '2014121002101231110200' }
   end
 
   describe '#department_params' do
@@ -77,8 +89,8 @@ describe LectureMapper do
     let(:mapper_params) { { periods: periods } }
     let(:periods) do
       [
-        { start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
-        { start_time: '10:40:00+09:00', end_time: '12:10:00+09:00' }
+        { wday: 1, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
+        { wday: 3, start_time: '10:40:00+09:00', end_time: '12:10:00+09:00' }
       ]
     end
     subject { mapper.period_params }

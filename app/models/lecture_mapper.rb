@@ -5,8 +5,9 @@ class LectureMapper
   element 'Grade', as: :grade, class: Integer
   element 'Department', as: :department
   element 'Course', as: :course
-  element 'Wday', as: :wday, class: Integer
-  elements 'Time', as: :periods, class: PeriodMapper
+  element 'SpecialTarget', as: :special_target, &:underscore
+  element 'Code', as: :code, class: String
+  elements 'Period', as: :periods, class: PeriodMapper
   elements 'Lecturer', as: :lecturers
 
   def self.parse(xml)
@@ -15,7 +16,7 @@ class LectureMapper
   end
 
   def to_record
-    Lecture.new(name: @name)
+    Lecture.new(name: @name, special_target: @special_target, code: @code)
   end
 
   def department_params

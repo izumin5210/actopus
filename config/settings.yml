@@ -8,3 +8,8 @@ klass:
   category:
     undergraduate: 0
     advanced: 10
+
+lecture:
+  special_target:
+    female: 20
+    overseas_student: 40
