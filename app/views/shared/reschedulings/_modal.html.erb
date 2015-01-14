@@ -24,8 +24,14 @@
         </dl>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-default" href="#">休講する</a>
-        <a class="btn btn-default" href="#">変更する</a>
+        <%= form_for @form, url: staffs_reschedulings_path do |f| %>
+          <%= f.hidden_field :lecture_id %>
+          <%= f.hidden_field :category %>
+          <%= f.hidden_field :before_period_id %>
+          <%= f.hidden_field :before_date %>
+          <%= button_tag '休講', class: 'btn btn-default' %>
+          <a href="#" class="btn btn-default">変更</a>
+        <% end %>
       </div>
     </div>
   </div>
