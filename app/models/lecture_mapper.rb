@@ -5,6 +5,7 @@ class LectureMapper
   element 'Grade', as: :grade, class: Integer
   element 'Department', as: :department
   element 'Course', as: :course
+  element 'SpecialTarget', as: :special_target, &:underscore
   elements 'Period', as: :periods, class: PeriodMapper
   elements 'Lecturer', as: :lecturers
 

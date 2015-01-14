@@ -9,10 +9,11 @@ describe LectureMapper do
     let(:mappers) { LectureMapper.parse(xml) }
     let(:mapper) { mappers.first }
     context 'without course' do
-      let(:lectures_xml) { [lecture_xml] }
+      let(:lectures_xml) { [lecture_xml(special_target: 'Female')] }
       let(:period) { mapper.periods.first }
       it { expect(mapper.name).to eq 'プログラミング I' }
       it { expect(mapper.grade).to eq 1 }
+      it { expect(mapper.special_target).to eq 'female' }
       it { expect(mapper.department).to eq '電気情報工学科' }
       it { expect(mapper.lecturers).to match_array('新井 イスマイル') }
       it { expect(period.wday).to eq 1 }

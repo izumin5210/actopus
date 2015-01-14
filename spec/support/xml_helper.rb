@@ -17,7 +17,7 @@ module XMLHelper
   end
 
   def lecture_xml(
-    name: 'プログラミング I', grade: 1,
+    name: 'プログラミング I', grade: 1, special_target: nil,
     department: '電気情報工学科', course: nil,
     lecturers: ['新井 イスマイル'],
     periods: [
@@ -29,6 +29,7 @@ module XMLHelper
   <Grade>#{grade}</Grade>
   <Department>#{department}</Department>
   #{"<Course>#{course}</Course>" unless course.nil?}
+  #{"<SpecialTarget>#{special_target}</SpecialTarget>" unless special_target.nil?}
   <Periods>
     #{periods.map { |p| period_xml(p) }.join("\n")}
   </Periods>
