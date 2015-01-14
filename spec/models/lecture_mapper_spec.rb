@@ -16,6 +16,7 @@ describe LectureMapper do
       it { expect(mapper.special_target).to eq 'female' }
       it { expect(mapper.department).to eq '電気情報工学科' }
       it { expect(mapper.lecturers).to match_array('新井 イスマイル') }
+      it { expect(mapper.code).to be_present }
       it { expect(period.wday).to eq 1 }
       it { expect(period.start_time).to eq '09:00:00+09:00' }
       it { expect(period.end_time).to eq '10:30:00+09:00' }
@@ -51,10 +52,16 @@ describe LectureMapper do
   end
 
   describe '#to_record' do
-    let(:mapper_params) { { name: 'プログラミング I', special_target: 'Female' } }
+    let(:mapper_params) do
+      { name: 'プログラミング I',
+        special_target: 'Female',
+        code: '2014121002101231110200'
+      }
+    end
     subject { mapper.to_record }
     it { expect(subject.name).to eq 'プログラミング I' }
     it { expect(subject.special_target).to eq 'female' }
+    it { expect(subject.code).to eq '2014121002101231110200' }
   end
 
   describe '#department_params' do

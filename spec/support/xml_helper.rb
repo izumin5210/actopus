@@ -19,6 +19,7 @@ module XMLHelper
   def lecture_xml(
     name: 'プログラミング I', grade: 1, special_target: nil,
     department: '電気情報工学科', course: nil,
+    code: '2014121002101231110200',
     lecturers: ['新井 イスマイル'],
     periods: [
       { wday: 1, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' }
@@ -36,6 +37,7 @@ module XMLHelper
   <Lectures>
     #{lecturers.map { |l| "<Lecturer>#{l}</Lecturer>" }.join("\n")}
   </Lectures>
+  <Code>#{code}</Code>
 </Lecture>
     EOS
   end
