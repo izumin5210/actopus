@@ -3,6 +3,12 @@ github_repo: 'https://github.com/izumin5210/actopus'
 timetable:
   beginning_of_day: '09:00:00+09:00'
   end_of_day: '18:20:00+09:00'
+  weekdays:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
 
 klass:
   category:

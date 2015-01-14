@@ -2,12 +2,14 @@
 
 <dl class="list-timetable">
   <% @date_step.each do |date| %>
-    <% next unless @timeline.wdays.include? date.wday %>
+    <% next unless Settings.timetable.weekdays.include?(date.wday) %>
     <dt><%= "#{l date, format: :short} #{t('date.abbr_day_names')[date.wday]}" %></dt>
     <dd>
-      <ul class="lecture-timeline">
-        <%= render partial: 'shared/timeline/cell', collection: @timeline[date.wday].cells, as: :cell %>
-      </ul>
+      <% if @timeline[date.wday].present? %>
+        <ul class="lecture-timeline">
+          <%= render partial: 'shared/timeline/cell', collection: @timeline[date.wday].cells, as: :cell %>
+        </ul>
+      <% end %>
     </dd>
   <% end %>
 </dl>
