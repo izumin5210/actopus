@@ -10,4 +10,8 @@ module ApplicationHelper
   def staff_destroy_btn(path)
     link_to(fa_icon("trash fw") { |i| "#{i} 削除" }, path, class: "btn btn-primary")
   end
+
+  def timetable_header(icon, name)
+    fa_icon("#{icon} fw") { |i| "#{i} #{name}" }
+  end
 end

@@ -1,5 +1,4 @@
-<h1>Staffs::Timetables#new</h1>
-<p>Find me in app/views/staffs/timetables/new.html.erb</p>
+<h2 class="header-sub"><%= timetable_header('rotate-left', '時間割データを読み込む') %></h2>
 
 <% if @form.errors.any? %>
   <div class="alert alert-danger">
@@ -28,5 +27,5 @@
     <%= f.label :timetable_xml %>
     <%= f.file_field :timetable_xml, accept: 'application/xml,application/rdf+xml', required: true %>
   </div>
-  <%= button_tag fa_icon('upload') { |i| "#{i} upload" }, class: 'btn btn-default' %>
+  <%= button_tag fa_icon('upload') { |i| "#{i} upload" }, class: 'btn btn-primary' %>
 <% end %>
