@@ -1,20 +1,25 @@
 .list-timetable {
   @extend .dl-horizontal;
   $timetable-wday-offset: 80px;
-  $timetable-cell-height: 80px;
-  dt {
-    width: $timetable-wday-offset - 16px;
+  $timetable-cell-height: 100px;
+  dt,
+  dd {
+    border-top: 1px solid rgba(#000000, .2);
+    padding: 10px 0;
     height: $timetable-cell-height;
-    line-height: $timetable-cell-height;
-    margin-bottom: $timetable-wday-margin-bottom;
   }
-  dd { margin-left: $timetable-wday-offset; }
+  dt {
+    width: $timetable-wday-offset;
+    line-height: $timetable-cell-height - 20px;
+    padding-right: 16px;
+  }
+  dd {
+    margin-left: $timetable-wday-offset;
+  }
   .lecture-timeline {
+    @include square(100%);
     font-size: $font-size-small;
     position: relative;
-    width: 100%;
-    height: $timetable-cell-height;
-    margin-bottom: $timetable-wday-margin-bottom;
   }
   .cell {
     @extend .list-unstyled;
@@ -34,6 +39,7 @@
     .cell-content {
       display: table-cell;
       vertical-align: middle;
+      text-align: center;
     }
   }
 }
