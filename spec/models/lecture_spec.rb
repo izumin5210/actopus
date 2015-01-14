@@ -2,14 +2,13 @@
 #
 # Table name: lectures
 #
-#  id               :integer          not null, primary key
-#  name             :string           not null
-#  overseas_student :boolean          default("f")
-#  term_id          :integer          not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  klass_id         :integer
-#  special_target   :string
+#  id             :integer          not null, primary key
+#  name           :string           not null
+#  term_id        :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  klass_id       :integer
+#  special_target :integer
 #
 # Indexes
 #
