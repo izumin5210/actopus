@@ -7,7 +7,7 @@
       <% d_klasses.group_by(&:grade).each do |grade, g_klasses| %>
           <% g_klasses.each do |klass| %>
             <li style="width: <%= 100 / g_klasses.size %>%">
-              <%= link_to klass.name, timetable_staffs_klass_path(klass.id) %>
+              <%= link_to klass.name, "classes/#{klass.id}/timetable" %>
             </li>
           <% end %>
       <% end %>
