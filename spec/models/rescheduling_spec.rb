@@ -6,7 +6,7 @@
 #  lecture_id            :integer
 #  before_date_period_id :integer
 #  after_date_period_id  :integer
-#  category              :string
+#  category              :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #
@@ -26,7 +26,6 @@ RSpec.describe Rescheduling, type: :model do
   describe 'validates' do
     it { is_expected.to validate_presence_of(:lecture_id) }
     it { is_expected.to validate_presence_of(:before_date_period_id) }
-    it { is_expected.to validate_presence_of(:after_date_period_id) }
     it { is_expected.to validate_presence_of(:category) }
   end
 end
