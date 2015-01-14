@@ -1,11 +1,13 @@
-$brand-primary: lighten(#A14C4C, 10%) !default;
+$brand-primary: #A14C4C !default;
+$brand-bg: #FFFFFC !default;
 
-$alpha-text: rgba(#FFFFFF, .5);
-$alpha-link: rgba(#FFFFFF, .8);
+$alpha-text: rgba($brand-bg, .5);
+$alpha-link: rgba($brand-bg, .8);
 
 $list-group-border: #A14C4C !default;
 $list-group-hover-bg: lighten($brand-primary, 30%) !default;
 $list-group-link-color: #666 !default;
+$list-group-bg: $brand-bg !default;
 
 $height-header: 120px;
 $height-footer: 100px;
