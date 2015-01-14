@@ -40,6 +40,13 @@
       display: table-cell;
       vertical-align: middle;
       text-align: center;
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        color: $text-color;
+        text-decoration: none;
+      }
     }
   }
 }

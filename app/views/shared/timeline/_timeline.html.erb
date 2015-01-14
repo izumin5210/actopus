@@ -5,11 +5,9 @@
     <% next unless Settings.timetable.weekdays.include?(date.wday) %>
     <dt><%= "#{l date, format: :short} #{t('date.abbr_day_names')[date.wday]}" %></dt>
     <dd>
-      <% if @timeline[date.wday].present? %>
-        <ul class="lecture-timeline">
-          <%= render partial: 'shared/timeline/cell', collection: @timeline[date.wday].cells, as: :cell %>
-        </ul>
-      <% end %>
+      <ul class="lecture-timeline">
+        <%= render partial: 'shared/timeline/cell', collection: @timeline[date.wday].cells, as: :cell %>
+      </ul>
     </dd>
   <% end %>
 </dl>
