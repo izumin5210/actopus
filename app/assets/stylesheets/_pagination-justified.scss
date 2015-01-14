@@ -1,0 +1,12 @@
+.pagination-justified {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  > li {
+    display: table-cell;
+    > a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
