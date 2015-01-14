@@ -9,9 +9,11 @@
 #  updated_at     :datetime         not null
 #  klass_id       :integer
 #  special_target :integer
+#  code           :string
 #
 # Indexes
 #
+#  index_lectures_on_code      (code)
 #  index_lectures_on_klass_id  (klass_id)
 #  index_lectures_on_term_id   (term_id)
 #
