@@ -12,6 +12,6 @@ module ApplicationHelper
   end
 
   def timetable_header(icon, name)
-    fa_icon("#{icon} fw") { |i| "#{i} #{name}" }
+    content_tag(:h2, fa_icon("#{icon} fw") { |i| "#{i} #{name}" }, class: "header-sub")
   end
 end
