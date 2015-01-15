@@ -7,10 +7,11 @@ html {
 
 body {
   margin-bottom: $height-footer;
+  background-color: $brand-bg;
 }
 
 .header-actopus {
-  color: #FFFFFF;
+  color: $brand-bg;
   background-color: $brand-primary;
   height: $height-header;
   margin-bottom: 40px;
@@ -26,7 +27,7 @@ footer{
   width: 100%;
   height: $height-footer;
   position:absolute;
-  bottom:0;
+  bottom: 0;
   color: $alpha-text;
   background-color: $brand-primary;
   padding: 10px;
@@ -44,13 +45,12 @@ footer{
   margin-bottom: 20px;
 }
 
+.header-sub {
+  margin-bottom: 30px;
+}
 
 
 /* lecturers */
-
-.heading {
-  margin-bottom: 20px;
-}
 
 .table-lecturer {
   .lecturer-department {
@@ -60,6 +60,7 @@ footer{
       color: $brand-primary;
     }
   }
+
   .lecturer-name {
     vertical-align: middle;
     font-size: $font-size-large;
@@ -105,6 +106,7 @@ footer{
   .form-signin-heading, .checkbox {
     margin-bottom: 10px;
   }
+
   .form-control {
     @include box-sizing(border-box);
     position: relative;
@@ -115,6 +117,7 @@ footer{
       z-index: 2;
     }
   }
+
   .remember-checkbox {
     margin-bottom: 10px;
   }
@@ -123,6 +126,7 @@ footer{
     @include border-bottom-radius(0);
     margin-bottom: -1px;
   }
+
   input[type="password"] {
     @include border-top-radius(0);
     margin-bottom: 10px;
