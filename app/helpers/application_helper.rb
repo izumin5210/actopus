@@ -11,7 +11,7 @@ module ApplicationHelper
     link_to(fa_icon("trash fw") { |i| "#{i} 削除" }, path, class: "btn btn-primary")
   end
 
-  def timetable_header(icon, name)
+  def content_header(icon, name)
     content_tag(:h2, fa_icon("#{icon} fw") { |i| "#{i} #{name}" }, class: "header-sub")
   end
 end
