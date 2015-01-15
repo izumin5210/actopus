@@ -19,7 +19,7 @@
 
 FactoryGirl.define do
   factory :period do
-    sequence(:name)
+    sequence(:name) { |n| "#{n}限" }
     sequence(:start_time) do |n|
       (Time.parse('09:00:00+09:00') + (15 * n).minutes).strftime('%H:%M:%S%:z')
     end
