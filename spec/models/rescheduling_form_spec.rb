@@ -8,10 +8,7 @@ RSpec.describe ReschedulingForm, type: :model do
   subject { rescheduling_form }
 
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:lecture_id) }
     it { is_expected.to validate_presence_of(:category) }
-    it { is_expected.to validate_presence_of(:before_period_id) }
-    it { is_expected.to validate_presence_of(:before_date) }
   end
 
   describe '#save' do
@@ -28,7 +25,7 @@ RSpec.describe ReschedulingForm, type: :model do
     end
     context 'when category is cancel' do
       let(:params) do
-        { lecture_id: lecture.id, category: 'cancel',
+        { before_lecture_id: lecture.id, category: 'cancel',
           before_period_id: period.id, before_date: Date.parse('2015-01-14') }
       end
       it { is_expected.to be true }
