@@ -25,7 +25,7 @@ RSpec.describe ReschedulingForm, type: :model do
     end
     context 'when category is cancel' do
       let(:params) do
-        { before_lecture_id: lecture.id, category: 'cancel',
+        { lecture_id: lecture.id, category: 'cancel',
           before_period_id: period.id, before_date: Date.parse('2015-01-14') }
       end
       it { is_expected.to be true }

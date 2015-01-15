@@ -26,7 +26,7 @@
       <div class="modal-footer">
         <%= form_for @form, url: staffs_reschedulings_path do |f| %>
           <%= f.hidden_field :category %>
-          <%= f.hidden_field :before_lecture_id %>
+          <%= f.hidden_field :lecture_id %>
           <%= f.hidden_field :before_period_id %>
           <%= f.hidden_field :before_date %>
           <%= button_tag '閉じる', class: 'btn btn-default', data: { dismiss: :modal } %>
