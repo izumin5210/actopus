@@ -16,6 +16,6 @@ class Staffs::ReschedulingsController < Staffs::BaseController
 
   def rescheduling_form_params
     params.require(:rescheduling_form).permit(
-      :lecture_id, :category, :before_period_id, :before_date)
+      :category, :before_lecture_id, :before_period_id, :before_date)
   end
 end

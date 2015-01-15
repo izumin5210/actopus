@@ -1,3 +1,5 @@
 <h1>時間割変更 - <%= @klass.name %></h1>
 <%= render partial: 'shared/timeline/timeline'  %>
-<%= render partial: 'shared/reschedulings/modal'  %>
+<% if @form.category == 'cancel' %> 
+  <%= render partial: 'shared/reschedulings/cancel_modal'  %>
+<% end %>

@@ -1,5 +1,5 @@
 <% cell.lectures.each.with_index do |lecture, i| %>
   <li class="cell" style="<%= cell.styles(i) %>" data-toggle="popover" data-trigger="hover" data-html="true" title="<%= lecture.klass.name %>" data-content="<%= lecture.lecturers.map(&:name).join('<br>') %>">
-    <%= link_to lecture.name, '#', class: 'cell-content', data: { id: lecture.id, name: lecture.name, class: lecture.klass.name, date: date.to_s, period: { id: cell.period.id, startTime: cell.start_time, endTime: cell.end_time }, lecturers: lecture.lecturers.map(&:name) } %>
+    <%= link_to lecture.name, '#', class: 'cell-content', data: { lecture: { id: lecture.id, name: lecture.name, klass: lecture.klass.name, lecturers: lecture.lecturers.map(&:name) }, date: date.to_s, period: { id: cell.period.id, startTime: cell.start_time, endTime: cell.end_time } } %>
   </li>
 <% end %>
