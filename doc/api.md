@@ -123,7 +123,7 @@ Content-Type: application/json
  * Example: `"プログラミング I"`
  * Type: string
 * grade
- * grade of students taking the lecture
+ * grade of the class
  * Example: `1`
  * Type: integer
 * department

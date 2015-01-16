@@ -14,11 +14,6 @@ definitions:
     example: プログラミング I
     type:
     - string
-  grade:
-    description: grade of students taking the lecture
-    example: 1
-    type:
-    - integer
   special_target:
     description: the target of the lecture(overseasStudent or female)
     example: overseasStudent
@@ -47,7 +42,7 @@ properties:
   name:
     "$ref": "/schemata/lecture#/definitions/name"
   grade:
-    "$ref": "/schemata/lecture#/definitions/grade"
+    "$ref": "/schemata/class#/definitions/grade"
   department:
     "$ref": "/schemata/department#/definitions/name"
   course:

@@ -191,13 +191,6 @@
             "string"
           ]
         },
-        "grade": {
-          "description": "grade of students taking the lecture",
-          "example": 1,
-          "type": [
-            "integer"
-          ]
-        },
         "special_target": {
           "description": "the target of the lecture(overseasStudent or female)",
           "example": "overseasStudent",
@@ -238,7 +231,7 @@
           "$ref": "#/definitions/lecture/definitions/name"
         },
         "grade": {
-          "$ref": "#/definitions/lecture/definitions/grade"
+          "$ref": "#/definitions/class/definitions/grade"
         },
         "department": {
           "$ref": "#/definitions/department/definitions/name"
