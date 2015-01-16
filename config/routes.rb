@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  root 'staffs/home#home'
+  root 'pages#index'
 
   devise_for :staffs,
     only: [:sessions, :invitations],

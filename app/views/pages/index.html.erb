@@ -1,0 +1,44 @@
+<div class="header-landing">
+  <div class="container">
+    <h1>actopus</h1>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p>時間割の変更・閲覧をもっと簡単に。</p>
+      </div>
+      <div class="col-md-6 header-btn">
+        <%= fa_stack_btn(staffs_klasses_path, '時間割を見る', 'search') %>
+        <%= fa_stack_btn("http://www.akashi.ac.jp/guide/opendata", '明石高専オープンデータ', 'file-code-o') %>
+        <%= fa_stack_btn("#{Settings.github_repo}", 'GitHub Repository', 'github-alt') %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="content-landing">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="box-landing">
+          <%= fa_icon('calendar', class: 'box-logo') %>
+          <p>PDFでしか見れなかった時間割が、Web上でも見れるようになりました。クラスごと・教員ごとの表示にも対応。</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box-landing">
+          <%= fa_icon('code', class: 'box-logo') %>
+          <p><a href="#" target="_blank" alt="actopus API">Web APIのドキュメントリンク</a>貼るよ</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box-landing">
+          <%= fa_icon('code-fork', class: 'box-logo') %>
+          <p>actopusはオープンなプロジェクト。どなたでも開発に参加できます。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
