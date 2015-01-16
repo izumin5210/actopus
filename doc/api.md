@@ -72,6 +72,10 @@ ANCT reschedulings API
  * Type: array
 * lecturers
  * Type: array
+* code
+ * the unique code of lecture
+ * Example: `2014121002101231110200`
+ * Type: string
 
 ### GET /lectures/:id
 Info for existing lectures.
@@ -100,7 +104,8 @@ Content-Type: application/json
   ],
   "lecturers": [
     "新井 イスマイル"
-  ]
+  ],
+  "code": 2014121002101231110200
 }
 ```
 
@@ -132,7 +137,8 @@ Content-Type: application/json
     ],
     "lecturers": [
       "新井 イスマイル"
-    ]
+    ],
+    "code": 2014121002101231110200
   }
 ]
 ```
@@ -217,7 +223,8 @@ Content-Type: application/json
       ],
       "lecturers": [
         "新井 イスマイル"
-      ]
+      ],
+      "code": 2014121002101231110200
     },
     "before": {
       "start_time": "09:00:00+09:00",

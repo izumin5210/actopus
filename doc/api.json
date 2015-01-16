@@ -139,6 +139,13 @@
           "type": [
             "string"
           ]
+        },
+        "code": {
+          "description": "the unique code of lecture",
+          "example": 2014121002101231110200,
+          "type": [
+            "string"
+          ]
         }
       },
       "links": [
@@ -191,6 +198,9 @@
           "items": {
             "$ref": "#/definitions/lecturer/definitions/name"
           }
+        },
+        "code": {
+          "$ref": "#/definitions/lecture/definitions/code"
         }
       },
       "type": [
