@@ -378,38 +378,6 @@
           "type": [
             "string"
           ]
-        },
-        "begin_at_before": {
-          "description": "start time of the lecture before resheduled",
-          "example": "2014-12-01T09:00:00+09:00",
-          "format": "date-time",
-          "type": [
-            "string"
-          ]
-        },
-        "end_at_before": {
-          "description": "end time of the lecture before resheduled",
-          "example": "2014-12-01T10:30:00+09:00",
-          "format": "date-time",
-          "type": [
-            "string"
-          ]
-        },
-        "begin_at_after": {
-          "description": "start time of the lecture after resheduled",
-          "example": "2014-12-04T14:40:00+09:00",
-          "format": "date-time",
-          "type": [
-            "string"
-          ]
-        },
-        "end_at_after": {
-          "description": "end time of the lecture after resheduled",
-          "example": "2014-12-04T16:10:00+09:00",
-          "format": "date-time",
-          "type": [
-            "string"
-          ]
         }
       },
       "links": [
@@ -431,10 +399,10 @@
         "lecture": {
           "$ref": "#/definitions/lecture"
         },
-        "before": {
+        "before_period": {
           "$ref": "#/definitions/date_period"
         },
-        "after": {
+        "after_period": {
           "$ref": "#/definitions/date_period"
         }
       },

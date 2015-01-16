@@ -257,9 +257,9 @@ Content-Type: application/json
  * Type: string
 * lecture
  * Type: object
-* before
+* before_period
  * Type: object
-* after
+* after_period
  * Type: object
 
 ### GET /reshedulings
@@ -296,12 +296,12 @@ Content-Type: application/json
       ],
       "code": 2014121002101231110200
     },
-    "before": {
+    "before_period": {
       "start_time": "09:00:00+09:00",
       "end_time": "10:30:00+09:00",
       "taken_on": "2014-12-10"
     },
-    "after": {
+    "after_period": {
       "start_time": "09:00:00+09:00",
       "end_time": "10:30:00+09:00",
       "taken_on": "2014-12-10"
