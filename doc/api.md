@@ -2,18 +2,18 @@
 ANCT reschedulings API
 
 * [Class](#class)
- * [GET /classes/:id](#get-classesid)
- * [GET /classes](#get-classes)
+ * [GET /api/v1/classes/:id](#get-apiv1classesid)
+ * [GET /api/v1/classes](#get-apiv1classes)
 * [Course](#course)
 * [DatePeriod](#dateperiod)
 * [Department](#department)
 * [Lecture](#lecture)
- * [GET /lectures/:id](#get-lecturesid)
- * [GET /lectures](#get-lectures)
+ * [GET /api/v1/lectures/:id](#get-apiv1lecturesid)
+ * [GET /api/v1/lectures](#get-apiv1lectures)
 * [Lecturer](#lecturer)
 * [Period](#period)
 * [Rescheduling](#rescheduling)
- * [GET /reshedulings](#get-reshedulings)
+ * [GET /api/v1/reshedulings](#get-apiv1reshedulings)
 * [Term](#term)
 
 ## Class
@@ -41,12 +41,12 @@ ANCT reschedulings API
  * Example: `"情報工学コース"`
  * Type: string
 
-### GET /classes/:id
+### GET /api/v1/classes/:id
 Info for existing class.
 
 ```
-GET /classes/1 HTTP/1.1
-Host: api.akashi.ac.jp
+GET /api/v1/classes/1 HTTP/1.1
+Host: actopus.akashi.ac.jp
 ```
 
 ```
@@ -61,12 +61,12 @@ Content-Type: application/json
 }
 ```
 
-### GET /classes
+### GET /api/v1/classes
 List existing classs.
 
 ```
-GET /classes HTTP/1.1
-Host: api.akashi.ac.jp
+GET /api/v1/classes HTTP/1.1
+Host: actopus.akashi.ac.jp
 ```
 
 ```
@@ -147,12 +147,12 @@ Content-Type: application/json
  * Example: `2014121002101231110200`
  * Type: string
 
-### GET /lectures/:id
+### GET /api/v1/lectures/:id
 Info for existing lectures.
 
 ```
-GET /lectures/1 HTTP/1.1
-Host: api.akashi.ac.jp
+GET /api/v1/lectures/1 HTTP/1.1
+Host: actopus.akashi.ac.jp
 ```
 
 ```
@@ -179,12 +179,12 @@ Content-Type: application/json
 }
 ```
 
-### GET /lectures
+### GET /api/v1/lectures
 List existing lectures.
 
 ```
-GET /lectures HTTP/1.1
-Host: api.akashi.ac.jp
+GET /api/v1/lectures HTTP/1.1
+Host: actopus.akashi.ac.jp
 ```
 
 ```
@@ -262,12 +262,12 @@ Content-Type: application/json
 * after_period
  * Type: object
 
-### GET /reshedulings
+### GET /api/v1/reshedulings
 List existing reshedulings.
 
 ```
-GET /reshedulings HTTP/1.1
-Host: api.akashi.ac.jp
+GET /api/v1/reshedulings HTTP/1.1
+Host: actopus.akashi.ac.jp
 ```
 
 ```

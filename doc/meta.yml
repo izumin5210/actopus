@@ -1,9 +1,9 @@
 ---
 "$schema": http://json-schema.org/draft-04/hyper-schema
 description: A schema for ANCT reschedulings API
-id: actopus
+id: http://www.akashi.ac.jp/actopus/schema#
 links:
-- href: http://api.akashi.ac.jp/
+- href: http://actopus.akashi.ac.jp/
   rel: self
 description: ANCT reschedulings API
 

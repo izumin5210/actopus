@@ -33,14 +33,14 @@
       "links": [
         {
           "description": "Info for existing class.",
-          "href": "/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}",
+          "href": "/api/v1/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}",
           "method": "GET",
           "rel": "self",
           "title": "Info"
         },
         {
           "description": "List existing classs.",
-          "href": "/classes",
+          "href": "/api/v1/classes",
           "method": "GET",
           "rel": "instances",
           "title": "List"
@@ -210,14 +210,14 @@
       "links": [
         {
           "description": "Info for existing lectures.",
-          "href": "/lectures/{(%2Fdefinitions%2Flecture%2Fdefinitions%2Fid)}",
+          "href": "/api/v1/lectures/{(%2Fdefinitions%2Flecture%2Fdefinitions%2Fid)}",
           "method": "GET",
           "rel": "self",
           "title": "Info"
         },
         {
           "description": "List existing lectures.",
-          "href": "/lectures",
+          "href": "/api/v1/lectures",
           "method": "GET",
           "rel": "instances",
           "title": "List"
@@ -383,7 +383,7 @@
       "links": [
         {
           "description": "List existing reshedulings.",
-          "href": "/reshedulings",
+          "href": "/api/v1/reshedulings",
           "method": "GET",
           "rel": "instances",
           "title": "List"
@@ -484,10 +484,10 @@
     "object"
   ],
   "description": "ANCT reschedulings API",
-  "id": "actopus",
+  "id": "http://www.akashi.ac.jp/actopus/schema#",
   "links": [
     {
-      "href": "http://api.akashi.ac.jp/",
+      "href": "http://actopus.akashi.ac.jp/",
       "rel": "self"
     }
   ]

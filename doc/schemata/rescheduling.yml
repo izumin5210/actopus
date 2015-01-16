@@ -16,7 +16,7 @@ definitions:
     - string
 links:
 - description: List existing reshedulings.
-  href: "/reshedulings"
+  href: "/api/v1/reshedulings"
   method: GET
   rel: instances
   title: List

@@ -21,12 +21,12 @@ definitions:
     - integer
 links:
 - description: Info for existing class.
-  href: "/classes/{(%2Fschemata%2Fclass%23%2Fdefinitions%2Fid)}"
+  href: "/api/v1/classes/{(%2Fschemata%2Fclass%23%2Fdefinitions%2Fid)}"
   method: GET
   rel: self
   title: Info
 - description: List existing classs.
-  href: "/classes"
+  href: "/api/v1/classes"
   method: GET
   rel: instances
   title: List
