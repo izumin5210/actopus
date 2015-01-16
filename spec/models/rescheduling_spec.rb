@@ -25,7 +25,6 @@ RSpec.describe Rescheduling, type: :model do
 
   describe 'validates' do
     it { is_expected.to validate_presence_of(:lecture_id) }
-    it { is_expected.to validate_presence_of(:before_date_period_id) }
     it { is_expected.to validate_presence_of(:category) }
   end
 end

@@ -17,7 +17,6 @@ class Rescheduling < ActiveRecord::Base
   belongs_to :after_date_period, class_name: 'DatePeriod'
 
   validates :lecture_id, presence: true
-  validates :before_date_period_id, presence: true
   validates :category, presence: true
 
   enum category: Settings.rescheduling.category
