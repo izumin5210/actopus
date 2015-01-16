@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     namespace :reschedulings do
       scope ':category' do
         resources :klasses, only: %(index), path: :classes, concerns: :timetable
+        resources :lecturers, only: %(index), concerns: :timetable
       end
     end
     resources :staffs, only: %i(index create) do
