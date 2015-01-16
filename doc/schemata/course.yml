@@ -14,7 +14,7 @@ definitions:
     example: 情報工学コース
     type:
     - string
-  name:
+  abbreviatio_name:
     description: a abbreviation name of the course
     example: J
     type:

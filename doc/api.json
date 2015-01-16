@@ -16,6 +16,13 @@
           "$ref": "#/definitions/course/definitions/id"
         },
         "name": {
+          "description": "a name of the course",
+          "example": "情報工学コース",
+          "type": [
+            "string"
+          ]
+        },
+        "abbreviatio_name": {
           "description": "a abbreviation name of the course",
           "example": "J",
           "type": [

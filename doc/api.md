@@ -61,8 +61,8 @@ ANCT reschedulings API
  * Example: `"電気情報工学科"`
  * Type: string
 * course
- * a abbreviation name of the course
- * Example: `"J"`
+ * a name of the course
+ * Example: `"情報工学コース"`
  * Type: string
 * special_target
  * the target of the lecture(overseasStudent or female)
@@ -89,7 +89,7 @@ Content-Type: application/json
   "name": "プログラミング I",
   "grade": 1,
   "department": "電気情報工学科",
-  "course": "J",
+  "course": "情報工学コース",
   "special_target": "overseasStudent",
   "periods": [
     {
@@ -121,7 +121,7 @@ Content-Type: application/json
     "name": "プログラミング I",
     "grade": 1,
     "department": "電気情報工学科",
-    "course": "J",
+    "course": "情報工学コース",
     "special_target": "overseasStudent",
     "periods": [
       {
@@ -206,7 +206,7 @@ Content-Type: application/json
       "name": "プログラミング I",
       "grade": 1,
       "department": "電気情報工学科",
-      "course": "J",
+      "course": "情報工学コース",
       "special_target": "overseasStudent",
       "periods": [
         {
