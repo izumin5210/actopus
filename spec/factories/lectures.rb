@@ -21,7 +21,7 @@
 FactoryGirl.define do
   factory :lecture do
     sequence(:name, 'A') { |n| "Lecture #{n}" }
-    overseas_student false
+    sequence(:code, '2014121002101231110200')
 
     trait :with_klass do
       klass { create(:klass, :with_department) }

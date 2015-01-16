@@ -6,7 +6,7 @@
 #  lecture_id            :integer
 #  before_date_period_id :integer
 #  after_date_period_id  :integer
-#  category              :string
+#  category              :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #

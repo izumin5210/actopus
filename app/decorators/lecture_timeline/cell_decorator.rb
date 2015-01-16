@@ -2,6 +2,7 @@
 module LectureTimeline::CellDecorator
   BEGINNING_OF_DAY = Settings.timetable.beginning_of_day
   END_OF_DAY = Settings.timetable.end_of_day
+  TIME_FORMAT = '%H:%M'
 
   def styles(i)
     "left:#{left}%;top:#{top * i}%;width:#{width}%;height:#{height}%;"
@@ -21,6 +22,14 @@ module LectureTimeline::CellDecorator
 
   def height
     1 / lectures.size.to_f * 100
+  end
+
+  def start_time
+    Time.parse(period.start_time).strftime(TIME_FORMAT)
+  end
+
+  def end_time
+    Time.parse(period.end_time).strftime(TIME_FORMAT)
   end
 
   private

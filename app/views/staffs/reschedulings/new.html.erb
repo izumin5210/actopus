@@ -1,0 +1,16 @@
+<h1>時間割を変更</h1>
+
+<div class="text-center">
+  <% Rescheduling.categories.each do |category, _| %>
+    <div class="btn-group">
+      <%= button_tag class: 'btn btn-default btn-lg dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => false do %>
+        <%= category %>
+        <span class="caret"></span>
+      <% end %>
+      <ul class="dropdown-menu" role="menu">
+        <li><%= link_to 'クラスから選択', staffs_reschedulings_klasses_path(category: category) %></li>
+        <li><%= link_to '教員から選択', staffs_reschedulings_lecturers_path(category: category) %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>

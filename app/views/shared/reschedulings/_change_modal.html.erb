@@ -1,0 +1,47 @@
+<div class="modal fade" id="reschedulings-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_for @form, url: staffs_reschedulings_path do |f| %>
+        <div class="modal-header">
+          <h4 class="modal-title">変更する</h4>
+        </div>
+        <div class="modal-body">
+          <dl class="dl-horizontal">
+            <dt>講義名</dt>
+            <dd id="rescheduled-lecture"></dd>
+            <dt>クラス</dt>
+            <dd id="rescheduled-class"></dd>
+            <dt>変更元日時</dt>
+            <dd>
+              <span id="rescheduled-date"></span>
+              <span id="rescheduled-start-time"></span>
+              ~
+              <span id="rescheduled-end-time"></span>
+            </dd>
+            <dt>変更先日時</dt>
+            <dd>
+              <div class="form-group">
+                <%= f.date_field :after_date, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.collection_select :after_period_id, @periods, :id, :to_display, {}, class: 'form-control' %>
+              </div>
+            </dd>
+            <dt>担当教員</dt>
+            <dd>
+              <ul class="list-unstyled" id="rescheduled-lecturers"></ul>
+            </dd>
+          </dl>
+        </div>
+        <div class="modal-footer">
+          <%= f.hidden_field :category %>
+          <%= f.hidden_field :lecture_id %>
+          <%= f.hidden_field :before_period_id %>
+          <%= f.hidden_field :before_date %>
+          <%= button_tag '閉じる', class: 'btn btn-default', data: { dismiss: :modal } %>
+          <%= button_tag @form.category, class: 'btn btn-default' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

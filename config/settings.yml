@@ -19,3 +19,9 @@ lecture:
   special_target:
     female: 20
     overseas_student: 40
+
+rescheduling:
+  category:
+    change: 0
+    cancel: 20
+    extra: 40

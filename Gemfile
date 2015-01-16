@@ -21,6 +21,7 @@ group :default do
   gem 'rails-assets-font-awesome'
   gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-ujs'
+  gem 'rails-assets-lodash'
 end
 
 group :test, :development do
