@@ -146,3 +146,71 @@ footer{
     margin-left: -3px;
   }
 }
+
+
+/* landing-page */
+
+.header-landing {
+  color: $brand-bg;
+  background-color: $brand-primary;
+  width: 100%;
+  height: 320px;
+  .container {
+    position: relative;
+    height: 100%;
+  }
+  h1 {
+    font-family: Inconsolata;
+    font-size: $font-size-large * 5;
+    margin: 40px 0;
+  }
+  .header-btn {
+    position: absolute;
+    right: 0;
+    a {
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        color: $brand-bg;
+      }
+      span {
+        margin-left: 10px;
+        i:nth-child(2) { color: $brand-primary; }
+      }
+    }
+  }
+}
+
+.content-landing {
+  margin: 60px 0;
+}
+
+.box-landing {
+  margin: 0px 1% 16px;
+  line-height: 24px;
+  text-align: center;
+  .box-inner {
+    color: $gray;
+    border-radius: 12px;
+    display: block;
+    width: 100%;
+    height: 300px;
+    padding: 60px 40px;
+    .box-logo {
+      font-size: $font-size-large * 3;
+      color: $brand-primary;
+    }
+    p { margin-top: 40px; }
+    a {
+      color: $brand-primary;
+      border-bottom: 1px dotted;
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        text-decoration: none;
+      }
+    }
+  }
+}

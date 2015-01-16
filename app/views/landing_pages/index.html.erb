@@ -1,2 +1,65 @@
-<h1>LandingPages#index</h1>
-<p>Find me in app/views/landing_pages/index.html.erb</p>
+<div class="header-landing">
+  <div class="container">
+    <h1>actopus</h1>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p>時間割の変更・閲覧をもっと簡単に。</p>
+      </div>
+      <div class="col-md-6 header-btn">
+        <%= link_to staffs_klasses_path, target: '_blank', alt: '時間割を見る' do %>
+          <span class="fa-stack fa-4x">
+            <%= fa_icon('circle stack-2x') %>
+            <%= fa_icon('search stack-1x') %>
+          </span>
+        <% end %>
+        <%= link_to "http://www.akashi.ac.jp/guide/opendata", target: '_blank', alt: '明石高専オープンデータ' do %>
+          <span class="fa-stack fa-4x">
+            <%= fa_icon('circle stack-2x') %>
+            <%= fa_icon('file-code-o stack-1x') %>
+          </span>
+        <% end %>
+        <%= link_to "#{Settings.github_repo}", target: '_blank', alt: 'GitHub Repository' do %>
+          <span class="fa-stack fa-4x">
+            <%= fa_icon('circle stack-2x') %>
+            <%= fa_icon('github-alt stack-1x') %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="content-landing">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="box-landing">
+          <header class="box-inner">
+            <%= fa_icon('calendar', class: 'box-logo') %>
+            <p>PDFでしか見れなかった時間割が、Web上でも見れるようになりました。クラスごと・教員ごとの表示にも対応。</p>
+          </header>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box-landing">
+          <header class="box-inner">
+            <%= fa_icon('code', class: 'box-logo') %>
+            <p><a href="#" target="_blank" alt="actopus API">Web APIのドキュメントリンク</a>貼るよ</p>
+          </header>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box-landing">
+          <header class="box-inner">
+            <%= fa_icon('code-fork', class: 'box-logo') %>
+            <p>actopusはオープンなプロジェクト。どなたでも開発に参加できます。</p>
+          </header>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
