@@ -20,6 +20,8 @@ $ ->
     $modal.find('#rescheduling_form_lecture_id').val(lecture.id)
     $modal.find('#rescheduling_form_before_period_id').val(period.id)
     $modal.find('#rescheduling_form_before_date').val(date)
+    if getCategory() == 'change'
+      $modal.find('#rescheduling_form_after_date').val(date)
 
     $modal.modal('show')
 
