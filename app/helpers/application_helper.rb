@@ -14,4 +14,13 @@ module ApplicationHelper
   def content_header(icon, name)
     content_tag(:h2, fa_icon("#{icon} fw") { |i| "#{i} #{name}" }, class: "header-sub")
   end
+
+  def fa_stack_btn(link, alt, icon)
+    link_to("#{link}", target: '_blank', alt: "#{alt}") do
+      content_tag(:span, class: 'fa-stack fa-4x') do
+        concat fa_icon('circle stack-2x')
+        concat fa_icon("#{icon} stack-1x")
+      end
+    end
+  end
 end
