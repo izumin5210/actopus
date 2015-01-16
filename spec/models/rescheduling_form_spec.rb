@@ -27,9 +27,18 @@ RSpec.describe ReschedulingForm, type: :model do
 
   shared_examples_for 'a valid rescheduling form' do
     it { is_expected.to be true }
-    it { expect { subject }.to change(lecture.reschedulings, :count).by(1) }
-    it { expect { subject }.to change(Rescheduling, :count).by(1) }
-    it { expect { subject }.to change(DatePeriod, :count).by(1) }
+    it do
+      expect { subject }
+        .to change(lecture.reschedulings, :count).by(a_value_within(1).of(2))
+    end
+    it do
+      expect { subject }
+        .to change(Rescheduling, :count).by(a_value_within(1).of(2))
+    end
+    it do
+      expect { subject }
+        .to change(DatePeriod, :count).by(a_value_within(1).of(2))
+    end
   end
 
   describe 'validations' do
@@ -47,6 +56,24 @@ RSpec.describe ReschedulingForm, type: :model do
       let(:after_date) { nil }
       it_behaves_like 'a invalid rescheduling form' do
         let(:before_period) { nil }
+      end
+      it_behaves_like 'a valid rescheduling form'
+    end
+
+    context 'when category is "change"' do
+      let(:category) { 'change' }
+      it_behaves_like 'a invalid rescheduling form' do
+        let(:after_period) { nil }
+      end
+      it_behaves_like 'a valid rescheduling form'
+    end
+
+    context 'when category is "extra"' do
+      let(:category) { 'extra' }
+      let(:before_period) { nil }
+      let(:before_date) { nil }
+      it_behaves_like 'a invalid rescheduling form' do
+        let(:after_period) { nil }
       end
       it_behaves_like 'a valid rescheduling form'
     end
