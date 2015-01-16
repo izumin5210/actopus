@@ -32,10 +32,12 @@ footer{
   background-color: $brand-primary;
   padding: 10px;
   a {
+    border-bottom: 1px dotted;
     &:link,
     &:visited,
     &:hover,
     &:active {
+      text-decoration: none;
       color: $alpha-link;
     }
   }
