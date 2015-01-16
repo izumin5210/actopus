@@ -1,6 +1,72 @@
 {
   "$schema": "http://json-schema.org/draft-04/hyper-schema",
   "definitions": {
+    "class": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Class",
+      "definitions": {
+        "id": {
+          "description": "unique identifier of class",
+          "example": 1,
+          "type": [
+            "integer"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/class/definitions/id"
+        },
+        "name": {
+          "description": "name of the class",
+          "example": "1E",
+          "type": [
+            "string"
+          ]
+        },
+        "grade": {
+          "description": "grade of the class",
+          "example": 1,
+          "type": [
+            "integer"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Info for existing class.",
+          "href": "/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "List existing classs.",
+          "href": "/classes",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/class/definitions/id"
+        },
+        "name": {
+          "$ref": "#/definitions/class/definitions/name"
+        },
+        "grade": {
+          "$ref": "#/definitions/class/definitions/grade"
+        },
+        "department": {
+          "$ref": "#/definitions/department/definitions/name"
+        },
+        "course": {
+          "$ref": "#/definitions/course/definitions/name"
+        }
+      },
+      "type": [
+        "object"
+      ]
+    },
     "course": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Course",
@@ -425,6 +491,9 @@
     }
   },
   "properties": {
+    "class": {
+      "$ref": "#/definitions/class"
+    },
     "course": {
       "$ref": "#/definitions/course"
     },

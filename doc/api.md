@@ -1,6 +1,9 @@
 # API
 ANCT reschedulings API
 
+* [Class](#class)
+ * [GET /classes/:id](#get-classesid)
+ * [GET /classes](#get-classes)
 * [Course](#course)
 * [DatePeriod](#dateperiod)
 * [Department](#department)
@@ -12,6 +15,73 @@ ANCT reschedulings API
 * [Rescheduling](#rescheduling)
  * [GET /reshedulings](#get-reshedulings)
 * [Term](#term)
+
+## Class
+
+
+### Properties
+* id
+ * unique identifier of class
+ * Example: `1`
+ * Type: integer
+* name
+ * name of the class
+ * Example: `"1E"`
+ * Type: string
+* grade
+ * grade of the class
+ * Example: `1`
+ * Type: integer
+* department
+ * a name of the department
+ * Example: `"電気情報工学科"`
+ * Type: string
+* course
+ * a name of the course
+ * Example: `"情報工学コース"`
+ * Type: string
+
+### GET /classes/:id
+Info for existing class.
+
+```
+GET /classes/1 HTTP/1.1
+Host: api.akashi.ac.jp
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+{
+  "id": 1,
+  "name": "1E",
+  "grade": 1,
+  "department": "電気情報工学科",
+  "course": "情報工学コース"
+}
+```
+
+### GET /classes
+List existing classs.
+
+```
+GET /classes HTTP/1.1
+Host: api.akashi.ac.jp
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+[
+  {
+    "id": 1,
+    "name": "1E",
+    "grade": 1,
+    "department": "電気情報工学科",
+    "course": "情報工学コース"
+  }
+]
+```
 
 ## Course
 
