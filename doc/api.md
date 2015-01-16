@@ -4,17 +4,11 @@ ANCT reschedulings API
 * [Class](#class)
  * [GET /api/v1/classes/:id](#get-apiv1classesid)
  * [GET /api/v1/classes](#get-apiv1classes)
-* [Course](#course)
-* [DatePeriod](#dateperiod)
-* [Department](#department)
 * [Lecture](#lecture)
  * [GET /api/v1/lectures/:id](#get-apiv1lecturesid)
  * [GET /api/v1/lectures](#get-apiv1lectures)
-* [Lecturer](#lecturer)
-* [Period](#period)
 * [Rescheduling](#rescheduling)
- * [GET /api/v1/reshedulings](#get-apiv1reshedulings)
-* [Term](#term)
+ * [GET /api/v1/reschedulings](#get-apiv1reschedulings)
 
 ## Class
 
@@ -82,33 +76,6 @@ Content-Type: application/json
   }
 ]
 ```
-
-## Course
-
-
-### Properties
-
-## DatePeriod
-
-
-### Properties
-* start_time
- * time when the period start
- * Example: `"09:00:00+09:00"`
- * Type: string
-* end_time
- * time when the period end
- * Example: `"10:30:00+09:00"`
- * Type: string
-* taken_on
- * date when the period taken
- * Example: `"2014-12-10"`
- * Type: string
-
-## Department
-
-
-### Properties
 
 ## Lecture
 
@@ -213,60 +180,32 @@ Content-Type: application/json
 ]
 ```
 
-## Lecturer
-
-
-### Properties
-* id
- * unique identifier of the lecturer
- * Example: `1`
- * Type: integer
-* name
- * name of the lecture
- * Example: `"新井 イスマイル"`
- * Type: string
-
-## Period
-
-
-### Properties
-* start_time
- * time when the period start
- * Example: `"09:00:00+09:00"`
- * Type: string
-* end_time
- * time when the period end
- * Example: `"10:30:00+09:00"`
- * Type: string
-* wday
- * wday when the period taken
- * Example: `1`
- * Type: integer
-
 ## Rescheduling
 
 
 ### Properties
 * id
- * unique identifier of the resheduling
+ * unique identifier of the rescheduling
  * Example: `1`
  * Type: integer
 * category
- * variations of reshedulings(change, cancel, extra)
+ * variations of reschedulings(change, cancel, extra)
  * Example: `"change"`
  * Type: string
 * lecture
  * Type: object
 * before_period
+ * the preriod that lecture has taken
  * Type: object
 * after_period
+ * the preriod that lecture has taken
  * Type: object
 
-### GET /api/v1/reshedulings
-List existing reshedulings.
+### GET /api/v1/reschedulings
+List existing reschedulings.
 
 ```
-GET /api/v1/reshedulings HTTP/1.1
+GET /api/v1/reschedulings HTTP/1.1
 Host: actopus.akashi.ac.jp
 ```
 
@@ -309,9 +248,4 @@ Content-Type: application/json
   }
 ]
 ```
-
-## Term
-
-
-### Properties
 

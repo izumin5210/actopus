@@ -25,6 +25,31 @@ definitions:
     example: 2014121002101231110200
     type:
     - string
+  period:
+    description: the preriod that lecture has taken
+    type:
+    - object
+    properties:
+      start_time:
+        description: time when the period start
+        example: '09:00:00+09:00'
+        type:
+        - string
+      end_time:
+        description: time when the period end
+        example: '10:30:00+09:00'
+        type:
+        - string
+      wday:
+        description: wday when the period taken
+        example: 1
+        type:
+        - integer
+  lecturer:
+    description: name of the lecture
+    example: 新井 イスマイル
+    type:
+    - string
 links:
 - description: Info for existing lectures.
   href: "/api/v1/lectures/{(%23%2Fdefinitions%2Flecture%2Fdefinitions%2Fid)}"
@@ -44,19 +69,19 @@ properties:
   grade:
     "$ref": "/schemata/class#/definitions/grade"
   department:
-    "$ref": "/schemata/department#/definitions/name"
+    "$ref": "/schemata/class#/definitions/department"
   course:
-    "$ref": "/schemata/course#/definitions/name"
+    "$ref": "/schemata/class#/definitions/course"
   special_target:
     "$ref": "/schemata/lecture#/definitions/special_target"
   periods:
     type: array
     items:
-      "$ref": "/schemata/period"
+      "$ref": "/schemata/lecture#/definitions/period"
   lecturers:
     type: array
     items:
-      "$ref": "/schemata/lecturer#/definitions/name"
+      "$ref": "/schemata/lecture#/definitions/lecturer"
   code:
     "$ref": "/schemata/lecture#/definitions/code"
 type:

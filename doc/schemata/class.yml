@@ -19,6 +19,16 @@ definitions:
     example: 1
     type:
     - integer
+  department:
+    description: a name of the department
+    example: 電気情報工学科
+    type:
+    - string
+  course:
+    description: a name of the course
+    example: 情報工学コース
+    type:
+    - string
 links:
 - description: Info for existing class.
   href: "/api/v1/classes/{(%2Fschemata%2Fclass%23%2Fdefinitions%2Fid)}"
@@ -38,9 +48,9 @@ properties:
   grade:
     "$ref": "/schemata/class#/definitions/grade"
   department:
-    "$ref": "/schemata/department#/definitions/name"
+    "$ref": "/schemata/class#/definitions/department"
   course:
-    "$ref": "/schemata/course#/definitions/name"
+    "$ref": "/schemata/class#/definitions/course"
 type:
 - object
 id: schemata/class

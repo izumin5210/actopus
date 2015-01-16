@@ -28,6 +28,20 @@
           "type": [
             "integer"
           ]
+        },
+        "department": {
+          "description": "a name of the department",
+          "example": "電気情報工学科",
+          "type": [
+            "string"
+          ]
+        },
+        "course": {
+          "description": "a name of the course",
+          "example": "情報工学コース",
+          "type": [
+            "string"
+          ]
         }
       },
       "links": [
@@ -57,113 +71,10 @@
           "$ref": "#/definitions/class/definitions/grade"
         },
         "department": {
-          "$ref": "#/definitions/department/definitions/name"
+          "$ref": "#/definitions/class/definitions/department"
         },
         "course": {
-          "$ref": "#/definitions/course/definitions/name"
-        }
-      },
-      "type": [
-        "object"
-      ]
-    },
-    "course": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "Course",
-      "definitions": {
-        "id": {
-          "description": "unique identifier of the course",
-          "example": 1,
-          "type": [
-            "integer"
-          ]
-        },
-        "identity": {
-          "$ref": "#/definitions/course/definitions/id"
-        },
-        "name": {
-          "description": "a name of the course",
-          "example": "情報工学コース",
-          "type": [
-            "string"
-          ]
-        },
-        "abbreviatio_name": {
-          "description": "a abbreviation name of the course",
-          "example": "J",
-          "type": [
-            "string"
-          ]
-        }
-      },
-      "type": [
-        "object"
-      ]
-    },
-    "date_period": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "DatePeriod",
-      "definitions": {
-        "id": {
-          "description": "unique identifier of date_period",
-          "example": 1,
-          "type": [
-            "integer"
-          ]
-        },
-        "identity": {
-          "$ref": "#/definitions/date_period/definitions/id"
-        },
-        "taken_on": {
-          "description": "date when the period taken",
-          "example": "2014-12-10",
-          "type": [
-            "string"
-          ]
-        }
-      },
-      "properties": {
-        "start_time": {
-          "$ref": "#/definitions/period/definitions/start_time"
-        },
-        "end_time": {
-          "$ref": "#/definitions/period/definitions/end_time"
-        },
-        "taken_on": {
-          "$ref": "#/definitions/date_period/definitions/taken_on"
-        }
-      },
-      "type": [
-        "object"
-      ]
-    },
-    "department": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "Department",
-      "definitions": {
-        "id": {
-          "description": "unique identifier of the department",
-          "example": 1,
-          "type": [
-            "integer"
-          ]
-        },
-        "identity": {
-          "$ref": "#/definitions/department/definitions/id"
-        },
-        "name": {
-          "description": "a name of the department",
-          "example": "電気情報工学科",
-          "type": [
-            "string"
-          ]
-        },
-        "abbreviation_name": {
-          "description": "a abbreviation name of the department",
-          "example": "E",
-          "type": [
-            "string"
-          ]
+          "$ref": "#/definitions/class/definitions/course"
         }
       },
       "type": [
@@ -205,6 +116,42 @@
           "type": [
             "string"
           ]
+        },
+        "period": {
+          "description": "the preriod that lecture has taken",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "start_time": {
+              "description": "time when the period start",
+              "example": "09:00:00+09:00",
+              "type": [
+                "string"
+              ]
+            },
+            "end_time": {
+              "description": "time when the period end",
+              "example": "10:30:00+09:00",
+              "type": [
+                "string"
+              ]
+            },
+            "wday": {
+              "description": "wday when the period taken",
+              "example": 1,
+              "type": [
+                "integer"
+              ]
+            }
+          }
+        },
+        "lecturer": {
+          "description": "name of the lecture",
+          "example": "新井 イスマイル",
+          "type": [
+            "string"
+          ]
         }
       },
       "links": [
@@ -234,10 +181,10 @@
           "$ref": "#/definitions/class/definitions/grade"
         },
         "department": {
-          "$ref": "#/definitions/department/definitions/name"
+          "$ref": "#/definitions/class/definitions/department"
         },
         "course": {
-          "$ref": "#/definitions/course/definitions/name"
+          "$ref": "#/definitions/class/definitions/course"
         },
         "special_target": {
           "$ref": "#/definitions/lecture/definitions/special_target"
@@ -247,7 +194,7 @@
             "array"
           ],
           "items": {
-            "$ref": "#/definitions/period"
+            "$ref": "#/definitions/lecture/definitions/period"
           }
         },
         "lecturers": {
@@ -255,7 +202,7 @@
             "array"
           ],
           "items": {
-            "$ref": "#/definitions/lecturer/definitions/name"
+            "$ref": "#/definitions/lecture/definitions/lecturer"
           }
         },
         "code": {
@@ -266,124 +213,61 @@
         "object"
       ]
     },
-    "lecturer": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "Lecturer",
-      "definitions": {
-        "id": {
-          "description": "unique identifier of the lecturer",
-          "example": 1,
-          "type": [
-            "integer"
-          ]
-        },
-        "identity": {
-          "$ref": "#/definitions/lecturer/definitions/id"
-        },
-        "name": {
-          "description": "name of the lecture",
-          "example": "新井 イスマイル",
-          "type": [
-            "string"
-          ]
-        }
-      },
-      "properties": {
-        "id": {
-          "$ref": "#/definitions/lecturer/definitions/id"
-        },
-        "name": {
-          "$ref": "#/definitions/lecturer/definitions/name"
-        }
-      },
-      "type": [
-        "object"
-      ]
-    },
-    "period": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "Period",
-      "definitions": {
-        "id": {
-          "description": "unique identifier of the period",
-          "example": 1,
-          "type": [
-            "integer"
-          ]
-        },
-        "identity": {
-          "$ref": "#/definitions/period/definitions/id"
-        },
-        "name": {
-          "description": "name of the period",
-          "example": "1",
-          "type": [
-            "string"
-          ]
-        },
-        "start_time": {
-          "description": "time when the period start",
-          "example": "09:00:00+09:00",
-          "type": [
-            "string"
-          ]
-        },
-        "end_time": {
-          "description": "time when the period end",
-          "example": "10:30:00+09:00",
-          "type": [
-            "string"
-          ]
-        },
-        "wday": {
-          "description": "wday when the period taken",
-          "example": 1,
-          "type": [
-            "integer"
-          ]
-        }
-      },
-      "properties": {
-        "start_time": {
-          "$ref": "#/definitions/period/definitions/start_time"
-        },
-        "end_time": {
-          "$ref": "#/definitions/period/definitions/end_time"
-        },
-        "wday": {
-          "$ref": "#/definitions/period/definitions/wday"
-        }
-      },
-      "type": [
-        "object"
-      ]
-    },
-    "resheduling": {
+    "rescheduling": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Rescheduling",
       "definitions": {
         "id": {
-          "description": "unique identifier of the resheduling",
+          "description": "unique identifier of the rescheduling",
           "example": 1,
           "type": [
             "integer"
           ]
         },
         "identity": {
-          "$ref": "#/definitions/resheduling/definitions/id"
+          "$ref": "#/definitions/rescheduling/definitions/id"
         },
         "category": {
-          "description": "variations of reshedulings(change, cancel, extra)",
+          "description": "variations of reschedulings(change, cancel, extra)",
           "example": "change",
           "type": [
             "string"
           ]
+        },
+        "period": {
+          "description": "the preriod that lecture has taken",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "start_time": {
+              "description": "time when the period start",
+              "example": "09:00:00+09:00",
+              "type": [
+                "string"
+              ]
+            },
+            "end_time": {
+              "description": "time when the period end",
+              "example": "10:30:00+09:00",
+              "type": [
+                "string"
+              ]
+            },
+            "taken_on": {
+              "description": "date when the period taken",
+              "example": "2014-12-10",
+              "type": [
+                "string"
+              ]
+            }
+          }
         }
       },
       "links": [
         {
-          "description": "List existing reshedulings.",
-          "href": "/api/v1/reshedulings",
+          "description": "List existing reschedulings.",
+          "href": "/api/v1/reschedulings",
           "method": "GET",
           "rel": "instances",
           "title": "List"
@@ -391,59 +275,19 @@
       ],
       "properties": {
         "id": {
-          "$ref": "#/definitions/resheduling/definitions/id"
+          "$ref": "#/definitions/rescheduling/definitions/id"
         },
         "category": {
-          "$ref": "#/definitions/resheduling/definitions/category"
+          "$ref": "#/definitions/rescheduling/definitions/category"
         },
         "lecture": {
           "$ref": "#/definitions/lecture"
         },
         "before_period": {
-          "$ref": "#/definitions/date_period"
+          "$ref": "#/definitions/rescheduling/definitions/period"
         },
         "after_period": {
-          "$ref": "#/definitions/date_period"
-        }
-      },
-      "type": [
-        "object"
-      ]
-    },
-    "term": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "Term",
-      "definitions": {
-        "id": {
-          "description": "unique identifier of term",
-          "example": 1,
-          "type": [
-            "integer"
-          ]
-        },
-        "identity": {
-          "$ref": "#/definitions/term/definitions/id"
-        },
-        "name": {
-          "description": "a name of the term",
-          "example": "前期",
-          "type": [
-            "string"
-          ]
-        },
-        "started_on": {
-          "description": "a date when the term start",
-          "example": "2014-10-01",
-          "type": [
-            "string"
-          ]
-        },
-        "ended_on": {
-          "description": "a date when the term end",
-          "example": "2015-03-31",
-          "type": [
-            "string"
-          ]
+          "$ref": "#/definitions/rescheduling/definitions/period"
         }
       },
       "type": [
@@ -455,29 +299,11 @@
     "class": {
       "$ref": "#/definitions/class"
     },
-    "course": {
-      "$ref": "#/definitions/course"
-    },
-    "date_period": {
-      "$ref": "#/definitions/date_period"
-    },
-    "department": {
-      "$ref": "#/definitions/department"
-    },
     "lecture": {
       "$ref": "#/definitions/lecture"
     },
-    "lecturer": {
-      "$ref": "#/definitions/lecturer"
-    },
-    "period": {
-      "$ref": "#/definitions/period"
-    },
-    "resheduling": {
-      "$ref": "#/definitions/resheduling"
-    },
-    "term": {
-      "$ref": "#/definitions/term"
+    "rescheduling": {
+      "$ref": "#/definitions/rescheduling"
     }
   },
   "type": [
