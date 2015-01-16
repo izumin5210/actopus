@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe LandingPagesController, :type => :controller do
+RSpec.describe PagesController, :type => :controller do
 
   describe "GET index" do
     it "returns http success" do
