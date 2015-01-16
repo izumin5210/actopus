@@ -17,7 +17,7 @@ module ApplicationHelper
 
   def fa_stack_btn(link, alt, icon)
     link_to("#{link}", target: '_blank', alt: "#{alt}") do
-      content_tag(:span, class: 'fa-stack fa-4x') do
+      content_tag(:span, class: 'fa-stack fa-4x', data: { toggle: 'tooltip', placement: 'bottom' }, title: "#{alt}") do
         concat fa_icon('circle stack-2x')
         concat fa_icon("#{icon} stack-1x")
       end
