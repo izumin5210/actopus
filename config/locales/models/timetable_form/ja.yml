@@ -1,0 +1,8 @@
+ja:
+  activemodel:
+    attributes:
+      timetable_form:
+        name: 学期
+        started_on: 開始日
+        ended_on: 終了日
+        timetable_xml: 時間割XMLファイル
