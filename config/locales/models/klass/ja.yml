@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      klass: クラス
+    attributes:
+      klass:
+        name: クラス名
+        grade: 学年
+        department: 学科
+        course: コース
