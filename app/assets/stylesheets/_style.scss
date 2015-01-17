@@ -101,7 +101,7 @@ footer{
 
 /* sign_in */
 
-.form-signin {
+.form-input {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
@@ -124,14 +124,22 @@ footer{
     margin-bottom: 10px;
   }
 
-  input[type="email"] {
-    @include border-bottom-radius(0);
-    margin-bottom: -1px;
-  }
-
-  input[type="password"] {
-    @include border-top-radius(0);
-    margin-bottom: 10px;
+  .field {
+    input {
+      border-radius: 0;
+    }
+    &:first-of-type {
+      input {
+        @include border-top-radius(4px);
+        margin-bottom: -1px;
+      }
+    }
+    &:nth-of-type(2) {
+      input {
+        @include border-bottom-radius(4px);
+        margin-bottom: 10px;
+      }
+    }
   }
 }
 

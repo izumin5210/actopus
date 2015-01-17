@@ -1,14 +1,18 @@
-<h2><%= t 'devise.invitations.edit.header' %></h2>
+<h2>パスワードの設定</h2>
 
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: "form-input" }) do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :invitation_token %>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+  <div class="field">
+    <%= f.password_field :password, autofocus: true, placeholder: 'password', class: "form-control" %>
+  </div>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'password confirmation', class: "form-control" %>
+  </div>
 
-  <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
+  <div class="actions">
+    <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
 <% end %>
