@@ -87,6 +87,7 @@ GEM
     did_you_mean (0.9.4)
       interception
     diff-lcs (1.2.5)
+    enum_help (0.0.12)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -271,6 +272,7 @@ DEPENDENCIES
   devise
   devise_invitable
   did_you_mean
+  enum_help
   factory_girl_rails
   font-awesome-helper
   letter_opener_web

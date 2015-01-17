@@ -22,6 +22,8 @@ group :default do
   gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-ujs'
   gem 'rails-assets-lodash'
+
+  gem 'enum_help'
 end
 
 group :test, :development do
