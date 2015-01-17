@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      lecture: 授業
+    attributes:
+      lecture:
+        name: 科目名
+        special_target: 特別受講対象
+        code: 授業コード
