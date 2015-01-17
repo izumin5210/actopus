@@ -8,3 +8,8 @@ ja:
         grade: 学年
         department: 学科
         course: コース
+  enums:
+    klass:
+      category:
+        undergraduate: 本科
+        advanced: 専攻科
