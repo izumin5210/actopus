@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      course: コース
+    attributes:
+      course:
+        name: コース名
+        abbreviation_name: 略称
