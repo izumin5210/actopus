@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      lecturer: 教員
+    attributes:
+      lecturer:
+        name: 教員名
