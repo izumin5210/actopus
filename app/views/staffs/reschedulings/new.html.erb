@@ -1,7 +1,7 @@
 <%= content_header('exchange', '時間割を変更する') %>
 
 <div class="text-center">
-  <% Rescheduling.categories_i18n.each do |_, category| %>
+  <% Rescheduling.categories_i18n.each do |category, _| %>
     <div class="btn-group">
       <%= button_tag class: 'btn btn-default btn-lg dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => false do %>
         <%= category %>
