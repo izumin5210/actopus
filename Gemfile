@@ -12,6 +12,8 @@ group :default do
   gem 'devise'
   gem 'devise_invitable'
 
+  gem 'garage', github: 'cookpad/garage'
+
   gem 'nokogiri'
   gem 'sax-machine'
   gem 'rails_config'
