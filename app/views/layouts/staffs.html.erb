@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>actopus</title>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
@@ -10,7 +11,7 @@
     <header>
       <div class="header-actopus">
         <div class="container">
-          <h1>actopus</h1>
+          <h1><%= link_to 'actopus', staffs_home_path, class: 'link-actopus' %></h1>
         </div>
       </div>
     </header>
@@ -24,6 +25,9 @@
               <%= staff_menu_item 'rotate-left', '時間割データを読み込む', new_staffs_timetable_path %>
               <%= staff_menu_item 'user', '教員データを見る', staffs_lecturers_path %>
               <%= staff_menu_item 'cogs', 'スタッフを管理する', staffs_staffs_path %>
+            </div>
+            <div class="list-group">
+              <%= staff_menu_item 'sign-out', 'サインアウトする', destroy_staff_session_path, method: :delete %>
             </div>
           </div>
           <div class="col-md-9">
