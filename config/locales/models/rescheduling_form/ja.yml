@@ -1,0 +1,7 @@
+ja:
+  activemodel:
+    attributes:
+      rescheduling_form:
+        extra: 補講
+        cancel: 休講
+        change: 変更

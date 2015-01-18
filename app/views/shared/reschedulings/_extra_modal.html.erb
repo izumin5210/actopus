@@ -30,7 +30,7 @@
           <%= f.hidden_field :category %>
           <%= f.hidden_field :lecture_id %>
           <%= button_tag '閉じる', class: 'btn btn-default', data: { dismiss: :modal } %>
-          <%= button_tag @form.category, class: 'btn btn-default' %>
+          <%= button_tag t("enums.rescheduling.category.#{@form.category}"), class: 'btn btn-default' %>
         </div>
       <% end %>
     </div>
