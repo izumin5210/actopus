@@ -4,7 +4,7 @@
     <% @reschedulings.each do |rescheduling| %>
       <tr>
         <td><%= rescheduling.lecture.klass.name %></td>
-        <td><%= Lecture.find_by_id(rescheduling.lecture_id).name %></td>
+        <td><%= rescheduling.lecture.name %></td>
         <td>
           <%= datetime_md(rescheduling.before_date_period.taken_on) if rescheduling.before_date_period.present? %>
           <%= rescheduling.before_date_period.period.name if rescheduling.before_date_period.present? %>
