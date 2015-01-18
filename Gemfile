@@ -73,6 +73,7 @@ group :test do
   gem 'database_rewinder'
   gem 'shoulda-matchers', require: false
   gem 'rspec-validator_spec_helper'
+  gem 'rspec-request_describer'
 end
 
 group :doc do
