@@ -1,5 +1,5 @@
-# API
-ANCT reschedulings API
+# actopus API
+A schema for ANCT reschedulings API
 
 * [Class](#class)
  * [GET /api/v1/classes/:id](#get-apiv1classesid)

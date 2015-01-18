@@ -5,5 +5,4 @@ id: http://www.akashi.ac.jp/actopus/schema#
 links:
 - href: http://actopus.akashi.ac.jp/
   rel: self
-description: ANCT reschedulings API
-
+title: actopus API
