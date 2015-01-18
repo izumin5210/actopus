@@ -20,4 +20,24 @@ class Rescheduling < ActiveRecord::Base
   validates :category, presence: true
 
   enum category: Settings.rescheduling.category
+
+  include Garage::Representer
+  include Garage::Authorizable
+
+  property :category
+  property :lecture
+  property :before_date_period,
+           as: :before_period,
+           if: -> (record, _) { record.before_date_period.present? }
+  property :after_date_period,
+           as: :after_period,
+           if: -> (record, _) { record.after_date_period.present? }
+
+  def self.build_permissions(perms, other, target)
+    perms.permits! :read
+  end
+
+  def build_permissions(perms, other)
+    perms.permits! :read
+  end
 end

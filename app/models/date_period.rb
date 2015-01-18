@@ -18,4 +18,16 @@ class DatePeriod < ActiveRecord::Base
 
   validates :period_id, presence: true
   validates :taken_on, presence: true
+
+  delegate :start_time, :end_time, to: :period
+
+  include Garage::Representer
+
+  property :start_time
+  property :end_time
+  property :taken_on_str, as: :taken_on
+
+  def taken_on_str
+    taken_on.strftime('%Y-%m-%d')
+  end
 end

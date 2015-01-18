@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     scope :v1 do
       resources :lectures, only: %i(index show)
       resources :klasses, only: %i(index show), path: :classes
+      resources :reschedulings, only: %i(index)
     end
   end
 
