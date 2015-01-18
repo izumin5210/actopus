@@ -1,6 +1,6 @@
 github_repo: 'https://github.com/izumin5210/actopus'
 
-version: 1.0
+version: 0.5
 
 timetable:
   beginning_of_day: '09:00:00+09:00'
