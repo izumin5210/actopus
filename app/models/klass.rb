@@ -34,4 +34,24 @@ class Klass < ActiveRecord::Base
   validates :category, presence: true
 
   enum category: Settings.klass.category
+
+  delegate :name, to: :department, prefix: :department
+  delegate :name, to: :course, prefix: :course
+
+  include Garage::Representer
+  include Garage::Authorizable
+
+  property :id
+  property :name
+  property :grade
+  property :department_name, as: :department
+  property :course_name, as: :course, if: -> (record, _) { record.course.present? }
+
+  def self.build_permissions(perms, other, target)
+    perms.permits! :read
+  end
+
+  def build_permissions(perms, other)
+    perms.permits! :read
+  end
 end

@@ -12,6 +12,9 @@ group :default do
   gem 'devise'
   gem 'devise_invitable'
 
+  gem 'garage', github: 'cookpad/garage'
+  gem 'rack-json_schema'
+
   gem 'nokogiri'
   gem 'sax-machine'
   gem 'rails_config'
@@ -70,6 +73,8 @@ group :test do
   gem 'database_rewinder'
   gem 'shoulda-matchers', require: false
   gem 'rspec-validator_spec_helper'
+  gem 'rspec-request_describer'
+  gem 'rspec-json_matcher'
 end
 
 group :doc do

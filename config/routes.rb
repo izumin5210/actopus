@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
@@ -32,6 +33,14 @@ Rails.application.routes.draw do
     end
     resources :staffs, only: %i(index create) do
       collection { post :invite }
+    end
+  end
+
+  namespace :api do
+    scope :v1 do
+      resources :lectures, only: %i(index show)
+      resources :klasses, only: %i(index show), path: :classes
+      resources :reschedulings, only: %i(index)
     end
   end
 

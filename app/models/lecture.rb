@@ -33,4 +33,32 @@ class Lecture < ActiveRecord::Base
   validates :term_id, presence: true
 
   enum special_target: Settings.lecture.special_target
+
+  delegate :grade, :department, :course, to: :klass
+  delegate :name, to: :department, prefix: :department
+  delegate :name, to: :course, prefix: :course, allow_nil: true
+
+  include Garage::Representer
+  include Garage::Authorizable
+
+  property :name
+  property :special_target, if: -> (record, _) { record.special_target.present? }
+  property :code
+  property :grade
+  property :department_name, as: :department
+  property :course_name, as: :course, if: -> (record, _) { record.course.present? }
+  collection :lecturer_names, as: :lecturers
+  collection :wday_periods, as: :periods
+
+  def self.build_permissions(perms, other, target)
+    perms.permits! :read
+  end
+
+  def build_permissions(perms, other)
+    perms.permits! :read
+  end
+
+  def lecturer_names
+    lecturers.map(&:name)
+  end
 end

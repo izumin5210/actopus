@@ -20,4 +20,8 @@ class Department < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :abbreviation_name, presence: true, uniqueness: true
+
+  include Garage::Representer
+
+  property :name
 end

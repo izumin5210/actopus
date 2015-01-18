@@ -25,6 +25,12 @@ class WdayPeriod < ActiveRecord::Base
 
   delegate :start_time, :end_time, to: :period
 
+  include Garage::Representer
+
+  property :wday
+  property :start_time
+  property :end_time
+
   def is?(params)
     (params[:wday] == wday) &&
       (params[:start_time] == start_time) &&
