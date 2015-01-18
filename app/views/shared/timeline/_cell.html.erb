@@ -1,5 +1,3 @@
-<% cell.lectures.each.with_index do |lecture, i| %>
-  <li class="cell" style="<%= cell.styles(i) %>" data-toggle="popover" data-trigger="hover" data-html="true" title="<%= lecture.klass.name %>" data-content="<%= lecture.lecturers.map(&:name).join('<br>') %>">
-    <%= link_to lecture.name, '#', class: 'cell-content', data: { lecture: { id: lecture.id, name: lecture.name, klass: lecture.klass.name, lecturers: lecture.lecturers.map(&:name) }, date: date.to_s, period: { id: cell.period.id, startTime: cell.start_time, endTime: cell.end_time } } %>
-  </li>
-<% end %>
+<li class="cell" style="<%= cell.styles %>" data-toggle="popover" data-trigger="hover" data-html="true" title="<%= cell.lecture.klass.name %>" data-content="<%= cell.lecture.lecturers.map(&:name).join('<br>') %>">
+  <%= link_to cell.lecture.name, '#', class: 'cell-content', data: { lecture: { id: cell.lecture.id, name: cell.lecture.name, klass: cell.lecture.klass.name, lecturers: cell.lecture.lecturers.map(&:name) }, date: date.to_s, period: { id: cell.period.id, startTime: cell.start_time, endTime: cell.end_time } } %>
+</li>
