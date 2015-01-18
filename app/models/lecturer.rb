@@ -16,4 +16,8 @@ class Lecturer < ActiveRecord::Base
   has_many :lectures, through: :lecturings
 
   validates :name, presence: true
+
+  include Garage::Representer
+
+  property :name
 end
