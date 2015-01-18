@@ -7,9 +7,9 @@
         </div>
         <div class="modal-body">
           <dl class="dl-horizontal">
-            <dt>講義名</dt>
+            <dt><%= "#{Lecture.human_attribute_name(:name)}" %></dt>
             <dd id="rescheduled-lecture"></dd>
-            <dt>クラス</dt>
+            <dt><%= "#{Klass.model_name.human}" %></dt>
             <dd id="rescheduled-class"></dd>
             <dt>補講日時</dt>
             <dd>

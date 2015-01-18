@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      staff: 職員
+    attributes:
+      staff:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認パスワード

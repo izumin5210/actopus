@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      department: 学科
+    attributes:
+      department:
+        name: 学科名
+        abbreviation_name: 略称

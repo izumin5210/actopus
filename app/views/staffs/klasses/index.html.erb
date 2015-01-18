@@ -1,7 +1,7 @@
 <%= content_header('search', '時間割を見る') %>
 
-<% Klass.categories.each do |category, _| %>
-  <h3 class="header-klass"><%= category %></h3>
+<% Klass.categories_i18n.each do |category, category_i18n| %>
+  <h3 class="header-klass"><%= category_i18n %></h3>
   <% @klasses.send(category).group_by(&:department).each do |department, d_klasses| %>
     <ul class="list-table">
       <% d_klasses.group_by(&:grade).each do |grade, g_klasses| %>

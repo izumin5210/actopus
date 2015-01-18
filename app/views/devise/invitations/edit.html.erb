@@ -5,11 +5,11 @@
   <%= f.hidden_field :invitation_token %>
 
   <div class="field">
-    <%= f.password_field :password, autofocus: true, placeholder: 'password', class: "form-control" %>
+    <%= f.password_field :password, autofocus: true, placeholder: "#{Staff.human_attribute_name(:password)}", class: "form-control" %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'password confirmation', class: "form-control" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "#{Staff.human_attribute_name(:password_confirmation)}", class: "form-control" %>
   </div>
 
   <div class="actions">

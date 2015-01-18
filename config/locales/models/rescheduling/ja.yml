@@ -1,0 +1,7 @@
+ja:
+  enums:
+    rescheduling:
+      category:
+        extra: 補講
+        cancel: 休講
+        change: 変更
