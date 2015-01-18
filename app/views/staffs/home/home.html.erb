@@ -7,12 +7,12 @@
         <td><%= Lecture.find_by_id(rescheduling.lecture_id).name %></td>
         <td>
           <%= datetime_md(rescheduling.before_date_period.taken_on) if rescheduling.before_date_period.present? %>
-          <%= "#{rescheduling.before_date_period.period.name}限" if rescheduling.before_date_period.present? %>
+          <%= rescheduling.before_date_period.period.name if rescheduling.before_date_period.present? %>
         </td>
         <td><%= fa_icon('long-arrow-right') if rescheduling.before_date_period_id.present? && rescheduling.after_date_period_id.present? %></td>
         <td>
           <%= datetime_md(rescheduling.after_date_period.taken_on) if rescheduling.after_date_period.present? %>
-          <%= "#{rescheduling.after_date_period.period.name}限" if rescheduling.after_date_period.present? %>
+          <%= rescheduling.after_date_period.period.name if rescheduling.after_date_period.present? %>
         </td>
         <td>
           <%= rescheduling.category_i18n %>
