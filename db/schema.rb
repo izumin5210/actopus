@@ -41,13 +41,13 @@ ActiveRecord::Schema.define(version: 20150114094731) do
   add_index "departments", ["name"], name: "index_departments_on_name", unique: true
 
   create_table "klasses", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.integer  "department_id",             null: false
+    t.string   "name",          null: false
+    t.integer  "department_id", null: false
     t.integer  "course_id"
-    t.integer  "grade",                     null: false
-    t.integer  "category",      default: 0, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "grade",         null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "category"
   end
 
   add_index "klasses", ["category"], name: "index_klasses_on_category"
@@ -104,9 +104,9 @@ ActiveRecord::Schema.define(version: 20150114094731) do
     t.integer  "lecture_id"
     t.integer  "before_date_period_id"
     t.integer  "after_date_period_id"
-    t.integer  "category"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.integer  "category"
   end
 
   create_table "schedulings", force: :cascade do |t|

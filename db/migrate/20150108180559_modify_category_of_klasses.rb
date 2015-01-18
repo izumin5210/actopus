@@ -1,6 +1,7 @@
 class ModifyCategoryOfKlasses < ActiveRecord::Migration
   def change
-    change_column :klasses, :category, :integer, default: 0
+    remove_column :klasses, :category
+    add_column :klasses, :category, :integer
     add_index :klasses, :category
   end
 end

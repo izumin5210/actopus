@@ -7,9 +7,9 @@
 #  department_id :integer          not null
 #  course_id     :integer
 #  grade         :integer          not null
-#  category      :integer          default("0"), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  category      :integer
 #
 # Indexes
 #
