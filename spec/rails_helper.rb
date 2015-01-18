@@ -52,6 +52,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include XMLHelper
   config.include RSpec::RequestDescriber, type: :request
+  config.include RequestHelper, type: :request
   config.include RSpec::ValidatorSpecHelper, type: :validator
 
   config.before :suite do
