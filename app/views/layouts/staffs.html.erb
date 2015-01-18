@@ -26,6 +26,9 @@
               <%= staff_menu_item 'user', '教員データを見る', staffs_lecturers_path %>
               <%= staff_menu_item 'cogs', 'スタッフを管理する', staffs_staffs_path %>
             </div>
+            <div class="list-group">
+              <%= staff_menu_item 'sign-out', 'サインアウトする', destroy_staff_session_path, method: :delete %>
+            </div>
           </div>
           <div class="col-md-9">
             <%= render 'shared/messages' %>

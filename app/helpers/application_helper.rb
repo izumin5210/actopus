@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def staff_menu_item(icon, name, path)
-    link_to(fa_icon("#{icon} fw") { |i| "#{i} #{name}" }, path, class: "list-group-item")
+  def staff_menu_item(icon, name, path, option = {})
+    link_to(fa_icon("#{icon} fw") { |i| "#{i} #{name}" }, path, option.merge(class: "list-group-item"))
   end
 
   def staff_renew_btn(path)
