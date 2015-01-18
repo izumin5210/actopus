@@ -21,7 +21,11 @@ RSpec.describe Timetable, type: :model do
       build(:lecture, wday_periods: [wday_periods[1][2]])
     ]
   end
-  subject { Timetable.new(lectures) }
+  subject do
+    stub_const('Timetable::BEGINNING_OF_DAY', '08:00:00+09:00')
+    stub_const('Timetable::END_OF_DAY', '18:00:00+09:00')
+    Timetable.new(lectures)
+  end
 
   describe '#initialize' do
     it { expect(subject.rows.size).to eq 2 }
@@ -29,5 +33,11 @@ RSpec.describe Timetable, type: :model do
     it { expect(subject.rows[1].cells.size).to eq 2 }
     it { expect(subject.rows[1].cells[0]).to be_a Timetable::Cell }
     it { expect(subject.rows.keys).to match_array([1, 2]) }
+    it { expect([*subject.rows[1].cells[0].range]).to start_with(3600) }
+    it { expect([*subject.rows[1].cells[0].range]).to end_with(9000) }
+    it { expect(subject.rows[1].cells[0].layer_count).to eq 1 }
+    it { expect(subject.rows[2].cells[0].layer_count).to eq 2 }
+    it { expect(subject.rows[2].cells[0].layer_index).to eq 0 }
+    it { expect(subject.rows[2].cells[1].layer_index).to eq 1 }
   end
 end
