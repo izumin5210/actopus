@@ -1,2 +1,23 @@
-<h1>Staffs::Home#home</h1>
-<p>Find me in app/views/staffs/home/home.html.erb</p>
+<%= content_header('list-ul', '変更一覧を見る') %>
+
+  <table class="table">
+    <% @reschedulings.each do |rescheduling| %>
+      <tr>
+        <td><%= Klass.find_by_id(Lecture.find_by_id(Rescheduling.find_by_id(rescheduling.id).lecture_id).klass_id).name %></td>
+        <td><%= Lecture.find_by_id(rescheduling.lecture_id).name %></td>
+        <td>
+          <%= datetime_md(DatePeriod.find_by_id(Period.find_by_id(rescheduling.before_date_period_id)).taken_on) if rescheduling.before_date_period_id.present? %>
+          <%= "#{Period.find_by_id(rescheduling.before_date_period_id).name}限" if rescheduling.before_date_period_id.present? %>
+        </td>
+        <td><%= fa_icon('long-arrow-right') if rescheduling.before_date_period_id.present? && rescheduling.after_date_period_id.present? %></td>
+        <td>
+          <%= datetime_md(DatePeriod.find_by_id(Period.find_by_id(rescheduling.after_date_period_id)).taken_on) if rescheduling.after_date_period_id.present? %>
+          <%= "#{Period.find_by_id(rescheduling.after_date_period_id).name}限" if rescheduling.after_date_period_id.present? %>
+        </td>
+        <td>
+          <%= rescheduling.category_i18n %>
+          （<%= datetime_mdhm(rescheduling.created_at) %>）
+        </td>
+      </tr>
+    <% end %>
+  </table>
