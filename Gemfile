@@ -13,6 +13,7 @@ group :default do
   gem 'devise_invitable'
 
   gem 'garage', github: 'cookpad/garage'
+  gem 'rack-json_schema'
 
   gem 'nokogiri'
   gem 'sax-machine'

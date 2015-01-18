@@ -44,5 +44,15 @@ module Actopus
         request_specs: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
+
+    schema = JSON.parse(File.read(Rails.root.join('doc/api.json')))
+
+    config.middleware.use Rack::JsonSchema::Docs, schema: schema
+    config.middleware.use Rack::JsonSchema::SchemaProvider, schema: schema
+    config.middleware.use Rack::JsonSchema::ErrorHandler
+    config.middleware.use Rack::JsonSchema::RequestValidation, schema: schema, strict: false
+    if ENV['RACK_ENV'] == 'test'
+      config.middleware.use Rack::JsonSchema::ResponseValidation, schema: schema
+    end
   end
 end
