@@ -17,8 +17,11 @@ body {
   margin-bottom: 40px;
   h1 {
     font-size: $font-size-large * 3;
-    margin-top: 0;
-    line-height: $height-header;
+    margin: 30px 0;
+    .link-actopus {
+      text-decoration: none;
+      color: $brand-bg;
+    }
   }
 }
 
