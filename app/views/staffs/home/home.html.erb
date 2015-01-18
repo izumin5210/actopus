@@ -6,11 +6,7 @@
         <td><%= rescheduling.lecture.klass.name %></td>
         <td>
           <%= rescheduling.lecture.name %><br>
-            （<% rescheduling.lecture.lecturers.map(&:name).each do |lecturer| %>
-              <%= ", " unless lecturer == rescheduling.lecture.lecturers.map(&:name).first %>
-              <%= lecturer %>
-              <% end %>
-            ）
+          （<%= rescheduling.lecture.lecturers.map(&:name).join(', ') %>）
         </td>
         <td>
           <%= datetime_md(rescheduling.before_date_period.taken_on) if rescheduling.before_date_period.present? %><br>
