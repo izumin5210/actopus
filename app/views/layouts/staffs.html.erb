@@ -21,9 +21,10 @@
           <div class="col-md-3">
             <div class="list-group">
               <%= staff_menu_item 'exchange', '時間割を変更する', new_staffs_rescheduling_path %>
+              <%= staff_menu_item 'list-ul', '変更一覧を見る', staffs_home_path %>
               <%= staff_menu_item 'search', '時間割を見る', staffs_klasses_path %>
-              <%= staff_menu_item 'rotate-left', '時間割データを読み込む', new_staffs_timetable_path %>
               <%= staff_menu_item 'user', '教員データを見る', staffs_lecturers_path %>
+              <%= staff_menu_item 'rotate-left', '時間割データを読み込む', new_staffs_timetable_path %>
               <%= staff_menu_item 'cogs', 'スタッフを管理する', staffs_staffs_path %>
             </div>
             <div class="list-group">

@@ -1,18 +1,18 @@
 master:
   periods:
-  - name: '1'
+  - name: 1限
     start_time: '09:00:00+09:00'
     end_time: '10:30:00+09:00'
-  - name: '2'
+  - name: 2限
     start_time: '10:40:00+09:00'
     end_time: '12:10:00+09:00'
-  - name: '3'
+  - name: 3限
     start_time: '13:00:00+09:00'
     end_time: '14:30:00+09:00'
-  - name: '4'
+  - name: 4限
     start_time: '14:40:00+09:00'
     end_time: '16:10:00+09:00'
-  - name: '5'
+  - name: 5限
     start_time: '16:20:00+09:00'
     end_time: '17:50:00+09:00'
   - name: 1F
