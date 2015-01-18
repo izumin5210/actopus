@@ -6,7 +6,9 @@
     <dt><%= "#{l date, format: :short} #{t('date.abbr_day_names')[date.wday]}" %></dt>
     <dd>
       <ul class="lecture-timeline">
-        <%= render partial: 'shared/timeline/cell', collection: @timeline[date.wday].cells, as: :cell, locals: { date: date } %>
+        <% if @timetable.rows[date.wday].present? %>
+          <%= render partial: 'shared/timeline/cell', collection: @timetable.rows[date.wday].cells, as: :cell, locals: { date: date } %>
+        <% end %>
       </ul>
     </dd>
   <% end %>
