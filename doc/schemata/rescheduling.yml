@@ -1,0 +1,56 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Rescheduling
+definitions:
+  id:
+    description: unique identifier of the rescheduling
+    example: 1
+    type:
+    - integer
+  identity:
+    "$ref": "/schemata/rescheduling#/definitions/id"
+  category:
+    description: variations of reschedulings(change, cancel, extra)
+    example: change
+    type:
+    - string
+  period:
+    description: the preriod that lecture has taken
+    type:
+    - object
+    properties:
+      start_time:
+        description: time when the period start
+        example: '09:00:00+09:00'
+        type:
+        - string
+      end_time:
+        description: time when the period end
+        example: '10:30:00+09:00'
+        type:
+        - string
+      taken_on:
+        description: date when the period taken
+        example: '2014-12-10'
+        type:
+        - string
+links:
+- description: List existing reschedulings.
+  href: "/api/v1/reschedulings"
+  method: GET
+  rel: instances
+  title: List
+properties:
+  id:
+    "$ref": "/schemata/rescheduling#/definitions/id"
+  category:
+    "$ref": "/schemata/rescheduling#/definitions/category"
+  lecture:
+    "$ref": "/schemata/lecture"
+  before_period:
+    "$ref": "/schemata/rescheduling#/definitions/period"
+  after_period:
+    "$ref": "/schemata/rescheduling#/definitions/period"
+type:
+- object
+id: schemata/rescheduling

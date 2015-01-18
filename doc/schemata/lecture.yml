@@ -1,0 +1,89 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Lecture
+definitions:
+  id:
+    description: unique identifier of lecture
+    example: 1
+    type:
+    - string
+  identity:
+    "$ref": "/schemata/lecture#/definitions/id"
+  name:
+    description: name of the lecture
+    example: プログラミング I
+    type:
+    - string
+  special_target:
+    description: the target of the lecture(overseasStudent or female)
+    example: overseasStudent
+    default: null
+    type:
+    - string
+  code:
+    description: the unique code of lecture
+    example: 2014121002101231110200
+    type:
+    - string
+  period:
+    description: the preriod that lecture has taken
+    type:
+    - object
+    properties:
+      start_time:
+        description: time when the period start
+        example: '09:00:00+09:00'
+        type:
+        - string
+      end_time:
+        description: time when the period end
+        example: '10:30:00+09:00'
+        type:
+        - string
+      wday:
+        description: wday when the period taken
+        example: 1
+        type:
+        - integer
+  lecturer:
+    description: name of the lecture
+    example: 新井 イスマイル
+    type:
+    - string
+links:
+- description: Info for existing lectures.
+  href: "/api/v1/lectures/{(%23%2Fdefinitions%2Flecture%2Fdefinitions%2Fid)}"
+  method: GET
+  rel: self
+  title: Info
+- description: List existing lectures.
+  href: "/api/v1/lectures"
+  method: GET
+  rel: instances
+  title: List
+properties:
+  id:
+    "$ref": "/schemata/lecture#/definitions/id"
+  name:
+    "$ref": "/schemata/lecture#/definitions/name"
+  grade:
+    "$ref": "/schemata/class#/definitions/grade"
+  department:
+    "$ref": "/schemata/class#/definitions/department"
+  course:
+    "$ref": "/schemata/class#/definitions/course"
+  special_target:
+    "$ref": "/schemata/lecture#/definitions/special_target"
+  periods:
+    type: array
+    items:
+      "$ref": "/schemata/lecture#/definitions/period"
+  lecturers:
+    type: array
+    items:
+      "$ref": "/schemata/lecture#/definitions/lecturer"
+  code:
+    "$ref": "/schemata/lecture#/definitions/code"
+type:
+- object
+id: schemata/lecture

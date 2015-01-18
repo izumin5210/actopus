@@ -1,0 +1,56 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Class
+definitions:
+  id:
+    description: unique identifier of class
+    example: 1
+    type:
+    - integer
+  identity:
+    "$ref": "/schemata/class#/definitions/id"
+  name:
+    description: name of the class
+    example: 1E
+    type:
+    - string
+  grade:
+    description: grade of the class
+    example: 1
+    type:
+    - integer
+  department:
+    description: a name of the department
+    example: 電気情報工学科
+    type:
+    - string
+  course:
+    description: a name of the course
+    example: 情報工学コース
+    type:
+    - string
+links:
+- description: Info for existing class.
+  href: "/api/v1/classes/{(%2Fschemata%2Fclass%23%2Fdefinitions%2Fid)}"
+  method: GET
+  rel: self
+  title: Info
+- description: List existing classs.
+  href: "/api/v1/classes"
+  method: GET
+  rel: instances
+  title: List
+properties:
+  id:
+    "$ref": "/schemata/class#/definitions/id"
+  name:
+    "$ref": "/schemata/class#/definitions/name"
+  grade:
+    "$ref": "/schemata/class#/definitions/grade"
+  department:
+    "$ref": "/schemata/class#/definitions/department"
+  course:
+    "$ref": "/schemata/class#/definitions/course"
+type:
+- object
+id: schemata/class
