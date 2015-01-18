@@ -32,7 +32,7 @@ class Timetable
           next if i == j
           if cell.range.overlaps?(other_cell.range)
             cell.layer_count += 1
-            if cell.layer_index < other_cell.layer_index
+            if cell.layer_index <= other_cell.layer_index
               cell.layer_index = other_cell.layer_index + 1
             end
           end
@@ -49,7 +49,7 @@ class Timetable
     def initialize(*args)
       super(*args)
       base = time_to_i(BEGINNING_OF_DAY)
-      @range = (time_to_i(start_time) - base)..(time_to_i(end_time) - base)
+      @range = (time_to_i(start_time) - base)...(time_to_i(end_time) - base)
       @layer_count = 1
       @layer_index = -1
     end

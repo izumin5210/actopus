@@ -34,7 +34,7 @@ RSpec.describe Timetable, type: :model do
     it { expect(subject.rows[1].cells[0]).to be_a Timetable::Cell }
     it { expect(subject.rows.keys).to match_array([1, 2]) }
     it { expect([*subject.rows[1].cells[0].range]).to start_with(3600) }
-    it { expect([*subject.rows[1].cells[0].range]).to end_with(9000) }
+    it { expect([*subject.rows[1].cells[0].range]).to end_with(8999) }
     it { expect(subject.rows[1].cells[0].layer_count).to eq 1 }
     it { expect(subject.rows[2].cells[0].layer_count).to eq 2 }
     it { expect(subject.rows[2].cells[0].layer_index).to eq 0 }
