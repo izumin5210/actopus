@@ -2,6 +2,7 @@ Garage.configure {}
 Garage::TokenScope.configure do
   register :public, desc: 'acessing publicly available data' do
     access :read, Lecture
+    access :read, Klass
   end
 end
 
