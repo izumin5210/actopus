@@ -74,6 +74,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'rspec-validator_spec_helper'
   gem 'rspec-request_describer'
+  gem 'rspec-json_matcher'
 end
 
 group :doc do

@@ -54,6 +54,7 @@ RSpec.configure do |config|
   config.include RSpec::RequestDescriber, type: :request
   config.include RequestHelper, type: :request
   config.include RSpec::ValidatorSpecHelper, type: :validator
+  config.include RSpec::JsonMatcher
 
   config.before :suite do
     DatabaseRewinder.clean_all
