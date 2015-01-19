@@ -55,6 +55,8 @@ RSpec.configure do |config|
   config.include RequestHelper, type: :request
   config.include RSpec::ValidatorSpecHelper, type: :validator
   config.include RSpec::JsonMatcher
+  config.include Devise::TestHelpers, type: :controller
+  config.include ControllerHelper, type: :controller
 
   config.before :suite do
     DatabaseRewinder.clean_all
