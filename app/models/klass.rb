@@ -40,6 +40,9 @@ class Klass < ActiveRecord::Base
   delegate :name, to: :department, prefix: :department
   delegate :name, to: :course, prefix: :course
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   include Garage::Representer
   include Garage::Authorizable
 
