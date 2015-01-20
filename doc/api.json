@@ -313,7 +313,7 @@
   "id": "http://www.akashi.ac.jp/actopus/schema#",
   "links": [
     {
-      "href": "http://actopus.akashi.ac.jp/",
+      "href": "actopus.akashi.ac.jp",
       "rel": "self"
     }
   ],

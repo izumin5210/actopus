@@ -40,7 +40,7 @@ Info for existing class.
 
 ```
 GET /api/v1/classes/1e HTTP/1.1
-Host: actopus.akashi.ac.jp
+Host: 
 ```
 
 ```
@@ -60,7 +60,7 @@ List existing classs.
 
 ```
 GET /api/v1/classes HTTP/1.1
-Host: actopus.akashi.ac.jp
+Host: 
 ```
 
 ```
@@ -119,7 +119,7 @@ Info for existing lectures.
 
 ```
 GET /api/v1/lectures/1 HTTP/1.1
-Host: actopus.akashi.ac.jp
+Host: 
 ```
 
 ```
@@ -151,7 +151,7 @@ List existing lectures.
 
 ```
 GET /api/v1/lectures HTTP/1.1
-Host: actopus.akashi.ac.jp
+Host: 
 ```
 
 ```
@@ -206,7 +206,7 @@ List existing reschedulings.
 
 ```
 GET /api/v1/reschedulings HTTP/1.1
-Host: actopus.akashi.ac.jp
+Host: 
 ```
 
 ```
