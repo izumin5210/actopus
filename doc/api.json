@@ -7,9 +7,9 @@
       "definitions": {
         "id": {
           "description": "unique identifier of class",
-          "example": 1,
+          "example": "1e",
           "type": [
-            "integer"
+            "string"
           ]
         },
         "identity": {

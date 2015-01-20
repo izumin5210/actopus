@@ -46,7 +46,7 @@ class Klass < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :id
+  property :slug, as: :id
   property :name
   property :grade
   property :department_name, as: :department
