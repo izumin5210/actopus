@@ -16,8 +16,8 @@ ANCT reschedulings API
 ### Properties
 * id
  * unique identifier of class
- * Example: `1`
- * Type: integer
+ * Example: `"1e"`
+ * Type: string
 * name
  * name of the class
  * Example: `"1E"`
@@ -39,7 +39,7 @@ ANCT reschedulings API
 Info for existing class.
 
 ```
-GET /api/v1/classes/1 HTTP/1.1
+GET /api/v1/classes/1e HTTP/1.1
 Host: actopus.akashi.ac.jp
 ```
 
@@ -47,7 +47,7 @@ Host: actopus.akashi.ac.jp
 HTTP/1.1 200
 Content-Type: application/json
 {
-  "id": 1,
+  "id": "1e",
   "name": "1E",
   "grade": 1,
   "department": "電気情報工学科",
@@ -68,7 +68,7 @@ HTTP/1.1 200
 Content-Type: application/json
 [
   {
-    "id": 1,
+    "id": "1e",
     "name": "1E",
     "grade": 1,
     "department": "電気情報工学科",

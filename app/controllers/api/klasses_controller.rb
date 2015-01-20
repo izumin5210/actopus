@@ -6,6 +6,6 @@ class Api::KlassesController < Api::BaseController
   end
 
   def require_resource
-    @resource = Klass.find(params[:id])
+    @resource = Klass.friendly.find(params[:id])
   end
 end

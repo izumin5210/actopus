@@ -10,6 +10,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  category      :integer
+#  slug          :string
 #
 # Indexes
 #
@@ -19,6 +20,7 @@
 #  index_klasses_on_department_id_and_course_id_and_grade  (department_id,course_id,grade) UNIQUE
 #  index_klasses_on_grade                                  (grade)
 #  index_klasses_on_name                                   (name) UNIQUE
+#  index_klasses_on_slug                                   (slug) UNIQUE
 #
 
 FactoryGirl.define do

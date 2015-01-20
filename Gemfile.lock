@@ -119,6 +119,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     font-awesome-helper (0.0.3)
       rails (~> 4.0)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -340,6 +342,7 @@ DEPENDENCIES
   enum_help
   factory_girl_rails
   font-awesome-helper
+  friendly_id
   garage!
   jdoc
   letter_opener_web
