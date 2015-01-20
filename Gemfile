@@ -11,6 +11,7 @@ group :default do
 
   gem 'devise'
   gem 'devise_invitable'
+  gem 'friendly_id'
 
   gem 'garage', github: 'cookpad/garage'
   gem 'rack-json_schema'
