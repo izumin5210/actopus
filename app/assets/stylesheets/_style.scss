@@ -187,6 +187,20 @@ footer{
     font-size: $font-size-large * 5;
     margin: 40px 0;
   }
+  p {
+    a {
+      border-bottom: 1px dotted;
+      &:link,
+      &:visited {
+        text-decoration: none;
+        color: $brand-bg;
+      }
+      &:hover,
+      &:active {
+        border-bottom: solid 1px $brand-bg;
+      }
+    }
+  }
   a {
     text-decoration: none;
     color: $alpha-link;
