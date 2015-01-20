@@ -3,11 +3,6 @@ class Staffs::TimetablesController < Staffs::BaseController
     @form = TimetableForm.new
   end
 
-  def show
-    klass = Klass.find(params[:id])
-    @timeline = LectureTimeline.new(klass.lectures)
-  end
-
   def create
     @form = TimetableForm.new(timetable_params)
     if @form.valid? && @form.save

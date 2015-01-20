@@ -35,7 +35,7 @@ class TimetableForm
     klasses, periods = Klass.all, Period.all
     lecturers, wday_periods = [], []
     count = { lecture: 0, lecturer: 0 }
-    LectureMapper.parse(@timetable_xml.tempfile.read).each do |mapper|
+    LectureMapper.parse(@timetable_xml.read).each do |mapper|
       lecture = create_lecture(mapper, klasses)
       map_periods_onto_lecture(mapper, lecture, periods, wday_periods)
       count[:lecturer] += map_lecturers_onto_lecture(mapper, lecture, lecturers)

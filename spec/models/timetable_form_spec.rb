@@ -9,7 +9,7 @@ describe TimetableForm do
 
   let(:xml) do
     double('timetable').tap do |d|
-      allow(d).to receive_message_chain(:tempfile, :read).and_return(timetable_xml(lecture_xmls))
+      allow(d).to receive(:read).and_return(timetable_xml(lecture_xmls))
       allow(d).to receive(:original_filename).and_return('timetable201410.xml')
     end
   end

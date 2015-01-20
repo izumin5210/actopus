@@ -75,6 +75,7 @@ group :test do
   gem 'rspec-validator_spec_helper'
   gem 'rspec-request_describer'
   gem 'rspec-json_matcher'
+  gem 'timecop'
 end
 
 group :doc do

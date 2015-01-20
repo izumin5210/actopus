@@ -49,12 +49,17 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  # https://relishapp.com/rspec/rspec-rails/docs/controller-specs/anonymous-controller
+  config.infer_base_class_for_anonymous_controllers = true
+
   config.include FactoryGirl::Syntax::Methods
   config.include XMLHelper
   config.include RSpec::RequestDescriber, type: :request
   config.include RequestHelper, type: :request
   config.include RSpec::ValidatorSpecHelper, type: :validator
   config.include RSpec::JsonMatcher
+  config.include Devise::TestHelpers, type: :controller
+  config.include ControllerHelper, type: :controller
 
   config.before :suite do
     DatabaseRewinder.clean_all

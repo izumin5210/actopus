@@ -1,8 +1,0 @@
-<dl class="list-timetable">
-  <% @timeline.each do |wday, row| %>
-    <dt><%= t('date.abbr_day_names')[wday] %></dt>
-    <dd>
-      <%= render 'shared/timeline/timeline', row: row, wday: wday %>
-    </dd>
-  <% end %>
-</dl>

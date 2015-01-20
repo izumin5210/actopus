@@ -1,0 +1,53 @@
+<TimeTable_xml xmlns="http://www.akashi.ac.jp/timetable" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.akashi.ac.jp/xmlns/timetable timetable.xsd">
+  <TimeTable>
+    <Common>
+      <Institution>Akashi National College of Technology</Institution>
+      <AcademicYear>2014</AcademicYear>
+      <AcademicTerm>後期</AcademicTerm>
+    </Common>
+    <Lectures>
+      <Lecture>
+        <Name>プログラミング I</Name>
+        <Grade>1</Grade>
+        <Department>電気情報工学科</Department>
+        <Periods>
+          <Period>
+            <Wday>3</Wday>
+            <StartTime>09:00:00+09:00</StartTime>
+            <EndTime>10:30:00+09:00</EndTime>
+          </Period>
+        </Periods>
+        <Location>1E教室</Location>
+        <Lecturers>
+          <Lecturer>新井 イスマイル</Lecturer>
+        </Lecturers>
+        <Code>2014121002101231110200</Code>
+      </Lecture>
+      <Lecture>
+        <Name>情報工学実験 I</Name>
+        <Grade>4</Grade>
+        <Department>電気情報工学科</Department>
+        <Course>情報工学コース</Course>
+        <Periods>
+          <Period>
+            <Wday>2</Wday>
+            <StartTime>13:00:00+09:00</StartTime>
+            <EndTime>14:30:00+09:00</EndTime>
+          </Period>
+          <Period>
+            <Wday>2</Wday>
+            <StartTime>14:40:00+09:00</StartTime>
+            <EndTime>16:10:00+09:00</EndTime>
+          </Period>
+        </Periods>
+        <Location>4E教室</Location>
+        <Lecturers>
+          <Lecturer>中井 優一</Lecturer>
+          <Lecturer>上 泰</Lecturer>
+          <Lecturer>廣田 敦志</Lecturer>
+        </Lecturers>
+        <Code>2014421002124265110400</Code>
+      </Lecture>
+    </Lectures>
+  </TimeTable>
+</TimeTable_xml>

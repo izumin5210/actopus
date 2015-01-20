@@ -32,4 +32,8 @@ module TimetableDisplayable
   def set_date_step
     @date_step = @beginning_of_week.step(@end_of_week)
   end
+
+  def set_lectures
+    raise NotImplementedError, "#{self.class}#set_lectures is not implemented"
+  end
 end
