@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
 
   root 'pages#index'
+  resources :klasses, only: %i(index), path: :classes
 
   devise_for :staffs,
     only: [:sessions, :invitations],
