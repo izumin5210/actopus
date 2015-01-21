@@ -1,0 +1,4 @@
+<h2 class="heading"><%= fa_icon('list fw') %> 教員の時間割を見る</h2>
+<%= render layout: 'shared/lecturers/index', locals: { lecturers: @lecturers, departments: @departments } do |lecturer| %>
+  <%= link_to lecturer.name, '#' %>
+<% end %>
