@@ -1,16 +1,4 @@
 <%= content_header('search', '時間割を見る') %>
-
-<% Klass.categories_i18n.each do |category, category_i18n| %>
-  <h3 class="header-klass"><%= category_i18n %></h3>
-  <% @klasses.send(category).group_by(&:department).each do |department, d_klasses| %>
-    <ul class="list-table">
-      <% d_klasses.group_by(&:grade).each do |grade, g_klasses| %>
-          <% g_klasses.each do |klass| %>
-            <li style="width: <%= 100 / g_klasses.size %>%">
-              <%= link_to klass.name, "classes/#{klass.slug}/timetable" %>
-            </li>
-          <% end %>
-      <% end %>
-    </ul>
-  <% end %>
+<%= render layout: 'shared/klasses/index', locals: { klasses: @klasses } do |klass| %>
+  <%= link_to klass.name, timetable_staffs_klass_path(klass.slug) %>
 <% end %>

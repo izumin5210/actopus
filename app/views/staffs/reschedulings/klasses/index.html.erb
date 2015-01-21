@@ -1,0 +1,4 @@
+<%= content_header('search', 'クラスを選択') %>
+<%= render layout: 'shared/klasses/index', locals: { klasses: @klasses } do |klass| %>
+  <%= link_to klass.name, timetable_staffs_reschedulings_klass_path(params[:category], klass.slug) %>
+<% end %>
