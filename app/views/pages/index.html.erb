@@ -5,11 +5,14 @@
     <div class="row">
       <div class="col-md-6">
         <p>時間割の変更・閲覧をもっと簡単に。</p>
+        <% if Rails.env.development? || Rails.env.staging? %>
+          <p>このデモでは、<%= link_to '明石高専時間割オープンデータ', "http://www.akashi.ac.jp/guide/opendata#timetable" %>を使用しています。</p>
+        <% end %>
       </div>
       <div class="col-md-6 header-btn">
         <%= fa_stack_btn(staffs_klasses_path, '時間割を見る', 'search') %>
-        <%= fa_stack_btn("http://www.akashi.ac.jp/guide/opendata", '明石高専オープンデータ', 'file-code-o') %>
         <%= fa_stack_btn("#{Settings.github_repo}", 'GitHub Repository', 'github-alt') %>
+        <%= fa_stack_btn("http://www.akashi.ac.jp/guide/opendata", '明石高専オープンデータ', 'file-code-o') %>
       </div>
     </div>
 
@@ -23,13 +26,13 @@
       <div class="col-md-4">
         <div class="box-landing">
           <%= fa_icon('calendar', class: 'box-logo') %>
-          <p>PDFでしか見れなかった時間割が、Web上でも見れるようになりました。クラスごと・教員ごとの表示にも対応。</p>
+          <p>ブラウザ上で、時間割の変更・公開・閲覧ができるようになりました。</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="box-landing">
           <%= fa_icon('code', class: 'box-logo') %>
-          <p>講義情報、時間割変更などをJSON形式で取得なWeb APIが利用できます（<%= link_to 'API document', '/docs', target: '_blank' %>）。</p>
+          <p>従来のXML形式に加えて、講義情報・時間割変更もJSON形式で取得可能。Webアプリ開発がしやすくなります。（<%= link_to 'API document', '/docs', target: '_blank' %>）</p>
         </div>
       </div>
       <div class="col-md-4">

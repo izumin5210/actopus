@@ -30,6 +30,9 @@ body {
   }
 }
 
+
+/* footer */
+
 footer{
   font-family: Inconsolata;
   text-align: center;
@@ -43,11 +46,13 @@ footer{
   a {
     border-bottom: 1px dotted;
     &:link,
-    &:visited,
-    &:hover,
-    &:active {
+    &:visited {
       text-decoration: none;
       color: $alpha-link;
+    }
+    &:hover,
+    &:active {
+      border-bottom: solid 1px $alpha-link;
     }
   }
 }
@@ -182,6 +187,24 @@ footer{
     font-size: $font-size-large * 5;
     margin: 40px 0;
   }
+  p {
+    a {
+      border-bottom: 1px dotted;
+      &:link,
+      &:visited {
+        text-decoration: none;
+        color: $brand-bg;
+      }
+      &:hover,
+      &:active {
+        border-bottom: solid 1px $brand-bg;
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+    color: $alpha-link;
+  }
   .header-btn {
     position: absolute;
     right: 0;
@@ -218,5 +241,13 @@ footer{
     color: $brand-primary;
     border-bottom: 1px dotted;
     text-decoration: none;
+    &:link,
+    &:visited {
+      text-decoration: none;
+    }
+    &:hover,
+    &:active {
+      border-bottom: solid 1px $brand-primary;
+    }
   }
 }
