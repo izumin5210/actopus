@@ -5,8 +5,12 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
+  concern :timetable do
+    get :timetable, on: :member
+  end
+
   root 'pages#index'
-  resources :klasses, only: %i(index), path: :classes
+  resources :klasses, only: %i(index), path: :classes, concerns: :timetable
 
   devise_for :staffs,
     only: [:sessions, :invitations],
@@ -16,10 +20,6 @@ Rails.application.routes.draw do
     }
 
   namespace :staffs do
-    concern :timetable do
-      member { get :timetable }
-    end
-
     get 'home' => 'home#home'
 
     resources :timetables, only: %i(new create)
