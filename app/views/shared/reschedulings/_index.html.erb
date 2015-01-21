@@ -1,0 +1,24 @@
+<table class="table">
+  <% reschedulings.each do |rescheduling| %>
+    <tr>
+      <td><%= rescheduling.klass.name %></td>
+      <td>
+        <%= rescheduling.lecture.name %><br>
+        （<%= rescheduling.lecturers.map(&:name).join(', ') %>）
+      </td>
+      <td>
+        <%= l(rescheduling.before_date_period.taken_on, format: :short) if rescheduling.before_date_period.present? %><br>
+        <%= rescheduling.before_date_period.period.name if rescheduling.before_date_period.present? %>
+      </td>
+      <td><%= fa_icon('long-arrow-right') if rescheduling.before_date_period_id.present? && rescheduling.after_date_period_id.present? %></td>
+      <td>
+        <%= l(rescheduling.after_date_period.taken_on, format: :short) if rescheduling.after_date_period.present? %><br>
+        <%= rescheduling.after_date_period.period.name if rescheduling.after_date_period.present? %>
+      </td>
+      <td>
+        <%= rescheduling.category_i18n %><br>
+        （<%= l(rescheduling.created_at, format: :short) %>）
+      </td>
+    </tr>
+  <% end %>
+</table>
