@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'lecturers/index'
-
   use_doorkeeper
 
   if Rails.env.development?
@@ -14,6 +12,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   resources :klasses, only: %i(index), path: :classes, concerns: :timetable
   resources :lecturers, only: %i(index), concerns: :timetable
+  resources :reschedulings, only: %i(index)
 
   devise_for :staffs,
     only: [:sessions, :invitations],
