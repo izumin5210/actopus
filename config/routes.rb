@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   root 'pages#index'
   resources :klasses, only: %i(index), path: :classes, concerns: :timetable
-  resources :lecturers, only: %i(index)
+  resources :lecturers, only: %i(index), concerns: :timetable
 
   devise_for :staffs,
     only: [:sessions, :invitations],
