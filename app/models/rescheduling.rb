@@ -19,6 +19,8 @@ class Rescheduling < ActiveRecord::Base
   validates :lecture_id, presence: true
   validates :category, presence: true
 
+  delegate :klass, :lecturers, to: :lecture
+
   enum category: Settings.rescheduling.category
 
   include Garage::Representer

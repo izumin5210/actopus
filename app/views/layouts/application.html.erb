@@ -8,11 +8,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <div class="header-actopus">
+      <div class="container">
+        <h1><%= link_to 'actopus', root_path, class: 'link-actopus' %></h1>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <%= render 'shared/messages' %>
+        <div class="content">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <%= yield %>
+  <%= render 'shared/footer' %>
 
 </body>
 </html>

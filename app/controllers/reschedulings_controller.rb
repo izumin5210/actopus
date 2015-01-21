@@ -1,5 +1,5 @@
-class Staffs::HomeController < Staffs::BaseController
-  def home
+class ReschedulingsController < ApplicationController
+  def index
     @reschedulings = Rescheduling.includes(
         lecture: [:lecturers, :klass],
         before_date_period: [:period],
