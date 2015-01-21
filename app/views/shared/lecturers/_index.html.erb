@@ -1,0 +1,24 @@
+<% Department.all.each_slice(2) do |pair| %>
+  <div class="row">
+    <% pair.each do |department| %>
+      <div class="col-md-6">
+        <h3><%= department.name %></h3>
+        <ul class="list-inline">
+          <% lecturers[department.id].try(:each) do |lecturer| %>
+            <li><%= yield(lecturer) %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <h3>所属不明</h3>
+    <ul class="list-inline">
+      <% lecturers[nil].each do |lecturer| %>
+        <li><%= yield(lecturer) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

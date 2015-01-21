@@ -1,26 +1,4 @@
 <h2 class="heading"><%= fa_icon('list fw') %> 教員データ</h2>
-
-<% Department.all.each_slice(2) do |pair| %>
-  <div class="row">
-    <% pair.each do |department| %>
-      <div class="col-md-6">
-        <h3><%= department.name %></h3>
-        <ul class="list-inline">
-          <% department.lecturers.each do |lecturer| %>
-            <li><%= link_to lecturer.name, "lecturers/#{lecturer.id}/timetable" %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
+<%= render layout: 'shared/lecturers/index', locals: { lecturers: @lecturers, departments: @departments } do |lecturer| %>
+  <%= link_to lecturer.name, timetable_staffs_reschedulings_lecturer_path(category: params[:category], id: lecturer.id) %>
 <% end %>
-<div class="row">
-  <div class="col-md-12">
-    <h3>所属不明</h3>
-    <ul class="list-inline">
-      <% Lecturer.where(department_id: nil).each do |lecturer| %>
-        <li><%= link_to lecturer.name, "lecturers/#{lecturer.id}/timetable" %></li>
-      <% end %>
-    </ul>
-  </div>
-</div>
