@@ -1,4 +1,7 @@
 class KlassesController < ApplicationController
+
+  layout 'unsignedin_users'
+
   before_action :set_klass, only: %i(timetable)
 
   include TimetableDisplayable

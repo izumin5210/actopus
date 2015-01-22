@@ -1,4 +1,7 @@
 class LecturersController < ApplicationController
+
+  layout 'unsignedin_users'
+
   before_action :set_lecturer, only: %i(timetable update)
 
   include TimetableDisplayable

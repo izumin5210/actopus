@@ -1,4 +1,7 @@
 class ReschedulingsController < ApplicationController
+
+  layout 'unsignedin_users'
+
   def index
     @reschedulings = Rescheduling.includes(
         lecture: [:lecturers, :klass],

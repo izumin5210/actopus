@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>actopus</title>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <div class="header">
+      <div class="container">
+
+        <h1><%= link_to 'actopus', root_path, class: 'link-actopus' %></h1>
+        <div class="header-buttons">
+          <%= fa_stack_btn(klasses_path, '時間割を見る', 'search') %>
+          <%= fa_stack_btn(lecturers_path, '教員を見る', 'user') %>
+          <%= fa_stack_btn(reschedulings_path, '時間割変更を見る', 'exchange') %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <%= yield %>
+      </div>
+      <div class="home-button">
+        <%= link_to root_path, alt: 'ホームに戻る' do %>
+          <%= content_tag(:span, data: { toggle: 'tooltip', placement: 'bottom' }, title: 'ホームに戻る') do %>
+            <%= fa_icon('home 3x') %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= render 'shared/footer' %>
+
+  </body>
+</html>
+
