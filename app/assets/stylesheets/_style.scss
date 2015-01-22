@@ -201,10 +201,7 @@ footer{
       }
     }
   }
-  a {
-    text-decoration: none;
-    color: $alpha-link;
-  }
+
   .header-buttons {
     a {
       color: $brand-bg;
@@ -251,7 +248,7 @@ footer{
 }
 
 
-/* unsigned_user */
+/* unsignedin_user */
 
 .header {
   @extend .header-landing;
@@ -261,9 +258,18 @@ footer{
   h1 {
     font-size: $font-size-large * 4;
     float: left;
+    a {
+      color: $brand-bg;
+      text-decoration: none;
+    }
   }
   .header-buttons {
     margin-top: 40px;
     float: right;
   }
+}
+
+.home-button {
+  text-align: center;
+  margin-bottom: 20px;
 }
