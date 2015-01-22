@@ -1,2 +1,7 @@
+<ul class="breadcrumb">
+  <li><%= link_to '教員データを見る', staffs_lecturers_path %></li>
+  <li class="active"><%= @lecturer.name %></li>
+</ul>
+
 <%= content_header('user', @lecturer.name) %>
 <%= render partial: 'shared/timeline/timeline' %>

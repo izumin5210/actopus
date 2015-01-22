@@ -1,3 +1,9 @@
+<ul class="breadcrumb">
+  <li><%= link_to '時間割を変更する', staffs_reschedulings_path %></li>
+  <li><%= link_to 'クラスを選択', staffs_reschedulings_klasses_path %></li>
+  <li class="active"><%= @klass.name %></li>
+</ul>
+
 <h1>時間割変更 - <%= @klass.name %></h1>
 <%= render partial: 'shared/timeline/timeline'  %>
 <%= render partial: "shared/reschedulings/#{@form.category}_modal"  %>
