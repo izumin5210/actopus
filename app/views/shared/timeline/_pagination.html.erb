@@ -1,5 +1,5 @@
-<nav>
-  <ul class="pagination pagination-justified">
+<nav class="clearfix pagination-timetable">
+  <ul class="pagination pagination-justified pull-left">
     <% [-7, 0, 7].map { |d| @beginning_of_week + d }.each do |week| %>
       <li class="<%= 'active' if @date_step.to_a.include?(week) %>">
         <%= link_to date: week.to_s do %>
@@ -10,4 +10,6 @@
       </li>
     <% end %>
   </ul>
+  <%#= link_to(fa_icon("calendar fw"), '#', class: "btn btn-primary pull-right", data: { toggle: 'tooltip', placement: 'top' }, title: 'カレンダー') %>
+  <%= link_to(fa_icon("thumb-tack fw"), timetable_staffs_klass_path, class: "btn btn-primary pull-right", data: { toggle: 'tooltip', placement: 'top' }, title: '今週') %>
 </nav>

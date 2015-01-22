@@ -17,3 +17,11 @@ $table-cell-padding: 10px !default;
 $list-border-fg: #A14C4C !default;
 $list-bg-hover: lighten($brand-primary, 30%) !default;
 $list-link-fg: #666 !default;
+
+$pagination-hover-bg: $list-group-hover-bg;
+$pagination-border: $brand-primary;
+$pagination-hover-border: $brand-primary;
+$pagination-active-border: $brand-primary;
+$pagination-bg: $brand-bg;
+$pagination-color: #666;
+$pagination-hover-color: #666;
