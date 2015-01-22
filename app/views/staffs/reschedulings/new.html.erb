@@ -1,16 +1,9 @@
 <%= content_header('exchange', '時間割を変更する') %>
 
-<div class="text-center">
-  <% Rescheduling.categories_i18n.each do |category, category_i18n| %>
-    <div class="btn-group">
-      <%= button_tag class: 'btn btn-default btn-lg dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => false do %>
-        <%= category_i18n %>
-        <span class="caret"></span>
-      <% end %>
-      <ul class="dropdown-menu" role="menu">
-        <li><%= link_to 'クラスから選択', staffs_reschedulings_klasses_path(category: category) %></li>
-        <li><%= link_to '教員から選択', staffs_reschedulings_lecturers_path(category: category) %></li>
-      </ul>
-    </div>
-  <% end %>
-</div>
+<% Rescheduling.categories_i18n.each do |category, category_i18n| %>
+  <h3><%= category_i18n %></h3>
+  <div class="rescheduling-buttons">
+    <%= link_to(fa_icon("search") { |i| "#{i} クラスから選択" }, staffs_reschedulings_klasses_path(category: category), class: "btn btn-primary") %>
+    <%= link_to(fa_icon("user") { |i| "#{i} 教員から選択" }, staffs_reschedulings_lecturers_path(category: category), class: "btn btn-primary") %>
+  </div>
+<% end %>
