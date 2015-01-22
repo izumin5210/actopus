@@ -10,7 +10,7 @@ body {
   background-color: $brand-bg;
 }
 
-.header-actopus {
+.header-staff {
   color: $brand-bg;
   background-color: $brand-primary;
   height: $height-header;
@@ -205,9 +205,7 @@ footer{
     text-decoration: none;
     color: $alpha-link;
   }
-  .header-btn {
-    position: absolute;
-    right: 0;
+  .header-buttons {
     a {
       color: $brand-bg;
       span {
@@ -249,5 +247,23 @@ footer{
     &:active {
       border-bottom: solid 1px $brand-primary;
     }
+  }
+}
+
+
+/* unsigned_user */
+
+.header {
+  @extend .header-landing;
+  @include size(100%, 200px);
+  min-height: 200px;
+  margin-bottom: 30px;
+  h1 {
+    font-size: $font-size-large * 4;
+    float: left;
+  }
+  .header-buttons {
+    margin-top: 40px;
+    float: right;
   }
 }
