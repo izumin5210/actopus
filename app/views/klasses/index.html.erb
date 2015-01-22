@@ -1,3 +1,8 @@
+<ul class="breadcrumb">
+  <li><%= link_to 'ホーム', root_path %></li>
+  <li class="active">時間割を見る</li>
+</ul>
+
 <%= content_header('search', '時間割を見る') %>
 <%= render layout: 'shared/klasses/index', locals: { klasses: @klasses } do |klass| %>
   <%= link_to klass.name, timetable_klass_path(klass.slug) %>
