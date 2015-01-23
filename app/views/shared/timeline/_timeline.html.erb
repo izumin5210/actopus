@@ -1,4 +1,6 @@
-<%= render 'shared/timeline/pagination' %>
+<% unless params[:category] == 'extra' %>
+  <%= render 'shared/timeline/pagination' %>
+<% end %>
 
 <dl class="list-timetable">
   <% @date_step.each do |date| %>
@@ -14,4 +16,6 @@
   <% end %>
 </dl>
 
-<%= render 'shared/timeline/pagination' %>
+<% unless params[:category] == 'extra' %>
+  <%= render 'shared/timeline/pagination' %>
+<% end %>

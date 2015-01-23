@@ -1,3 +1,9 @@
-<h1>時間割変更 - <%= @lecturer.name %></h1>
+<ul class="breadcrumb">
+  <li><%= link_to '時間割を変更する', new_staffs_rescheduling_path %></li>
+  <li><%= link_to '教員から選択', staffs_reschedulings_lecturers_path %></li>
+  <li class="active"><%= @lecturer.name %></li>
+</ul>
+
+<h3><%= fa_icon("exchange fw") { |i| "#{i} #{@lecturer.name} の時間割を変更する" } %></h3>
 <%= render partial: 'shared/timeline/timeline'  %>
 <%= render partial: "shared/reschedulings/#{@form.category}_modal"  %>
