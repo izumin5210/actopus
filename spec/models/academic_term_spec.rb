@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: terms
+# Table name: academic_terms
 #
 #  id           :integer          not null, primary key
 #  name         :string           not null
@@ -12,16 +12,16 @@
 #
 # Indexes
 #
-#  index_terms_on_ended_on                 (ended_on)
-#  index_terms_on_started_on               (started_on)
-#  index_terms_on_started_on_and_ended_on  (started_on,ended_on) UNIQUE
-#  index_terms_on_xml_filename             (xml_filename) UNIQUE
+#  index_academic_terms_on_ended_on                 (ended_on)
+#  index_academic_terms_on_started_on               (started_on)
+#  index_academic_terms_on_started_on_and_ended_on  (started_on,ended_on) UNIQUE
+#  index_academic_terms_on_xml_filename             (xml_filename) UNIQUE
 #
 
 require 'rails_helper'
 
-RSpec.describe Term, type: :model do
-  let(:term) { create(:term) }
+RSpec.describe AcademicTerm, type: :model do
+  let(:term) { create(:academic_term) }
   subject { term }
 
   describe 'validates' do
@@ -32,6 +32,6 @@ RSpec.describe Term, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:lectures) }
+    it { is_expected.to have_many(:lectures).with_foreign_key(:term_id) }
   end
 end

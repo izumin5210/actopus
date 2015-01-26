@@ -40,7 +40,7 @@ FactoryGirl.define do
     end
 
     trait :with_term do
-      term
+      term { create(:academic_term) }
     end
   end
 end

@@ -18,7 +18,7 @@ class TimetableForm
 
   def save
     ActiveRecord::Base.transaction do
-      @term = Term.create!(name: @name, started_on: @started_on, ended_on: @ended_on,
+      @term = AcademicTerm.create!(name: @name, started_on: @started_on, ended_on: @ended_on,
           xml_filename: @timetable_xml.original_filename)
       @count = lecture_transaction
     end

@@ -13,7 +13,7 @@ RSpec.describe 'lecture resources', type: :request do
     }
   end
 
-  let!(:term) { create(:term) }
+  let!(:term) { create(:academic_term) }
   let!(:lecture) do
     create(:lecture,
            :with_klass,
