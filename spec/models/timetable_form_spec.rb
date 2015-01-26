@@ -45,7 +45,7 @@ describe TimetableForm do
     subject { timetable_form.save }
     context 'with valid xml' do
       it { is_expected.to be true }
-      it { expect { subject }.to change(Term, :count).by(1) }
+      it { expect { subject }.to change(AcademicTerm, :count).by(1) }
       it { expect { subject }.to change(Lecture, :count).by(2) }
       it { expect { subject }.to change(Lecturer, :count).by(4) }
       it { expect { subject }.to change(WdayPeriod, :count).by(4) }
@@ -64,7 +64,7 @@ describe TimetableForm do
     context 'with invalid xml' do
       let(:lecture_xmls) { [lecture_xml(grade: nil)] }
       it { is_expected.to be false }
-      it { expect { subject }.to_not change(Term, :count) }
+      it { expect { subject }.to_not change(AcademicTerm, :count) }
       it { expect { subject }.to_not change(Lecture, :count) }
       it { expect { subject }.to_not change(Lecturer, :count) }
       it { expect { subject }.to_not change(WdayPeriod, :count) }

@@ -38,7 +38,7 @@ RSpec.describe Staffs::TimetablesController, type: :controller do
     subject { post :create, timetable_form: params }
     context 'with valid parameters' do
       it 'saves the new term' do
-        expect { subject }.to change(Term, :count).by(1)
+        expect { subject }.to change(AcademicTerm, :count).by(1)
       end
 
       it 'redirects to staffs/timetables#new' do
@@ -50,7 +50,7 @@ RSpec.describe Staffs::TimetablesController, type: :controller do
     context 'with invalid parameters' do
       let(:params) { { name: 'invalid timetable' } }
       it 'does not save the new term' do
-        expect { subject }.to_not change(Term, :count)
+        expect { subject }.to_not change(AcademicTerm, :count)
       end
 
       it 're-renders the :new template' do
