@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120080831) do
+ActiveRecord::Schema.define(version: 20150126074648) do
+
+  create_table "academic_terms", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.string   "xml_filename", null: false
+    t.date     "started_on",   null: false
+    t.date     "ended_on",     null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "academic_terms", ["ended_on"], name: "index_academic_terms_on_ended_on"
+  add_index "academic_terms", ["started_on", "ended_on"], name: "index_academic_terms_on_started_on_and_ended_on", unique: true
+  add_index "academic_terms", ["started_on"], name: "index_academic_terms_on_started_on"
+  add_index "academic_terms", ["xml_filename"], name: "index_academic_terms_on_xml_filename", unique: true
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",              null: false
@@ -197,20 +211,6 @@ ActiveRecord::Schema.define(version: 20150120080831) do
   add_index "staffs", ["email"], name: "index_staffs_on_email", unique: true
   add_index "staffs", ["invitation_token"], name: "index_staffs_on_invitation_token", unique: true
   add_index "staffs", ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
-
-  create_table "terms", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.string   "xml_filename", null: false
-    t.date     "started_on",   null: false
-    t.date     "ended_on",     null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "terms", ["ended_on"], name: "index_terms_on_ended_on"
-  add_index "terms", ["started_on", "ended_on"], name: "index_terms_on_started_on_and_ended_on", unique: true
-  add_index "terms", ["started_on"], name: "index_terms_on_started_on"
-  add_index "terms", ["xml_filename"], name: "index_terms_on_xml_filename", unique: true
 
   create_table "wday_periods", force: :cascade do |t|
     t.integer  "period_id",  null: false
