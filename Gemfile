@@ -77,6 +77,8 @@ group :test do
   gem 'rspec-request_describer'
   gem 'rspec-json_matcher'
   gem 'timecop'
+
+  gem 'coveralls', :require => false
 end
 
 group :doc do
