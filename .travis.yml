@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.2.0
+cache: bundler
+bundler_args: --without production --deployment
+before_install:
+  - gem install bundler --pre
+script: bundle exec rspec
