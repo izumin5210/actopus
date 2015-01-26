@@ -20,7 +20,7 @@
 
 class Lecture < ActiveRecord::Base
   belongs_to :klass
-  belongs_to :term
+  belongs_to :term, class_name: AcademicTerm.name
 
   has_many :lecturings
   has_many :lecturers, through: :lecturings

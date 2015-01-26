@@ -21,7 +21,7 @@
 require 'rails_helper'
 
 RSpec.describe AcademicTerm, type: :model do
-  let(:term) { create(:term) }
+  let(:term) { create(:academic_term) }
   subject { term }
 
   describe 'validates' do
@@ -32,6 +32,6 @@ RSpec.describe AcademicTerm, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:lectures) }
+    it { is_expected.to have_many(:lectures).with_foreign_key(:term_id) }
   end
 end

@@ -19,7 +19,7 @@
 #
 
 class AcademicTerm < ActiveRecord::Base
-  has_many :lectures
+  has_many :lectures, foreign_key: :term_id
 
   validates :name, presence: true
   validates :xml_filename, presence: true

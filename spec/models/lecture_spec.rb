@@ -26,7 +26,7 @@ RSpec.describe Lecture, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:klass) }
-    it { is_expected.to belong_to(:term) }
+    it { is_expected.to belong_to(:term).class_name('AcademicTerm') }
     it { is_expected.to have_many(:lecturings) }
     it { is_expected.to have_many(:lecturers).through(:lecturings) }
     it { is_expected.to have_many(:schedulings) }
