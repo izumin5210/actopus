@@ -1,5 +1,9 @@
 # actopus
 
+[![Build Status](https://travis-ci.org/izumin5210/actopus.svg)](https://travis-ci.org/izumin5210/actopus)
+[![Coverage Status](https://coveralls.io/repos/izumin5210/actopus/badge.svg)](https://coveralls.io/r/izumin5210/actopus)
+[![Code Climate](https://codeclimate.com/github/izumin5210/actopus/badges/gpa.svg)](https://codeclimate.com/github/izumin5210/actopus)
+
 actopusは、時間割オープンデータを利用した、学生と教職員のための時間割管理システムです。 
 
 * 時間割変更をactopusで管理しWeb上で公開。PC・スマートフォンなどWebが利用できる環境なら、どこからでも最新の時間割情報を得ることができます。
