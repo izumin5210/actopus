@@ -14,12 +14,14 @@ class ReschedulingForm
   delegate :klass, to: :lecture
 
   validates :category, presence: true
+  validates_with ReschedulingValidator
 
   before_validation DatePeriodBuilder.new(*BEFORE_DATE_PERIOD_COLUMNS)
   before_validation DatePeriodBuilder.new(*AFTER_DATE_PERIOD_COLUMNS)
 
   def save
     ActiveRecord::Base.transaction do
+      fail ActiveRecord::RecordInvalid unless valid?
       self.rescheduling = Rescheduling.create!(
         category: category, lecture_id: lecture_id,
         before_date_period: before_date_period,
