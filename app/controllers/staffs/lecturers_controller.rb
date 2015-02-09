@@ -4,22 +4,10 @@ class Staffs::LecturersController < Staffs::BaseController
   include TimetableDisplayable
 
   def index
-    @lecturers = Lecturer.all
-  end
-
-  def update
-    if @lecturer.update(lecturer_params)
-      redirect_to @lecturer, notice: 'Lecturer was successfully updated.'
-    else
-      render :edit
-    end
+    @lecturers = Lecturer.eager_load(:department).all
   end
 
   private
-
-  def lecturer_params
-    params.require(:lecturer).permit(:department_id)
-  end
 
   def set_lecturer
     @lecturer = Lecturer.find(params[:id])
