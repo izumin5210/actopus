@@ -1,5 +1,6 @@
 class Api::ReschedulingsController < Api::BaseController
   include Garage::RestfulActions
+  include Garage::NoAuthentication
 
   def require_resources
     @resources = Rescheduling.includes(
