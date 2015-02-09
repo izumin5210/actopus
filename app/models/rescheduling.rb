@@ -18,6 +18,7 @@ class Rescheduling < ActiveRecord::Base
 
   validates :lecture_id, presence: true
   validates :category, presence: true
+  validates_with ReschedulingValidator
 
   delegate :klass, :lecturers, to: :lecture
 

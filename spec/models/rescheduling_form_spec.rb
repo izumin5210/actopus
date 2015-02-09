@@ -27,14 +27,8 @@ RSpec.describe ReschedulingForm, type: :model do
 
   shared_examples_for 'a valid rescheduling form' do
     it { is_expected.to be true }
-    it do
-      expect { subject }
-        .to change(lecture.reschedulings, :count).by(a_value_within(1).of(2))
-    end
-    it do
-      expect { subject }
-        .to change(Rescheduling, :count).by(a_value_within(1).of(2))
-    end
+    it { expect { subject }.to change(lecture.reschedulings, :count).by(1) }
+    it { expect { subject }.to change(Rescheduling, :count).by(1) }
     it do
       expect { subject }
         .to change(DatePeriod, :count).by(a_value_within(1).of(2))
