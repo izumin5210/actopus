@@ -4,7 +4,7 @@ class Staffs::LecturersController < Staffs::BaseController
   include TimetableDisplayable
 
   def index
-    @lecturers = Lecturer.all
+    @lecturers = Lecturer.eager_load(:department).all
   end
 
   private
