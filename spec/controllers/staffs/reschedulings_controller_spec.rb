@@ -17,6 +17,7 @@ RSpec.describe Staffs::ReschedulingsController, type: :controller do
     let(:before_date) { Date.new(2015, 1, 19) }
     let(:after_date) { Date.new(2015, 1, 22) }
     before { Timecop.freeze(Time.local(2015, 1, 19, 12, 0, 0)) }
+    after { Timecop.return }
     let(:params) do
       { category: 'change',
         lecture_id: lecture.id,
