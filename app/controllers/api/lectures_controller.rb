@@ -6,7 +6,7 @@ class Api::LecturesController < Api::BaseController
     @resources = Lecture.includes(
         { klass: [:department, :course] }, { wday_periods: [:period] },
         :lecturers
-      ).all
+      ).current_term
   end
 
   def require_resource
