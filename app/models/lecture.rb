@@ -35,8 +35,8 @@ class Lecture < ActiveRecord::Base
   enum special_target: Settings.lecture.special_target
 
   delegate :grade, :department, :course, to: :klass
-  delegate :name, to: :department, prefix: :department
-  delegate :name, to: :course, prefix: :course, allow_nil: true
+  delegate :name, to: :department, prefix: true
+  delegate :name, to: :course, prefix: true, allow_nil: true
 
   include Garage::Representer
   include Garage::Authorizable

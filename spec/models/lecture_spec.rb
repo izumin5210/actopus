@@ -38,4 +38,19 @@ RSpec.describe Lecture, type: :model do
     it { is_expected.to validate_presence_of(:klass_id) }
     it { is_expected.to validate_presence_of(:term_id) }
   end
+
+  describe 'delegations' do
+    it { is_expected.to delegate_method(:grade).to(:klass) }
+    it { is_expected.to delegate_method(:department).to(:klass) }
+    it { is_expected.to delegate_method(:course).to(:klass) }
+    it { is_expected.to delegate_method(:name).to(:department).with_prefix }
+    it { is_expected.to delegate_method(:name).to(:course).with_prefix }
+  end
+
+  describe 'enums' do
+    it do
+      is_expected.to(define_enum_for(:special_target)
+        .with(Settings.lecture.special_target.keys))
+    end
+  end
 end
