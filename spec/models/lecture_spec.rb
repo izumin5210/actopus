@@ -75,6 +75,7 @@ RSpec.describe Lecture, type: :model do
       create_list(:lecture, 5, klass: klass, term: prev_term)
       create_list(:lecture, 5, klass: klass, term: next_term)
     end
+    after { Timecop.return }
     subject { Lecture.current_term }
     it { is_expected.to match_array(lectures) }
     it { expect(subject.size).to eq 5 }
