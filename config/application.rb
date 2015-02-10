@@ -46,6 +46,9 @@ module Actopus
     end
 
     schema = JSON.parse(File.read(Rails.root.join('doc/api.json')))
+    if ENV['RAILS_ENV'] =~ /\Astaging\Z/
+      schema["links"][0]["href"] = 'actopus.herokuapp.com'
+    end
 
     config.middleware.use Rack::JsonSchema::Docs, schema: schema
     config.middleware.use Rack::JsonSchema::SchemaProvider, schema: schema

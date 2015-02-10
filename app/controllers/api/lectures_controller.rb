@@ -1,5 +1,6 @@
 class Api::LecturesController < Api::BaseController
   include Garage::RestfulActions
+  include Garage::NoAuthentication
 
   def require_resources
     @resources = Lecture.includes(
