@@ -50,6 +50,12 @@ class Lecture < ActiveRecord::Base
   collection :lecturer_names, as: :lecturers
   collection :wday_periods, as: :periods
 
+  scope :current_term, -> do
+    joins(:term)
+      .where(AcademicTerm.arel_table[:started_on].lteq(DateTime.now))
+      .where(AcademicTerm.arel_table[:ended_on].gteq(DateTime.now))
+  end
+
   def self.build_permissions(perms, other, target)
     perms.permits! :read
   end
