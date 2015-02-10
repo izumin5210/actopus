@@ -27,4 +27,16 @@ RSpec.describe Rescheduling, type: :model do
     it { is_expected.to validate_presence_of(:lecture_id) }
     it { is_expected.to validate_presence_of(:category) }
   end
+
+  describe 'delegations' do
+    it { is_expected.to delegate_method(:klass).to(:lecture) }
+    it { is_expected.to delegate_method(:lecturers).to(:lecture) }
+  end
+
+  describe 'enums' do
+    it do
+      is_expected.to(define_enum_for(:category)
+        .with(Settings.rescheduling.category.keys))
+    end
+  end
 end
