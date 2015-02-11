@@ -70,4 +70,24 @@ RSpec.describe WdayPeriod, type: :model do
       it { is_expected.to eq false }
     end
   end
+
+  describe '#to_date_period' do
+    let(:date) { Date.new(2015, 1, 21) }
+    subject { wday_period.to_date_period(date) }
+    it { is_expected.to be_a(DatePeriod) }
+    it { expect(subject.taken_on.wday).to eq wday }
+
+    context 'when the date_period has already existed' do
+      before do
+        create(:date_period,
+               period: period,
+               taken_on: date.beginning_of_week + (wday - 1).days)
+      end
+      it { is_expected.to be_persisted }
+    end
+
+    context 'when the date_period has not existed yet' do
+      it { is_expected.to_not be_persisted }
+    end
+  end
 end

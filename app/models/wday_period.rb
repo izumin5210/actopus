@@ -36,4 +36,9 @@ class WdayPeriod < ActiveRecord::Base
       (params[:start_time] == start_time) &&
       (params[:end_time] == end_time)
   end
+
+  def to_date_period(date)
+    DatePeriod.find_or_initialize_by(
+      period: period, taken_on: date.beginning_of_week + (wday - 1).days)
+  end
 end
