@@ -24,29 +24,35 @@ class Rescheduling < ActiveRecord::Base
 
   enum category: Settings.rescheduling.category
 
-  scope :available, -> do
-    before = DatePeriod.arel_table.alias('before_date_period')
-    after = DatePeriod.arel_table.alias('after_date_period')
-    join_before = arel_table.join(before, Arel::Nodes::OuterJoin)
+  scope :join_before_date_period, -> do
+    before = before_date_period_arel_table
+    joins(
+      arel_table.join(before, Arel::Nodes::OuterJoin)
         .on(before[:id].eq arel_table[:before_date_period_id]).join_sources
-    join_after = arel_table.join(after, Arel::Nodes::OuterJoin)
+    )
+  end
+
+  scope :join_after_date_period, -> do
+    after = after_date_period_arel_table
+    joins(
+      arel_table.join(after, Arel::Nodes::OuterJoin)
         .on(after[:id].eq arel_table[:after_date_period_id]).join_sources
+    )
+  end
+
+  scope :available, -> do
+    after = after_date_period_arel_table
     cond1 = after[:taken_on].gteq(Date.today)
     cond2 = after[:taken_on].eq(nil)
-    cond3 = before[:taken_on].gteq(Date.today)
-    joins(join_before, join_after).where(cond1.or(cond2.and cond3))
+    cond3 = before_date_period_arel_table[:taken_on].gteq(Date.today)
+    join_before_date_period.join_after_date_period
+      .where(cond1.or(cond2.and cond3))
   end
 
   scope :on, -> (date_period) do
-    before = DatePeriod.arel_table.alias('before_date_period')
-    after = DatePeriod.arel_table.alias('after_date_period')
-    join_before = arel_table.join(before, Arel::Nodes::OuterJoin)
-        .on(before[:id].eq arel_table[:before_date_period_id]).join_sources
-    join_after = arel_table.join(after, Arel::Nodes::OuterJoin)
-        .on(after[:id].eq arel_table[:after_date_period_id]).join_sources
-    cond1 = after[:taken_on].eq(date_period.taken_on)
-    cond2 = before[:taken_on].eq(date_period.taken_on)
-    joins(join_before, join_after).where(cond1.or cond2)
+    cond1 = before_date_period_arel_table[:taken_on].eq(date_period.taken_on)
+    cond2 = after_date_period_arel_table[:taken_on].eq(date_period.taken_on)
+    join_before_date_period.join_after_date_period.where(cond1.or cond2)
   end
 
   include Garage::Representer
@@ -67,5 +73,13 @@ class Rescheduling < ActiveRecord::Base
 
   def build_permissions(perms, other)
     perms.permits! :read
+  end
+
+  def self.before_date_period_arel_table
+    DatePeriod.arel_table.alias('before_date_period')
+  end
+
+  def self.after_date_period_arel_table
+    DatePeriod.arel_table.alias('after_date_period')
   end
 end
