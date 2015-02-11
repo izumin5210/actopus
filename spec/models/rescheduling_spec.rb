@@ -40,6 +40,22 @@ RSpec.describe Rescheduling, type: :model do
     end
   end
 
+  describe '.join_before_date_period' do
+    subject { Rescheduling.join_before_date_period }
+    it do
+      expect(subject.to_sql).to match(
+        /LEFT OUTER JOIN "date_periods" "before_date_period"/)
+    end
+  end
+
+  describe '.join_after_date_period' do
+    subject { Rescheduling.join_after_date_period }
+    it do
+      expect(subject.to_sql).to match(
+        /LEFT OUTER JOIN "date_periods" "after_date_period"/)
+    end
+  end
+
   describe '.available' do
     let(:period) { create(:period) }
     let(:today) { Time.local(2015, 1, 19, 12, 0, 0) }
@@ -74,8 +90,12 @@ RSpec.describe Rescheduling, type: :model do
     end
     subject { Rescheduling.available }
     after { Timecop.return }
-    it { is_expected.to match_array(reschedulings[1, 2]) }
-    it { expect(subject.size).to eq 2 }
+    it 'returns available reschedulings' do
+      is_expected.to match_array(reschedulings[1, 2])
+    end
+    it 'returns 4 reschedulings' do
+      expect(subject.size).to eq 2
+    end
   end
 
   describe '.on' do
@@ -108,7 +128,23 @@ RSpec.describe Rescheduling, type: :model do
       ]
     end
     subject { Rescheduling.on(today_date_period) }
-    it { is_expected.to match_array(reschedulings[1, 2]) }
-    it { expect(subject.size).to eq 2 }
+    it 'returns reschedulings that will be taken on the date' do
+      is_expected.to contain_exactly(*reschedulings[1, 2])
+    end
+    it 'returns 2 reschedulings' do
+      expect(subject.size).to eq 2
+    end
+  end
+
+  describe '.before_date_period_arel_table' do
+    subject { Rescheduling.before_date_period_arel_table }
+    it { is_expected.to be_a(Arel::Nodes::TableAlias) }
+    it { expect(subject.to_sql).to match /"date_periods" "before_date_period"/ }
+  end
+
+  describe '.after_date_period_arel_table' do
+    subject { Rescheduling.after_date_period_arel_table }
+    it { is_expected.to be_a(Arel::Nodes::TableAlias) }
+    it { expect(subject.to_sql).to match /"date_periods" "after_date_period"/ }
   end
 end
