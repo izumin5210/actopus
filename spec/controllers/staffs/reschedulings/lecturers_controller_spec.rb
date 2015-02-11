@@ -3,15 +3,11 @@ require 'rails_helper'
 RSpec.describe Staffs::Reschedulings::LecturersController, type: :controller do
   sign_in_as_staff
 
-  describe 'GET index' do
-    before { get :index, category: :change }
+  it_behaves_like 'lecturers index displayable' do
+    let(:params) { { category: :change } }
+  end
 
-    it 'assings all lecturers to @lecturers' do
-      expect(assigns(:lecturers)).to all(be_a(Lecturer))
-    end
-
-    it 'assings all departments to @departments' do
-      expect(assigns(:departments)).to all(be_a(Department))
-    end
+  it_behaves_like 'lecturers timetable displayable' do
+    let(:params) { { id: lecturer.id, category: :change } }
   end
 end

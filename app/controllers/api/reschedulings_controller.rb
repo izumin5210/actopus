@@ -3,12 +3,14 @@ class Api::ReschedulingsController < Api::BaseController
   include Garage::NoAuthentication
 
   def require_resources
-    @resources = Rescheduling.includes(
+    @resources = Rescheduling.available.includes(
         lecture: [
-          { klass: [:department, :course] }, { wday_periods: [:period] },
+          { klass: [:department, :course] },
+          { wday_periods: [:period] },
           :lecturers
         ],
-        before_date_period: [:period], after_date_period: [:period]
-      ).all
+        before_date_period: [:period],
+        after_date_period: [:period]
+      )
   end
 end

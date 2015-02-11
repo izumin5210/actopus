@@ -35,8 +35,8 @@ class Lecture < ActiveRecord::Base
   enum special_target: Settings.lecture.special_target
 
   delegate :grade, :department, :course, to: :klass
-  delegate :name, to: :department, prefix: :department
-  delegate :name, to: :course, prefix: :course, allow_nil: true
+  delegate :name, to: :department, prefix: true
+  delegate :name, to: :course, prefix: true, allow_nil: true
 
   include Garage::Representer
   include Garage::Authorizable
@@ -49,6 +49,12 @@ class Lecture < ActiveRecord::Base
   property :course_name, as: :course, if: -> (record, _) { record.course.present? }
   collection :lecturer_names, as: :lecturers
   collection :wday_periods, as: :periods
+
+  scope :current_term, -> do
+    joins(:term)
+      .where(AcademicTerm.arel_table[:started_on].lteq(DateTime.now))
+      .where(AcademicTerm.arel_table[:ended_on].gteq(DateTime.now))
+  end
 
   def self.build_permissions(perms, other, target)
     perms.permits! :read

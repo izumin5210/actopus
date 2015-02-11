@@ -1,8 +1,4 @@
-class Staffs::Reschedulings::LecturersController < Staffs::LecturersController
+class Staffs::Reschedulings::LecturersController < Staffs::BaseController
+  include LecturersDisplayable
   include ReschedulingsCreatable
-
-  def index
-    @lecturers = Lecturer.all.group_by(&:department_id)
-    @departments = Department.all
-  end
 end
