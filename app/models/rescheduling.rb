@@ -37,6 +37,18 @@ class Rescheduling < ActiveRecord::Base
     joins(join_before, join_after).where(cond1.or(cond2.and cond3))
   end
 
+  scope :on, -> (date_period) do
+    before = DatePeriod.arel_table.alias('before_date_period')
+    after = DatePeriod.arel_table.alias('after_date_period')
+    join_before = arel_table.join(before, Arel::Nodes::OuterJoin)
+        .on(before[:id].eq arel_table[:before_date_period_id]).join_sources
+    join_after = arel_table.join(after, Arel::Nodes::OuterJoin)
+        .on(after[:id].eq arel_table[:after_date_period_id]).join_sources
+    cond1 = after[:taken_on].eq(date_period.taken_on)
+    cond2 = before[:taken_on].eq(date_period.taken_on)
+    joins(join_before, join_after).where(cond1.or cond2)
+  end
+
   include Garage::Representer
   include Garage::Authorizable
 

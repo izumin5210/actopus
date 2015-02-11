@@ -40,7 +40,7 @@ RSpec.describe Rescheduling, type: :model do
     end
   end
 
-  describe 'available' do
+  describe '.available' do
     let(:period) { create(:period) }
     let(:today) { Time.local(2015, 1, 19, 12, 0, 0) }
     let(:today_date_period) do
@@ -74,6 +74,40 @@ RSpec.describe Rescheduling, type: :model do
     end
     subject { Rescheduling.available }
     after { Timecop.return }
+    it { is_expected.to match_array(reschedulings[1, 2]) }
+    it { expect(subject.size).to eq 2 }
+  end
+
+  describe '.on' do
+    let(:period) { create(:period) }
+    let(:today) { Time.local(2015, 1, 19, 12, 0, 0) }
+    let(:today_date_period) do
+      create(:date_period, period: period, taken_on: today)
+    end
+    let(:yesterday_date_period) do
+      create(:date_period, period: period, taken_on: today.yesterday)
+    end
+    let(:lecture) { create(:lecture, :with_term, :with_klass) }
+    let!(:reschedulings) do
+      [
+        create(:rescheduling,
+               category: :cancel,
+               before_date_period: yesterday_date_period,
+               after_date_period: nil,
+               lecture: lecture),
+        create(:rescheduling,
+               category: :cancel,
+               before_date_period: today_date_period,
+               after_date_period: nil,
+               lecture: lecture),
+        create(:rescheduling,
+               category: :change,
+               before_date_period: yesterday_date_period,
+               after_date_period: today_date_period,
+               lecture: lecture)
+      ]
+    end
+    subject { Rescheduling.on(today_date_period) }
     it { is_expected.to match_array(reschedulings[1, 2]) }
     it { expect(subject.size).to eq 2 }
   end
