@@ -39,12 +39,9 @@ RSpec.describe WdayPeriod, type: :model do
     it { is_expected.to have_many(:lectures).through(:schedulings) }
   end
 
-  describe '#start_time' do
-    it { expect(subject.start_time).to eq start_time }
-  end
-
-  describe '#end_time' do
-    it { expect(subject.end_time).to eq end_time }
+  describe 'delegations' do
+    it { is_expected.to delegate_method(:start_time).to(:period) }
+    it { is_expected.to delegate_method(:end_time).to(:period) }
   end
 
   describe '#is?' do
