@@ -99,13 +99,16 @@ RSpec.describe Rescheduling, type: :model do
   end
 
   describe '.on' do
-    let(:period) { create(:period) }
+    let(:periods) { create_list(:period, 2) }
     let(:today) { Time.local(2015, 1, 19, 12, 0, 0) }
-    let(:today_date_period) do
-      create(:date_period, period: period, taken_on: today)
+    let(:today_date_period_1) do
+      create(:date_period, period: periods[0], taken_on: today)
+    end
+    let(:today_date_period_2) do
+      create(:date_period, period: periods[1], taken_on: today)
     end
     let(:yesterday_date_period) do
-      create(:date_period, period: period, taken_on: today.yesterday)
+      create(:date_period, period: periods[0], taken_on: today.yesterday)
     end
     let(:lecture) { create(:lecture, :with_term, :with_klass) }
     let!(:reschedulings) do
@@ -117,22 +120,27 @@ RSpec.describe Rescheduling, type: :model do
                lecture: lecture),
         create(:rescheduling,
                category: :cancel,
-               before_date_period: today_date_period,
+               before_date_period: today_date_period_1,
                after_date_period: nil,
+               lecture: lecture),
+        create(:rescheduling,
+               category: :extra,
+               before_date_period: nil,
+               after_date_period: today_date_period_2,
                lecture: lecture),
         create(:rescheduling,
                category: :change,
                before_date_period: yesterday_date_period,
-               after_date_period: today_date_period,
+               after_date_period: today_date_period_1,
                lecture: lecture)
       ]
     end
-    subject { Rescheduling.on(today_date_period) }
+    subject { Rescheduling.on(today) }
     it 'returns reschedulings that will be taken on the date' do
-      is_expected.to contain_exactly(*reschedulings[1, 2])
+      is_expected.to contain_exactly(*reschedulings[1, 3])
     end
-    it 'returns 2 reschedulings' do
-      expect(subject.size).to eq 2
+    it 'returns 3 reschedulings' do
+      expect(subject.size).to eq 3
     end
   end
 

@@ -49,10 +49,15 @@ class Rescheduling < ActiveRecord::Base
       .where(cond1.or(cond2.and cond3))
   end
 
-  scope :on, -> (date_period) do
-    cond1 = before_date_period_arel_table[:taken_on].eq(date_period.taken_on)
-    cond2 = after_date_period_arel_table[:taken_on].eq(date_period.taken_on)
-    join_before_date_period.join_after_date_period.where(cond1.or cond2)
+  scope :on, -> (date) do
+    before = before_date_period_arel_table
+    after = after_date_period_arel_table
+    cond1 = before[:taken_on].gteq(date.beginning_of_day)
+    cond2 = before[:taken_on].lteq(date.end_of_day)
+    cond3 = after[:taken_on].gteq(date.beginning_of_day)
+    cond4 = after[:taken_on].lteq(date.end_of_day)
+    join_before_date_period.join_after_date_period
+      .where((cond1.and cond2).or(cond3.and cond4))
   end
 
   include Garage::Representer
