@@ -21,8 +21,8 @@
 FactoryGirl.define do
   factory :rescheduling do
     lecture
-    before_date_period { date_period }
-    after_date_period { date_period }
+    period
+    taken_on { Date.today }
     category 'change'
   end
 end
