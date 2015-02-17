@@ -2,13 +2,20 @@
 #
 # Table name: reschedulings
 #
-#  id                    :integer          not null, primary key
-#  lecture_id            :integer
-#  before_date_period_id :integer
-#  after_date_period_id  :integer
-#  category              :integer
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
+#  id         :integer          not null, primary key
+#  lecture_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  category   :integer
+#  period_id  :integer
+#  taken_on   :date
+#
+# Indexes
+#
+#  index_reschedulings_on_category    (category)
+#  index_reschedulings_on_lecture_id  (lecture_id)
+#  index_reschedulings_on_period_id   (period_id)
+#  index_reschedulings_on_taken_on    (taken_on)
 #
 
 FactoryGirl.define do
