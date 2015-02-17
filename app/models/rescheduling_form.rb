@@ -14,7 +14,6 @@ class ReschedulingForm
   delegate :klass, to: :lecture
 
   validates :category, presence: true
-  validates_with ReschedulingValidator
 
   def save
     ActiveRecord::Base.transaction do
