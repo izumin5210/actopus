@@ -26,12 +26,13 @@ RSpec.describe Rescheduling, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:lecture) }
-    it { is_expected.to belong_to(:before_date_period).class_name('DatePeriod') }
-    it { is_expected.to belong_to(:after_date_period).class_name('DatePeriod') }
+    it { is_expected.to belong_to(:period) }
   end
 
   describe 'validates' do
     it { is_expected.to validate_presence_of(:lecture_id) }
+    it { is_expected.to validate_presence_of(:period_id) }
+    it { is_expected.to validate_presence_of(:taken_on) }
     it { is_expected.to validate_presence_of(:category) }
   end
 

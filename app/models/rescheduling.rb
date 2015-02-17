@@ -20,12 +20,12 @@
 
 class Rescheduling < ActiveRecord::Base
   belongs_to :lecture
-  belongs_to :before_date_period, class_name: 'DatePeriod'
-  belongs_to :after_date_period, class_name: 'DatePeriod'
+  belongs_to :period
 
   validates :lecture_id, presence: true
+  validates :period_id, presence: true
+  validates :taken_on, presence: true
   validates :category, presence: true
-  validates_with ReschedulingValidator
 
   delegate :klass, :lecturers, to: :lecture
 
