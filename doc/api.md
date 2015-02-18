@@ -194,12 +194,13 @@ Content-Type: application/json
  * Type: string
 * lecture
  * Type: object
-* before_period
+* period
  * the preriod that lecture has taken
  * Type: object
-* after_period
- * the preriod that lecture has taken
- * Type: object
+* taken_on
+ * date when the period taken
+ * Example: `"2014-12-10"`
+ * Type: string
 
 ### GET /api/v1/reschedulings
 List existing reschedulings.
@@ -235,16 +236,11 @@ Content-Type: application/json
       ],
       "code": 2014121002101231110200
     },
-    "before_period": {
+    "period": {
       "start_time": "09:00:00+09:00",
-      "end_time": "10:30:00+09:00",
-      "taken_on": "2014-12-10"
+      "end_time": "10:30:00+09:00"
     },
-    "after_period": {
-      "start_time": "09:00:00+09:00",
-      "end_time": "10:30:00+09:00",
-      "taken_on": "2014-12-10"
-    }
+    "taken_on": "2014-12-10"
   }
 ]
 ```

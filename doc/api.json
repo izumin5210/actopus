@@ -253,15 +253,15 @@
               "type": [
                 "string"
               ]
-            },
-            "taken_on": {
-              "description": "date when the period taken",
-              "example": "2014-12-10",
-              "type": [
-                "string"
-              ]
             }
           }
+        },
+        "taken_on": {
+          "description": "date when the period taken",
+          "example": "2014-12-10",
+          "type": [
+            "string"
+          ]
         }
       },
       "links": [
@@ -283,11 +283,11 @@
         "lecture": {
           "$ref": "#/definitions/lecture"
         },
-        "before_period": {
+        "period": {
           "$ref": "#/definitions/rescheduling/definitions/period"
         },
-        "after_period": {
-          "$ref": "#/definitions/rescheduling/definitions/period"
+        "taken_on": {
+          "$ref": "#/definitions/rescheduling/definitions/taken_on"
         }
       },
       "type": [

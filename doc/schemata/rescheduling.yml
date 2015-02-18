@@ -29,11 +29,11 @@ definitions:
         example: '10:30:00+09:00'
         type:
         - string
-      taken_on:
-        description: date when the period taken
-        example: '2014-12-10'
-        type:
-        - string
+  taken_on:
+    description: date when the period taken
+    example: '2014-12-10'
+    type:
+    - string
 links:
 - description: List existing reschedulings.
   href: "/api/v1/reschedulings"
@@ -47,10 +47,10 @@ properties:
     "$ref": "/schemata/rescheduling#/definitions/category"
   lecture:
     "$ref": "/schemata/lecture"
-  before_period:
+  period:
     "$ref": "/schemata/rescheduling#/definitions/period"
-  after_period:
-    "$ref": "/schemata/rescheduling#/definitions/period"
+  taken_on:
+    "$ref": "/schemata/rescheduling#/definitions/taken_on"
 type:
 - object
 id: schemata/rescheduling
