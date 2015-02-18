@@ -7,6 +7,8 @@ A schema for ANCT reschedulings API
 * [Lecture](#lecture)
  * [GET /api/v1/lectures/:id](#get-apiv1lecturesid)
  * [GET /api/v1/lectures](#get-apiv1lectures)
+* [Lecturer](#lecturer)
+* [Period](#period)
 * [Rescheduling](#rescheduling)
  * [GET /api/v1/reschedulings](#get-apiv1reschedulings)
 
@@ -106,8 +108,10 @@ Content-Type: application/json
  * Example: `"overseasStudent"`
  * Type: string
 * periods
+ * preriods that lecture has taken
  * Type: array
 * lecturers
+ * lecturers that lecture has lectured
  * Type: array
 * code
  * the unique code of lecture
@@ -180,6 +184,34 @@ Content-Type: application/json
 ]
 ```
 
+## Lecturer
+
+
+### Properties
+* id
+ * unique identifier of lecturer
+ * Example: `1`
+ * Type: string
+* name
+ * name of the lecturer
+ * Example: `"新井 イスマイル"`
+ * Type: string
+
+## Period
+
+
+### Properties
+* start_time
+ * time when the period start
+ * Example: `"09:00:00+09:00"`
+ * Type: string
+ * Pattern: `/^[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$/`
+* end_time
+ * time when the period end
+ * Example: `"10:30:00+09:00"`
+ * Type: string
+ * Pattern: `/^[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$/`
+
 ## Rescheduling
 
 
@@ -189,18 +221,15 @@ Content-Type: application/json
  * Example: `1`
  * Type: integer
 * category
- * variations of reschedulings(change, cancel, extra)
- * Example: `"change"`
+ * variations of reschedulings
+ * Example: `"addition"`
  * Type: string
+ * Pattern: `/^(addition|cancel)$/`
 * lecture
  * Type: object
 * period
- * the preriod that lecture has taken
+ * the preriod that the rescheduling has taken
  * Type: object
-* taken_on
- * date when the period taken
- * Example: `"2014-12-10"`
- * Type: string
 
 ### GET /api/v1/reschedulings
 List existing reschedulings.
@@ -216,7 +245,7 @@ Content-Type: application/json
 [
   {
     "id": 1,
-    "category": "change",
+    "category": "addition",
     "lecture": {
       "id": 1,
       "name": "プログラミング I",
@@ -238,9 +267,9 @@ Content-Type: application/json
     },
     "period": {
       "start_time": "09:00:00+09:00",
-      "end_time": "10:30:00+09:00"
-    },
-    "taken_on": "2014-12-10"
+      "end_time": "10:30:00+09:00",
+      "taken_on": "2014-12-10"
+    }
   }
 ]
 ```

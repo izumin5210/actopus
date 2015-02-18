@@ -10,30 +10,25 @@ definitions:
   identity:
     "$ref": "/schemata/rescheduling#/definitions/id"
   category:
-    description: variations of reschedulings(change, cancel, extra)
-    example: change
+    description: variations of reschedulings
+    example: addition
     type:
     - string
+    pattern: "^(addition|cancel)$"
+    enum:
+    - cancel
+    - addition
   period:
-    description: the preriod that lecture has taken
+    description: the preriod that the rescheduling has taken
     type:
     - object
     properties:
       start_time:
-        description: time when the period start
-        example: '09:00:00+09:00'
-        type:
-        - string
+        "$ref": "/schemata/period#/definitions/start_time"
       end_time:
-        description: time when the period end
-        example: '10:30:00+09:00'
-        type:
-        - string
-  taken_on:
-    description: date when the period taken
-    example: '2014-12-10'
-    type:
-    - string
+        "$ref": "/schemata/period#/definitions/end_time"
+      taken_on:
+        "$ref": "/schemata/period#/definitions/taken_on"
 links:
 - description: List existing reschedulings.
   href: "/api/v1/reschedulings"
@@ -49,8 +44,6 @@ properties:
     "$ref": "/schemata/lecture"
   period:
     "$ref": "/schemata/rescheduling#/definitions/period"
-  taken_on:
-    "$ref": "/schemata/rescheduling#/definitions/taken_on"
 type:
 - object
 id: schemata/rescheduling

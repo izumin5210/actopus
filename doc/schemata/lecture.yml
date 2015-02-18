@@ -26,30 +26,13 @@ definitions:
     type:
     - string
   period:
-    description: the preriod that lecture has taken
-    type:
-    - object
     properties:
       start_time:
-        description: time when the period start
-        example: '09:00:00+09:00'
-        type:
-        - string
+        "$ref": "/schemata/period#/definitions/start_time"
       end_time:
-        description: time when the period end
-        example: '10:30:00+09:00'
-        type:
-        - string
+        "$ref": "/schemata/period#/definitions/end_time"
       wday:
-        description: wday when the period taken
-        example: 1
-        type:
-        - integer
-  lecturer:
-    description: name of the lecture
-    example: 新井 イスマイル
-    type:
-    - string
+        "$ref": "/schemata/period#/definitions/wday"
 links:
 - description: Info for existing lectures.
   href: "/api/v1/lectures/{(%23%2Fdefinitions%2Flecture%2Fdefinitions%2Fid)}"
@@ -76,12 +59,14 @@ properties:
     "$ref": "/schemata/lecture#/definitions/special_target"
   periods:
     type: array
+    description: preriods that lecture has taken
     items:
       "$ref": "/schemata/lecture#/definitions/period"
   lecturers:
     type: array
+    description: lecturers that lecture has lectured
     items:
-      "$ref": "/schemata/lecture#/definitions/lecturer"
+      "$ref": "/schemata/lecturer#/definitions/name"
   code:
     "$ref": "/schemata/lecture#/definitions/code"
 type:

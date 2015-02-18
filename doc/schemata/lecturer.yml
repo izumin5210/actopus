@@ -1,0 +1,24 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Lecturer
+definitions:
+  id:
+    description: unique identifier of lecturer
+    example: 1
+    type:
+    - string
+  identity:
+    "$ref": "/schemata/lecturer#/definitions/id"
+  name:
+    description: name of the lecturer
+    example: 新井 イスマイル
+    type:
+    - string
+properties:
+  id:
+    "$ref": "/schemata/lecturer#/definitions/id"
+  name:
+    "$ref": "/schemata/lecturer#/definitions/name"
+type:
+- object
+id: schemata/lecturer
