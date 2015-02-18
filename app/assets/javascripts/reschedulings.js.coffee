@@ -1,6 +1,8 @@
 $ ->
   $lectures = $('.cell')
+  $btnExtraModal = $('#btn-extra-modal')
   $modal = $('#reschedulings-modal')
+  $extraModal = $('#extra-modal')
 
   showModal = ($lecture) ->
     lecture = $lecture.data('lecture')
@@ -22,4 +24,13 @@ $ ->
   $lectures.on 'click', (e) ->
     $lecture = $(e.target)
     showModal($lecture)
+    false
+
+  $lectures.on 'click', (e) ->
+    $lecture = $(e.target)
+    showModal($lecture)
+    false
+
+  $btnExtraModal.on 'click', (e) ->
+    $extraModal.modal('show')
     false

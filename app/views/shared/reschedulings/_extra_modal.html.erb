@@ -1,7 +1,7 @@
-<div class="modal fade" id="reschedulings-modal">
+<div class="modal fade" id="extra-modal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <%= form_for @form, url: staffs_reschedulings_path do |f| %>
+      <%= form_for @rescheduling, url: staffs_reschedulings_path do |f| %>
         <div class="modal-header">
           <h4 class="modal-title">補講を登録</h4>
         </div>
@@ -11,13 +11,19 @@
             <dd id="rescheduled-lecture"></dd>
             <dt><%= "#{Klass.model_name.human}" %></dt>
             <dd id="rescheduled-class"></dd>
+            <dt>対象講義</dt>
+            <dd>
+              <div class="form-group">
+                <%= f.collection_select :lecture_id, @lectures, :id, :name, {}, class: 'form-control' %>
+              </div>
+            </dd>
             <dt>補講日時</dt>
             <dd>
               <div class="form-group">
-                <%= f.date_field :after_date, class: 'form-control' %>
+                <%= f.date_field :taken_on, class: 'form-control' %>
               </div>
               <div class="form-group">
-                <%= f.collection_select :after_period_id, @periods, :id, :to_display, {}, class: 'form-control' %>
+                <%= f.collection_select :period_id, @periods, :id, :to_display, {}, class: 'form-control' %>
               </div>
             </dd>
             <dt>担当教員</dt>
@@ -27,10 +33,9 @@
           </dl>
         </div>
         <div class="modal-footer">
-          <%= f.hidden_field :category %>
-          <%= f.hidden_field :lecture_id %>
+          <%= f.hidden_field :category, value: 'extra' %>
           <%= button_tag '閉じる', class: 'btn btn-default', data: { dismiss: :modal } %>
-          <%= button_tag t("enums.rescheduling.category.#{@form.category}"), class: 'btn btn-default' %>
+          <%= button_tag t("enums.rescheduling.category.extra"), class: 'btn btn-default' %>
         </div>
       <% end %>
     </div>

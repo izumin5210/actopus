@@ -5,5 +5,7 @@
 </ul>
 
 <h3><%= fa_icon("exchange fw") { |i| "#{i} #{@klass.name} の時間割を変更する" } %></h3>
+<p><a class="btn btn-default" href="#" id="btn-extra-modal"><%= fa_icon('plus') { |i| "#{i} 補講を登録" } %></a></p>
 <%= render partial: 'shared/timeline/timeline'  %>
 <%= render partial: "shared/reschedulings/cancel_modal"  %>
+<%= render partial: "shared/reschedulings/extra_modal"  %>
