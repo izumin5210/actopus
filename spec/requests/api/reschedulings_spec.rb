@@ -2,10 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'rescheduling resources', type: :request do
   let(:rescheduling_structure) do
-    { 'category' => /extra|cancel|change/,
-      'taken_on' => /\A\d{4}-\d{2}-\d{2}\Z/,
+    { 'category' => /addition|cancel/,
       'lecture' => a_kind_of(Hash),
-      'period' => a_kind_of(Hash)
+      'period' => {
+        'start_time' => /\A\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}\Z/,
+        'end_time' => /\A\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}\Z/,
+        'taken_on' => /\A\d{4}-\d{2}-\d{2}\Z/
+      }
     }
   end
 
