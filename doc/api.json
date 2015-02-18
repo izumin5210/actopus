@@ -344,6 +344,72 @@
       "type": [
         "object"
       ]
+    },
+    "timetable": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Timetable",
+      "definitions": {
+        "status": {
+          "description": "status of the lecture",
+          "example": "",
+          "type": [
+            "string"
+          ],
+          "pattern": "^(addition|cancel)?$",
+          "enum": [
+            "",
+            "cancel",
+            "addition"
+          ]
+        },
+        "period": {
+          "description": "the preriod that the lecture has taken",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "start_time": {
+              "$ref": "#/definitions/period/definitions/start_time"
+            },
+            "end_time": {
+              "$ref": "#/definitions/period/definitions/end_time"
+            },
+            "taken_on": {
+              "$ref": "#/definitions/period/definitions/taken_on"
+            }
+          }
+        }
+      },
+      "links": [
+        {
+          "description": "List of the class' timetables.",
+          "href": "/api/v1/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}/timetable",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        },
+        {
+          "description": "List of the lecturer's timetable.",
+          "href": "/api/v1/lecturers/{(%23%2Fdefinitions%2Flecturer%2Fdefinitions%2Fid)}/timetable",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/timetable/definitions/status"
+        },
+        "lecture": {
+          "$ref": "#/definitions/lecture"
+        },
+        "period": {
+          "$ref": "#/definitions/timetable/definitions/period"
+        }
+      },
+      "type": [
+        "object"
+      ]
     }
   },
   "properties": {
@@ -361,6 +427,9 @@
     },
     "rescheduling": {
       "$ref": "#/definitions/rescheduling"
+    },
+    "timetable": {
+      "$ref": "#/definitions/timetable"
     }
   },
   "type": [

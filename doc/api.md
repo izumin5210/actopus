@@ -11,6 +11,9 @@ A schema for ANCT reschedulings API
 * [Period](#period)
 * [Rescheduling](#rescheduling)
  * [GET /api/v1/reschedulings](#get-apiv1reschedulings)
+* [Timetable](#timetable)
+ * [GET /api/v1/classes/:id/timetable](#get-apiv1classesidtimetable)
+ * [GET /api/v1/lecturers/:id/timetable](#get-apiv1lecturersidtimetable)
 
 ## Class
 
@@ -246,6 +249,105 @@ Content-Type: application/json
   {
     "id": 1,
     "category": "addition",
+    "lecture": {
+      "id": 1,
+      "name": "プログラミング I",
+      "grade": 1,
+      "department": "電気情報工学科",
+      "course": "情報工学コース",
+      "special_target": "overseasStudent",
+      "periods": [
+        {
+          "start_time": "09:00:00+09:00",
+          "end_time": "10:30:00+09:00",
+          "wday": 1
+        }
+      ],
+      "lecturers": [
+        "新井 イスマイル"
+      ],
+      "code": 2014121002101231110200
+    },
+    "period": {
+      "start_time": "09:00:00+09:00",
+      "end_time": "10:30:00+09:00",
+      "taken_on": "2014-12-10"
+    }
+  }
+]
+```
+
+## Timetable
+
+
+### Properties
+* status
+ * status of the lecture
+ * Example: `""`
+ * Type: string
+ * Pattern: `/^(addition|cancel)?$/`
+* lecture
+ * Type: object
+* period
+ * the preriod that the lecture has taken
+ * Type: object
+
+### GET /api/v1/classes/:id/timetable
+List of the class' timetables.
+
+```
+GET /api/v1/classes/1e/timetable HTTP/1.1
+Host: 
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+[
+  {
+    "status": "",
+    "lecture": {
+      "id": 1,
+      "name": "プログラミング I",
+      "grade": 1,
+      "department": "電気情報工学科",
+      "course": "情報工学コース",
+      "special_target": "overseasStudent",
+      "periods": [
+        {
+          "start_time": "09:00:00+09:00",
+          "end_time": "10:30:00+09:00",
+          "wday": 1
+        }
+      ],
+      "lecturers": [
+        "新井 イスマイル"
+      ],
+      "code": 2014121002101231110200
+    },
+    "period": {
+      "start_time": "09:00:00+09:00",
+      "end_time": "10:30:00+09:00",
+      "taken_on": "2014-12-10"
+    }
+  }
+]
+```
+
+### GET /api/v1/lecturers/:id/timetable
+List of the lecturer's timetable.
+
+```
+GET /api/v1/lecturers/1/timetable HTTP/1.1
+Host: 
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+[
+  {
+    "status": "",
     "lecture": {
       "id": 1,
       "name": "プログラミング I",

@@ -1,0 +1,46 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Timetable
+definitions:
+  status:
+    description: status of the lecture
+    example: ""
+    type:
+    - string
+    pattern: "^(addition|cancel)?$"
+    enum:
+    - ""
+    - cancel
+    - addition
+  period:
+    description: the preriod that the lecture has taken
+    type:
+    - object
+    properties:
+      start_time:
+        "$ref": "/schemata/period#/definitions/start_time"
+      end_time:
+        "$ref": "/schemata/period#/definitions/end_time"
+      taken_on:
+        "$ref": "/schemata/period#/definitions/taken_on"
+links:
+- description: List of the class' timetables.
+  href: "/api/v1/classes/{(%2Fschemata%2Fclass%23%2Fdefinitions%2Fid)}/timetable"
+  method: GET
+  rel: instances
+  title: List
+- description: List of the lecturer's timetable.
+  href: "/api/v1/lecturers/{(%2Fschemata%2Flecturer%23%2Fdefinitions%2Fid)}/timetable"
+  method: GET
+  rel: instances
+  title: List
+properties:
+  status:
+    "$ref": "/schemata/timetable#/definitions/status"
+  lecture:
+    "$ref": "/schemata/lecture"
+  period:
+    "$ref": "/schemata/timetable#/definitions/period"
+type:
+- object
+id: schemata/timetable
