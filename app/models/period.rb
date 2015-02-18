@@ -25,6 +25,11 @@ class Period < ActiveRecord::Base
   validates :start_time, presence: true, uniqueness: { scope: [:end_time] }
   validates :end_time, presence: true
 
+  include Garage::Representer
+
+  property :start_time
+  property :end_time
+
   include Comparable
 
   def is?(params)

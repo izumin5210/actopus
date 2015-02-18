@@ -37,13 +37,9 @@ class Rescheduling < ActiveRecord::Base
   include Garage::Authorizable
 
   property :category
+  property :taken_on_str, as: :taken_on
   property :lecture
-  property :before_date_period,
-           as: :before_period,
-           if: -> (record, _) { record.before_date_period.present? }
-  property :after_date_period,
-           as: :after_period,
-           if: -> (record, _) { record.after_date_period.present? }
+  property :period
 
   def self.build_permissions(perms, other, target)
     perms.permits! :read
@@ -51,5 +47,9 @@ class Rescheduling < ActiveRecord::Base
 
   def build_permissions(perms, other)
     perms.permits! :read
+  end
+
+  def taken_on_str
+    taken_on.to_s
   end
 end

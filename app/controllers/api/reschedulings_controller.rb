@@ -4,13 +4,14 @@ class Api::ReschedulingsController < Api::BaseController
 
   def require_resources
     @resources = Rescheduling.available.includes(
-        lecture: [
-          { klass: [:department, :course] },
-          { wday_periods: [:period] },
-          :lecturers
-        ],
-        before_date_period: [:period],
-        after_date_period: [:period]
+        { lecture:
+            [
+              { klass: [:department, :course] },
+              { wday_periods: [:period] },
+              :lecturers
+            ]
+        },
+        :period
       )
   end
 end
