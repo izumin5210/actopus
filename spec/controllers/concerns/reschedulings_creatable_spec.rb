@@ -21,7 +21,7 @@ RSpec.describe ReschedulingsCreatable, type: :controller do
 
     context 'with no params' do
       it 'assigns a new ReschedulingForm to @form' do
-        expect(assigns(:form)).to be_a(ReschedulingForm)
+        expect(assigns(:rescheduling)).to be_a_new(Rescheduling)
       end
     end
   end
