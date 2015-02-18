@@ -3,10 +3,10 @@ class Staffs::ReschedulingsController < Staffs::BaseController
   end
 
   def create
-    @form = ReschedulingForm.new(rescheduling_form_params)
-    if @form.save
-      redirect_to timetable_staffs_klass_path(@form.rescheduling.lecture.klass_id),
-        notice: "#{@form.before_date} #{@form.lecture.name}を変更しました"
+    @rescheduling = Rescheduling.new(rescheduling_params)
+    if @rescheduling.save
+      redirect_to new_staffs_rescheduling_path,
+        notice: "#{@rescheduling.taken_on} #{@rescheduling.lecture.name}を変更しました"
     else
       redirect_to new_staffs_rescheduling_path, alert: '時間割変更の作成に失敗しました'
     end
@@ -14,9 +14,8 @@ class Staffs::ReschedulingsController < Staffs::BaseController
 
   private
 
-  def rescheduling_form_params
-    params.require(:rescheduling_form).permit(
-      :category, :lecture_id,
-      :before_period_id, :before_date, :after_period_id, :after_date)
+  def rescheduling_params
+    params.require(:rescheduling).permit(
+      :category, :taken_on, :lecture_id, :period_id)
   end
 end

@@ -12,22 +12,18 @@ RSpec.describe Staffs::ReschedulingsController, type: :controller do
 
   describe 'POST create' do
     let(:lecture) { create(:lecture, :with_term, :with_klass) }
-    let(:before_period) { create(:period) }
-    let(:after_period) { create(:period) }
-    let(:before_date) { Date.new(2015, 1, 19) }
-    let(:after_date) { Date.new(2015, 1, 22) }
-    before { Timecop.freeze(Time.local(2015, 1, 19, 12, 0, 0)) }
+    let(:period) { create(:period) }
+    let(:date) { Date.new(2015, 1, 19) }
+    before { Timecop.freeze(date - 10.days) }
     after { Timecop.return }
     let(:params) do
-      { category: 'change',
+      { category: 'cancel',
         lecture_id: lecture.id,
-        before_period_id: before_period.id,
-        after_period_id: after_period.id,
-        before_date: before_date,
-        after_date: after_date
+        period_id: period.id,
+        taken_on: date
       }
     end
-    subject { post :create, rescheduling_form: params }
+    subject { post :create, rescheduling: params }
 
     it 'returns http found' do
       subject
