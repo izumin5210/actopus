@@ -61,10 +61,10 @@ RSpec.describe Rescheduling, type: :model do
                category: :cancel,
                period: period, taken_on: today, lecture: lecture),
         create(:rescheduling,
-               category: :extra,
+               category: :addition,
                period: period, taken_on: today, lecture: lecture),
         create(:rescheduling,
-               category: :extra,
+               category: :addition,
                period: period, taken_on: today.tomorrow, lecture: lecture)
       ]
     end
