@@ -295,8 +295,14 @@ Content-Type: application/json
 ### GET /api/v1/classes/:id/timetable
 List of the class' timetables.
 
+* date
+ * the date that timetable started on
+ * Example: `"2014-12-10"`
+ * Type: string
+ * Pattern: `/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/`
+
 ```
-GET /api/v1/classes/1e/timetable HTTP/1.1
+GET /api/v1/classes/1e/timetable?date=2014-12-10 HTTP/1.1
 Host: 
 ```
 
@@ -337,8 +343,14 @@ Content-Type: application/json
 ### GET /api/v1/lecturers/:id/timetable
 List of the lecturer's timetable.
 
+* date
+ * the date that timetable started on
+ * Example: `"2014-12-10"`
+ * Type: string
+ * Pattern: `/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/`
+
 ```
-GET /api/v1/lecturers/1/timetable HTTP/1.1
+GET /api/v1/lecturers/1/timetable?date=2014-12-10 HTTP/1.1
 Host: 
 ```
 

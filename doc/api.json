@@ -378,6 +378,14 @@
               "$ref": "#/definitions/period/definitions/taken_on"
             }
           }
+        },
+        "date": {
+          "description": "the date that timetable started on",
+          "example": "2014-12-10",
+          "type": [
+            "string"
+          ],
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
         }
       },
       "links": [
@@ -386,14 +394,34 @@
           "href": "/api/v1/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}/timetable",
           "method": "GET",
           "rel": "instances",
-          "title": "List"
+          "title": "List",
+          "schema": {
+            "properties": {
+              "date": {
+                "$ref": "#/definitions/timetable/definitions/date"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          }
         },
         {
           "description": "List of the lecturer's timetable.",
           "href": "/api/v1/lecturers/{(%23%2Fdefinitions%2Flecturer%2Fdefinitions%2Fid)}/timetable",
           "method": "GET",
           "rel": "instances",
-          "title": "List"
+          "title": "List",
+          "schema": {
+            "properties": {
+              "date": {
+                "$ref": "#/definitions/timetable/definitions/date"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          }
         }
       ],
       "properties": {
