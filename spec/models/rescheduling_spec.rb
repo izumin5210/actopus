@@ -58,14 +58,11 @@ RSpec.describe Rescheduling, type: :model do
     let(:lecture) { create(:lecture, :with_term, :with_klass) }
     let!(:reschedulings) do
       [
-        create(:rescheduling,
-               category: :cancel,
+        create(:rescheduling, :cancel,
                period: period, taken_on: today.yesterday, lecture: lecture),
-        create(:rescheduling,
-               category: :cancel,
+        create(:rescheduling, :cancel,
                period: period, taken_on: today, lecture: lecture),
-        create(:rescheduling,
-               category: :addition,
+        create(:rescheduling, :addition,
                period: period, taken_on: today.tomorrow, lecture: lecture)
       ]
     end

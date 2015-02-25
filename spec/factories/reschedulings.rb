@@ -24,5 +24,13 @@ FactoryGirl.define do
     period
     taken_on { Date.today }
     category 'change'
+
+    trait :addition do
+      category 'addition'
+    end
+
+    trait :cancel do
+      category 'cancel'
+    end
   end
 end

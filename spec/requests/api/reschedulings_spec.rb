@@ -21,9 +21,8 @@ RSpec.describe 'rescheduling resources', type: :request do
   end
   let(:taken_on) { Date.tomorrow }
   let!(:rescheduling) do
-    create(:rescheduling,
-           category: 'cancel', taken_on: taken_on,
-           lecture: lecture, period: period)
+    create(:rescheduling, :cancel,
+           taken_on: taken_on, lecture: lecture, period: period)
   end
   before { Timecop.freeze(taken_on - 10.days) }
   after { Timecop.return }
