@@ -22,7 +22,8 @@ class Rescheduling < ActiveRecord::Base
   belongs_to :lecture
   belongs_to :period
 
-  validates :lecture_id, presence: true
+  validates :lecture_id,
+            presence: true, uniqueness: { scope: %i(period_id taken_on) }
   validates :period_id, presence: true
   validates :taken_on, presence: true
   validates :category, presence: true

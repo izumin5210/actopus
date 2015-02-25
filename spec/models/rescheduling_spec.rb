@@ -34,6 +34,10 @@ RSpec.describe Rescheduling, type: :model do
     it { is_expected.to validate_presence_of(:period_id) }
     it { is_expected.to validate_presence_of(:taken_on) }
     it { is_expected.to validate_presence_of(:category) }
+    it do
+      is_expected.to(
+        validate_uniqueness_of(:lecture_id).scoped_to(:period_id, :taken_on))
+    end
   end
 
   describe 'delegations' do
@@ -62,17 +66,15 @@ RSpec.describe Rescheduling, type: :model do
                period: period, taken_on: today, lecture: lecture),
         create(:rescheduling,
                category: :addition,
-               period: period, taken_on: today, lecture: lecture),
-        create(:rescheduling,
-               category: :addition,
                period: period, taken_on: today.tomorrow, lecture: lecture)
       ]
     end
     before { Timecop.freeze(today) }
     subject { Rescheduling.available }
     after { Timecop.return }
+
     it 'returns only available reschedulings' do
-      is_expected.to match_array(reschedulings[1, 3])
+      is_expected.to match_array(reschedulings[1, 2])
     end
   end
 end
