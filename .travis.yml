@@ -1,8 +1,11 @@
 language: ruby
 rvm:
-  - 2.2.0
+- 2.2.0
 cache: bundler
-bundler_args: --without production --deployment
+bundler_args: "--without production --deployment"
 before_install:
-  - gem install bundler --pre
+- gem install bundler --pre
 script: bundle exec rspec
+notifications:
+  slack:
+    secure: V1K9VdHy0F3Hm3aaBoSzNxcMd31pfhaB6b2mbiaqyDygpoHcd1mYHYlrlSL41Zn2OJslPwrZYAIXlR9dk8p8dnYThsfqmKGzjCiG1Be6v0R9H5lmDnPjCLFDFTFlcMSBPPDv9XJjkdySH8EdMvyQhQsfFwt01HMlwONq/bDCc+A=
