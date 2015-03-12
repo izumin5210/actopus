@@ -20,4 +20,6 @@ class Lecturer < ActiveRecord::Base
   include Garage::Representer
 
   property :name
+
+  include LectureSchedulable
 end
