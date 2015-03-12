@@ -24,13 +24,13 @@
         </dl>
       </div>
       <div class="modal-footer">
-        <%= form_for @form, url: staffs_reschedulings_path do |f| %>
-          <%= f.hidden_field :category %>
+        <%= form_for @rescheduling, url: staffs_reschedulings_path do |f| %>
+          <%= f.hidden_field :category, value: 'cancel' %>
           <%= f.hidden_field :lecture_id %>
-          <%= f.hidden_field :before_period_id %>
-          <%= f.hidden_field :before_date %>
+          <%= f.hidden_field :period_id %>
+          <%= f.hidden_field :taken_on %>
           <%= button_tag '閉じる', class: 'btn btn-default', data: { dismiss: :modal } %>
-          <%= button_tag t("enums.rescheduling.category.#{@form.category}"), class: 'btn btn-default' %>
+          <%= button_tag t("enums.rescheduling.category.cancel"), class: 'btn btn-default' %>
         <% end %>
       </div>
     </div>

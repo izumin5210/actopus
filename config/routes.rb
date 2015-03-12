@@ -29,10 +29,8 @@ Rails.application.routes.draw do
     resources :lecturers, only: %i(index), concerns: :timetable
     resources :reschedulings, only: %i(new create)
     namespace :reschedulings do
-      scope ':category' do
-        resources :klasses, only: %(index), path: :classes, concerns: :timetable
-        resources :lecturers, only: %(index), concerns: :timetable
-      end
+      resources :klasses, only: %(index), path: :classes, concerns: :timetable
+      resources :lecturers, only: %(index), concerns: :timetable
     end
     resources :staffs, only: %i(index create) do
       collection { post :invite }

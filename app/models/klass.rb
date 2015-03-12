@@ -59,4 +59,6 @@ class Klass < ActiveRecord::Base
   def build_permissions(perms, other)
     perms.permits! :read
   end
+
+  include LectureSchedulable
 end

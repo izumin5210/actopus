@@ -7,8 +7,13 @@ A schema for ANCT reschedulings API
 * [Lecture](#lecture)
  * [GET /api/v1/lectures/:id](#get-apiv1lecturesid)
  * [GET /api/v1/lectures](#get-apiv1lectures)
+* [Lecturer](#lecturer)
+* [Period](#period)
 * [Rescheduling](#rescheduling)
  * [GET /api/v1/reschedulings](#get-apiv1reschedulings)
+* [Timetable](#timetable)
+ * [GET /api/v1/classes/:id/timetable](#get-apiv1classesidtimetable)
+ * [GET /api/v1/lecturers/:id/timetable](#get-apiv1lecturersidtimetable)
 
 ## Class
 
@@ -106,8 +111,10 @@ Content-Type: application/json
  * Example: `"overseasStudent"`
  * Type: string
 * periods
+ * preriods that lecture has taken
  * Type: array
 * lecturers
+ * lecturers that lecture has lectured
  * Type: array
 * code
  * the unique code of lecture
@@ -180,6 +187,34 @@ Content-Type: application/json
 ]
 ```
 
+## Lecturer
+
+
+### Properties
+* id
+ * unique identifier of lecturer
+ * Example: `1`
+ * Type: string
+* name
+ * name of the lecturer
+ * Example: `"新井 イスマイル"`
+ * Type: string
+
+## Period
+
+
+### Properties
+* start_time
+ * time when the period start
+ * Example: `"09:00:00+09:00"`
+ * Type: string
+ * Pattern: `/^[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$/`
+* end_time
+ * time when the period end
+ * Example: `"10:30:00+09:00"`
+ * Type: string
+ * Pattern: `/^[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$/`
+
 ## Rescheduling
 
 
@@ -189,16 +224,14 @@ Content-Type: application/json
  * Example: `1`
  * Type: integer
 * category
- * variations of reschedulings(change, cancel, extra)
- * Example: `"change"`
+ * variations of reschedulings
+ * Example: `"addition"`
  * Type: string
+ * Pattern: `/^(addition|cancel)$/`
 * lecture
  * Type: object
-* before_period
- * the preriod that lecture has taken
- * Type: object
-* after_period
- * the preriod that lecture has taken
+* period
+ * the preriod that the rescheduling has taken
  * Type: object
 
 ### GET /api/v1/reschedulings
@@ -215,7 +248,7 @@ Content-Type: application/json
 [
   {
     "id": 1,
-    "category": "change",
+    "category": "addition",
     "lecture": {
       "id": 1,
       "name": "プログラミング I",
@@ -235,12 +268,118 @@ Content-Type: application/json
       ],
       "code": 2014121002101231110200
     },
-    "before_period": {
+    "period": {
       "start_time": "09:00:00+09:00",
       "end_time": "10:30:00+09:00",
       "taken_on": "2014-12-10"
+    }
+  }
+]
+```
+
+## Timetable
+
+
+### Properties
+* status
+ * status of the lecture
+ * Example: `""`
+ * Type: string
+ * Pattern: `/^(addition|cancel)?$/`
+* lecture
+ * Type: object
+* period
+ * the preriod that the lecture has taken
+ * Type: object
+
+### GET /api/v1/classes/:id/timetable
+List of the class' timetables.
+
+* date
+ * the date that timetable started on
+ * Example: `"2014-12-10"`
+ * Type: string
+ * Pattern: `/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/`
+
+```
+GET /api/v1/classes/1e/timetable?date=2014-12-10 HTTP/1.1
+Host: 
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+[
+  {
+    "status": "",
+    "lecture": {
+      "id": 1,
+      "name": "プログラミング I",
+      "grade": 1,
+      "department": "電気情報工学科",
+      "course": "情報工学コース",
+      "special_target": "overseasStudent",
+      "periods": [
+        {
+          "start_time": "09:00:00+09:00",
+          "end_time": "10:30:00+09:00",
+          "wday": 1
+        }
+      ],
+      "lecturers": [
+        "新井 イスマイル"
+      ],
+      "code": 2014121002101231110200
     },
-    "after_period": {
+    "period": {
+      "start_time": "09:00:00+09:00",
+      "end_time": "10:30:00+09:00",
+      "taken_on": "2014-12-10"
+    }
+  }
+]
+```
+
+### GET /api/v1/lecturers/:id/timetable
+List of the lecturer's timetable.
+
+* date
+ * the date that timetable started on
+ * Example: `"2014-12-10"`
+ * Type: string
+ * Pattern: `/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/`
+
+```
+GET /api/v1/lecturers/1/timetable?date=2014-12-10 HTTP/1.1
+Host: 
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+[
+  {
+    "status": "",
+    "lecture": {
+      "id": 1,
+      "name": "プログラミング I",
+      "grade": 1,
+      "department": "電気情報工学科",
+      "course": "情報工学コース",
+      "special_target": "overseasStudent",
+      "periods": [
+        {
+          "start_time": "09:00:00+09:00",
+          "end_time": "10:30:00+09:00",
+          "wday": 1
+        }
+      ],
+      "lecturers": [
+        "新井 イスマイル"
+      ],
+      "code": 2014121002101231110200
+    },
+    "period": {
       "start_time": "09:00:00+09:00",
       "end_time": "10:30:00+09:00",
       "taken_on": "2014-12-10"

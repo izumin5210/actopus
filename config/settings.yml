@@ -24,6 +24,5 @@ lecture:
 
 rescheduling:
   category:
-    change: 0
+    addition: 0
     cancel: 20
-    extra: 40

@@ -88,4 +88,12 @@ RSpec.describe Period, type: :model do
       it { is_expected.to eq -1 }
     end
   end
+
+  describe '#taken_on=' do
+    let(:date) { Date.today }
+    it 'should convert the type of its taken_on' do
+      period.taken_on = date
+      expect(period.taken_on).to(be_a(String).and eq(date.to_s))
+    end
+  end
 end

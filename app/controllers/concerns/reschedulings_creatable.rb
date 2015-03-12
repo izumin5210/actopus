@@ -9,10 +9,7 @@ module ReschedulingsCreatable
   private
 
   def set_rescheduling
-    @form = ReschedulingForm.new(
-      category: params[:category], lecture_id: params[:lecture_id],
-      before_period_id: params[:before_period_id],
-      before_date: params[:before_date])
+    @rescheduling = Rescheduling.new
   end
 
   def set_periods

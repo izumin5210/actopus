@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126074648) do
+ActiveRecord::Schema.define(version: 20150217110950) do
 
   create_table "academic_terms", force: :cascade do |t|
     t.string   "name",         null: false
@@ -36,13 +36,6 @@ ActiveRecord::Schema.define(version: 20150126074648) do
 
   add_index "courses", ["abbreviation_name"], name: "index_courses_on_abbreviation_name", unique: true
   add_index "courses", ["name"], name: "index_courses_on_name", unique: true
-
-  create_table "date_periods", force: :cascade do |t|
-    t.integer  "period_id"
-    t.date     "taken_on"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "departments", force: :cascade do |t|
     t.string   "name",              null: false
@@ -170,12 +163,17 @@ ActiveRecord::Schema.define(version: 20150126074648) do
 
   create_table "reschedulings", force: :cascade do |t|
     t.integer  "lecture_id"
-    t.integer  "before_date_period_id"
-    t.integer  "after_date_period_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "category"
+    t.integer  "period_id"
+    t.date     "taken_on"
   end
+
+  add_index "reschedulings", ["category"], name: "index_reschedulings_on_category"
+  add_index "reschedulings", ["lecture_id"], name: "index_reschedulings_on_lecture_id"
+  add_index "reschedulings", ["period_id"], name: "index_reschedulings_on_period_id"
+  add_index "reschedulings", ["taken_on"], name: "index_reschedulings_on_taken_on"
 
   create_table "schedulings", force: :cascade do |t|
     t.integer  "lecture_id",     null: false

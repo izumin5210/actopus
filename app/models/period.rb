@@ -25,6 +25,14 @@ class Period < ActiveRecord::Base
   validates :start_time, presence: true, uniqueness: { scope: [:end_time] }
   validates :end_time, presence: true
 
+  attr_accessor :taken_on
+
+  include Garage::Representer
+
+  property :start_time
+  property :end_time
+  property :taken_on, if: -> (record, _) { record.taken_on.present? }
+
   include Comparable
 
   def is?(params)
@@ -38,5 +46,9 @@ class Period < ActiveRecord::Base
   def <=>(other)
     result = Time.parse(start_time) <=> Time.parse(other.start_time)
     result == 0 ? Time.parse(end_time) <=> Time.parse(other.end_time) : result
+  end
+
+  def taken_on=(date)
+    @taken_on = date.to_s
   end
 end

@@ -118,40 +118,17 @@
           ]
         },
         "period": {
-          "description": "the preriod that lecture has taken",
-          "type": [
-            "object"
-          ],
           "properties": {
             "start_time": {
-              "description": "time when the period start",
-              "example": "09:00:00+09:00",
-              "type": [
-                "string"
-              ]
+              "$ref": "#/definitions/period/definitions/start_time"
             },
             "end_time": {
-              "description": "time when the period end",
-              "example": "10:30:00+09:00",
-              "type": [
-                "string"
-              ]
+              "$ref": "#/definitions/period/definitions/end_time"
             },
             "wday": {
-              "description": "wday when the period taken",
-              "example": 1,
-              "type": [
-                "integer"
-              ]
+              "$ref": "#/definitions/period/definitions/wday"
             }
           }
-        },
-        "lecturer": {
-          "description": "name of the lecture",
-          "example": "新井 イスマイル",
-          "type": [
-            "string"
-          ]
         }
       },
       "links": [
@@ -193,6 +170,7 @@
           "type": [
             "array"
           ],
+          "description": "preriods that lecture has taken",
           "items": {
             "$ref": "#/definitions/lecture/definitions/period"
           }
@@ -201,12 +179,95 @@
           "type": [
             "array"
           ],
+          "description": "lecturers that lecture has lectured",
           "items": {
-            "$ref": "#/definitions/lecture/definitions/lecturer"
+            "$ref": "#/definitions/lecturer/definitions/name"
           }
         },
         "code": {
           "$ref": "#/definitions/lecture/definitions/code"
+        }
+      },
+      "type": [
+        "object"
+      ]
+    },
+    "lecturer": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Lecturer",
+      "definitions": {
+        "id": {
+          "description": "unique identifier of lecturer",
+          "example": 1,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/lecturer/definitions/id"
+        },
+        "name": {
+          "description": "name of the lecturer",
+          "example": "新井 イスマイル",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/lecturer/definitions/id"
+        },
+        "name": {
+          "$ref": "#/definitions/lecturer/definitions/name"
+        }
+      },
+      "type": [
+        "object"
+      ]
+    },
+    "period": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Period",
+      "definitions": {
+        "start_time": {
+          "description": "time when the period start",
+          "example": "09:00:00+09:00",
+          "type": [
+            "string"
+          ],
+          "pattern": "^[0-9]{2}:[0-9]{2}:[0-9]{2}\\+[0-9]{2}:[0-9]{2}$"
+        },
+        "end_time": {
+          "description": "time when the period end",
+          "example": "10:30:00+09:00",
+          "type": [
+            "string"
+          ],
+          "pattern": "^[0-9]{2}:[0-9]{2}:[0-9]{2}\\+[0-9]{2}:[0-9]{2}$"
+        },
+        "wday": {
+          "description": "wday when the period taken",
+          "example": 1,
+          "type": [
+            "integer"
+          ]
+        },
+        "taken_on": {
+          "description": "date when the period taken",
+          "example": "2014-12-10",
+          "type": [
+            "string"
+          ],
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        }
+      },
+      "properties": {
+        "start_time": {
+          "$ref": "#/definitions/period/definitions/start_time"
+        },
+        "end_time": {
+          "$ref": "#/definitions/period/definitions/end_time"
         }
       },
       "type": [
@@ -228,38 +289,31 @@
           "$ref": "#/definitions/rescheduling/definitions/id"
         },
         "category": {
-          "description": "variations of reschedulings(change, cancel, extra)",
-          "example": "change",
+          "description": "variations of reschedulings",
+          "example": "addition",
           "type": [
             "string"
+          ],
+          "pattern": "^(addition|cancel)$",
+          "enum": [
+            "cancel",
+            "addition"
           ]
         },
         "period": {
-          "description": "the preriod that lecture has taken",
+          "description": "the preriod that the rescheduling has taken",
           "type": [
             "object"
           ],
           "properties": {
             "start_time": {
-              "description": "time when the period start",
-              "example": "09:00:00+09:00",
-              "type": [
-                "string"
-              ]
+              "$ref": "#/definitions/period/definitions/start_time"
             },
             "end_time": {
-              "description": "time when the period end",
-              "example": "10:30:00+09:00",
-              "type": [
-                "string"
-              ]
+              "$ref": "#/definitions/period/definitions/end_time"
             },
             "taken_on": {
-              "description": "date when the period taken",
-              "example": "2014-12-10",
-              "type": [
-                "string"
-              ]
+              "$ref": "#/definitions/period/definitions/taken_on"
             }
           }
         }
@@ -283,11 +337,102 @@
         "lecture": {
           "$ref": "#/definitions/lecture"
         },
-        "before_period": {
+        "period": {
           "$ref": "#/definitions/rescheduling/definitions/period"
+        }
+      },
+      "type": [
+        "object"
+      ]
+    },
+    "timetable": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Timetable",
+      "definitions": {
+        "status": {
+          "description": "status of the lecture",
+          "example": "",
+          "type": [
+            "string"
+          ],
+          "pattern": "^(addition|cancel)?$",
+          "enum": [
+            "",
+            "cancel",
+            "addition"
+          ]
         },
-        "after_period": {
-          "$ref": "#/definitions/rescheduling/definitions/period"
+        "period": {
+          "description": "the preriod that the lecture has taken",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "start_time": {
+              "$ref": "#/definitions/period/definitions/start_time"
+            },
+            "end_time": {
+              "$ref": "#/definitions/period/definitions/end_time"
+            },
+            "taken_on": {
+              "$ref": "#/definitions/period/definitions/taken_on"
+            }
+          }
+        },
+        "date": {
+          "description": "the date that timetable started on",
+          "example": "2014-12-10",
+          "type": [
+            "string"
+          ],
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        }
+      },
+      "links": [
+        {
+          "description": "List of the class' timetables.",
+          "href": "/api/v1/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}/timetable",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List",
+          "schema": {
+            "properties": {
+              "date": {
+                "$ref": "#/definitions/timetable/definitions/date"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          }
+        },
+        {
+          "description": "List of the lecturer's timetable.",
+          "href": "/api/v1/lecturers/{(%23%2Fdefinitions%2Flecturer%2Fdefinitions%2Fid)}/timetable",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List",
+          "schema": {
+            "properties": {
+              "date": {
+                "$ref": "#/definitions/timetable/definitions/date"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/timetable/definitions/status"
+        },
+        "lecture": {
+          "$ref": "#/definitions/lecture"
+        },
+        "period": {
+          "$ref": "#/definitions/timetable/definitions/period"
         }
       },
       "type": [
@@ -302,8 +447,17 @@
     "lecture": {
       "$ref": "#/definitions/lecture"
     },
+    "lecturer": {
+      "$ref": "#/definitions/lecturer"
+    },
+    "period": {
+      "$ref": "#/definitions/period"
+    },
     "rescheduling": {
       "$ref": "#/definitions/rescheduling"
+    },
+    "timetable": {
+      "$ref": "#/definitions/timetable"
     }
   },
   "type": [

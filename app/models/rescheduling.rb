@@ -2,52 +2,44 @@
 #
 # Table name: reschedulings
 #
-#  id                    :integer          not null, primary key
-#  lecture_id            :integer
-#  before_date_period_id :integer
-#  after_date_period_id  :integer
-#  category              :integer
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
+#  id         :integer          not null, primary key
+#  lecture_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  category   :integer
+#  period_id  :integer
+#  taken_on   :date
+#
+# Indexes
+#
+#  index_reschedulings_on_category    (category)
+#  index_reschedulings_on_lecture_id  (lecture_id)
+#  index_reschedulings_on_period_id   (period_id)
+#  index_reschedulings_on_taken_on    (taken_on)
 #
 
 class Rescheduling < ActiveRecord::Base
   belongs_to :lecture
-  belongs_to :before_date_period, class_name: 'DatePeriod'
-  belongs_to :after_date_period, class_name: 'DatePeriod'
+  belongs_to :period
 
-  validates :lecture_id, presence: true
+  validates :lecture_id,
+            presence: true, uniqueness: { scope: %i(period_id taken_on) }
+  validates :period_id, presence: true
+  validates :taken_on, presence: true
   validates :category, presence: true
-  validates_with ReschedulingValidator
 
   delegate :klass, :lecturers, to: :lecture
 
   enum category: Settings.rescheduling.category
 
-  scope :available, -> do
-    before = DatePeriod.arel_table.alias('before_date_period')
-    after = DatePeriod.arel_table.alias('after_date_period')
-    join_before = arel_table.join(before, Arel::Nodes::OuterJoin)
-        .on(before[:id].eq arel_table[:before_date_period_id]).join_sources
-    join_after = arel_table.join(after, Arel::Nodes::OuterJoin)
-        .on(after[:id].eq arel_table[:after_date_period_id]).join_sources
-    cond1 = after[:taken_on].gteq(Date.today)
-    cond2 = after[:taken_on].eq(nil)
-    cond3 = before[:taken_on].gteq(Date.today)
-    joins(join_before, join_after).where(cond1.or(cond2.and cond3))
-  end
+  scope :available, -> { where(arel_table[:taken_on].gteq Date.today) }
 
   include Garage::Representer
   include Garage::Authorizable
 
   property :category
   property :lecture
-  property :before_date_period,
-           as: :before_period,
-           if: -> (record, _) { record.before_date_period.present? }
-  property :after_date_period,
-           as: :after_period,
-           if: -> (record, _) { record.after_date_period.present? }
+  property :date_period, as: :period
 
   def self.build_permissions(perms, other, target)
     perms.permits! :read
@@ -55,5 +47,9 @@ class Rescheduling < ActiveRecord::Base
 
   def build_permissions(perms, other)
     perms.permits! :read
+  end
+
+  def date_period
+    period.tap { |p| p.taken_on = taken_on }
   end
 end
