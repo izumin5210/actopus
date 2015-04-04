@@ -23,6 +23,9 @@ RSpec.describe 'lecture resources', type: :request do
            term: term)
   end
 
+  before { Timecop.freeze(term.ended_on - 1.month) }
+  after { Timecop.return }
+
   describe 'GET /api/v1/lectures' do
     it 'returns lecture resources' do
       is_expected.to eq 200
