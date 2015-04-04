@@ -74,6 +74,7 @@ group :test do
   gem 'rspec-rails'
   gem 'database_rewinder'
   gem 'shoulda-matchers', require: false
+  gem 'rspec-parameterized'
   gem 'rspec-validator_spec_helper'
   gem 'rspec-request_describer'
   gem 'rspec-json_matcher'
