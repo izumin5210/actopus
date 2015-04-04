@@ -40,7 +40,23 @@ RSpec.describe Rescheduling, type: :model do
     end
   end
 
-  describe 'available' do
+  describe '.join_before_date_period' do
+    subject { Rescheduling.join_before_date_period }
+    it do
+      expect(subject.to_sql).to match(
+        /LEFT OUTER JOIN "date_periods" "before_date_period"/)
+    end
+  end
+
+  describe '.join_after_date_period' do
+    subject { Rescheduling.join_after_date_period }
+    it do
+      expect(subject.to_sql).to match(
+        /LEFT OUTER JOIN "date_periods" "after_date_period"/)
+    end
+  end
+
+  describe '.available' do
     let(:period) { create(:period) }
     let(:today) { Time.local(2015, 1, 19, 12, 0, 0) }
     let(:today_date_period) do
@@ -74,7 +90,69 @@ RSpec.describe Rescheduling, type: :model do
     end
     subject { Rescheduling.available }
     after { Timecop.return }
-    it { is_expected.to match_array(reschedulings[1, 2]) }
-    it { expect(subject.size).to eq 2 }
+    it 'returns available reschedulings' do
+      is_expected.to match_array(reschedulings[1, 2])
+    end
+    it 'returns 4 reschedulings' do
+      expect(subject.size).to eq 2
+    end
+  end
+
+  describe '.on' do
+    let(:periods) { create_list(:period, 2) }
+    let(:today) { Time.local(2015, 1, 19, 12, 0, 0) }
+    let(:today_date_period_1) do
+      create(:date_period, period: periods[0], taken_on: today)
+    end
+    let(:today_date_period_2) do
+      create(:date_period, period: periods[1], taken_on: today)
+    end
+    let(:yesterday_date_period) do
+      create(:date_period, period: periods[0], taken_on: today.yesterday)
+    end
+    let(:lecture) { create(:lecture, :with_term, :with_klass) }
+    let!(:reschedulings) do
+      [
+        create(:rescheduling,
+               category: :cancel,
+               before_date_period: yesterday_date_period,
+               after_date_period: nil,
+               lecture: lecture),
+        create(:rescheduling,
+               category: :cancel,
+               before_date_period: today_date_period_1,
+               after_date_period: nil,
+               lecture: lecture),
+        create(:rescheduling,
+               category: :extra,
+               before_date_period: nil,
+               after_date_period: today_date_period_2,
+               lecture: lecture),
+        create(:rescheduling,
+               category: :change,
+               before_date_period: yesterday_date_period,
+               after_date_period: today_date_period_1,
+               lecture: lecture)
+      ]
+    end
+    subject { Rescheduling.on(today) }
+    it 'returns reschedulings that will be taken on the date' do
+      is_expected.to contain_exactly(*reschedulings[1, 3])
+    end
+    it 'returns 3 reschedulings' do
+      expect(subject.size).to eq 3
+    end
+  end
+
+  describe '.before_date_period_arel_table' do
+    subject { Rescheduling.before_date_period_arel_table }
+    it { is_expected.to be_a(Arel::Nodes::TableAlias) }
+    it { expect(subject.to_sql).to match /"date_periods" "before_date_period"/ }
+  end
+
+  describe '.after_date_period_arel_table' do
+    subject { Rescheduling.after_date_period_arel_table }
+    it { is_expected.to be_a(Arel::Nodes::TableAlias) }
+    it { expect(subject.to_sql).to match /"date_periods" "after_date_period"/ }
   end
 end

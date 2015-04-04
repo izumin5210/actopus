@@ -4,22 +4,24 @@ class Timetable
 
   attr_reader :rows
 
-  def initialize(lectures)
+  def initialize(lectures, date)
     @rows = {}
     lectures.each do |lecture|
       lecture.wday_periods.each do |wday_period|
         wday = wday_period.wday
-        @rows[wday] ||= Row.new
-        @rows[wday] << Cell.new(lecture: lecture, period: wday_period.period)
+        date_period = wday_period.to_date_period(date)
+        @rows[wday] ||= Row.new(date_period.taken_on)
+        @rows[wday] << Cell.new(lecture: lecture, date_period: date_period)
       end
     end
     @rows.each { |wday, row| row.layered! }
   end
 
   class Row
-    attr_reader :cells
-    def initialize
+    attr_reader :cells, :date
+    def initialize(date)
       @cells = []
+      @date = date
     end
 
     def <<(cell)
@@ -44,8 +46,8 @@ class Timetable
 
   class Cell
     include ActiveModel::Model
-    attr_accessor :lecture, :period, :range, :layer_count, :layer_index
-    delegate :start_time, :end_time, to: :period
+    attr_accessor :lecture, :date_period, :range, :layer_count, :layer_index
+    delegate :start_time, :end_time, :period, to: :date_period
     def initialize(*args)
       super(*args)
       base = time_to_i(BEGINNING_OF_DAY)

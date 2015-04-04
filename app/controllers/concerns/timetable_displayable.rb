@@ -10,7 +10,7 @@ module TimetableDisplayable
   end
 
   def timetable
-    @timetable = Timetable.new(@lectures)
+    @timetable = Timetable.new(@lectures, @date)
   end
 
   private

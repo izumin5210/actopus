@@ -21,10 +21,13 @@ RSpec.describe Timetable, type: :model do
       build(:lecture, wday_periods: [wday_periods[1][2]])
     ]
   end
+  let(:date) { Date.new(2015, 1, 21) }
+  before { Timecop.freeze(date) }
+  after { Timecop.return }
   subject do
     stub_const('Timetable::BEGINNING_OF_DAY', '08:00:00+09:00')
     stub_const('Timetable::END_OF_DAY', '18:00:00+09:00')
-    Timetable.new(lectures)
+    Timetable.new(lectures, date)
   end
 
   describe '#initialize' do

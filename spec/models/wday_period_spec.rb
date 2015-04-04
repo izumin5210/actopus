@@ -39,12 +39,9 @@ RSpec.describe WdayPeriod, type: :model do
     it { is_expected.to have_many(:lectures).through(:schedulings) }
   end
 
-  describe '#start_time' do
-    it { expect(subject.start_time).to eq start_time }
-  end
-
-  describe '#end_time' do
-    it { expect(subject.end_time).to eq end_time }
+  describe 'delegations' do
+    it { is_expected.to delegate_method(:start_time).to(:period) }
+    it { is_expected.to delegate_method(:end_time).to(:period) }
   end
 
   describe '#is?' do
@@ -71,6 +68,26 @@ RSpec.describe WdayPeriod, type: :model do
     context 'when wday is different' do
       let(:other_wday) { 12 }
       it { is_expected.to eq false }
+    end
+  end
+
+  describe '#to_date_period' do
+    let(:date) { Date.new(2015, 1, 21) }
+    subject { wday_period.to_date_period(date) }
+    it { is_expected.to be_a(DatePeriod) }
+    it { expect(subject.taken_on.wday).to eq wday }
+
+    context 'when the date_period has already existed' do
+      before do
+        create(:date_period,
+               period: period,
+               taken_on: date.beginning_of_week + (wday - 1).days)
+      end
+      it { is_expected.to be_persisted }
+    end
+
+    context 'when the date_period has not existed yet' do
+      it { is_expected.to_not be_persisted }
     end
   end
 end
