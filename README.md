@@ -1,6 +1,6 @@
 # actopus
 
-[![Build Status](https://travis-ci.org/izumin5210/actopus.svg)](https://travis-ci.org/izumin5210/actopus)
+[![Build Status](https://travis-ci.org/izumin5210/actopus.svg?branch=master)](https://travis-ci.org/izumin5210/actopus)
 [![Coverage Status](https://coveralls.io/repos/izumin5210/actopus/badge.svg)](https://coveralls.io/r/izumin5210/actopus)
 [![Code Climate](https://codeclimate.com/github/izumin5210/actopus/badges/gpa.svg)](https://codeclimate.com/github/izumin5210/actopus)
 
