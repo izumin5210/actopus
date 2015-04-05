@@ -27,7 +27,7 @@ FactoryGirl.define do
   factory :klass do
     sequence(:name, 'A') { |n| "#{grade}#{n}" }
     sequence(:grade) { |n| (n % 5) + 1 }
-    category 0
+    category :undergraduate
 
     trait :with_department do
       department
