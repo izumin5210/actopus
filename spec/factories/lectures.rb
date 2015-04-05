@@ -36,7 +36,7 @@ FactoryGirl.define do
     end
 
     trait :with_klass do
-      klass { create(:klass, :with_department, :with_course) }
+      klass { create(:klass) }
     end
 
     trait :with_term do

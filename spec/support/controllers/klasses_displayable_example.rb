@@ -4,7 +4,7 @@ shared_examples_for 'klasses displayable' do
 end
 
 shared_examples_for 'klasses index displayable' do
-  let!(:klasses) { create_list(:klass, 5, :with_department) }
+  let!(:klasses) { create_list(:klass, 5) }
   let(:params) { {} }
 
   describe 'GET index' do
@@ -20,7 +20,7 @@ shared_examples_for 'klasses index displayable' do
 end
 
 shared_examples_for 'klasses timetable displayable' do
-  let!(:klasses) { create_list(:klass, 5, :with_department) }
+  let!(:klasses) { create_list(:klass, 5) }
   let(:params) { { id: klasses[0].slug } }
 
   describe 'GET timetable' do

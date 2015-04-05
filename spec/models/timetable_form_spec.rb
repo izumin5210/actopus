@@ -14,7 +14,7 @@ describe TimetableForm do
     end
   end
 
-  let(:klasses) { create_list(:klass, 2, :with_department) }
+  let(:klasses) { create_list(:klass, 2) }
   let(:periods) { create_list(:period, 3) }
   let(:lecture_names) { (1..2).map { attributes_for(:lecture)[:name] } }
   let(:lecturer_names) { (1..4).map { attributes_for(:lecturer)[:name] } }

@@ -40,8 +40,9 @@ RSpec.describe Klass, type: :model do
     it { is_expected.to validate_presence_of(:department_id) }
     it { is_expected.to validate_presence_of(:grade) }
     it { is_expected.to validate_presence_of(:category) }
+
     describe 'uniqueness' do
-      let(:klass) { create(:klass, :with_department) }
+      let(:klass) { create(:klass) }
       it { is_expected.to validate_uniqueness_of(:name) }
       it do
         is_expected.to validate_uniqueness_of(:grade)
