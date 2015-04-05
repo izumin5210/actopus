@@ -13,8 +13,6 @@ FactoryGirl.define do
   factory :lecturer do
     sequence(:name) { |n| "Lecturer #{n}" }
 
-    trait :with_department do
-      department
-    end
+    department
   end
 end
