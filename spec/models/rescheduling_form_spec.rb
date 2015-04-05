@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ReschedulingForm, type: :model do
   let(:rescheduling_form) { ReschedulingForm.new(params) }
-  let(:lecture) { create(:lecture, :with_klass) }
+  let(:lecture) { create(:lecture) }
   let(:period) { create(:period) }
   subject { rescheduling_form }
 

@@ -32,7 +32,7 @@ shared_examples_for 'lecturers timetable displayable' do
       create(:academic_term, started_on: started_on, ended_on: ended_on)
     end
     let!(:lectures) do
-      create_list(:lecture, 5, :with_klass, term: term).tap { |l| lecturer.lectures = l }
+      create_list(:lecture, 5, term: term).tap { |l| lecturer.lectures = l }
     end
     before do
       Timecop.freeze(Time.local(2015, 1, 19, 12, 0, 0))

@@ -49,7 +49,7 @@ RSpec.describe Rescheduling, type: :model do
     let(:yesterday_date_period) do
       create(:date_period, period: period, taken_on: today.yesterday)
     end
-    let(:lecture) { create(:lecture, :with_klass) }
+    let(:lecture) { create(:lecture) }
     let!(:reschedulings) do
       [
         create(:rescheduling,

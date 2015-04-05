@@ -21,7 +21,7 @@
 require 'rails_helper'
 
 RSpec.describe Lecture, type: :model do
-  let(:lecture) { build(:lecture, :with_klass, term: term) }
+  let(:lecture) { build(:lecture, term: term) }
   let(:started_on) { Date.new(2014, 10, 1) }
   let(:ended_on) { Date.new(2015, 2, 28) }
   let(:term) { create(:academic_term, started_on: started_on, ended_on: ended_on) }

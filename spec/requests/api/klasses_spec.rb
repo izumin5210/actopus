@@ -10,7 +10,7 @@ RSpec.describe 'classes resource', type: :request do
     }
   end
 
-  let!(:klass) { create(:klass, :with_department, :with_course) }
+  let!(:klass) { create(:klass) }
 
   describe 'GET /api/v1/classes' do
     it 'returns class resources' do

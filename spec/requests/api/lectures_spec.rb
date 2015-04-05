@@ -16,7 +16,6 @@ RSpec.describe 'lecture resources', type: :request do
   let!(:term) { create(:academic_term) }
   let!(:lecture) do
     create(:lecture,
-           :with_klass,
            lecturers_count: 3,
            wday_periods_count: 3,
            special_target: 'female',
