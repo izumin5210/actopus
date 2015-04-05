@@ -30,5 +30,9 @@ FactoryGirl.define do
     category :undergraduate
 
     department
+
+    trait :with_course do
+      course
+    end
   end
 end
