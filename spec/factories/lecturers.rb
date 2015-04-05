@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :lecturer do
-    sequence(:name) { |n| "Lecturer #{n}" }
+    name { generate :name }
 
     department
   end
