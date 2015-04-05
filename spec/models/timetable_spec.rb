@@ -15,12 +15,14 @@ RSpec.describe Timetable, type: :model do
   end
   let(:lectures) do
     [
-      build(:lecture, wday_periods: [wday_periods[0][0]]),
-      build(:lecture, wday_periods: [wday_periods[0][1]]),
-      build(:lecture, wday_periods: [wday_periods[1][1]]),
-      build(:lecture, wday_periods: [wday_periods[1][2]])
+      build(:lecture, wday_periods: [wday_periods[0][0]], term: term),
+      build(:lecture, wday_periods: [wday_periods[0][1]], term: term),
+      build(:lecture, wday_periods: [wday_periods[1][1]], term: term),
+      build(:lecture, wday_periods: [wday_periods[1][2]], term: term)
     ]
   end
+  let(:term) { create(:academic_term) }
+
   subject do
     stub_const('Timetable::BEGINNING_OF_DAY', '08:00:00+09:00')
     stub_const('Timetable::END_OF_DAY', '18:00:00+09:00')

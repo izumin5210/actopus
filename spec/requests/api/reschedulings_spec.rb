@@ -12,7 +12,7 @@ RSpec.describe 'rescheduling resources', type: :request do
   let(:date_periods) { create_list(:date_period, 2) }
   let(:lecture) do
     create(:lecture,
-           :with_klass, :with_term,
+           :with_klass,
            lecturers_count: 3, wday_periods_count: 3,
            special_target: 'female')
   end
