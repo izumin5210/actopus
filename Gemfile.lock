@@ -191,6 +191,7 @@ GEM
     parser (2.2.0.3)
       ast (>= 1.1, < 3.0)
     pg (0.18.1)
+    power_assert (0.2.3)
     prmd (0.7.0)
       erubis (~> 2.7)
       json_schema (~> 0.3, >= 0.3.1)
@@ -306,6 +307,9 @@ GEM
       proc_to_ast
       rspec (>= 2.13, < 4)
       unparser
+    rspec-power_assert (0.2.0)
+      power_assert (~> 0.2.0)
+      rspec (>= 2.14)
     rspec-rails (3.1.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -429,6 +433,7 @@ DEPENDENCIES
   rails_config
   rspec-json_matcher
   rspec-parameterized
+  rspec-power_assert
   rspec-rails
   rspec-request_describer
   rspec-validator_spec_helper
