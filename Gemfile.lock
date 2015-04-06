@@ -78,6 +78,8 @@ GEM
     bullet (4.14.0)
       activesupport (>= 3.0.0)
       uniform_notifier (>= 1.6.0)
+    by_star (2.2.1)
+      activesupport
     byebug (3.5.1)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
@@ -397,6 +399,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bullet
+  by_star
   byebug
   coffee-rails (~> 4.1.0)
   coveralls
