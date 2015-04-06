@@ -8,7 +8,7 @@ module TermHelper
       let(:term) { create(:academic_term) }
 
       let(:today) do
-        [*term.started_on..term.ended_on].tap { |r| break r[r.size / 2] }
+        term.started_on + (term.ended_on - term.started_on) / 2
       end
 
       let(:now) { today.midday }
