@@ -13,7 +13,8 @@ RSpec.describe 'lecture resources', type: :request do
     }
   end
 
-  let(:term) { create(:academic_term) }
+  create_term_and_freeze_time
+
   let(:klass) { create(:klass, :with_course) }
   let!(:lecture) do
     create(:lecture,
@@ -23,9 +24,6 @@ RSpec.describe 'lecture resources', type: :request do
            klass: klass,
            term: term)
   end
-
-  before { Timecop.freeze(term.ended_on - 1.month) }
-  after { Timecop.return }
 
   describe 'GET /api/v1/lectures' do
     it 'returns lecture resources' do

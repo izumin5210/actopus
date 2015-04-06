@@ -1,13 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe TimetableDisplayable, type: :controller do
-  before do
-    term = create(:academic_term)
-    create_list(:lecture, 3, term: term)
-    Timecop.freeze(Time.local(2015, 1, 19, 12, 0, 0))
-  end
+  create_term_and_freeze_time
 
-  after { Timecop.return }
+  before { create_list(:lecture, 3, term: term) }
   let(:params) { nil }
 
   describe 'GET timetable' do

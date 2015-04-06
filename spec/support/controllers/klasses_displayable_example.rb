@@ -20,19 +20,13 @@ shared_examples_for 'klasses index displayable' do
 end
 
 shared_examples_for 'klasses timetable displayable' do
+  create_term_and_freeze_time
   let!(:klasses) { create_list(:klass, 5) }
   let(:params) { { id: klasses[0].slug } }
 
   describe 'GET timetable' do
-    let(:started_on) { Date.new(2014, 10, 1) }
-    let(:ended_on) { Date.new(2015, 2, 28) }
-    let(:term) { create(:academic_term, started_on: started_on, ended_on: ended_on) }
     let!(:lectures) { create_list(:lecture, 5, term: term, klass: klasses[0]) }
-    before do
-      Timecop.freeze(Time.local(2015, 1, 19, 12, 0, 0))
-      get :timetable, params
-    end
-    after { Timecop.return }
+    before { get :timetable, params }
 
     it 'returns http success' do
       expect(response).to have_http_status(:success)
