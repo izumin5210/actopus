@@ -21,24 +21,17 @@ shared_examples_for 'lecturers index displayable' do
 end
 
 shared_examples_for 'lecturers timetable displayable' do
+  create_term_and_freeze_time
   let(:department) { create(:department) }
   let!(:lecturer) { create(:lecturer, department: department) }
   let(:params) { { id: lecturer.id } }
 
   describe 'GET timetable' do
-    let(:started_on) { Date.new(2014, 10, 1) }
-    let(:ended_on) { Date.new(2015, 2, 28) }
-    let(:term) do
-      create(:academic_term, started_on: started_on, ended_on: ended_on)
-    end
     let!(:lectures) do
-      create_list(:lecture, 5, :with_klass, term: term).tap { |l| lecturer.lectures = l }
+      create_list(:lecture, 5, term: term).tap { |l| lecturer.lectures = l }
     end
-    before do
-      Timecop.freeze(Time.local(2015, 1, 19, 12, 0, 0))
-      get :timetable, params
-    end
-    after { Timecop.return }
+
+    before { get :timetable, params }
 
     it 'returns http success' do
       expect(response).to have_http_status(:success)

@@ -11,7 +11,7 @@ RSpec.describe Staffs::ReschedulingsController, type: :controller do
   end
 
   describe 'POST create' do
-    let(:lecture) { create(:lecture, :with_term, :with_klass) }
+    let(:lecture) { create(:lecture) }
     let(:before_period) { create(:period) }
     let(:after_period) { create(:period) }
     let(:before_date) { Date.new(2015, 1, 19) }

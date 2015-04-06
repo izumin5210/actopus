@@ -4,7 +4,7 @@ RSpec.describe Staffs::LecturersController, type: :controller do
   sign_in_as_staff
 
   describe 'GET index' do
-    let!(:lecturers) { create_list(:lecturer, 5, :with_department) }
+    let!(:lecturers) { create_list(:lecturer, 5) }
 
     before { get :index }
     it 'returns http success' do

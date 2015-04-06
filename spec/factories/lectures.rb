@@ -23,6 +23,9 @@ FactoryGirl.define do
     sequence(:name, 'A') { |n| "Lecture #{n}" }
     sequence(:code, '2014121002101231110200')
 
+    association :term, factory: :academic_term
+    klass
+
     transient do
       lecturers_count 0
       wday_periods_count 0
@@ -33,14 +36,6 @@ FactoryGirl.define do
         create_list(:lecturer, evaluator.lecturers_count)
       lecture.wday_periods =
         create_list(:wday_period, evaluator.wday_periods_count)
-    end
-
-    trait :with_klass do
-      klass { create(:klass, :with_department, :with_course) }
-    end
-
-    trait :with_term do
-      term { create(:academic_term) }
     end
   end
 end
