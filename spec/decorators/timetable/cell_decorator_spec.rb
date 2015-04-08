@@ -5,14 +5,14 @@ describe Timetable::CellDecorator do
   let(:cell) do
     stub_const('Timetable::BEGINNING_OF_DAY', '08:00:00+09:00')
     stub_const('Timetable::END_OF_DAY', '18:00:00+09:00')
-    Timetable::Cell.new(period: period).tap do |c|
+    Timetable::Cell.new(period_time: period_time).tap do |c|
       c.extend Timetable::CellDecorator
       c.layer_count = 2
       c.layer_index = 1
     end
   end
-  let(:period) do
-    create(:period, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00')
+  let(:period_time) do
+    create(:period_time, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00')
   end
   subject { cell }
   it { should be_a Timetable::Cell }
