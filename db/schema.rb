@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408062311) do
+ActiveRecord::Schema.define(version: 20150408062701) do
 
   create_table "academic_terms", force: :cascade do |t|
     t.string   "name",         null: false
@@ -163,10 +163,8 @@ ActiveRecord::Schema.define(version: 20150408062311) do
 
   create_table "reschedulings", force: :cascade do |t|
     t.integer  "lecture_id"
-    t.integer  "before_date_period_id"
-    t.integer  "after_date_period_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "category"
   end
 
