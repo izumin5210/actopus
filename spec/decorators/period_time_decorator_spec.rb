@@ -1,8 +1,8 @@
 # coding: utf-8
 require 'rails_helper'
 
-describe PeriodDecorator do
-  let(:period_time) { build(:period_time, params).extend PeriodDecorator }
+describe PeriodTimeDecorator do
+  let(:period_time) { build(:period_time, params).extend PeriodTimeDecorator }
   let(:params) do
     { name: '1限', start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' }
   end
