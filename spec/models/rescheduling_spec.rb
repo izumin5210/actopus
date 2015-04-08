@@ -2,13 +2,11 @@
 #
 # Table name: reschedulings
 #
-#  id                    :integer          not null, primary key
-#  lecture_id            :integer
-#  before_date_period_id :integer
-#  after_date_period_id  :integer
-#  category              :integer
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
+#  id         :integer          not null, primary key
+#  lecture_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  category   :integer
 #
 
 require 'rails_helper'
@@ -19,8 +17,6 @@ RSpec.describe Rescheduling, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:lecture) }
-    it { is_expected.to belong_to(:before_date_period).class_name('DatePeriod') }
-    it { is_expected.to belong_to(:after_date_period).class_name('DatePeriod') }
   end
 
   describe 'validates' do
