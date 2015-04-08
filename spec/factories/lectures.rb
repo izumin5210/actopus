@@ -28,14 +28,14 @@ FactoryGirl.define do
 
     transient do
       lecturers_count 0
-      wday_periods_count 0
+      periods_count 0
     end
 
     after(:create) do |lecture, evaluator|
       lecture.lecturers =
         create_list(:lecturer, evaluator.lecturers_count)
-      lecture.wday_periods =
-        create_list(:wday_period, evaluator.wday_periods_count)
+      lecture.periods =
+        create_list(:period, evaluator.periods_count)
     end
   end
 end
