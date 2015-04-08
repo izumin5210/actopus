@@ -1,6 +1,6 @@
 class DatePeriodBuilder
-  def initialize(period_id_column, taken_on_column, date_period_column)
-    @period_id_column = period_id_column
+  def initialize(period_time_id_column, taken_on_column, date_period_column)
+    @period_time_id_column = period_time_id_column
     @taken_on_column = taken_on_column
     @date_period_column = date_period_column
   end
@@ -14,11 +14,11 @@ class DatePeriodBuilder
   private
 
   def should_build?(record)
-    [period_id(record), taken_on(record)].all?(&:present?)
+    [period_time_id(record), taken_on(record)].all?(&:present?)
   end
 
-  def period_id(record)
-    record.send(@period_id_column)
+  def period_time_id(record)
+    record.send(@period_time_id_column)
   end
 
   def taken_on(record)
@@ -27,6 +27,6 @@ class DatePeriodBuilder
 
   def date_period(record)
     DatePeriod.find_or_initialize_by(
-      period_id: period_id(record), taken_on: taken_on(record))
+      period_time_id: period_time_id(record), taken_on: taken_on(record))
   end
 end

@@ -15,6 +15,6 @@ module KlassesDisplayable
   def set_lectures
     set_klass
     @lectures =
-      @klass.lectures.current_term.includes(:lecturers, wday_periods: [:period])
+      @klass.lectures.current_term.includes(:lecturers, periods: [:period_time])
   end
 end

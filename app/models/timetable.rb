@@ -7,10 +7,10 @@ class Timetable
   def initialize(lectures)
     @rows = {}
     lectures.each do |lecture|
-      lecture.wday_periods.each do |wday_period|
-        wday = wday_period.wday
+      lecture.periods.each do |period|
+        wday = period.wday
         @rows[wday] ||= Row.new
-        @rows[wday] << Cell.new(lecture: lecture, period: wday_period.period)
+        @rows[wday] << Cell.new(lecture: lecture, period_time: period.period_time)
       end
     end
     @rows.each { |wday, row| row.layered! }
@@ -44,8 +44,8 @@ class Timetable
 
   class Cell
     include ActiveModel::Model
-    attr_accessor :lecture, :period, :range, :layer_count, :layer_index
-    delegate :start_time, :end_time, to: :period
+    attr_accessor :lecture, :period_time, :range, :layer_count, :layer_index
+    delegate :start_time, :end_time, to: :period_time
     def initialize(*args)
       super(*args)
       base = time_to_i(BEGINNING_OF_DAY)

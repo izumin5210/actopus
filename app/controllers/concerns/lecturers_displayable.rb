@@ -17,6 +17,6 @@ module LecturersDisplayable
     set_lecturer
     @lectures =
       @lecturer.lectures.current_term
-      .includes(:klass, :lecturers, wday_periods: [:period])
+      .includes(:klass, :lecturers, periods: [:period])
   end
 end

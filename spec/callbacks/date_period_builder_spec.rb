@@ -1,18 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe DatePeriodBuilder, type: :callback do
-  let(:period_id_column) { :period_id }
+  let(:period_time_id_column) { :period_time_id }
   let(:taken_on_column) { :taken_on }
   let(:date_period_column) { :date_period }
   let(:date_period_setter) { :"#{date_period_column}=" }
   let(:callback) { DatePeriodBuilder.new(*attribute_names) }
-  let(:attribute_names) { [period_id_column, taken_on_column, date_period_column] }
+  let(:attribute_names) { [period_time_id_column, taken_on_column, date_period_column] }
   let(:record) do
     double('record').tap do |r|
       attribute_names.each { |attr| allow(r).to receive(attr) }
     end
   end
-  let(:period) { create(:period) }
+  let(:period_time) { create(:period_time) }
   let(:taken_on) { Date.parse('2015-02-04') }
 
   describe '#before_validate' do
@@ -27,7 +27,7 @@ RSpec.describe DatePeriodBuilder, type: :callback do
 
     context 'without taken_on' do
       it do
-        allow(record).to receive(period_id_column).and_return(period.id)
+        allow(record).to receive(period_time_id_column).and_return(period_time.id)
         expect(record).to_not receive(date_period_setter)
         subject
       end
@@ -43,7 +43,7 @@ RSpec.describe DatePeriodBuilder, type: :callback do
 
     context 'with period and taken_on' do
       before do
-        allow(record).to receive(period_id_column).and_return(period.id)
+        allow(record).to receive(period_time_id_column).and_return(period_time.id)
         allow(record).to receive(taken_on_column).and_return(taken_on)
       end
 
@@ -53,7 +53,7 @@ RSpec.describe DatePeriodBuilder, type: :callback do
       end
 
       context 'when the date_period has already existed' do
-        before { DatePeriod.create(taken_on: taken_on, period: period) }
+        before { DatePeriod.create(taken_on: taken_on, period_time: period_time) }
         it do
           expect(record).to receive(date_period_setter).with(be_persisted)
           subject

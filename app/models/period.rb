@@ -2,41 +2,38 @@
 #
 # Table name: periods
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  start_time :string           not null
-#  end_time   :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :integer          not null, primary key
+#  period_time_id :integer          not null
+#  wday           :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 # Indexes
 #
-#  index_periods_on_end_time                 (end_time)
-#  index_periods_on_name                     (name) UNIQUE
-#  index_periods_on_start_time               (start_time)
-#  index_periods_on_start_time_and_end_time  (start_time,end_time) UNIQUE
+#  index_periods_on_period_time_id           (period_time_id)
+#  index_periods_on_period_time_id_and_wday  (period_time_id,wday) UNIQUE
+#  index_periods_on_wday                     (wday)
 #
 
 class Period < ActiveRecord::Base
-  has_many :date_periods
-  has_many :wday_periods
+  belongs_to :period_time
+  has_many :schedulings
+  has_many :lectures, through: :schedulings
 
-  validates :name, presence: true, uniqueness: true
-  validates :start_time, presence: true, uniqueness: { scope: [:end_time] }
-  validates :end_time, presence: true
+  validates :period_time_id, presence: true, uniqueness: { scope: [:wday] }
+  validates :wday, presence: true
 
-  include Comparable
+  delegate :start_time, :end_time, to: :period_time
+
+  include Garage::Representer
+
+  property :wday
+  property :start_time
+  property :end_time
 
   def is?(params)
-    (params[:start_time] == start_time) && (params[:end_time] == end_time)
-  end
-
-  def length
-    Time.parse(end_time) - Time.parse(start_time)
-  end
-
-  def <=>(other)
-    result = Time.parse(start_time) <=> Time.parse(other.start_time)
-    result == 0 ? Time.parse(end_time) <=> Time.parse(other.end_time) : result
+    (params[:wday] == wday) &&
+      (params[:start_time] == start_time) &&
+      (params[:end_time] == end_time)
   end
 end
