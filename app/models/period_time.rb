@@ -19,7 +19,7 @@
 
 class PeriodTime < ActiveRecord::Base
   has_many :date_periods
-  has_many :wday_periods
+  has_many :periods
 
   validates :name, presence: true, uniqueness: true
   validates :start_time, presence: true, uniqueness: { scope: [:end_time] }

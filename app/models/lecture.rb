@@ -48,7 +48,7 @@ class Lecture < ActiveRecord::Base
   property :department_name, as: :department
   property :course_name, as: :course, if: -> (record, _) { record.course.present? }
   collection :lecturer_names, as: :lecturers
-  collection :wday_periods, as: :periods
+  collection :periods, as: :periods
 
   scope :current_term, -> do
     joins(:term)

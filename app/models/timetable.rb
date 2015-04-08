@@ -7,10 +7,10 @@ class Timetable
   def initialize(lectures)
     @rows = {}
     lectures.each do |lecture|
-      lecture.wday_periods.each do |wday_period|
-        wday = wday_period.wday
+      lecture.periods.each do |period|
+        wday = period.wday
         @rows[wday] ||= Row.new
-        @rows[wday] << Cell.new(lecture: lecture, period_time: wday_period.period_time)
+        @rows[wday] << Cell.new(lecture: lecture, period_time: period.period_time)
       end
     end
     @rows.each { |wday, row| row.layered! }

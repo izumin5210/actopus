@@ -33,11 +33,11 @@ class TimetableForm
   def lecture_transaction
     # TODO: 発行されるクエリ数が多すぎるのでバルクインサート等の対策を検討
     klasses, period_times = Klass.all, PeriodTime.all
-    lecturers, wday_periods = [], []
+    lecturers, periods = [], []
     count = { lecture: 0, lecturer: 0 }
     LectureMapper.parse(@timetable_xml.read).each do |mapper|
       lecture = create_lecture(mapper, klasses)
-      map_periods_onto_lecture(mapper, lecture, period_times, wday_periods)
+      map_periods_onto_lecture(mapper, lecture, period_times, periods)
       count[:lecturer] += map_lecturers_onto_lecture(mapper, lecture, lecturers)
       count[:lecture] += 1
     end
@@ -56,15 +56,15 @@ class TimetableForm
     end
   end
 
-  def map_periods_onto_lecture(mapper, lecture, period_times, wday_periods)
+  def map_periods_onto_lecture(mapper, lecture, period_times, periods)
     mapper.period_params.each do |params|
-      wday_period = wday_periods.find { |wp| wp.is?(params) }
-      if wday_period.blank?
+      period = periods.find { |p| p.is?(params) }
+      if period.blank?
         period_time = period_times.find { |p| p.is?(params) }
-        wday_period = WdayPeriod.create(period_time: period_time, wday: params[:wday])
-        wday_periods << wday_period
+        period = Period.create(period_time: period_time, wday: params[:wday])
+        periods << period
       end
-      lecture.schedulings.create!(wday_period: wday_period)
+      lecture.schedulings.create!(period: period)
     end
   end
 

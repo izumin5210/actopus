@@ -8,19 +8,19 @@ RSpec.describe Timetable, type: :model do
       create(:period_time, start_time: '11:25:00+09:00', end_time: '12:10:00+09:00')
     ]
   end
-  let(:wday_periods) do
+  let(:periods) do
     (1..2).map do |wday|
       period_times.map do |period_time|
-        create(:wday_period, wday: wday, period_time: period_time)
+        create(:period, wday: wday, period_time: period_time)
       end
     end
   end
   let(:lectures) do
     [
-      build(:lecture, wday_periods: [wday_periods[0][0]], term: term),
-      build(:lecture, wday_periods: [wday_periods[0][1]], term: term),
-      build(:lecture, wday_periods: [wday_periods[1][1]], term: term),
-      build(:lecture, wday_periods: [wday_periods[1][2]], term: term)
+      build(:lecture, periods: [periods[0][0]], term: term),
+      build(:lecture, periods: [periods[0][1]], term: term),
+      build(:lecture, periods: [periods[1][1]], term: term),
+      build(:lecture, periods: [periods[1][2]], term: term)
     ]
   end
   let(:term) { create(:academic_term) }
