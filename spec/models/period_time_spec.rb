@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: periods
+# Table name: period_times
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
@@ -11,19 +11,19 @@
 #
 # Indexes
 #
-#  index_periods_on_end_time                 (end_time)
-#  index_periods_on_name                     (name) UNIQUE
-#  index_periods_on_start_time               (start_time)
-#  index_periods_on_start_time_and_end_time  (start_time,end_time) UNIQUE
+#  index_period_times_on_end_time                 (end_time)
+#  index_period_times_on_name                     (name) UNIQUE
+#  index_period_times_on_start_time               (start_time)
+#  index_period_times_on_start_time_and_end_time  (start_time,end_time) UNIQUE
 #
 
 require 'rails_helper'
 
-RSpec.describe Period, type: :model do
-  let(:period) { build(:period, start_time: start_time, end_time: end_time) }
+RSpec.describe PeriodTime, type: :model do
+  let(:period_time) { build(:period_time, start_time: start_time, end_time: end_time) }
   let(:start_time) { '09:00:00+09:00' }
   let(:end_time) { '10:30:00+09:00' }
-  subject { period }
+  subject { period_time }
 
   describe 'validates' do
     it { is_expected.to validate_presence_of(:name) }
@@ -43,7 +43,7 @@ RSpec.describe Period, type: :model do
     let(:params) { { start_time: other_start_time, end_time: other_end_time } }
     let(:other_start_time) { start_time }
     let(:other_end_time) { end_time }
-    subject { period.is?(params) }
+    subject { period_time.is?(params) }
     it { is_expected.to eq true }
 
     context 'when start_time is different' do
@@ -58,7 +58,7 @@ RSpec.describe Period, type: :model do
   end
 
   describe '#length' do
-    subject { period.length }
+    subject { period_time.length }
     it { is_expected.to eq 5400.0 }
   end
 
@@ -67,7 +67,7 @@ RSpec.describe Period, type: :model do
     let(:other_start_time) { '09:00:00+09:00' }
     let(:other_end_time) { '10:30:00+09:00' }
     let(:other_params) { { start_time: other_start_time, end_time: other_end_time } }
-    subject { Period.new(params) <=> Period.new(other_params) }
+    subject { PeriodTime.new(params) <=> PeriodTime.new(other_params) }
     context 'with the same start_time and end_time' do
       it { is_expected.to eq 0 }
     end

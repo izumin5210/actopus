@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: periods
+# Table name: period_times
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
@@ -11,13 +11,13 @@
 #
 # Indexes
 #
-#  index_periods_on_end_time                 (end_time)
-#  index_periods_on_name                     (name) UNIQUE
-#  index_periods_on_start_time               (start_time)
-#  index_periods_on_start_time_and_end_time  (start_time,end_time) UNIQUE
+#  index_period_times_on_end_time                 (end_time)
+#  index_period_times_on_name                     (name) UNIQUE
+#  index_period_times_on_start_time               (start_time)
+#  index_period_times_on_start_time_and_end_time  (start_time,end_time) UNIQUE
 #
 
-class Period < ActiveRecord::Base
+class PeriodTime < ActiveRecord::Base
   has_many :date_periods
   has_many :wday_periods
 
