@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: wday_periods
+# Table name: periods
 #
 #  id             :integer          not null, primary key
 #  period_time_id :integer          not null
@@ -10,13 +10,13 @@
 #
 # Indexes
 #
-#  index_wday_periods_on_period_time_id           (period_time_id)
-#  index_wday_periods_on_period_time_id_and_wday  (period_time_id,wday) UNIQUE
-#  index_wday_periods_on_wday                     (wday)
+#  index_periods_on_period_time_id           (period_time_id)
+#  index_periods_on_period_time_id_and_wday  (period_time_id,wday) UNIQUE
+#  index_periods_on_wday                     (wday)
 #
 
 FactoryGirl.define do
-  factory :wday_period do
+  factory :period do
     sequence(:wday)
     period_time
   end
