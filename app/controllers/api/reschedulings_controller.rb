@@ -6,7 +6,7 @@ class Api::ReschedulingsController < Api::BaseController
     @resources = Rescheduling.available.includes(
         lecture: [
           { klass: [:department, :course] },
-          { wday_periods: [:period_time] },
+          { periods: [:period_time] },
           :lecturers
         ],
         before_date_period: [:period_time],
