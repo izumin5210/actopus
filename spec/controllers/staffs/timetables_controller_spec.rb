@@ -12,7 +12,7 @@ RSpec.describe Staffs::TimetablesController, type: :controller do
 
   describe 'POST create' do
     before do
-      periods_params =
+      period_times_params =
         [
           { name: '1限',
             start_time: '09:00:00+09:00', end_time: '10:30:00+09:00' },
@@ -21,7 +21,9 @@ RSpec.describe Staffs::TimetablesController, type: :controller do
           { name: '4限',
             start_time: '14:40:00+09:00', end_time: '16:10:00+09:00' }
         ]
-      periods_params.each { |period_params| create(:period, period_params) }
+      period_times_params.each do |period_time_params|
+        create(:period_time, period_time_params)
+      end
       e = create(:department, name: '電気情報工学科', abbreviation_name: 'E')
       j = create(:course, name: '情報工学コース', abbreviation_name: 'J')
       create(:klass, name: '1E', grade: 1, department: e)

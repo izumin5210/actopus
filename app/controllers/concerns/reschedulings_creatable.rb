@@ -3,7 +3,7 @@ module ReschedulingsCreatable
 
   included do
     before_action :set_rescheduling, only: %i(timetable)
-    before_action :set_periods, only: %i(timetable)
+    before_action :set_period_times, only: %i(timetable)
   end
 
   private
@@ -15,7 +15,7 @@ module ReschedulingsCreatable
       before_date: params[:before_date])
   end
 
-  def set_periods
-    @periods = Period.all
+  def set_period_times
+    @period_times = PeriodTime.all
   end
 end
