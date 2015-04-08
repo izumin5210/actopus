@@ -25,7 +25,7 @@ class Lecture < ActiveRecord::Base
   has_many :lecturings
   has_many :lecturers, through: :lecturings
   has_many :schedulings
-  has_many :wday_periods, through: :schedulings
+  has_many :periods, through: :schedulings
   has_many :reschedulings
 
   validates :name, presence: true
@@ -48,7 +48,7 @@ class Lecture < ActiveRecord::Base
   property :department_name, as: :department
   property :course_name, as: :course, if: -> (record, _) { record.course.present? }
   collection :lecturer_names, as: :lecturers
-  collection :wday_periods, as: :periods
+  collection :periods, as: :periods
 
   scope :current_term, -> do
     joins(:term)

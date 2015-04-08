@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126074648) do
+ActiveRecord::Schema.define(version: 20150408093638) do
 
   create_table "academic_terms", force: :cascade do |t|
     t.string   "name",         null: false
@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 20150126074648) do
   add_index "courses", ["name"], name: "index_courses_on_name", unique: true
 
   create_table "date_periods", force: :cascade do |t|
-    t.integer  "period_id"
+    t.integer  "period_time_id"
     t.date     "taken_on"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "departments", force: :cascade do |t|
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 20150126074648) do
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
 
-  create_table "periods", force: :cascade do |t|
+  create_table "period_times", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "start_time", null: false
     t.string   "end_time",   null: false
@@ -163,10 +163,21 @@ ActiveRecord::Schema.define(version: 20150126074648) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "periods", ["end_time"], name: "index_periods_on_end_time"
-  add_index "periods", ["name"], name: "index_periods_on_name", unique: true
-  add_index "periods", ["start_time", "end_time"], name: "index_periods_on_start_time_and_end_time", unique: true
-  add_index "periods", ["start_time"], name: "index_periods_on_start_time"
+  add_index "period_times", ["end_time"], name: "index_period_times_on_end_time"
+  add_index "period_times", ["name"], name: "index_period_times_on_name", unique: true
+  add_index "period_times", ["start_time", "end_time"], name: "index_period_times_on_start_time_and_end_time", unique: true
+  add_index "period_times", ["start_time"], name: "index_period_times_on_start_time"
+
+  create_table "periods", force: :cascade do |t|
+    t.integer  "period_time_id", null: false
+    t.integer  "wday",           null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "periods", ["period_time_id", "wday"], name: "index_periods_on_period_time_id_and_wday", unique: true
+  add_index "periods", ["period_time_id"], name: "index_periods_on_period_time_id"
+  add_index "periods", ["wday"], name: "index_periods_on_wday"
 
   create_table "reschedulings", force: :cascade do |t|
     t.integer  "lecture_id"
@@ -178,13 +189,13 @@ ActiveRecord::Schema.define(version: 20150126074648) do
   end
 
   create_table "schedulings", force: :cascade do |t|
-    t.integer  "lecture_id",     null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "wday_period_id", null: false
+    t.integer  "lecture_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "period_id",  null: false
   end
 
-  add_index "schedulings", ["lecture_id", "wday_period_id"], name: "index_schedulings_on_lecture_id_and_wday_period_id", unique: true
+  add_index "schedulings", ["lecture_id", "period_id"], name: "index_schedulings_on_lecture_id_and_period_id", unique: true
 
   create_table "staffs", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -211,16 +222,5 @@ ActiveRecord::Schema.define(version: 20150126074648) do
   add_index "staffs", ["email"], name: "index_staffs_on_email", unique: true
   add_index "staffs", ["invitation_token"], name: "index_staffs_on_invitation_token", unique: true
   add_index "staffs", ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
-
-  create_table "wday_periods", force: :cascade do |t|
-    t.integer  "period_id",  null: false
-    t.integer  "wday",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "wday_periods", ["period_id", "wday"], name: "index_wday_periods_on_period_id_and_wday", unique: true
-  add_index "wday_periods", ["period_id"], name: "index_wday_periods_on_period_id"
-  add_index "wday_periods", ["wday"], name: "index_wday_periods_on_wday"
 
 end

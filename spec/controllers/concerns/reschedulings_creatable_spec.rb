@@ -15,8 +15,8 @@ RSpec.describe ReschedulingsCreatable, type: :controller do
   end
 
   describe 'GET timetable' do
-    it 'assigns all periods to @periods' do
-      expect(assigns(:periods)).to all(be_a Period)
+    it 'assigns all period_times to @period_times' do
+      expect(assigns(:period_times)).to all(be_a PeriodTime)
     end
 
     context 'with no params' do
