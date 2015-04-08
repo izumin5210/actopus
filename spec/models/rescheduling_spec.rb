@@ -41,13 +41,13 @@ RSpec.describe Rescheduling, type: :model do
   end
 
   describe 'available' do
-    let(:period) { create(:period) }
+    let(:period_time) { create(:period_time) }
     let(:today) { Time.local(2015, 1, 19, 12, 0, 0) }
     let(:today_date_period) do
-      create(:date_period, period: period, taken_on: today)
+      create(:date_period, period_time: period_time, taken_on: today)
     end
     let(:yesterday_date_period) do
-      create(:date_period, period: period, taken_on: today.yesterday)
+      create(:date_period, period_time: period_time, taken_on: today.yesterday)
     end
     let(:lecture) { create(:lecture) }
     let!(:reschedulings) do

@@ -1,16 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Timetable, type: :model do
-  let(:periods) do
+  let(:period_times) do
     [
-      create(:period, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00'),
-      create(:period, start_time: '10:40:00+09:00', end_time: '12:10:00+09:00'),
-      create(:period, start_time: '11:25:00+09:00', end_time: '12:10:00+09:00')
+      create(:period_time, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00'),
+      create(:period_time, start_time: '10:40:00+09:00', end_time: '12:10:00+09:00'),
+      create(:period_time, start_time: '11:25:00+09:00', end_time: '12:10:00+09:00')
     ]
   end
   let(:wday_periods) do
     (1..2).map do |wday|
-      periods.map { |period| create(:wday_period, wday: wday, period: period) }
+      period_times.map do |period_time|
+        create(:wday_period, wday: wday, period_time: period_time)
+      end
     end
   end
   let(:lectures) do

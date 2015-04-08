@@ -15,7 +15,7 @@ describe TimetableForm do
   end
 
   let(:klasses) { create_list(:klass, 2) }
-  let(:periods) { create_list(:period, 3) }
+  let(:period_times) { create_list(:period_time, 3) }
   let(:lecture_names) { (1..2).map { attributes_for(:lecture)[:name] } }
   let(:lecturer_names) { (1..4).map { attributes_for(:lecturer)[:name] } }
 
@@ -25,7 +25,7 @@ describe TimetableForm do
         name: lecture_names[i], grade: klass.grade,
         department: klass.department.name,
         lecturers: lecturer_names[i * 2, 2],
-        periods: periods[i, 2].map do |p|
+        periods: period_times[i, 2].map do |p|
             { wday: i, start_time: p.start_time, end_time: p.end_time }
           end
       )
