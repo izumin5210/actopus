@@ -242,8 +242,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.0)
       sprockets-rails
-    rails-assets-bootstrap-sass-official (3.3.1)
-      rails-assets-jquery (>= 1.9.0)
     rails-assets-font-awesome (4.2.0)
     rails-assets-jquery (2.1.3)
     rails-assets-jquery-ujs (1.0.2)
@@ -426,7 +424,6 @@ DEPENDENCIES
   rack-json_schema
   rack-mini-profiler
   rails (= 4.2.0)
-  rails-assets-bootstrap-sass-official
   rails-assets-font-awesome
   rails-assets-jquery
   rails-assets-jquery-ujs

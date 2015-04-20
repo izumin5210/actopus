@@ -24,7 +24,6 @@ group :default do
   gem 'font-awesome-helper'
   gem 'active_decorator'
 
-  gem 'rails-assets-bootstrap-sass-official'
   gem 'rails-assets-font-awesome'
   gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-ujs'
