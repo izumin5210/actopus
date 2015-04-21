@@ -74,6 +74,9 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bourbon (4.2.1)
+      sass (~> 3.4)
+      thor
     builder (3.2.2)
     bullet (4.14.0)
       activesupport (>= 3.0.0)
@@ -396,6 +399,7 @@ DEPENDENCIES
   annotate
   better_errors
   binding_of_caller
+  bourbon
   bullet
   by_star
   byebug

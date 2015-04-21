@@ -21,6 +21,7 @@ group :default do
   gem 'sax-machine'
   gem 'rails_config'
 
+  gem 'bourbon'
   gem 'font-awesome-helper'
   gem 'active_decorator'
 
