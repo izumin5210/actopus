@@ -21,8 +21,14 @@
 FactoryGirl.define do
   factory :rescheduling do
     lecture
-    before_date_period { date_period }
-    after_date_period { date_period }
-    category 'change'
+    period_time
+
+    trait :cancel do
+      category 'cancel'
+    end
+
+    trait :addition do
+      category 'addition'
+    end
   end
 end
