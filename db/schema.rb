@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408093638) do
+ActiveRecord::Schema.define(version: 20150504061211) do
 
   create_table "academic_terms", force: :cascade do |t|
     t.string   "name",         null: false
@@ -186,7 +186,12 @@ ActiveRecord::Schema.define(version: 20150408093638) do
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.integer  "category"
+    t.integer  "period_time_id"
+    t.date     "scheduled_on"
   end
+
+  add_index "reschedulings", ["period_time_id"], name: "index_reschedulings_on_period_time_id"
+  add_index "reschedulings", ["scheduled_on"], name: "index_reschedulings_on_scheduled_on"
 
   create_table "schedulings", force: :cascade do |t|
     t.integer  "lecture_id", null: false

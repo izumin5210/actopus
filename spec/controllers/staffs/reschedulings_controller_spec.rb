@@ -19,7 +19,7 @@ RSpec.describe Staffs::ReschedulingsController, type: :controller do
     before { Timecop.freeze(Time.local(2015, 1, 19, 12, 0, 0)) }
     after { Timecop.return }
     let(:params) do
-      { category: 'change',
+      { category: 'addition',
         lecture_id: lecture.id,
         before_period_id: before_period_time.id,
         after_period_id: after_period_time.id,

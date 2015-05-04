@@ -6,9 +6,16 @@
 #  lecture_id            :integer
 #  before_date_period_id :integer
 #  after_date_period_id  :integer
-#  category              :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  category              :integer
+#  period_time_id        :integer
+#  scheduled_on          :date
+#
+# Indexes
+#
+#  index_reschedulings_on_period_time_id  (period_time_id)
+#  index_reschedulings_on_scheduled_on    (scheduled_on)
 #
 
 require 'rails_helper'
@@ -21,6 +28,7 @@ RSpec.describe Rescheduling, type: :model do
     it { is_expected.to belong_to(:lecture) }
     it { is_expected.to belong_to(:before_date_period).class_name('DatePeriod') }
     it { is_expected.to belong_to(:after_date_period).class_name('DatePeriod') }
+    it { is_expected.to belong_to(:period_time) }
   end
 
   describe 'validates' do
@@ -43,30 +51,18 @@ RSpec.describe Rescheduling, type: :model do
   describe 'available' do
     let(:period_time) { create(:period_time) }
     let(:today) { Time.local(2015, 1, 19, 12, 0, 0) }
-    let(:today_date_period) do
-      create(:date_period, period_time: period_time, taken_on: today)
-    end
-    let(:yesterday_date_period) do
-      create(:date_period, period_time: period_time, taken_on: today.yesterday)
-    end
     let(:lecture) { create(:lecture) }
     let!(:reschedulings) do
       [
-        create(:rescheduling,
-               category: :cancel,
-               before_date_period: yesterday_date_period,
-               after_date_period: nil,
-               lecture: lecture),
-        create(:rescheduling,
-               category: :cancel,
-               before_date_period: today_date_period,
-               after_date_period: nil,
-               lecture: lecture),
-        create(:rescheduling,
-               category: :change,
-               before_date_period: yesterday_date_period,
-               after_date_period: today_date_period,
-               lecture: lecture)
+        create(:rescheduling, :cancel,
+               lecture: lecture,
+               scheduled_on: today.yesterday),
+        create(:rescheduling, :cancel,
+               lecture: lecture,
+               scheduled_on: today),
+        create(:rescheduling, :cancel,
+               lecture: lecture,
+               scheduled_on: today.tomorrow)
       ]
     end
     before do
