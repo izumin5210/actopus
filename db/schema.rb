@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504061211) do
+ActiveRecord::Schema.define(version: 20150504093217) do
 
   create_table "academic_terms", force: :cascade do |t|
     t.string   "name",         null: false
@@ -145,12 +145,13 @@ ActiveRecord::Schema.define(version: 20150504061211) do
   add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true
 
   create_table "oauth_applications", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.string   "uid",          null: false
-    t.string   "secret",       null: false
-    t.text     "redirect_uri", null: false
+    t.string   "name",                      null: false
+    t.string   "uid",                       null: false
+    t.string   "secret",                    null: false
+    t.text     "redirect_uri",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "scopes",       default: "", null: false
   end
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
