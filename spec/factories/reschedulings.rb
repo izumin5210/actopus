@@ -10,10 +10,12 @@
 #  updated_at            :datetime         not null
 #  category              :integer
 #  period_time_id        :integer
+#  scheduled_on          :date
 #
 # Indexes
 #
 #  index_reschedulings_on_period_time_id  (period_time_id)
+#  index_reschedulings_on_scheduled_on    (scheduled_on)
 #
 
 FactoryGirl.define do
