@@ -26,6 +26,7 @@ RSpec.describe Rescheduling, type: :model do
     it { is_expected.to belong_to(:lecture) }
     it { is_expected.to belong_to(:before_date_period).class_name('DatePeriod') }
     it { is_expected.to belong_to(:after_date_period).class_name('DatePeriod') }
+    it { is_expected.to belong_to(:period_time) }
   end
 
   describe 'validates' do

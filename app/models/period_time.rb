@@ -20,6 +20,7 @@
 class PeriodTime < ActiveRecord::Base
   has_many :date_periods
   has_many :periods
+  has_many :reschedulings
 
   validates :name, presence: true, uniqueness: true
   validates :start_time, presence: true, uniqueness: { scope: [:end_time] }

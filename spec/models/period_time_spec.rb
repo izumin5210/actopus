@@ -37,6 +37,7 @@ RSpec.describe PeriodTime, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:periods) }
+    it { is_expected.to have_many(:reschedulings) }
   end
 
   describe '#is?' do
