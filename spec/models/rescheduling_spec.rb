@@ -51,30 +51,18 @@ RSpec.describe Rescheduling, type: :model do
   describe 'available' do
     let(:period_time) { create(:period_time) }
     let(:today) { Time.local(2015, 1, 19, 12, 0, 0) }
-    let(:today_date_period) do
-      create(:date_period, period_time: period_time, taken_on: today)
-    end
-    let(:yesterday_date_period) do
-      create(:date_period, period_time: period_time, taken_on: today.yesterday)
-    end
     let(:lecture) { create(:lecture) }
     let!(:reschedulings) do
       [
-        create(:rescheduling,
-               category: :cancel,
-               before_date_period: yesterday_date_period,
-               after_date_period: nil,
-               lecture: lecture),
-        create(:rescheduling,
-               category: :cancel,
-               before_date_period: today_date_period,
-               after_date_period: nil,
-               lecture: lecture),
-        create(:rescheduling,
-               category: :addition,
-               before_date_period: nil,
-               after_date_period: today_date_period,
-               lecture: lecture)
+        create(:rescheduling, :cancel,
+               lecture: lecture,
+               scheduled_on: today.yesterday),
+        create(:rescheduling, :cancel,
+               lecture: lecture,
+               scheduled_on: today),
+        create(:rescheduling, :cancel,
+               lecture: lecture,
+               scheduled_on: today.tomorrow)
       ]
     end
     before do

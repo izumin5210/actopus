@@ -1,25 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe 'rescheduling resources', type: :request do
+  create_term_and_freeze_time
+
   let(:rescheduling_structure) do
     { 'category' => /extra|cancel|change/,
-      'lecture' => a_kind_of(Hash),
-      'before_period' => a_kind_of(Hash)
+      'lecture' => a_kind_of(Hash)
     }
   end
 
-  let(:date_periods) { create_list(:date_period, 2) }
   let(:lecture) do
     create(:lecture,
            lecturers_count: 3,
            periods_count: 3,
+           term: term,
            special_target: 'female')
   end
   let!(:rescheduling) do
     create(:rescheduling,
            category: 'cancel', lecture: lecture,
-           before_date_period: date_periods[0],
-           after_date_period: nil)
+           scheduled_on: now)
   end
 
   describe 'GET /api/v1/reschedulings' do
