@@ -11,7 +11,7 @@ class ReschedulingValidator < ActiveModel::Validator
     validate_presence_of_before_date_period(record)
   end
 
-  def validate_extra(record)
+  def validate_addition(record)
     validate_presence_of_after_date_period(record)
   end
 

@@ -19,29 +19,14 @@ RSpec.describe ReschedulingValidator, type: :validator do
       end
     end
 
-    context 'when the category is extra' do
-      let(:category) { 'extra' }
+    context 'when the category is addition' do
+      let(:category) { 'addition' }
       let(:before_date_period) { nil }
       context 'without after_date_period' do
         let(:after_date_period) { nil }
         it { is_expected.to_not be_valid }
       end
       context 'with after_date_period' do
-        it { is_expected.to be_valid }
-      end
-    end
-
-    context 'when the category is change' do
-      let(:category) { 'change' }
-      context 'without before_date_period' do
-        let(:before_date_period) { nil }
-        it { is_expected.to_not be_valid }
-      end
-      context 'without after_date_period' do
-        let(:after_date_period) { nil }
-        it { is_expected.to_not be_valid }
-      end
-      context 'with before_date_period and after_date_period' do
         it { is_expected.to be_valid }
       end
     end

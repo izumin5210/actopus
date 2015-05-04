@@ -54,16 +54,8 @@ RSpec.describe ReschedulingForm, type: :model do
       it_behaves_like 'a valid rescheduling form'
     end
 
-    context 'when category is "change"' do
-      let(:category) { 'change' }
-      it_behaves_like 'a invalid rescheduling form' do
-        let(:after_period_time) { nil }
-      end
-      it_behaves_like 'a valid rescheduling form'
-    end
-
-    context 'when category is "extra"' do
-      let(:category) { 'extra' }
+    context 'when category is "addition"' do
+      let(:category) { 'addition' }
       let(:before_period_time) { nil }
       let(:before_date) { nil }
       it_behaves_like 'a invalid rescheduling form' do

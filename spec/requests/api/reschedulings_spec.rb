@@ -4,8 +4,7 @@ RSpec.describe 'rescheduling resources', type: :request do
   let(:rescheduling_structure) do
     { 'category' => /extra|cancel|change/,
       'lecture' => a_kind_of(Hash),
-      'before_period' => a_kind_of(Hash),
-      'after_period' => a_kind_of(Hash)
+      'before_period' => a_kind_of(Hash)
     }
   end
 
@@ -18,9 +17,9 @@ RSpec.describe 'rescheduling resources', type: :request do
   end
   let!(:rescheduling) do
     create(:rescheduling,
-           category: 'change', lecture: lecture,
+           category: 'cancel', lecture: lecture,
            before_date_period: date_periods[0],
-           after_date_period: date_periods[1])
+           after_date_period: nil)
   end
 
   describe 'GET /api/v1/reschedulings' do

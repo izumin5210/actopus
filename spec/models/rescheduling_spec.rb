@@ -71,8 +71,8 @@ RSpec.describe Rescheduling, type: :model do
                after_date_period: nil,
                lecture: lecture),
         create(:rescheduling,
-               category: :change,
-               before_date_period: yesterday_date_period,
+               category: :addition,
+               before_date_period: nil,
                after_date_period: today_date_period,
                lecture: lecture)
       ]
