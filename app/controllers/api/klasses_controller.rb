@@ -1,6 +1,6 @@
 class Api::KlassesController < Api::BaseController
   include Garage::RestfulActions
-  include Garage::NoAuthentication
+  include PublicApi
 
   def require_resources
     @resources = Klass.includes(:department, :course).all
