@@ -15,8 +15,10 @@ getBundler = (opts) ->
 bundle = (opts) ->
   getBundler(opts)
     .bundle()
+    .on('error', $.util.log)
     .pipe(source('bundle.js'))
     .pipe($.streamify($.rev()))
+    .pipe($.streamify($.size(title: 'scripts')))
     .pipe(gulp.dest('public/assets'))
     .pipe($.manifest())
     .pipe(gulp.dest('public/assets'))
