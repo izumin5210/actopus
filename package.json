@@ -1,3 +1,6 @@
 {
-  "name": "actopus"
+  "name": "actopus",
+  "devDependencies": {
+    "coffee-script": "^1.9.2"
+  }
 }
