@@ -26,9 +26,6 @@ group :default do
 
   gem 'rails-assets-bootstrap-sass-official'
   gem 'rails-assets-font-awesome'
-  gem 'rails-assets-jquery'
-  gem 'rails-assets-jquery-ujs'
-  gem 'rails-assets-lodash'
 
   gem 'enum_help'
 end
