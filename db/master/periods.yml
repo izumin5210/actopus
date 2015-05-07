@@ -1,5 +1,5 @@
 master:
-  periods:
+  period_times:
   - name: 1限
     start_time: '09:00:00+09:00'
     end_time: '10:30:00+09:00'
