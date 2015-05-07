@@ -5,8 +5,10 @@ browserify  = require('browserify')
 watchify    = require('watchify')
 source      = require('vinyl-source-stream')
 
+browserSync = require('browser-sync')
+
 environment = process.env['ENV'] || 'development'
-minify = (environment == 'production')
+isProduction = (environment == 'production')
 
 
 #### browserify --------------------------------
@@ -25,14 +27,26 @@ bundle = (opts) ->
     .bundle()
     .on('error', $.util.log)
     .pipe(source('bundle.js'))
-    .pipe($.if(minify, $.streamify($.uglify())))
-    .pipe($.streamify($.rev()))
+    .pipe($.if(isProduction, $.streamify($.uglify())))
+    .pipe($.if(isProduction, $.streamify($.rev())))
     .pipe($.streamify($.size(title: 'scripts')))
-    .pipe(gulp.dest('public/assets'))
-    .pipe($.manifest())
-    .pipe(gulp.dest('public/assets'))
+    .pipe(gulp.dest(if isProduction then 'public/assets' else 'public/javascripts'))
+    .pipe($.if(isProduction, $.streamify($.manifest())))
+    .pipe($.if(isProduction, gulp.dest('public/assets'))
 
 gulp.task('browserify', bundle)
 gulp.task('watchify', ->
   bundle(watch: true)
+)
+
+
+#### browserSync --------------------------------
+gulp.task('browser-sync', ->
+  browserSync
+    proxy: 'http://localhost:3000'
+)
+
+gulp.task('bs-reload', browserSync.reload)
+gulp.task('watch', ['browser-sync', 'watchify'], ->
+    gulp.watch(['public/{asset,javascript}s/**/*.js'], ['bs-reload'])
 )
