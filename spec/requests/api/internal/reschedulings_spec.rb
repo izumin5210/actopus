@@ -34,4 +34,23 @@ RSpec.describe 'reschedulings resource', type: :request do
       end
     end
   end
+
+  describe 'DELETE /api/internal/reschedulings/:id' do
+    let(:id) { rescheduling.id }
+    let(:rescheduling) do
+      create(:rescheduling, lecture: lecture, category: 'cancel')
+    end
+
+    it 'returns 403 forbidden' do
+      is_expected.to eq 403
+    end
+
+    context 'with write_rescheduling scope' do
+      let(:scopes) { 'public write_rescheduling' }
+      it 'returns rescheduling resource' do
+        is_expected.to eq 204
+        expect(response.body).to be_blank
+      end
+    end
+  end
 end

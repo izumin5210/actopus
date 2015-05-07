@@ -5,8 +5,16 @@ class Api::Internal::ReschedulingsController < Api::BaseController
     @resources = Rescheduling.all
   end
 
+  def require_resource
+    @resource = Rescheduling.find(params[:id])
+  end
+
   def create_resource
     @resources.create(rescheduling_params)
+  end
+
+  def destroy_resource
+    @resource.destroy!
   end
 
   private

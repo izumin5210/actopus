@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     end
 
     namespace :internal do
-      resources :reschedulings, only: %i(show create)
+      resources :reschedulings, only: %i(show create destroy)
     end
   end
 

@@ -54,5 +54,6 @@ class Rescheduling < ActiveRecord::Base
 
   def build_permissions(perms, other)
     perms.permits! :read
+    perms.permits! :write
   end
 end
