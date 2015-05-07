@@ -1,5 +1,5 @@
 gulp        = require('gulp')
-$           = require('gulp-load-plugins')(rename: {'gulp-rev-rails-manifest': 'manifest'})
+$           = require('gulp-load-plugins')()
 
 browserify  = require('browserify')
 watchify    = require('watchify')
@@ -41,7 +41,7 @@ gulp.task('rev', ->
   gulp.src(['public/assets/**/*.js'])
     .pipe($.rev())
     .pipe(gulp.dest('public/assets'))
-    .pipe($.manifest())
+    .pipe($.revRailsManifest())
     .pipe(gulp.dest('public/assets'))
 )
 
