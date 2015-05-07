@@ -21,5 +21,9 @@ Doorkeeper.configure do
     current_staff || warden.authenticate!(scope: :staff)
   end
 
+  skip_authorization do |_resource_owner, client|
+    client.uid == Settings.oauth.application.uid
+  end
+
   grant_flows %w(implicit)
 end
