@@ -4,6 +4,9 @@ $           = require('gulp-load-plugins')(rename: {'gulp-rev-rails-manifest': '
 browserify  = require('browserify')
 source      = require('vinyl-source-stream')
 
+environment = process.env['ENV'] || 'development'
+minify = (environment == 'production')
+
 
 #### browserify --------------------------------
 getBundler = (opts) ->
@@ -17,6 +20,7 @@ bundle = (opts) ->
     .bundle()
     .on('error', $.util.log)
     .pipe(source('bundle.js'))
+    .pipe($.if(minify, $.streamify($.uglify())))
     .pipe($.streamify($.rev()))
     .pipe($.streamify($.size(title: 'scripts')))
     .pipe(gulp.dest('public/assets'))
