@@ -45,6 +45,10 @@ Rails.application.routes.draw do
       resources :klasses, only: %i(index show), path: :classes
       resources :reschedulings, only: %i(index)
     end
+
+    namespace :internal do
+      resources :reschedulings, only: %i(show create destroy)
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

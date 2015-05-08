@@ -26,3 +26,8 @@ rescheduling:
   category:
     cancel: 20
     addition: 40
+
+oauth:
+  application:
+    name: 'actopus'
+    uid: <%= Rails.application.secrets.oauth_application_id %>
