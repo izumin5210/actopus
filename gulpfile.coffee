@@ -15,7 +15,7 @@ isProduction = (environment == 'production')
 #### browserify --------------------------------
 getBundler = (opts) ->
   browserifyOpts =
-    entries: ['./app/assets/javascripts/application.js.coffee']
+    entries: ['./ui/assets/javascripts/app.ts']
     extensions: ['.coffee', '.ts']
 
   bundler = browserify(browserifyOpts)

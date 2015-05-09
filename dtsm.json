@@ -5,7 +5,7 @@
       "ref": "master"
     }
   ],
-  "path": "typings",
-  "bundle": "typings/bundle.d.ts",
+  "path": "ui/assets/typings/vendor",
+  "bundle": "ui/assets/typings/bundle.d.ts",
   "dependencies": {}
 }
