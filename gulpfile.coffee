@@ -14,10 +14,14 @@ isProduction = (environment == 'production')
 
 #### browserify --------------------------------
 getBundler = (opts) ->
-  bundler = browserify
+  browserifyOpts =
     entries: ['./app/assets/javascripts/application.js.coffee']
-    extensions: ['.coffee']
-    transform: ['coffeeify']
+    extensions: ['.coffee', '.ts']
+
+  bundler = browserify(browserifyOpts)
+    .transform('coffeeify')
+    .plugin('tsify', { noImplicitAny: true })
+
   if opts? && opts.watch
     watchify(bundler).on('update', -> bundle(opts))
   else
