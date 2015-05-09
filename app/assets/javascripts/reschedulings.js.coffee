@@ -1,6 +1,3 @@
-$ = require 'jquery'
-_ = require 'lodash'
-
 $ ->
   $lectures = $('.cell')
   $modal = $('#reschedulings-modal')
