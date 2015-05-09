@@ -7,5 +7,9 @@
   ],
   "path": "ui/assets/typings/vendor",
   "bundle": "ui/assets/typings/bundle.d.ts",
-  "dependencies": {}
+  "dependencies": {
+    "browserify/browserify.d.ts": {
+      "ref": "b3834d886a95789e6ab56e8244775ec10c5293d0"
+    }
+  }
 }
