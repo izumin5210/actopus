@@ -23,18 +23,24 @@ getBundler = (opts) ->
     .plugin('tsify', { noImplicitAny: true })
 
   if opts? && opts.watch
-    watchify(bundler).on('update', -> bundle(opts))
+    watchify(bundler)
   else
     bundler
 
 bundle = (opts) ->
-  getBundler(opts)
-    .bundle()
-    .on('error', $.util.log)
-    .pipe(source('bundle.js'))
-    .pipe($.if(isProduction, $.streamify($.uglify())))
-    .pipe($.streamify($.size(title: 'scripts')))
-    .pipe(gulp.dest(if isProduction then 'public/assets' else 'public/javascripts'))
+  bundler = getBundler(opts)
+
+  rebundle = ->
+    bundler.bundle()
+      .on('error', $.util.log)
+      .pipe(source('bundle.js'))
+      .pipe($.if(isProduction, $.streamify($.uglify())))
+      .pipe($.streamify($.size(title: 'scripts')))
+      .pipe(gulp.dest(if isProduction then 'public/assets' else 'public/javascripts'))
+
+  bundler = bundler.on('update', rebundle) if opts? && opts.watch
+
+  rebundle()
 
 gulp.task('browserify', bundle)
 gulp.task('watchify', ->
