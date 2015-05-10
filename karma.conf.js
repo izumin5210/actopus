@@ -1,6 +1,9 @@
 // Karma configuration
 // Generated on Sun May 10 2015 15:30:52 GMT+0900 (JST)
 
+var _ = require('lodash');
+var pkg = require('./package.json');
+
 module.exports = function(config) {
   config.set({
 
@@ -10,12 +13,15 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
 
 
     // list of files / patterns to load in the browser
-    files: [
-    ],
+    files: _.flatten([
+      pkg.browserify.entries,
+      'node_modules/angular-mocks/angular-mocks.js',
+      'spec/javascripts/**/**_spec.ts'
+    ]),
 
 
     // list of files to exclude
@@ -25,7 +31,32 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
+    preprocessors: _.extend(
+      _.zipObject(_.map(pkg.browserify.entries, function (file) {
+        return [file, ['browserify']];
+      })),
+      { 'spec/javascripts/**/**_spec.ts': ['typescript'] }
+    ),
+
+
+    browserify: {
+      extensions: pkg.browserify.extensions,
+      transform: pkg.browserify.transform,
+      plugin: _.flatten(_.map(pkg.browserify.plugins, function (plugin) {
+        return (typeof plugin == 'object') ? _.keys(plugin) : plugin;
+      }))
+    },
+
+
+    typescriptPreprocessor: {
+      options: {
+        target: 'ES5',
+        module: 'commonjs',
+        noImplicitAny: true
+      },
+      typings: [
+        'spec/javascripts/bundle.d.ts'
+      ]
     },
 
 
