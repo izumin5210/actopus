@@ -148,4 +148,3 @@ node_modules
 /public/assets
 /public/javascripts
 /ui/assets/typings/vendor
-/ui/assets/typings/bundle.d.ts
