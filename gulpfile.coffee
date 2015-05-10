@@ -8,19 +8,26 @@ source      = require('vinyl-source-stream')
 browserSync = require('browser-sync')
 runSequence = require('run-sequence')
 
+pkg         = require('./package.json')
+
 environment = process.env['ENV'] || 'development'
 isProduction = (environment == 'production')
 
 
 #### browserify --------------------------------
 getBundler = (opts) ->
-  browserifyOpts =
-    entries: ['./ui/assets/javascripts/app.ts']
-    extensions: ['.coffee', '.ts']
+  bundler = browserify(
+    entries: pkg.browserify.entries
+    extensions: pkg.browserify.extensions
+    transform: pkg.browserify.transform
+  )
 
-  bundler = browserify(browserifyOpts)
-    .transform('coffeeify')
-    .plugin('tsify', { noImplicitAny: true })
+  for p in pkg.browserify.plugins
+    if typeof p == "object"
+      for k, v of p
+        bundler = bundler.plugin(k, v)
+    else
+      bundler = bundler.plugin(p)
 
   if opts? && opts.watch
     watchify(bundler)
