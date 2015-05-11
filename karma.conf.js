@@ -56,7 +56,7 @@ module.exports = function(config) {
       noImplicitAny: true
       },
       typings: [
-        'spec/javascripts/bundle.d.ts'
+        'spec/typings/bundle.d.ts'
       ]
   },
 
