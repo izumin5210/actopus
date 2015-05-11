@@ -69,6 +69,11 @@ gulp.task('dtsm', ->
     .pipe($.dtsm())
 )
 
+gulp.task('dtsm:test', ->
+  gulp.src('./dtsm.test.json')
+    .pipe($.dtsm())
+)
+
 
 #### browserSync --------------------------------
 gulp.task('browser-sync', ->
