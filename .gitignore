@@ -148,3 +148,4 @@ node_modules
 /public/assets
 /public/javascripts
 /ui/assets/typings/vendor
+/spec/typings/vendor
