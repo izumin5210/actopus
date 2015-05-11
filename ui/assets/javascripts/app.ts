@@ -2,4 +2,9 @@
 
 var angular: ng.IAngularStatic = require("angular");
 
-angular.module("actopus", []);
+import HelloDirective = require("./directives/hello");
+
+module actopus {
+  angular.module("actopus", [])
+    .directive("actHello", () => new HelloDirective());
+}
