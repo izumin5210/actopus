@@ -16,6 +16,9 @@
     },
     "angularjs/angular-mocks.d.ts": {
       "ref": "b3834d886a95789e6ab56e8244775ec10c5293d0"
+    },
+    "karma-jasmine/karma-jasmine.d.ts": {
+      "ref": "b3834d886a95789e6ab56e8244775ec10c5293d0"
     }
   }
 }
