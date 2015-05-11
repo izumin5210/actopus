@@ -64,6 +64,13 @@ gulp.task('rev', ->
 
 
 #### browserSync --------------------------------
+gulp.task('dtsm', ->
+  gulp.src('./dtsm.json')
+    .pipe($.dtsm())
+)
+
+
+#### browserSync --------------------------------
 gulp.task('browser-sync', ->
   browserSync
     proxy: 'http://localhost:3000'
