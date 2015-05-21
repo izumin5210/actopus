@@ -98,9 +98,9 @@ gulp.task('watch', ['build', 'browser-sync', 'build:ts:watch', 'watchify'], ->
 
 gulp.task('build', (callback) ->
   if isProduction
-    runSequence('build:ts', 'browserify', 'rev', callback)
+    runSequence('build:ts', 'build:template', 'browserify', 'rev', callback)
   else
-    runSequence('build:ts', 'browserify', callback)
+    runSequence('build:ts', 'build:template', 'browserify', callback)
 )
 
 gulp.task('rev', ->
