@@ -3,18 +3,18 @@ require 'rails_helper'
 RSpec.describe ReschedulingForm, type: :model do
   let(:rescheduling_form) { ReschedulingForm.new(params) }
   let(:lecture) { create(:lecture) }
-  let(:period) { create(:period) }
+  let(:period_time) { create(:period_time) }
   subject { rescheduling_form }
 
   let(:params) do
     { lecture_id: lecture.id, category: category,
-      before_period_id: before_period.try(:id), before_date: before_date,
-      after_period_id: after_period.try(:id), after_date: after_date
+      before_period_id: before_period_time.try(:id), before_date: before_date,
+      after_period_id: after_period_time.try(:id), after_date: after_date
     }
   end
   let(:category) { 'cancel' }
-  let(:before_period) { period }
-  let(:after_period) { create(:period) }
+  let(:before_period_time) { period_time }
+  let(:after_period_time) { create(:period_time) }
   let(:before_date) { Date.parse('2015-01-14') }
   let(:after_date) { Date.parse('2015-01-22') }
 
@@ -46,29 +46,15 @@ RSpec.describe ReschedulingForm, type: :model do
     end
     context 'when category is "cancel"' do
       let(:category) { 'cancel' }
-      let(:after_period) { nil }
+      let(:after_period_time) { nil }
       let(:after_date) { nil }
-      it_behaves_like 'a invalid rescheduling form' do
-        let(:before_period) { nil }
-      end
       it_behaves_like 'a valid rescheduling form'
     end
 
-    context 'when category is "change"' do
-      let(:category) { 'change' }
-      it_behaves_like 'a invalid rescheduling form' do
-        let(:after_period) { nil }
-      end
-      it_behaves_like 'a valid rescheduling form'
-    end
-
-    context 'when category is "extra"' do
-      let(:category) { 'extra' }
-      let(:before_period) { nil }
+    context 'when category is "addition"' do
+      let(:category) { 'addition' }
+      let(:before_period_time) { nil }
       let(:before_date) { nil }
-      it_behaves_like 'a invalid rescheduling form' do
-        let(:after_period) { nil }
-      end
       it_behaves_like 'a valid rescheduling form'
     end
   end

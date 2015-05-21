@@ -1,0 +1,3 @@
+oauth:
+  application:
+    redirect_uri: 'http://actopus.akashi.ac.jp/'

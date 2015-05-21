@@ -24,6 +24,10 @@ lecture:
 
 rescheduling:
   category:
-    change: 0
     cancel: 20
-    extra: 40
+    addition: 40
+
+oauth:
+  application:
+    name: 'actopus'
+    uid: <%= Rails.application.secrets.oauth_application_id %>

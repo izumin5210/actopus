@@ -2,47 +2,52 @@
 #
 # Table name: periods
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  start_time :string           not null
-#  end_time   :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :integer          not null, primary key
+#  period_time_id :integer          not null
+#  wday           :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 # Indexes
 #
-#  index_periods_on_end_time                 (end_time)
-#  index_periods_on_name                     (name) UNIQUE
-#  index_periods_on_start_time               (start_time)
-#  index_periods_on_start_time_and_end_time  (start_time,end_time) UNIQUE
+#  index_periods_on_period_time_id           (period_time_id)
+#  index_periods_on_period_time_id_and_wday  (period_time_id,wday) UNIQUE
+#  index_periods_on_wday                     (wday)
 #
 
 require 'rails_helper'
 
 RSpec.describe Period, type: :model do
-  let(:period) { build(:period, start_time: start_time, end_time: end_time) }
-  let(:start_time) { '09:00:00+09:00' }
-  let(:end_time) { '10:30:00+09:00' }
+  let(:period) { build(:period) }
   subject { period }
 
   describe 'validates' do
-    it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_uniqueness_of(:name) }
-    it { is_expected.to validate_presence_of(:start_time) }
-    it { is_expected.to validate_presence_of(:end_time) }
+    it { is_expected.to validate_presence_of(:period_time_id) }
+    it { is_expected.to validate_presence_of(:wday) }
     it do
-      is_expected.to validate_uniqueness_of(:start_time).scoped_to(:end_time)
+      is_expected.to validate_uniqueness_of(:period_time_id).scoped_to(:wday)
     end
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:wday_periods) }
+    it { is_expected.to belong_to(:period_time) }
+    it { is_expected.to have_many(:schedulings) }
+    it { is_expected.to have_many(:lectures).through(:schedulings) }
+  end
+
+  describe 'delegations' do
+    it { is_expected.to delegate_method(:start_time).to(:period_time) }
+    it { is_expected.to delegate_method(:end_time).to(:period_time) }
   end
 
   describe '#is?' do
-    let(:params) { { start_time: other_start_time, end_time: other_end_time } }
-    let(:other_start_time) { start_time }
-    let(:other_end_time) { end_time }
+    let(:params) do
+      { start_time: other_start_time,
+        end_time: other_end_time, wday: other_wday }
+    end
+    let(:other_start_time) { period.start_time }
+    let(:other_end_time) { period.end_time }
+    let(:other_wday) { period.wday }
     subject { period.is?(params) }
     it { is_expected.to eq true }
 
@@ -55,37 +60,10 @@ RSpec.describe Period, type: :model do
       let(:other_end_time) { '' }
       it { is_expected.to eq false }
     end
-  end
 
-  describe '#length' do
-    subject { period.length }
-    it { is_expected.to eq 5400.0 }
-  end
-
-  describe '#<=>' do
-    let(:params) { { start_time: start_time, end_time: end_time } }
-    let(:other_start_time) { '09:00:00+09:00' }
-    let(:other_end_time) { '10:30:00+09:00' }
-    let(:other_params) { { start_time: other_start_time, end_time: other_end_time } }
-    subject { Period.new(params) <=> Period.new(other_params) }
-    context 'with the same start_time and end_time' do
-      it { is_expected.to eq 0 }
-    end
-    context 'with the same start_time and earlier end_time' do
-      let(:other_end_time) { '10:00:00+09:00' }
-      it { is_expected.to eq 1 }
-    end
-    context 'with the same start_time and later end_time' do
-      let(:other_end_time) { '10:40:00+09:00' }
-      it { is_expected.to eq -1 }
-    end
-    context 'with earlier start_time' do
-      let(:other_start_time) { '08:40:00+09:00' }
-      it { is_expected.to eq 1 }
-    end
-    context 'with later start_time' do
-      let(:other_start_time) { '09:40:00+09:00' }
-      it { is_expected.to eq -1 }
+    context 'when wday is different' do
+      let(:other_wday) { -1 }
+      it { is_expected.to eq false }
     end
   end
 end
