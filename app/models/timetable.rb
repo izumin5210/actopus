@@ -1,61 +1,46 @@
 class Timetable
-  BEGINNING_OF_DAY = Settings.timetable.beginning_of_day
-  END_OF_DAY = Settings.timetable.end_of_day
-
-  attr_reader :rows
-
-  def initialize(lectures)
-    @rows = {}
-    lectures.each do |lecture|
-      lecture.periods.each do |period|
-        wday = period.wday
-        @rows[wday] ||= Row.new
-        @rows[wday] << Cell.new(lecture: lecture, period_time: period.period_time)
-      end
-    end
-    @rows.each { |wday, row| row.layered! }
-  end
-
-  class Row
-    attr_reader :cells
-    def initialize
-      @cells = []
-    end
-
-    def <<(cell)
-      @cells << cell
-    end
-
-    def layered!
-      @cells.each.with_index do |cell, i|
-        @cells.each.with_index do |other_cell, j|
-          next if i == j
-          if cell.range.overlaps?(other_cell.range)
-            cell.layer_count += 1
-            if cell.layer_index <= other_cell.layer_index
-              cell.layer_index = other_cell.layer_index + 1
-            end
-          end
-        end
-        cell.layer_index = 0 if cell.layer_index == -1
-      end
-    end
-  end
+  include ActiveModel::Model
+  attr_accessor :cells
 
   class Cell
     include ActiveModel::Model
-    attr_accessor :lecture, :period_time, :range, :layer_count, :layer_index
-    delegate :start_time, :end_time, to: :period_time
-    def initialize(*args)
-      super(*args)
-      base = time_to_i(BEGINNING_OF_DAY)
-      @range = (time_to_i(start_time) - base)...(time_to_i(end_time) - base)
-      @layer_count = 1
-      @layer_index = -1
-    end
+    attr_accessor :lecture, :category, :scheduled_on, :period_time, :rescheduling
+  end
 
-    def time_to_i(time_str)
-      Time.parse(time_str).to_i
+  def self.create_from_klass(klass, all_week = Date.today.all_week)
+    lectures = klass.lectures.current_term.includes(:periods)
+    create_from_lectures(lectures, all_week)
+  end
+
+  def self.create_from_lecturer(lecturer, all_week = Date.today.all_week)
+    lectures = lecturer.lectures.current_term.includes(:periods)
+    create_from_lectures(lectures, all_week)
+  end
+
+  private
+
+  def self.create_from_lectures(lectures, all_week)
+    cells = all_week.inject([]) do |cells, date|
+        cells + create_cells_from_lectures_by_date(lectures, date)
+      end
+    Timetable.new(cells: cells)
+  end
+
+  def self.create_cells_from_lectures_by_date(lectures, date)
+    lectures.where(periods: { wday: date.wday }).map { |lecture|
+      create_cells_from_lecture_by_date(lecture, date)
+    }.flatten
+  end
+
+  def self.create_cells_from_lecture_by_date(lecture, date)
+    periods = lecture.periods.select { |period| period.wday == date.wday }
+    periods.map do |period|
+      Timetable::Cell.new(
+        lecture: lecture,
+        category: :normal,
+        scheduled_on: date,
+        period_time: period.period_time
+      )
     end
   end
 end

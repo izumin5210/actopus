@@ -1,47 +1,53 @@
 require 'rails_helper'
 
 RSpec.describe Timetable, type: :model do
-  let(:period_times) do
-    [
-      create(:period_time, start_time: '09:00:00+09:00', end_time: '10:30:00+09:00'),
-      create(:period_time, start_time: '10:40:00+09:00', end_time: '12:10:00+09:00'),
-      create(:period_time, start_time: '11:25:00+09:00', end_time: '12:10:00+09:00')
-    ]
-  end
-  let(:periods) do
-    (1..2).map do |wday|
-      period_times.map do |period_time|
-        create(:period, wday: wday, period_time: period_time)
-      end
+  create_term_and_freeze_time
+
+  let(:all_week) { today.all_week }
+
+  describe '.create_from_klass' do
+    let!(:lectures) do
+      [
+        create_list(:lecture, 3, periods_count: 2, term: term, lecturers_count: 1, klass: klass),
+        create_list(:lecture, 2, periods_count: 2, term: term, lecturers_count: 1)
+      ].flatten
+    end
+    let(:klass) { create(:klass) }
+    subject { Timetable.create_from_klass(klass, all_week).cells }
+
+    context 'when the klass has no reschedulings in the week' do
+      it { expect(subject.size).to eq 6 }
+      it { is_expected.to all(satisfy { |c| c.lecture.klass == klass }) }
+      it { is_expected.to all(satisfy { |c| all_week.cover?(c.scheduled_on) }) }
+    end
+
+    context 'when the klass has 2 reschedulings in this week' do
+      pending 'Not yet implemented...'
     end
   end
-  let(:lectures) do
-    [
-      build(:lecture, periods: [periods[0][0]], term: term),
-      build(:lecture, periods: [periods[0][1]], term: term),
-      build(:lecture, periods: [periods[1][1]], term: term),
-      build(:lecture, periods: [periods[1][2]], term: term)
-    ]
-  end
-  let(:term) { create(:academic_term) }
 
-  subject do
-    stub_const('Timetable::BEGINNING_OF_DAY', '08:00:00+09:00')
-    stub_const('Timetable::END_OF_DAY', '18:00:00+09:00')
-    Timetable.new(lectures)
-  end
+  describe '.create_from_lecturer' do
+    let!(:lectures) do
+      [
+        create_list(:lecture, 3, periods_count: 2, term: term).map { |l| l.lecturers << lecturer },
+        create_list(:lecture, 2, periods_count: 2, term: term, lecturers_count: 1)
+      ].flatten
+    end
+    let(:lecturer) { create(:lecturer) }
+    subject { Timetable.create_from_lecturer(lecturer, all_week).cells }
 
-  describe '#initialize' do
-    it { expect(subject.rows.size).to eq 2 }
-    it { expect(subject.rows[1]).to be_a Timetable::Row }
-    it { expect(subject.rows[1].cells.size).to eq 2 }
-    it { expect(subject.rows[1].cells[0]).to be_a Timetable::Cell }
-    it { expect(subject.rows.keys).to match_array([1, 2]) }
-    it { expect([*subject.rows[1].cells[0].range]).to start_with(3600) }
-    it { expect([*subject.rows[1].cells[0].range]).to end_with(8999) }
-    it { expect(subject.rows[1].cells[0].layer_count).to eq 1 }
-    it { expect(subject.rows[2].cells[0].layer_count).to eq 2 }
-    it { expect(subject.rows[2].cells[0].layer_index).to eq 0 }
-    it { expect(subject.rows[2].cells[1].layer_index).to eq 1 }
+    context 'when the lecturer has no reschedulings in the week' do
+      it { expect(subject.size).to eq 6 }
+      specify 'all of the cells that are included in the timetable have the lecturer' do
+        is_expected.to all(satisfy { |c| c.lecture.lecturers.include?(lecturer) })
+      end
+      specify 'all of the cells that are included in the timetable are scheduled on this week' do
+        is_expected.to all(satisfy { |c| all_week.cover?(c.scheduled_on) })
+      end
+    end
+
+    context 'when the klass has 2 reschedulings in this week' do
+      pending 'Not yet implemented...'
+    end
   end
 end
