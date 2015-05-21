@@ -56,6 +56,14 @@ gulp.task('build:ts:watch', $.shell.task([
 ]))
 
 
+#### template --------------------------------
+gulp.task('build:template', ->
+  gulp.src('./ui/assets/templates/**/*.html')
+    .pipe($.angularTemplatecache(module: 'actopus'))
+    .pipe(gulp.dest('./tmp/assets/javascripts'))
+)
+
+
 #### dtsm --------------------------------
 gulp.task('dtsm', ->
   gulp.src('./dtsm.json')

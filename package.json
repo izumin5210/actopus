@@ -35,7 +35,8 @@
   },
   "browserify": {
     "entries": [
-      "./tmp/assets/javascripts/app.js"
+      "./tmp/assets/javascripts/app.js",
+      "./tmp/assets/javascripts/templates.js"
     ]
   }
 }
