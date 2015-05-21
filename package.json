@@ -36,21 +36,7 @@
   },
   "browserify": {
     "entries": [
-      "./ui/assets/javascripts/app.ts"
-    ],
-    "extensions": [
-      ".coffee",
-      ".ts"
-    ],
-    "transform": [
-      "coffeeify"
-    ],
-    "plugins": [
-      {
-        "tsify": {
-          "noImplicitAny": true
-        }
-      }
+      "./tmp/assets/javascripts/app.js"
     ]
   }
 }

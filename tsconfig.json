@@ -9,6 +9,6 @@
     "outDir": "tmp/assets/javascripts"
   },
   "files": [
-    "ui/assets/javascripts/app.ts"
+    "./ui/assets/javascripts/app.ts"
   ]
 }

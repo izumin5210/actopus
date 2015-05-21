@@ -18,16 +18,7 @@ isProduction = (environment == 'production')
 getBundler = (opts) ->
   bundler = browserify(
     entries: pkg.browserify.entries
-    extensions: pkg.browserify.extensions
-    transform: pkg.browserify.transform
   )
-
-  for p in pkg.browserify.plugins
-    if typeof p == "object"
-      for k, v of p
-        bundler = bundler.plugin(k, v)
-    else
-      bundler = bundler.plugin(p)
 
   if opts? && opts.watch
     watchify(bundler)
@@ -54,16 +45,18 @@ gulp.task('watchify', ->
   bundle(watch: true)
 )
 
-gulp.task('rev', ->
-  gulp.src(['public/assets/**/*.js'])
-    .pipe($.rev())
-    .pipe(gulp.dest('public/assets'))
-    .pipe($.revRailsManifest())
-    .pipe(gulp.dest('public/assets'))
-)
+
+#### TypeScript --------------------------------
+gulp.task('build:ts', $.shell.task([
+  '$(npm bin)/tsc'
+]))
+
+gulp.task('build:ts:watch', $.shell.task([
+  '$(npm bin)/tsc --watch'
+]))
 
 
-#### browserSync --------------------------------
+#### dtsm --------------------------------
 gulp.task('dtsm', ->
   gulp.src('./dtsm.json')
     .pipe($.dtsm())
@@ -83,10 +76,29 @@ gulp.task('browser-sync', ->
 
 gulp.task('bs-reload', browserSync.reload)
 
-gulp.task('watch', ['browser-sync', 'watchify'], ->
-    gulp.watch(['public/{asset,javascript}s/**/*.js'], ['bs-reload'])
+
+#### test --------------------------------
+gulp.task('test', ['build'], $.shell.task([
+  './node_modules/karma/bin/karma start karma.conf.js'
+]))
+
+
+#### build --------------------------------
+gulp.task('watch', ['build', 'browser-sync', 'build:ts:watch', 'watchify'], ->
+  gulp.watch(['public/{asset,javascript}s/**/*.js'], ['bs-reload'])
 )
 
 gulp.task('build', (callback) ->
-  runSequence('browserify', 'rev', callback)
+  if isProduction
+    runSequence('build:ts', 'browserify', 'rev', callback)
+  else
+    runSequence('build:ts', 'browserify', callback)
+)
+
+gulp.task('rev', ->
+  gulp.src(['public/assets/**/*.js'])
+    .pipe($.rev())
+    .pipe(gulp.dest('public/assets'))
+    .pipe($.revRailsManifest())
+    .pipe(gulp.dest('public/assets'))
 )
