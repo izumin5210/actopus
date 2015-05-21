@@ -31,7 +31,7 @@ FactoryGirl.define do
       periods_count 0
     end
 
-    after(:create, :stub) do |lecture, evaluator|
+    after(:create) do |lecture, evaluator|
       lecture.lecturers =
         create_list(:lecturer, evaluator.lecturers_count)
       lecture.periods =
@@ -40,7 +40,7 @@ FactoryGirl.define do
 
     after(:stub) do |lecture, evaluator|
       evaluator.lecturers_count.times do
-        lecture.lectures << build_stubbed(:lecturer)
+        lecture.lecturers << build_stubbed(:lecturer)
       end
       evaluator.periods_count.times do
         lecture.periods << build_stubbed(:period)
