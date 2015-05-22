@@ -1,0 +1,39 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Timetable
+definitions:
+  category:
+    description: variations of this period(normal, addition, cancel)
+    example: change
+    type:
+    - string
+  scheduled_on:
+    description: date when the period scheduled on
+    example: '2014-12-10'
+    type:
+    - string
+links:
+# - description: List lecturer's timetables.
+  # href: "/lecturers/{(%2Fschemata%2Flecturer%23%2Fdefinitions%2Fid)}/timetable"
+  # method: GET
+  # rel: instances
+  # title: Lecturer's timetable
+- description: List class' timetables.
+  href: "/classes/{(%2Fschemata%2Fclass%23%2Fdefinitions%2Fid)}/timetable"
+  method: GET
+  rel: instances
+  title: Class' timetable
+properties:
+  category:
+    "$ref": "/schemata/timetable#/definitions/category"
+  scheduled_on:
+    "$ref": "/schemata/timetable#/definitions/scheduled_on"
+  lecture:
+    "$ref": "/schemata/lecture"
+  period:
+    "$ref": "/schemata/period#/definitions/period_time"
+  rescheduling:
+    "$ref": "/schemata/rescheduling"
+type:
+- object
+id: schemata/timetable

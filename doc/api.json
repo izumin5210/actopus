@@ -313,6 +313,55 @@
       "type": [
         "object"
       ]
+    },
+    "timetable": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Timetable",
+      "definitions": {
+        "category": {
+          "description": "variations of this period(normal, addition, cancel)",
+          "example": "change",
+          "type": [
+            "string"
+          ]
+        },
+        "scheduled_on": {
+          "description": "date when the period scheduled on",
+          "example": "2014-12-10",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "List class' timetables.",
+          "href": "/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}/timetable",
+          "method": "GET",
+          "rel": "instances",
+          "title": "Class' timetable"
+        }
+      ],
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/timetable/definitions/category"
+        },
+        "scheduled_on": {
+          "$ref": "#/definitions/timetable/definitions/scheduled_on"
+        },
+        "lecture": {
+          "$ref": "#/definitions/lecture"
+        },
+        "period": {
+          "$ref": "#/definitions/period/definitions/period_time"
+        },
+        "rescheduling": {
+          "$ref": "#/definitions/rescheduling"
+        }
+      },
+      "type": [
+        "object"
+      ]
     }
   },
   "properties": {
@@ -327,6 +376,9 @@
     },
     "rescheduling": {
       "$ref": "#/definitions/rescheduling"
+    },
+    "timetable": {
+      "$ref": "#/definitions/timetable"
     }
   },
   "type": [
