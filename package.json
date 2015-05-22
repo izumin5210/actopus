@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "angular": "^1.4.0-rc.2",
-    "angular-mocks": "^1.4.0-rc.2"
+    "angular-mocks": "^1.4.0-rc.2",
+    "angular-resource": "^1.4.0-rc.2"
   },
   "browserify": {
     "entries": [
