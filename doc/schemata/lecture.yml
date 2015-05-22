@@ -25,26 +25,6 @@ definitions:
     example: 2014121002101231110200
     type:
     - string
-  period:
-    description: the preriod that lecture has taken
-    type:
-    - object
-    properties:
-      start_time:
-        description: time when the period start
-        example: '09:00:00+09:00'
-        type:
-        - string
-      end_time:
-        description: time when the period end
-        example: '10:30:00+09:00'
-        type:
-        - string
-      wday:
-        description: wday when the period taken
-        example: 1
-        type:
-        - integer
   lecturer:
     description: name of the lecture
     example: 新井 イスマイル
@@ -77,7 +57,7 @@ properties:
   periods:
     type: array
     items:
-      "$ref": "/schemata/lecture#/definitions/period"
+      "$ref": "/schemata/period"
   lecturers:
     type: array
     items:

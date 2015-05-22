@@ -7,6 +7,7 @@ A schema for ANCT reschedulings API
 * [Lecture](#lecture)
  * [GET /api/v1/lectures/:id](#get-apiv1lecturesid)
  * [GET /api/v1/lectures](#get-apiv1lectures)
+* [Period](#period)
 * [Rescheduling](#rescheduling)
  * [GET /api/v1/reschedulings](#get-apiv1reschedulings)
 
@@ -179,6 +180,23 @@ Content-Type: application/json
   }
 ]
 ```
+
+## Period
+
+
+### Properties
+* start_time
+ * time when the period start
+ * Example: `"09:00:00+09:00"`
+ * Type: string
+* end_time
+ * time when the period end
+ * Example: `"10:30:00+09:00"`
+ * Type: string
+* wday
+ * wday when the period taken
+ * Example: `1`
+ * Type: integer
 
 ## Rescheduling
 
