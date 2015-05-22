@@ -4,6 +4,18 @@ RSpec.describe Timetable, type: :model do
   create_term_and_freeze_time
 
   let(:all_week) { today.all_week }
+  let(:timetable) { Timetable.new(all_week: all_week) }
+  subject { timetable }
+
+  describe '#beginning_of_week' do
+    subject { timetable.beginning_of_week }
+    it { is_expected.to eq today.beginning_of_week }
+  end
+
+  describe '#end_of_week' do
+    subject { timetable.end_of_week }
+    it { is_expected.to eq today.end_of_week }
+  end
 
   describe '.create_from_klass' do
     let!(:lectures) do

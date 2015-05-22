@@ -9,4 +9,10 @@ class Api::KlassesController < Api::BaseController
   def require_resource
     @resource = Klass.friendly.find(params[:id])
   end
+
+  def timetable
+    require_resource
+    @resources = Timetable.create_from_klass(@resource)
+    respond_with @resources
+  end
 end

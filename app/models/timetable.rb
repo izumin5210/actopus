@@ -1,10 +1,32 @@
 class Timetable
   include ActiveModel::Model
-  attr_accessor :cells
+  attr_accessor :cells, :all_week
+
+  include Garage::Representer
+
+  property :beginning_of_week
+  property :end_of_week
+  collection :cells
 
   class Cell
     include ActiveModel::Model
     attr_accessor :lecture, :category, :scheduled_on, :period_time, :rescheduling
+
+    include Garage::Representer
+
+    property :category
+    property :scheduled_on
+    property :period_time
+    property :lecture
+    property :rescheduling
+  end
+
+  def beginning_of_week
+    all_week.first
+  end
+
+  def end_of_week
+    all_week.last
   end
 
   def self.create_from_klass(klass, all_week = Date.today.all_week)
@@ -23,7 +45,7 @@ class Timetable
     cells = all_week.inject([]) do |cells, date|
         cells + create_cells_from_lectures_by_date(lectures, date)
       end
-    Timetable.new(cells: cells)
+    Timetable.new(cells: cells, all_week: all_week)
   end
 
   def self.create_cells_from_lectures_by_date(lectures, date)
@@ -37,7 +59,7 @@ class Timetable
     periods.map do |period|
       Timetable::Cell.new(
         lecture: lecture,
-        category: :normal,
+        category: 'normal',
         scheduled_on: date,
         period_time: period.period_time
       )
