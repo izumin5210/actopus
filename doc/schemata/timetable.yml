@@ -9,31 +9,42 @@ definitions:
     - string
   scheduled_on:
     description: date when the period scheduled on
-    example: '2014-12-10'
+    example: '2014-12-15'
     type:
     - string
 links:
 # - description: List lecturer's timetables.
-  # href: "/lecturers/{(%2Fschemata%2Flecturer%23%2Fdefinitions%2Fid)}/timetable"
+  # href: "/api/v1/lecturers/{(%2Fschemata%2Flecturer%23%2Fdefinitions%2Fid)}/timetable"
   # method: GET
   # rel: instances
   # title: Lecturer's timetable
 - description: List class' timetables.
-  href: "/classes/{(%2Fschemata%2Fclass%23%2Fdefinitions%2Fid)}/timetable"
+  href: "/api/v1/classes/{(%2Fschemata%2Fclass%23%2Fdefinitions%2Fid)}/timetable"
   method: GET
-  rel: instances
+  rel: Info
   title: Class' timetable
 properties:
-  category:
-    "$ref": "/schemata/timetable#/definitions/category"
-  scheduled_on:
-    "$ref": "/schemata/timetable#/definitions/scheduled_on"
-  lecture:
-    "$ref": "/schemata/lecture"
-  period:
-    "$ref": "/schemata/period#/definitions/period_time"
-  rescheduling:
-    "$ref": "/schemata/rescheduling"
+  cells:
+    type: array
+    items:
+      properties:
+        category:
+          "$ref": "/schemata/timetable#/definitions/category"
+        scheduled_on:
+          "$ref": "/schemata/timetable#/definitions/scheduled_on"
+        lecture:
+          "$ref": "/schemata/lecture"
+        period:
+          "$ref": "/schemata/period#/definitions/period_time"
+        rescheduling_id:
+          example: 1
+          anyOf:
+          - "$ref": "/schemata/rescheduling#/definitions/id"
+          - type: null
+  days:
+    type: array
+    items:
+      "$ref": "/schemata/timetable#/definitions/scheduled_on"
 type:
 - object
 id: schemata/timetable

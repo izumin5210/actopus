@@ -327,7 +327,7 @@
         },
         "scheduled_on": {
           "description": "date when the period scheduled on",
-          "example": "2014-12-10",
+          "example": "2014-12-15",
           "type": [
             "string"
           ]
@@ -336,27 +336,52 @@
       "links": [
         {
           "description": "List class' timetables.",
-          "href": "/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}/timetable",
+          "href": "/api/v1/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}/timetable",
           "method": "GET",
-          "rel": "instances",
+          "rel": "Info",
           "title": "Class' timetable"
         }
       ],
       "properties": {
-        "category": {
-          "$ref": "#/definitions/timetable/definitions/category"
+        "cells": {
+          "type": [
+            "array"
+          ],
+          "items": {
+            "properties": {
+              "category": {
+                "$ref": "#/definitions/timetable/definitions/category"
+              },
+              "scheduled_on": {
+                "$ref": "#/definitions/timetable/definitions/scheduled_on"
+              },
+              "lecture": {
+                "$ref": "#/definitions/lecture"
+              },
+              "period": {
+                "$ref": "#/definitions/period/definitions/period_time"
+              },
+              "rescheduling_id": {
+                "example": 1,
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/rescheduling/definitions/id"
+                  },
+                  {
+                    "type": null
+                  }
+                ]
+              }
+            }
+          }
         },
-        "scheduled_on": {
-          "$ref": "#/definitions/timetable/definitions/scheduled_on"
-        },
-        "lecture": {
-          "$ref": "#/definitions/lecture"
-        },
-        "period": {
-          "$ref": "#/definitions/period/definitions/period_time"
-        },
-        "rescheduling": {
-          "$ref": "#/definitions/rescheduling"
+        "days": {
+          "type": [
+            "array"
+          ],
+          "items": {
+            "$ref": "#/definitions/timetable/definitions/scheduled_on"
+          }
         }
       },
       "type": [
