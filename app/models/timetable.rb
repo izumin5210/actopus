@@ -4,8 +4,7 @@ class Timetable
 
   include Garage::Representer
 
-  property :beginning_of_week
-  property :end_of_week
+  property :days
   collection :cells
 
   class Cell
@@ -16,17 +15,15 @@ class Timetable
 
     property :category
     property :scheduled_on
-    property :period_time
+    property :period_time, as: :period
     property :lecture
-    property :rescheduling
+    property :rescheduling_id
+
+    delegate :id, to: :rescheduling, prefix: true, allow_nil: true
   end
 
-  def beginning_of_week
-    all_week.first
-  end
-
-  def end_of_week
-    all_week.last
+  def days
+    all_week.to_a
   end
 
   def self.create_from_klass(klass, all_week = Date.today.all_week)

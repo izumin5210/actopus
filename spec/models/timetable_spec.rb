@@ -7,14 +7,9 @@ RSpec.describe Timetable, type: :model do
   let(:timetable) { Timetable.new(all_week: all_week) }
   subject { timetable }
 
-  describe '#beginning_of_week' do
-    subject { timetable.beginning_of_week }
-    it { is_expected.to eq today.beginning_of_week }
-  end
-
-  describe '#end_of_week' do
-    subject { timetable.end_of_week }
-    it { is_expected.to eq today.end_of_week }
+  describe 'delegations' do
+    subject { Timetable::Cell.new }
+    it { is_expected.to delegate_method(:id).to(:rescheduling).with_prefix }
   end
 
   describe '.create_from_klass' do

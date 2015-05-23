@@ -14,17 +14,16 @@ RSpec.describe 'classes resource', type: :request do
 
   let(:timetable_structure) do
     { 'cells' => [cell_structure],
-      'beginning_of_week' => /\d{4}-\d{2}-\d{2}/,
-      'end_of_week' => /\d{4}-\d{2}-\d{2}/
+      'days' => a_kind_of(Array)
     }
   end
 
   let(:cell_structure) do
     { 'category' => /normal|addition|cancel/,
       'scheduled_on' => /\d{4}-\d{2}-\d{2}/,
-      'period_time' => a_kind_of(Hash),
+      'period' => a_kind_of(Hash),
       'lecture' => a_kind_of(Hash),
-      'rescheduling' => a_kind_of(Hash).or(be_blank)
+      'rescheduling_id' => a_kind_of(Integer).or(be_blank)
     }
   end
 
