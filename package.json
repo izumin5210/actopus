@@ -37,7 +37,8 @@
   "browserify": {
     "entries": [
       "./tmp/assets/javascripts/app.js",
-      "./tmp/assets/javascripts/templates.js"
+      "./tmp/assets/javascripts/templates.js",
+      "./node_modules/angular-resource/angular-resource.js"
     ]
   }
 }
