@@ -1,7 +1,7 @@
 /// <reference path="../../typings/vendor/angularjs/angular-resource.d.ts" />
 
 import angular = require("angular");
-import {appName} from "../constants";
+import {appName, apiBaseUrl} from "../constants";
 import {PeriodTime} from "./period_time";
 import {Lecture} from "./lecture";
 
@@ -16,8 +16,8 @@ export interface TimetableResourceClass extends ng.resource.IResourceClass<Timet
 }
 
 export function timetableFactory($resource: ng.resource.IResourceService) : TimetableResourceClass {
-  const url = "/api/v1/:resourceClass/:resourceId/timetable.json";
-  const params = { resourceClass: "@resourceClass", classId: "@resourceId" };
+  const url = `${apiBaseUrl}/:resourceClass/:resourceId/timetable.json`;
+  const params = { resourceClass: "@resourceClass", resourceId: "@resourceId" };
   let queryAction: ng.resource.IActionDescriptor = {
     method: "GET",
     isArray: true,
