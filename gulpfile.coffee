@@ -94,6 +94,7 @@ gulp.task('test', ['build'], $.shell.task([
 #### build --------------------------------
 gulp.task('watch', ['build', 'browser-sync', 'build:ts:watch', 'watchify'], ->
   gulp.watch(['public/{asset,javascript}s/**/*.js'], ['bs-reload'])
+  gulp.watch(['ui/assets/templates/**/*.html'], ['build:template'])
 )
 
 gulp.task('build', (callback) ->
