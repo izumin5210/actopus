@@ -14,7 +14,8 @@ RSpec.describe 'classes resource', type: :request do
 
   let(:timetable_structure) do
     { 'cells' => [cell_structure],
-      'days' => a_kind_of(Array)
+      'beginning_of_week' => /\d{4}-\d{2}-\d{2}/,
+      'end_of_week' => /\d{4}-\d{2}-\d{2}/
     }
   end
 

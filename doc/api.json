@@ -327,7 +327,21 @@
         },
         "scheduled_on": {
           "description": "date when the period scheduled on",
+          "example": "2014-12-16",
+          "type": [
+            "string"
+          ]
+        },
+        "beginning_of_week": {
+          "description": "the date representing the start this week",
           "example": "2014-12-15",
+          "type": [
+            "string"
+          ]
+        },
+        "end_of_week": {
+          "description": "the date representing the end this week",
+          "example": "2014-12-19",
           "type": [
             "string"
           ]
@@ -375,13 +389,11 @@
             }
           }
         },
-        "days": {
-          "type": [
-            "array"
-          ],
-          "items": {
-            "$ref": "#/definitions/timetable/definitions/scheduled_on"
-          }
+        "beginning_of_week": {
+          "$ref": "#/definitions/timetable/definitions/beginning_of_week"
+        },
+        "end_of_week": {
+          "$ref": "#/definitions/timetable/definitions/end_of_week"
         }
       },
       "type": [

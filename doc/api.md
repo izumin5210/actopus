@@ -275,8 +275,14 @@ Content-Type: application/json
 ### Properties
 * cells
  * Type: array
-* days
- * Type: array
+* beginning_of_week
+ * the date representing the start this week
+ * Example: `"2014-12-15"`
+ * Type: string
+* end_of_week
+ * the date representing the end this week
+ * Example: `"2014-12-19"`
+ * Type: string
 
 ### GET /api/v1/classes/:id/timetable
 List class' timetables.
@@ -293,7 +299,7 @@ Content-Type: application/json
   "cells": [
     {
       "category": "change",
-      "scheduled_on": "2014-12-15",
+      "scheduled_on": "2014-12-16",
       "lecture": {
         "id": 1,
         "name": "プログラミング I",
@@ -320,9 +326,8 @@ Content-Type: application/json
       "rescheduling_id": 1
     }
   ],
-  "days": [
-    "2014-12-15"
-  ]
+  "beginning_of_week": "2014-12-15",
+  "end_of_week": "2014-12-19"
 }
 ```
 

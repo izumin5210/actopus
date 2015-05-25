@@ -4,8 +4,9 @@ class Timetable
 
   include Garage::Representer
 
-  property :days
   collection :cells
+  property :beginning_of_week
+  property :end_of_week
 
   class Cell
     include ActiveModel::Model
@@ -22,8 +23,12 @@ class Timetable
     delegate :id, to: :rescheduling, prefix: true, allow_nil: true
   end
 
-  def days
-    all_week.to_a
+  def beginning_of_week
+    all_week.first
+  end
+
+  def end_of_week
+    all_week.last
   end
 
   def self.create_from_klass(klass, all_week = Date.today.all_week)
