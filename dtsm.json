@@ -16,6 +16,9 @@
     },
     "angularjs/angular-route.d.ts": {
       "ref": "c2b70ba731a485968fa3e0561a32652f59787015"
+    },
+    "moment/moment.d.ts": {
+      "ref": "c2b70ba731a485968fa3e0561a32652f59787015"
     }
   }
 }

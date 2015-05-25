@@ -2,3 +2,4 @@
 /// <reference path="vendor/jquery/jquery.d.ts" />
 /// <reference path="vendor/angularjs/angular-resource.d.ts" />
 /// <reference path="vendor/angularjs/angular-route.d.ts" />
+/// <reference path="vendor/moment/moment.d.ts" />
