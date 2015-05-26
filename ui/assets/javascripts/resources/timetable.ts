@@ -22,13 +22,15 @@ export function timetableFactory($resource: ng.resource.IResourceService) : Time
     method: "GET",
     isArray: true,
     transformResponse: (data: string, headersGetter: ng.IHttpHeadersGetter) => {
-      let result = angular.fromJson(data);
-      result.cells.days = result.days;
-      return result.cells;
+      let json = angular.fromJson(data);
+      json.cells.beginning_of_week = json.beginning_of_week;
+      json.cells.end_of_week = json.end_of_week;
+      return json.cells;
     },
     interceptor: {
       response: (response: any) => {
-        response.resource.days = response.data.days;
+        response.resource.beginning_of_week = response.data.beginning_of_week;
+        response.resource.end_of_week = response.data.end_of_week;
         return response.resource;
       }
     }
