@@ -15,6 +15,11 @@ export interface TimetableResource extends ng.resource.IResource<TimetableResour
 export interface TimetableResourceClass extends ng.resource.IResourceClass<TimetableResource> {
 }
 
+export interface TimetableResourceArray extends ng.resource.IResourceArray<TimetableResource> {
+  beginning_of_week: string;
+  end_of_week: string;
+}
+
 export function timetableFactory($resource: ng.resource.IResourceService) : TimetableResourceClass {
   const url = `${apiBaseUrl}/:resourceClass/:resourceId/timetable.json`;
   const params = { resourceClass: "@resourceClass", resourceId: "@resourceId" };
