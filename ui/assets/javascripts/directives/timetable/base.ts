@@ -1,37 +1,50 @@
 /// <reference path="../../../typings/vendor/angularjs/angular-route.d.ts" />
 /// <reference path="../../../typings/vendor/angularjs/angular-resource.d.ts" />
+/// <reference path="../../../typings/vendor/moment/moment.d.ts" />
 
 import angular = require("angular");
 import {appName, prefix} from "../../constants";
-import {TimetableResource, TimetableResourceClass} from "../../resources/timetable";
+import {TimetableResourceClass, TimetableResourceArray} from "../../resources/timetable";
+
+import moment = require("moment");
 
 class TimetableController {
 
-  cells: ng.resource.IResourceArray<TimetableResource>;
-  days: Array<string>;
+  cells: TimetableResourceArray;
+  dates: Array<string>;
 
   constructor(
       private Timetable: TimetableResourceClass,
-      private $scope: ng.IScope,
       private $routeParams: ng.route.IRouteService
       ) {
+    this.getTimetable();
+  }
 
-    Timetable
-      .query($routeParams)
+  getTimetable = (opts: Object = this.$routeParams) => {
+    this.Timetable
+      .query(opts)
       .$promise
       .then(this.timetableCallback);
   }
 
   timetableCallback = (res: any) => {
     this.cells = res;
-    this.days = res.days;
-    console.log(this.cells);
-  }
+    this.setDates(res.beginning_of_week, res.end_of_week);
+  };
+
+  setDates = (beginning_of_week: string, end_of_week: string) => {
+    this.dates = [beginning_of_week];
+    while (true) {
+      let nextDate = moment(this.dates[this.dates.length - 1]).add(1, "days");
+      this.dates.push(nextDate.format("YYYY-MM-DD"));
+      if (nextDate.isSame(end_of_week)) { break; }
+    }
+  };
 }
 
 class TimetableDirective implements ng.IDirective {
   restrict = "E";
-  controller = ['Timetable', '$scope', '$routeParams', TimetableController];
+  controller = ['Timetable', '$routeParams', TimetableController];
   controllerAs = 'timetable';
   scope = {};
   bindToController = true;
