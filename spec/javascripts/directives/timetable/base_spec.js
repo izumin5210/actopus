@@ -30,7 +30,29 @@ describe("TimetableDirective", () => {
   });
 
   it("contains 1 timetable cell as cells", () => {
-      expect(controller.cells.length).toEqual(1);
+    expect(controller.cells.length).toEqual(1);
+  });
+
+  it("contains 5 timetable-row directives", () => {
+    expect(element.find("act-timetable-row").length).toEqual(5);
+  });
+
+  describe("rows", () => {
+    it("contains cells grouped by scheduled_on", () => {
+      expect(
+        _.every(controller.rows, (row) => _.every(row.cells, "scheduled_on", row.date))
+      ).toBe(true);
+    });
+
+    it("contains all dates", () => {
+      expect(_.map(controller.rows, (row) => row.date)).toEqual(controller.dates);
+    });
+
+    it("contains all cells", () => {
+      expect(
+        _.reduce(controller.rows, (sum, row) => sum + row.cells.length, 0)
+      ).toEqual(controller.cells.length);
+    });
   });
 
   describe("#setDate()", () => {
@@ -57,26 +79,6 @@ describe("TimetableDirective", () => {
       expect(controller.getNextWeek()).toEqual(
         ["2015-06-01", "2015-06-02", "2015-06-03", "2015-06-04", "2015-06-05"]
       );
-    });
-  });
-
-  describe("#getRows", () => {
-    it("returns rows grouped by scheduled_on", () => {
-      expect(
-        _.every(controller.getRows(), (row) => {
-          return _.every(row.cells, "scheduled_on", row.date)
-        })
-      ).toBe(true);
-    });
-
-    it("returns all cells included in timetable", () => {
-      expect(_.map(controller.getRows(), (row) => row.date)).toEqual(controller.dates);
-    });
-
-    it("returns all cells included in timetable", () => {
-      expect(
-        _.reduce(controller.getRows(), (sum, row) => sum + row.cells.length, 0)
-      ).toEqual(controller.cells.length);
     });
   });
 });

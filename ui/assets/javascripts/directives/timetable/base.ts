@@ -15,6 +15,7 @@ import _ = require("lodash");
 
 class TimetableController {
 
+  rows: Array<TimetableRow>;
   cells: TimetableResourceArray;
   dates: Array<string>;
 
@@ -35,15 +36,7 @@ class TimetableController {
   timetableCallback = (res: any) => {
     this.cells = res;
     this.setDates(res.beginning_of_week, res.end_of_week);
-  };
-
-  setDates = (beginning_of_week: string, end_of_week: string) => {
-    this.dates = [beginning_of_week];
-    while (true) {
-      let nextDate = moment(this.dates[this.dates.length - 1]).add(1, "days");
-      this.dates.push(nextDate.format(FORMAT_DATE));
-      if (nextDate.isSame(end_of_week)) { break; }
-    }
+    this.setRows();
   };
 
   getLastWeek(): Array<string> {
@@ -54,14 +47,23 @@ class TimetableController {
     return _.map(this.dates, (date) => moment(date).add(7, "days").format(FORMAT_DATE));
   }
 
-  getRows(): Array<TimetableRow> {
-    return _.map(this.dates, (date: string) => {
+  private setDates(beginning_of_week: string, end_of_week: string) {
+    this.dates = [beginning_of_week];
+    while (true) {
+      let nextDate = moment(this.dates[this.dates.length - 1]).add(1, "days");
+      this.dates.push(nextDate.format(FORMAT_DATE));
+      if (nextDate.isSame(end_of_week)) { break; }
+    }
+  };
+
+  private setRows() {
+    this.rows = _.map(this.dates, (date: string) => {
       let filteredCells = _.filter(this.cells, (cell: TimetableResource) => {
         return cell.scheduled_on === date;
       });
       return { date: date, cells: filteredCells };
     });
-  }
+  };
 }
 
 class TimetableDirective implements ng.IDirective {
