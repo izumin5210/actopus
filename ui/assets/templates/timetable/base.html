@@ -1,10 +1,8 @@
-<!-- <act-timetable-cell ng-repeat="cell in timetable.cells"></act-timetable-cell> -->
-<ul>
-  <li ng-repeat="cell in timetable.cells">
-    {{cell.scheduled_on}}
-    {{cell.period.start_time}}
-
-    {{cell.period.end_time}}
-    {{cell.lecture.name}}
-  </li>
-</ul>
+<dl class="list-timetable">
+  <dt ng-repeat-start="row in timetable.rows">
+    {{::row.date}}
+  </dt>
+  <dd ng-repeat-end>
+    <act-timetable-row cells="row.cells"></act-timetable-row>
+  </dd>
+</dl>
