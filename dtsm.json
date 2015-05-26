@@ -19,6 +19,9 @@
     },
     "moment/moment.d.ts": {
       "ref": "c2b70ba731a485968fa3e0561a32652f59787015"
+    },
+    "lodash/lodash.d.ts": {
+      "ref": "f23cd55e319a0f67362ca0dbc4cf3e2ec1339f4e"
     }
   }
 }
