@@ -21,7 +21,7 @@ module.exports = function(config) {
     files: [
       'public/javascripts/bundle.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'spec/javascripts/**/**_spec.ts'
+      'spec/javascripts/**/**_spec.js'
     ],
 
 
@@ -33,21 +33,17 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'spec/javascripts/**/**_spec.ts': ['typescript']
+      'spec/javascripts/**/**_spec.js': ['babel']
     },
 
 
-    typescriptPreprocessor: {
-      options: {
-        target: 'ES5',
-        module: 'commonjs',
-        noImplicitAny: true,
-        removeComments: true,
-        preserveConstEnums: true
+    babelPreprocessor: {
+      filename: function (file) {
+        return file.originalPath.replace(/\.js$/, '.es5.js');
       },
-      typings: [
-        'spec/typings/bundle.d.ts'
-      ]
+      sourceFileName: function (file) {
+        return file.originalPath;
+      }
     },
 
 
