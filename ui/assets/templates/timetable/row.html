@@ -1,5 +1,1 @@
-<ul>
-  <li ng-repeat="cell in timetableRow.cells()">
-    {{::cell.lecture.name}}
-  </li>
-</ul>
+<act-timetable-cell ng-repeat="cell in timetableRow.cells()" cell="cell"></act-timetable-cell>
