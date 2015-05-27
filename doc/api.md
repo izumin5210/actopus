@@ -7,8 +7,11 @@ A schema for ANCT reschedulings API
 * [Lecture](#lecture)
  * [GET /api/v1/lectures/:id](#get-apiv1lecturesid)
  * [GET /api/v1/lectures](#get-apiv1lectures)
+* [Period](#period)
 * [Rescheduling](#rescheduling)
  * [GET /api/v1/reschedulings](#get-apiv1reschedulings)
+* [Timetable](#timetable)
+ * [GET /api/v1/classes/:id/timetable](#get-apiv1classesidtimetable)
 
 ## Class
 
@@ -180,6 +183,23 @@ Content-Type: application/json
 ]
 ```
 
+## Period
+
+
+### Properties
+* start_time
+ * time when the period start
+ * Example: `"09:00:00+09:00"`
+ * Type: string
+* end_time
+ * time when the period end
+ * Example: `"10:30:00+09:00"`
+ * Type: string
+* wday
+ * wday when the period taken
+ * Example: `1`
+ * Type: integer
+
 ## Rescheduling
 
 
@@ -247,5 +267,67 @@ Content-Type: application/json
     }
   }
 ]
+```
+
+## Timetable
+
+
+### Properties
+* cells
+ * Type: array
+* beginning_of_week
+ * the date representing the start this week
+ * Example: `"2014-12-15"`
+ * Type: string
+* end_of_week
+ * the date representing the end this week
+ * Example: `"2014-12-19"`
+ * Type: string
+
+### GET /api/v1/classes/:id/timetable
+List class' timetables.
+
+```
+GET /api/v1/classes/1e/timetable HTTP/1.1
+Host: 
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+{
+  "cells": [
+    {
+      "category": "change",
+      "scheduled_on": "2014-12-16",
+      "lecture": {
+        "id": 1,
+        "name": "プログラミング I",
+        "grade": 1,
+        "department": "電気情報工学科",
+        "course": "情報工学コース",
+        "special_target": "overseasStudent",
+        "periods": [
+          {
+            "start_time": "09:00:00+09:00",
+            "end_time": "10:30:00+09:00",
+            "wday": 1
+          }
+        ],
+        "lecturers": [
+          "新井 イスマイル"
+        ],
+        "code": 2014121002101231110200
+      },
+      "period": {
+        "start_time": "09:00:00+09:00",
+        "end_time": "10:30:00+09:00"
+      },
+      "rescheduling_id": 1
+    }
+  ],
+  "beginning_of_week": "2014-12-15",
+  "end_of_week": "2014-12-19"
+}
 ```
 

@@ -60,6 +60,7 @@ gulp.task('build:ts:watch', $.shell.task([
 gulp.task('build:template', ->
   gulp.src('./ui/assets/templates/**/*.html')
     .pipe($.angularTemplatecache(module: 'actopus'))
+    .pipe($.size(title: 'templates'))
     .pipe(gulp.dest('./tmp/assets/javascripts'))
 )
 
@@ -92,8 +93,10 @@ gulp.task('test', ['build'], $.shell.task([
 
 
 #### build --------------------------------
-gulp.task('watch', ['build', 'browser-sync', 'build:ts:watch', 'watchify'], ->
-  gulp.watch(['public/{asset,javascript}s/**/*.js'], ['bs-reload'])
+gulp.task('watch', ['build', 'browser-sync', 'watchify'], ->
+  gulp.watch('./public/{asset,javascript}s/**/*.js', ['bs-reload'])
+  gulp.watch('./ui/assets/templates/**/*.html', ['build:template'])
+  gulp.watch('./ui/assets/javascripts/**/*.ts', ['build:ts'])
 )
 
 gulp.task('build', (callback) ->

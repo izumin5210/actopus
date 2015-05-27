@@ -1,0 +1,8 @@
+<dl class="list-timetable">
+  <dt ng-repeat-start="row in timetable.rows">
+    {{::row.date}}
+  </dt>
+  <dd ng-repeat-end>
+    <act-timetable-row cells="row.cells"></act-timetable-row>
+  </dd>
+</dl>

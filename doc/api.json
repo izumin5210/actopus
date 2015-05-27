@@ -117,35 +117,6 @@
             "string"
           ]
         },
-        "period": {
-          "description": "the preriod that lecture has taken",
-          "type": [
-            "object"
-          ],
-          "properties": {
-            "start_time": {
-              "description": "time when the period start",
-              "example": "09:00:00+09:00",
-              "type": [
-                "string"
-              ]
-            },
-            "end_time": {
-              "description": "time when the period end",
-              "example": "10:30:00+09:00",
-              "type": [
-                "string"
-              ]
-            },
-            "wday": {
-              "description": "wday when the period taken",
-              "example": 1,
-              "type": [
-                "integer"
-              ]
-            }
-          }
-        },
         "lecturer": {
           "description": "name of the lecture",
           "example": "新井 イスマイル",
@@ -194,7 +165,7 @@
             "array"
           ],
           "items": {
-            "$ref": "#/definitions/lecture/definitions/period"
+            "$ref": "#/definitions/period"
           }
         },
         "lecturers": {
@@ -207,6 +178,55 @@
         },
         "code": {
           "$ref": "#/definitions/lecture/definitions/code"
+        }
+      },
+      "type": [
+        "object"
+      ]
+    },
+    "period": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Period",
+      "definitions": {
+        "period_time": {
+          "description": "the time when the lecture will be start/end",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "start_time": {
+              "description": "time when the period start",
+              "example": "09:00:00+09:00",
+              "type": [
+                "string"
+              ]
+            },
+            "end_time": {
+              "description": "time when the period end",
+              "example": "10:30:00+09:00",
+              "type": [
+                "string"
+              ]
+            }
+          }
+        },
+        "wday": {
+          "description": "wday when the period taken",
+          "example": 1,
+          "type": [
+            "integer"
+          ]
+        }
+      },
+      "properties": {
+        "start_time": {
+          "$ref": "#/definitions/period/definitions/period_time/properties/start_time"
+        },
+        "end_time": {
+          "$ref": "#/definitions/period/definitions/period_time/properties/end_time"
+        },
+        "wday": {
+          "$ref": "#/definitions/period/definitions/wday"
         }
       },
       "type": [
@@ -293,6 +313,92 @@
       "type": [
         "object"
       ]
+    },
+    "timetable": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Timetable",
+      "definitions": {
+        "category": {
+          "description": "variations of this period(normal, addition, cancel)",
+          "example": "change",
+          "type": [
+            "string"
+          ]
+        },
+        "scheduled_on": {
+          "description": "date when the period scheduled on",
+          "example": "2014-12-16",
+          "type": [
+            "string"
+          ]
+        },
+        "beginning_of_week": {
+          "description": "the date representing the start this week",
+          "example": "2014-12-15",
+          "type": [
+            "string"
+          ]
+        },
+        "end_of_week": {
+          "description": "the date representing the end this week",
+          "example": "2014-12-19",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "List class' timetables.",
+          "href": "/api/v1/classes/{(%23%2Fdefinitions%2Fclass%2Fdefinitions%2Fid)}/timetable",
+          "method": "GET",
+          "rel": "Info",
+          "title": "Class' timetable"
+        }
+      ],
+      "properties": {
+        "cells": {
+          "type": [
+            "array"
+          ],
+          "items": {
+            "properties": {
+              "category": {
+                "$ref": "#/definitions/timetable/definitions/category"
+              },
+              "scheduled_on": {
+                "$ref": "#/definitions/timetable/definitions/scheduled_on"
+              },
+              "lecture": {
+                "$ref": "#/definitions/lecture"
+              },
+              "period": {
+                "$ref": "#/definitions/period/definitions/period_time"
+              },
+              "rescheduling_id": {
+                "example": 1,
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/rescheduling/definitions/id"
+                  },
+                  {
+                    "type": null
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "beginning_of_week": {
+          "$ref": "#/definitions/timetable/definitions/beginning_of_week"
+        },
+        "end_of_week": {
+          "$ref": "#/definitions/timetable/definitions/end_of_week"
+        }
+      },
+      "type": [
+        "object"
+      ]
     }
   },
   "properties": {
@@ -302,8 +408,14 @@
     "lecture": {
       "$ref": "#/definitions/lecture"
     },
+    "period": {
+      "$ref": "#/definitions/period"
+    },
     "rescheduling": {
       "$ref": "#/definitions/rescheduling"
+    },
+    "timetable": {
+      "$ref": "#/definitions/timetable"
     }
   },
   "type": [

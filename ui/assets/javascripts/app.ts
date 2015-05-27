@@ -1,11 +1,8 @@
-/// <reference path="../typings/bundle.d.ts" />
-
 import angular = require("angular");
+import {appName, externalModules} from "./constants";
 
-import HelloDirective = require("./directives/hello");
+angular.module(appName, externalModules);
 
-module actopus {
-  "use strict";
-  angular.module("actopus", [])
-    .directive("actHello", () => new HelloDirective());
-}
+import "./routes";
+import "./resources/index";
+import "./directives/index";

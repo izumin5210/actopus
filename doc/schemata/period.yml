@@ -1,0 +1,34 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Period
+definitions:
+  period_time:
+    description: the time when the lecture will be start/end
+    type:
+    - object
+    properties:
+      start_time:
+        description: time when the period start
+        example: '09:00:00+09:00'
+        type:
+        - string
+      end_time:
+        description: time when the period end
+        example: '10:30:00+09:00'
+        type:
+        - string
+  wday:
+    description: wday when the period taken
+    example: 1
+    type:
+    - integer
+properties:
+  start_time:
+    "$ref": "/schemata/period#/definitions/period_time/properties/start_time"
+  end_time:
+    "$ref": "/schemata/period#/definitions/period_time/properties/end_time"
+  wday:
+    "$ref": "/schemata/period#/definitions/wday"
+type:
+- object
+id: schemata/period

@@ -42,7 +42,9 @@ Rails.application.routes.draw do
   namespace :api do
     scope :v1 do
       resources :lectures, only: %i(index show)
-      resources :klasses, only: %i(index show), path: :classes
+      resources :klasses, only: %i(index show), path: :classes do
+        get :timetable, on: :member
+      end
       resources :reschedulings, only: %i(index)
     end
 

@@ -10,6 +10,18 @@
   "dependencies": {
     "angularjs/angular.d.ts": {
       "ref": "b3834d886a95789e6ab56e8244775ec10c5293d0"
+    },
+    "angularjs/angular-resource.d.ts": {
+      "ref": "aadd63ecae3feb76ea2d4be80511e266b5c2c4a7"
+    },
+    "angularjs/angular-route.d.ts": {
+      "ref": "c2b70ba731a485968fa3e0561a32652f59787015"
+    },
+    "moment/moment.d.ts": {
+      "ref": "c2b70ba731a485968fa3e0561a32652f59787015"
+    },
+    "lodash/lodash.d.ts": {
+      "ref": "f23cd55e319a0f67362ca0dbc4cf3e2ec1339f4e"
     }
   }
 }

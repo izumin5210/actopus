@@ -17,7 +17,7 @@
 
 FactoryGirl.define do
   factory :period do
-    sequence(:wday)
+    sequence(:wday) { [*1..5].sample }
     period_time
   end
 end
