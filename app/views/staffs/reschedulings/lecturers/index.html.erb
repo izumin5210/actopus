@@ -1,9 +1,11 @@
-<ul class="breadcrumb">
+<div class="breadcrumb">
   <li><%= link_to '時間割を変更する', new_staffs_rescheduling_path %></li>
-  <li class="active">教員から選択</li>
-</ul>
+  /
+  <li class="active">教員から</li>
+</div>
 
-<h2 class="heading"><%= fa_icon('list fw') %> 教員から選択</h2>
-<%= render layout: 'shared/lecturers/index', locals: { lecturers: @lecturers, departments: @departments } do |lecturer| %>
-  <%= link_to lecturer.name, timetable_staffs_reschedulings_lecturer_path(category: params[:category], id: lecturer.id) %>
-<% end %>
+<div class="container">
+  <%= render layout: 'shared/lecturers/index', locals: { lecturers: @lecturers, departments: @departments } do |lecturer| %>
+    <%= link_to lecturer.name, timetable_staffs_reschedulings_lecturer_path(category: params[:category], id: lecturer.id) %>
+  <% end %>
+</div>

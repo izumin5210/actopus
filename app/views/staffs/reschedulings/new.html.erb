@@ -1,9 +1,32 @@
-<%= content_header('exchange', '時間割を変更する') %>
+<ul class="breadcrumb">
+  <li class="active">時間割を変更する</li>
+</ul>
 
-<% Rescheduling.categories_i18n.each do |category, category_i18n| %>
-  <h3><%= category_i18n %></h3>
-  <div class="rescheduling-buttons">
-    <%= link_to(fa_icon("search") { |i| "#{i} クラスから選択" }, staffs_reschedulings_klasses_path(category: category), class: "btn btn-primary") %>
-    <%= link_to(fa_icon("user") { |i| "#{i} 教員から選択" }, staffs_reschedulings_lecturers_path(category: category), class: "btn btn-primary") %>
-  </div>
-<% end %>
+<div class="container">
+  <ul class="reschedulings-new">
+    <div class="reschedule-from-class">
+      <li>
+        クラスから
+        <ul>
+          <% Rescheduling.categories_i18n.each do |category, category_i18n| %>
+            <li>
+              <%= link_to(category_i18n, staffs_reschedulings_klasses_path(category: category), class: "btn-choose") %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </div>
+    <div class="reschedule-from-lecturer">
+      <li>
+        教員から
+        <ul>
+          <% Rescheduling.categories_i18n.each do |category, category_i18n| %>
+            <li>
+              <%= link_to(category_i18n, staffs_reschedulings_lecturers_path(category: category), class: "btn-choose") %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </div>
+  </ul>
+</div>

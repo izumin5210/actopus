@@ -5,7 +5,7 @@
 <dl class="list-timetable">
   <% @date_step.each do |date| %>
     <% next unless Settings.timetable.weekdays.include?(date.wday) %>
-    <dt><%= "#{l date, format: :short} #{t('date.abbr_day_names')[date.wday]}" %></dt>
+    <dt><%= "#{l date, format: :short} （#{t('date.abbr_day_names')[date.wday]}）" %></dt>
     <dd>
       <ul class="lecture-timeline">
         <% if @timetable.rows[date.wday].present? %>
@@ -15,7 +15,3 @@
     </dd>
   <% end %>
 </dl>
-
-<% unless params[:category] == 'extra' %>
-  <%= render 'shared/timeline/pagination' %>
-<% end %>

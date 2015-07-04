@@ -1,31 +1,33 @@
-<%= content_header('rotate-left', '時間割データを読み込む') %>
+<ul class="breadcrumb">
+  <li class="active">時間割を読み込む</li>
+</ul>
 
-<% if @form.errors.any? %>
-  <div class="alert alert-danger">
-    <ul>
-      <% @form.errors.full_messages.each do |msg| %>
-        <%= content_tag :li, msg %>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<div class="container">
+  <% if @form.errors.any? %>
+    <div class="alert-danger">
+      <ul>
+        <% @form.errors.full_messages.each do |msg| %>
+          <%= content_tag :li, msg %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= form_for @form, url: staffs_timetables_path, method: :post, multipart: true do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :started_on %>
-    <%= f.date_field :started_on, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :ended_on %>
-    <%= f.date_field :ended_on, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :timetable_xml %>
-    <%= f.file_field :timetable_xml, accept: 'application/xml,application/rdf+xml', required: true %>
-  </div>
-  <%= button_tag fa_icon('upload') { |i| "#{i} upload" }, class: 'btn btn-primary' %>
-<% end %>
+  <%= form_for @form, url: staffs_timetables_path, method: :post, multipart: true, html: { class: 'timetable-new-form' } do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true %>
+      <div class="date-forms">
+        <div class="started-on">
+          <%= f.label :started_on %>
+          <%= f.date_field :started_on, required: true %>
+        </div>
+        <div class="ended-on">
+          <%= f.label :ended_on %>
+          <%= f.date_field :ended_on, required: true %>
+        </div>
+      </div>
+      <%= f.label :timetable_xml %>
+      <%= f.file_field :timetable_xml, accept: 'application/xml,application/rdf+xml', required: true %>
+    <%= button_tag 'upload', class: 'btn-action' %>
+  <% end %>
+</div>

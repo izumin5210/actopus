@@ -1,7 +1,9 @@
-<ul class="breadcrumb">
+<div class="breadcrumb">
   <li><%= link_to '時間割を見る', staffs_klasses_path %></li>
+  /
   <li class="active"><%= @klass.name %></li>
-</ul>
+</div>
 
-<%= content_header('search', @klass.name) %>
-<%= render partial: 'shared/timeline/timeline' %>
+<div class="container">
+  <%= render partial: 'shared/timeline/timeline' %>
+</div>
