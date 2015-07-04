@@ -1,0 +1,18 @@
+.breadcrumb {
+  color: $text-color;
+  background-color: $breadclumb-bg;
+  border-radius: $breadclumb-radius;
+  line-height: 3rem;
+  margin: $breadclumb-margin;
+  padding: $breadclumb-padding / 2 $breadclumb-padding;
+
+  li {
+    list-style: none;
+    display: inline;
+  }
+
+  a {
+    color: $breadclumb-color;
+    text-decoration: none;
+  }
+}

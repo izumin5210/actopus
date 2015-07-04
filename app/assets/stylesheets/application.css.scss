@@ -16,3 +16,20 @@
 
 @import "bourbon";
 @import "neat";
+
+@import "headers/colors";
+@import "headers/variables";
+@import "headers/mixins";
+
+@import "shared/global";
+
+@import "shared/nav";
+
+@import "components/buttons";
+@import "components/tables";
+@import "components/forms";
+@import "components/breadcrumb";
+
+@import "layouts/staff/views/reschedulings";
+@import "layouts/staff/views/staffs";
+@import "layouts/staff/views/timetables";

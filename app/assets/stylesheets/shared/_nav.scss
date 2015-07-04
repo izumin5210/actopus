@@ -1,0 +1,44 @@
+.nav {
+  @include span-columns(3);
+  color: $nav-color;
+  background-color: $nav-bg;
+  min-height: 100%;
+  padding: 3rem;
+
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 0;
+
+    small {
+      font-size: .8rem;
+      float: right;
+    }
+  }
+
+  ul {
+    margin: 4rem auto;
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    display: block;
+    border: solid 1px transparent;
+    padding-left: 1rem;
+    height: 4rem;
+    line-height: 4rem;
+
+    &:hover,
+    &:active {
+      border: solid 1px $gray-dark;
+      border-radius: $btn-radius;
+      background-color: $gray-dark;
+    }
+  }
+
+  a {
+    color: $nav-color;
+    text-decoration: none;
+  }
+}

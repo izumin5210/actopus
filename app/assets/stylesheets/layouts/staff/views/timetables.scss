@@ -1,0 +1,58 @@
+@import "timelines";
+
+.timetable-new-form {
+  @include table-size(auto, $margin-base);
+}
+
+#timetable_form_name {
+  @include span-columns(12);
+}
+
+.date-forms {
+  @include outer-container(100%);
+
+  .started-on { @include span-columns(6); }
+  .ended-on {
+    @include span-columns(6);
+    @include omega();
+  }
+}
+
+.list-table {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+
+  > li {
+    list-style: none;
+    display: table-cell;
+    height: $list-table-height;
+    text-align: center;
+    border: $list-table-border-thickness solid $list-table-border-color;
+    border-left-style: none;
+
+    &:first-child {
+      border-left-style: solid;
+      @include border-left-radius($list-table-radius);
+    }
+
+    &:last-child {
+      @include border-right-radius($list-table-radius);
+    }
+
+    &:hover { background-color: $list-table-bg-hover; }
+
+    > a {
+      color: $list-table-color;
+      display: block;
+      text-decoration: none;
+      height: 100%;
+      line-height: $list-table-height;
+
+      &:hover {
+        color: $list-table-color-hover;
+      }
+    }
+  }
+}
+

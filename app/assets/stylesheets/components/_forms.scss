@@ -1,0 +1,13 @@
+/* forms */
+
+input[type=text] {
+  @include form-size(0.7rem, 0.8rem, 1rem, $btn-radius);
+  border: solid 2px $btn-blue;
+  border-radius: $btn-radius;
+}
+
+input[type=date] {
+  @include form-size(0.7rem, 0.8rem, 1rem, $btn-radius);
+  border: solid 2px $btn-blue;
+  border-radius: $btn-radius;
+}

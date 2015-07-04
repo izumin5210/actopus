@@ -1,52 +1,111 @@
 .list-timetable {
-  @extend .dl-horizontal;
   $timetable-wday-offset: 80px;
   $timetable-cell-height: 100px;
+  @include outer-container;
+
   dt,
   dd {
-    border-top: 1px solid rgba(#000000, .2);
+    border-top: 1px solid $list-table-border-color;
     padding: 10px 0;
     height: $timetable-cell-height;
+
+    &:first-of-type {
+      border-top: none;
+    }
   }
+
   dt {
-    width: $timetable-wday-offset;
-    line-height: $timetable-cell-height - 20px;
-    padding-right: 16px;
+    @include span-columns(2);
+    line-height: $timetable-cell-height;
   }
-  dd {
-    margin-left: $timetable-wday-offset;
-  }
+
   .lecture-timeline {
     @include square(100%);
     font-size: $font-size-small;
     position: relative;
+    @include span-columns(10);
+    @include omega();
+    margin: 0;
   }
+
   .cell {
-    @extend .list-unstyled;
     display: table;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     padding: 4px;
-    border: 1px solid $list-border-fg;
-    border-radius: $list-group-border-radius;
-    background-color: $body-bg;
+    border: $list-table-border-thickness solid $list-table-border-color;
+    border-radius: $list-table-radius;
+    background-color: $list-table-bg;
+
     &:hover {
-      background-color: $list-bg-hover;
+      background-color: $list-table-bg-hover;
       z-index: 100;
     }
+
     .cell-content {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
-      &:link,
-      &:visited,
+      text-decoration: none;
+      color: $text-color;
+
       &:hover,
       &:active {
-        color: $text-color;
-        text-decoration: none;
+        color: $white;
       }
+    }
+  }
+}
+
+.pagination {
+  @include outer-container;
+
+  ul {
+    @include span-columns(9);
+    display: table;
+    table-layout: fixed;
+    padding: 0;
+
+    > li {
+      list-style: none;
+      display: table-cell;
+      text-align: center;
+      border: $list-table-border-thickness solid $list-table-border-color;
+      border-left-style: none;
+
+      &:first-child {
+        border-left-style: solid;
+        @include border-left-radius($list-table-radius);
+      }
+
+      &:last-child {
+        @include border-right-radius($list-table-radius);
+      }
+
+      &:hover { background-color: $list-table-bg-hover; }
+
+      > a {
+        color: $list-table-color;
+        display: block;
+        text-decoration: none;
+        height: 100%;
+        line-height: $list-table-height;
+
+        &:hover {
+          color: $list-table-color-hover;
+        }
+      }
+    }
+  }
+
+  form {
+    @include span-columns(3);
+    @include omega();
+
+    .btn-calendar {
+      @extend .btn-choose;
     }
   }
 }
