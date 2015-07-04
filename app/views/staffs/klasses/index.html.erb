@@ -1,4 +1,11 @@
-<%= content_header('search', '時間割を見る') %>
-<%= render layout: 'shared/klasses/index', locals: { klasses: @klasses } do |klass| %>
-  <%= link_to klass.name, timetable_staffs_klass_path(klass.slug) %>
-<% end %>
+<ul class="breadcrumb">
+  <li><%= link_to '時間割を見る', staffs_klasses_path %></li>
+  /
+  <li class="active">クラスから</li>
+</ul>
+
+<div class="container">
+  <%= render layout: 'shared/klasses/index', locals: { klasses: @klasses } do |klass| %>
+    <%= link_to klass.name, timetable_staffs_klass_path(klass.slug) %>
+  <% end %>
+</div>

@@ -1,27 +1,24 @@
-<%= content_header('cogs', 'スタッフを管理する') %>
+<ul class="breadcrumb">
+  <li class="active">スタッフを管理する</li>
+</ul>
 
-  <div class="row">
-    <div class="col-md-6">
-      <% if @staff.errors.present? %>
-        <div class="alert alert-danger">
-          <ul>
-            <% @staff.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <%= form_for @staff, url: invite_staffs_staffs_path, html: { class: "form-inline form-staff-new" } do |f| %>
-        <div class="form-group">
-          <label class="sr-only" for="input-email">email</label>
-          <%= f.email_field :email, placeholder: "email", class: "form-control field-staff-new", id: "input-email" %>
-        </div>
-        <%= button_tag fa_icon('envelope-o fw') { |i| "#{i} Create" }, class: "btn btn-primary btn-staff-new" %>
-      <% end %>
+<div class="container">
+  <% if @staff.errors.present? %>
+    <div class="alert-danger">
+      <ul>
+        <% @staff.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-  </div>
+  <% end %>
 
-  <table class="table">
+  <%= form_for @staff, url: invite_staffs_staffs_path do |f| %>
+    <%= f.email_field :email, placeholder: "email", id: "input-email" %>
+    <%= button_tag 'create', class: "btn-action" %>
+  <% end %>
+
+  <table class="staffs-table">
     <% @staffs.each do |staff| %>
       <tr>
         <td><%= staff.email %></td>
@@ -29,4 +26,4 @@
       </tr>
     <% end %>
   </table>
-
+</div>

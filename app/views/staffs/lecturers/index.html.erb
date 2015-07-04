@@ -1,28 +1,22 @@
-<%= content_header('user', '教員データを見る') %>
+<ul class="breadcrumb">
+  <li><%= link_to '時間割を見る', staffs_klasses_path%></li>
+  /
+  <li class="active">教員から</li>
+</ul>
 
-<table class="table table-lecturer">
-  <tbody>
-    <% @lecturers.group_by(&:department).each do |department, lecturers| %>
-    <tr>
-      <th class="lecturer-department">
-      <% if department.present? %>
-        <%= department.abbreviation_name %>
-        <%= department.name %>
-      <% else %>
-        <%= 'Unknown' %>
-      <% end %>
-      </th>
-      <th></th>
-    </tr>
-    <% lecturers.each do |lecturer| %>
-      <tr>
-        <td class="lecturer-name">
-          <%= lecturer.name %>
-        </td>
-
-        <td><%= link_to fa_icon('search fw') { |i| "#{i} 時間割を見る" }, timetable_staffs_lecturer_path(lecturer.id), class: "btn btn-primary" %></td>
-      </tr>
-      <% end %>
+<div class="container">
+  <% @lecturers.group_by(&:department).each do |department, lecturers| %>
+    <% if department.present? %>
+      <h3><%= department.name %></h3>
+    <% else %>
+      <%= 'Unknown' %>
     <% end %>
-  </tbody>
-</table>
+    <% lecturers.in_groups_of(4).each do |four_lecturers| %>
+      <ul class="list-table">
+        <% four_lecturers.each do |lecturer| %>
+          <li class="cell"><%= link_to lecturer.name, timetable_staffs_lecturer_path(lecturer.id) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>

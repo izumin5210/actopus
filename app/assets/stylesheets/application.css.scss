@@ -14,62 +14,22 @@
  *= require_self
  */
 
-$icon-font-path: "bootstrap-sass-official/";
+@import "bourbon";
+@import "neat";
 
-@import "variables";
+@import "headers/colors";
+@import "headers/variables";
+@import "headers/mixins";
 
-@import "bootstrap-sass-official/bootstrap-sprockets";
-// Core variables and mixins
-@import "bootstrap-sass-official/bootstrap/variables";
-@import "bootstrap-sass-official/bootstrap/mixins";
+@import "shared/global";
 
-// Reset and dependencies
-@import "bootstrap-sass-official/bootstrap/normalize";
-@import "bootstrap-sass-official/bootstrap/print";
-@import "bootstrap-sass-official/bootstrap/glyphicons";
+@import "shared/nav";
 
-// Core CSS
-@import "bootstrap-sass-official/bootstrap/scaffolding";
-@import "bootstrap-sass-official/bootstrap/type";
-@import "bootstrap-sass-official/bootstrap/code";
-@import "bootstrap-sass-official/bootstrap/grid";
-@import "bootstrap-sass-official/bootstrap/tables";
-@import "bootstrap-sass-official/bootstrap/forms";
-@import "bootstrap-sass-official/bootstrap/buttons";
+@import "components/buttons";
+@import "components/tables";
+@import "components/forms";
+@import "components/breadcrumb";
 
-// Components
-@import "bootstrap-sass-official/bootstrap/component-animations";
-@import "bootstrap-sass-official/bootstrap/dropdowns";
-@import "bootstrap-sass-official/bootstrap/button-groups";
-@import "bootstrap-sass-official/bootstrap/input-groups";
-@import "bootstrap-sass-official/bootstrap/navs";
-@import "bootstrap-sass-official/bootstrap/navbar";
-@import "bootstrap-sass-official/bootstrap/breadcrumbs";
-@import "bootstrap-sass-official/bootstrap/pagination";
-@import "bootstrap-sass-official/bootstrap/pager";
-@import "bootstrap-sass-official/bootstrap/labels";
-@import "bootstrap-sass-official/bootstrap/badges";
-@import "bootstrap-sass-official/bootstrap/jumbotron";
-@import "bootstrap-sass-official/bootstrap/thumbnails";
-@import "bootstrap-sass-official/bootstrap/alerts";
-@import "bootstrap-sass-official/bootstrap/progress-bars";
-@import "bootstrap-sass-official/bootstrap/media";
-@import "bootstrap-sass-official/bootstrap/list-group";
-@import "bootstrap-sass-official/bootstrap/panels";
-@import "bootstrap-sass-official/bootstrap/responsive-embed";
-@import "bootstrap-sass-official/bootstrap/wells";
-@import "bootstrap-sass-official/bootstrap/close";
-
-// Components w/ JavaScript
-@import "bootstrap-sass-official/bootstrap/modals";
-@import "bootstrap-sass-official/bootstrap/tooltip";
-@import "bootstrap-sass-official/bootstrap/popovers";
-@import "bootstrap-sass-official/bootstrap/carousel";
-
-// Utility classes
-@import "bootstrap-sass-official/bootstrap/utilities";
-@import "bootstrap-sass-official/bootstrap/responsive-utilities";
-
-@import "style";
-@import "timelines";
-@import "pagination-justified";
+@import "layouts/staff/views/reschedulings";
+@import "layouts/staff/views/staffs";
+@import "layouts/staff/views/timetables";

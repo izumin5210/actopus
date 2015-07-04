@@ -1,0 +1,8 @@
+.reschedulings-new {
+  [class^="reschedule-from-"] {
+    display: inline-block;
+    @include span-columns(4 of 9);
+  }
+
+  li { list-style: none; }
+}
